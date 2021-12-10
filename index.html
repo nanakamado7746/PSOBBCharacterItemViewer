@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>PSOBBCharactorDataDecoder</title>
+  <link rel="stylesheet" href="./css/default.css">
+  <link rel="shortcut icon" href="./resource/favicon64.ico">
+  <link rel="icon" type="image/x-icon" href="./resource/favicon64.ico">
+
+</head>
+
+<body>
+  <h1>PSOBB Charactor Data Decoder</h1>
+  <div class="contents">
+
+    <div class="input">
+      <div class="inputItemCodes" id="inputItemCodes">
+        <div class="inputItemCodesDescription" id="inputItemCodesDescription">
+        </div>
+        <div class="inputItemCodesDetail" id="inputItemCodesDetail"></div>
+        <label>
+          <input type="file" id="inputItemCodesButton" name="file" onchange=clickInputItemCodes(event)>
+        </label>
+        <label>
+          <button type="button" id="resetItemCodes" onClick=clickResetItemCodes(event)>RESET</button>
+        </label>
+        <label>
+          <button type="button" id="displayItemCodes" onClick=clickDisplayItemCodes(event)>CURRENT ITEM CODE</button>
+        </label>
+      </div>
+    </div>
+
+    <div class="input">
+      <div class="inputFile">
+        <div class="inputFileDescription" id="inputFileDescription">
+          <p>Please input your character data file (s).</p>
+        </div>
+        <label>
+          <input type="file" id="inputFileButton" name="file[]" multiple onchange=clickInputFile(event)>
+        </label>
+      </div>
+    </div>
+
+    <div class="pager", id="pager"></div>
+    <div class="data", id="data"></div>
+  </div>
+</body>
+
+<script type="text/javascript" src="./js/config/item_codes.js"></script>
+<script type="text/javascript" src="./js/config/Config.js"></script>
+<script type="text/javascript" src="./js/model/Abstract.js"></script>
+<script type="text/javascript" src="./js/model/Charactor.js"></script>
+<script type="text/javascript" src="./js/model/ShareBank.js"></script>
+<script type="text/javascript" src="./js/display.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>

@@ -1,0 +1,112 @@
+body
+{
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #333333;
+  background-image: url("../resource/rune_white.png");
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: right 2% top 10%;
+  background-attachment: fixed;
+}
+
+h1
+{
+  overflow-wrap: break-word;
+  padding-left: 1em;
+  color: #FFFFFF;
+  background-color: #6A5ACD;
+  border-style: solid;
+  border-width: 1px;
+  border-color: : #afeeee;
+  border-top-left-radius: 30em;
+  border-top-right-radius: 30em;
+  border-bottom-right-radius: 30em;
+  border-bottom-left-radius: 30em;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+  text-shadow: 1px 2px 3px #222222;
+}
+
+.contents
+{
+    margin-top: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.inputFile
+{
+  color: #FFFFFF;
+}
+
+.input
+{
+  margin-bottom: 2em;
+}
+
+.inputItemCodes
+{
+  color: #FFFFFF;
+}
+
+.inputItemCodesDescription
+{
+  margin: 0em;
+}
+
+.inputItemCodesDescription p
+{
+  margin: 0em;
+}
+
+.inputItemCodesDetail
+{
+  margin-left: 0em;
+}
+
+.inputItemCodesDetail p
+{
+  margin: 0em;
+}
+
+.charactor
+{
+    margin-top: 1em;
+}
+
+h2
+{
+  margin-top: 1em;
+  overflow-wrap: break-word;
+  padding-left: 1em;
+  color: #FFFFFF;
+  background-color: #CD5C5C;
+  border-style: solid;
+  border-width: 1px;
+  border-color: : #afeeee;
+  border-top-left-radius: 30em;
+  border-top-right-radius: 30em;
+  border-bottom-right-radius: 30em;
+  border-bottom-left-radius: 30em;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);
+  text-shadow: 1px 2px 3px #222222;
+  background-image: url("../resource/redbox_gray.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0%;
+}
+
+table {}
+th {}
+td
+{
+  color: #FFFFFF;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-shadow: 1px 2px 3px #000000;
+}
+
+.pager
+{
+  font-size: 100%;
+}

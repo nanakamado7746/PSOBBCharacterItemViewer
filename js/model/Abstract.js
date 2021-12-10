@@ -328,6 +328,8 @@ class Abstract {
 
   getAddition(name, additions, type)
   {
+    console.log(additions);
+    console.log(name);
     if (name in additions)
     {
       return additions[name][type];

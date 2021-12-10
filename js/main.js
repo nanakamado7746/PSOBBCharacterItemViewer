@@ -190,6 +190,9 @@ async function clickInputFile(event)
 
 function removeCharactorData()
 {
+  this.charactor = [];
+  this.shareBanks = [];
+  this.allItems = [];
   localStorage.removeItem("charactors");
   localStorage.removeItem("shareBanks");
   localStorage.removeItem("allItems");

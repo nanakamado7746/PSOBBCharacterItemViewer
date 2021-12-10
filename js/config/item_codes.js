@@ -175,7 +175,7 @@ function getItemCodes() {
     "0x003400":  "RED SWORD",
     "0x003500":  "CRAZY TUNE",
     "0x003600":  "TWIN CHAKRAM",
-    "0x003700":  "WOK OF AKIKO&'S SHOP",
+    "0x003700":  "WOK OF AKIKO'S SHOP",
     "0x003800":  "LAVIS BLADE",
     "0x003900":  "RED DAGGER",
     "0x003A00":  "MADAM'S PARASOL",

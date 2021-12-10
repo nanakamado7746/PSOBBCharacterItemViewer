@@ -270,7 +270,7 @@ class Config {
     "BUNNY EARS":                         [ 0,0 ],
     "CAT EARS":                           [ 0,0 ],
     "THREE SEALS":                        [ 3,3 ],
-    "GOD'S SHIELD KOURYU":           [ 0,0 ],
+    "GOD'S SHIELD \"KOURYU\"":            [ 0,0 ],
     "DF SHIELD":                          [ 85,25 ],
     "FROM THE DEPTHS":                    [ 0,0 ],
     "DE ROL LE SHIELD":                   [ 75,75 ],

@@ -50,7 +50,7 @@ function displayInputItemCodesDetail()
 
     // アイテムコードの数
     let p = document.createElement("p");
-    p.appendChild(document.createTextNode(`◆ Number of item codes inputted : ${Object.keys(itemCodeData["date"]).length}`));
+    p.appendChild(document.createTextNode(`◆ Number of item codes inputted : ${Object.keys(itemCodeData["itemCodes"]).length}`));
     id2.appendChild(p);
 
     // アイテムコードを入力した日時

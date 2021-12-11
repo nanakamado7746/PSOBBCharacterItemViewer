@@ -252,7 +252,11 @@ class Abstract {
   other(itemCode, itemBuffer)
   {
     let name = this.getName(itemCode);
-    let number = itemBuffer[5];
+    let number;
+    ((0x030A00 <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= 0x030B06))
+      ? number = itemBuffer[20]
+      : number = itemBuffer[5];
+      
     let numberLabel = "";
     if (number > 0)
     {

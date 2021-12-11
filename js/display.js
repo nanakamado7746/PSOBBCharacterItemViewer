@@ -45,7 +45,7 @@ function displayInputItemCodesDetail()
   {
     // 説明文
     let description = document.createElement("p");
-    description.appendChild(document.createTextNode("You have inputted the item codes. Please re-input your character data."));
+    description.appendChild(document.createTextNode("You have inputted the item codes. Please refresh your browser."));
     id.appendChild(description);
 
     // アイテムコードの数

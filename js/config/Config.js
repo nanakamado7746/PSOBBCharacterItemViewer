@@ -75,6 +75,26 @@ class Config {
     0x27: "Devil's",
     0x28: "Demon's"
   }
+  
+  SrankElementCodes = {
+    0x00: "Unchanged/Nothing",
+    0x01: "Jellen",
+    0x02: "Zalure",
+    0x03: "HP Regeneration",
+    0x04: "TP Regeneration",
+    0x05: "Burning",
+    0x06: "Tempest",
+    0x07: "Blizzard",
+    0x08: "Arrest",
+    0x09: "Chaos",
+    0x0A: "Hell",
+    0x0B: "Spirit",
+    0x0C: "Berserk",
+    0x0D: "Demon's",
+    0x0E: "Gush",
+    0x0F: "Geist",
+    0x10: "King's"
+  }
 
   AttributeType = {
     "native": 0x01,

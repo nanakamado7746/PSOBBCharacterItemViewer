@@ -237,7 +237,7 @@ class Abstract {
   {
     let name = this.config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)];
     let grinder = itemBuffer[3];
-    let element = this.getElement(itemBuffer);
+    let element = this.getSrankElement(itemBuffer);
 
     // グラインダーが1以上の場合は表示する
     let grinderLabel = "";
@@ -283,6 +283,17 @@ class Abstract {
       if (elementCode in this.config.ElementCodes)
       {
           return this.config.ElementCodes[elementCode];
+      }
+
+      return "undefined";
+  }
+
+  getSrankElement(itemBuffer)
+  {
+      let elementCode = itemBuffer[2];
+      if (elementCode in this.config.SrankElementCodes)
+      {
+          return this.config.SrankElementCodes[elementCode];
       }
 
       return "undefined";

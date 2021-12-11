@@ -33,8 +33,7 @@ function displayItemCodes()
 
 function displayInputItemCodesDetail()
 {
-  let itemCodes = this.itemCodes;
-  let itemCodeInputDate = this.itemCodeInputDate;
+  let itemCodeData = this.itemCodeData;
 
   //　初期化
   let id = document.getElementById("inputItemCodesDescription");
@@ -42,7 +41,7 @@ function displayInputItemCodesDetail()
   let id2 = document.getElementById("inputItemCodesDetail");
   id2.innerHTML = '';
 
-  if (Object.keys(itemCodes).length !== 0)
+  if (Object.keys(itemCodeData).length !== 0)
   {
     // 説明文
     let description = document.createElement("p");
@@ -51,12 +50,12 @@ function displayInputItemCodesDetail()
 
     // アイテムコードの数
     let p = document.createElement("p");
-    p.appendChild(document.createTextNode(`◆ Number of item codes inputted : ${Object.keys(itemCodes).length}`));
+    p.appendChild(document.createTextNode(`◆ Number of item codes inputted : ${Object.keys(itemCodeData["date"]).length}`));
     id2.appendChild(p);
 
     // アイテムコードを入力した日時
     let p2 = document.createElement("p");
-    p2.appendChild(document.createTextNode(`◆ Date inputted : ${itemCodeInputDate}`));
+    p2.appendChild(document.createTextNode(`◆ Date inputted : ${itemCodeData["date"]}`));
     id2.appendChild(p2);
   }
   else
@@ -207,12 +206,6 @@ function displayPager()
     button.innerText = "AllItems";
     id.appendChild(button);
   }
-}
-
-function getDate()
-{
-  let date = new Date();
-  return date.toLocaleString();
 }
 
 function resetInnerHtml(id)

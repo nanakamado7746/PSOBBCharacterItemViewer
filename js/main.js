@@ -1,29 +1,23 @@
-
-// キャラクターデータ
+// 入力データ
+var fileData = [];
+var itemCodeData = [];
+// デコード済みデータ
 var charactors = [];
 var shareBanks = [];
 var allItems = [];
-var itemCodes = {};
-var itemCodeInputDate;
 
-//　初期表示
+// 初期表示
 initializeItemCodes();
 initializeDisplay();
-
 
 function initializeItemCodes()
 {
   try
   {
-    if (localStorage.getItem("itemCodes"))
+    if (localStorage.getItem("itemCodeData"))
     {
-      this.itemCodes = JSON.parse(localStorage.getItem("itemCodes"));
-      console.log(this.itemCodes);
-    }
-    if (localStorage.getItem("itemCodeInputDate"))
-    {
-      this.itemCodeInputDate = JSON.parse(localStorage.getItem("itemCodeInputDate"));
-      console.log(this.itemCodeInputDate);
+      this.itemCodeData = JSON.parse(localStorage.getItem("itemCodeData"));
+      console.log(this.itemCodeData);
     }
   }
   catch (e)
@@ -43,50 +37,37 @@ function initializeDisplay()
 {
   try
   {
-    if (localStorage.getItem("charactors"))
+    if (localStorage.getItem("fileData"))
     {
-      this.charactors = JSON.parse(localStorage.getItem("charactors"));
-      console.log(this.charactors);
+      this.fileData = JSON.parse(localStorage.getItem("fileData"));
+      console.log(JSON.parse(localStorage.getItem("fileData")));
+      decoder();
     }
-    if (localStorage.getItem("shareBanks"))
-    {
-      this.shareBanks = JSON.parse(localStorage.getItem("shareBanks"));
-      console.log(this.shareBanks);
-    }
-    if (localStorage.getItem("allItems"))
-    {
-      this.allItems = JSON.parse(localStorage.getItem("allItems"));
-      console.log(this.allItems);
-    }
+    displayPager();
+    displayCharactorDetail();
   }
   catch (e)
   {
     console.log(e);
-    resetInnerHtml("charactorDetail");
+    resetInnerHtml("data");
     resetInnerHtml("pager");
     removeCharactorData();
     alert("Failed to display the charactor data");
-  }
-  finally
-  {
-    displayPager();
-    displayCharactorDetail();
   }
 }
 
 function clickResetItemCodes(event)
 {
-  this.itemCodes = {};
+  this.itemCodeData = [];
   document.getElementById('inputItemCodesButton').value = '';
-  localStorage.removeItem("itemCodes");
-  localStorage.removeItem("itemCodeInputDate");
+  localStorage.removeItem("itemCodeData");
   displayInputItemCodesDetail();
 }
 
 function clickDisplayItemCodes(event)
 {
-  let itemCode;
-  if (Object.keys(this.itemCodes).length === 0)
+  let itemCode = this.itemCodeData;
+  if (typeof itemCode["itemCodes"] === "undefined")
   {
     let config = new Config();
     itemCodes = config.ItemCodes;
@@ -104,20 +85,20 @@ async function clickInputItemCodes(event)
     if ( file.name.match(/^items_list.lua$/) == null) throw new Error('not_match_filename');
 
     // アイテムコード初期化
-    let itemCodes = {};
+    let itemCodeData = {};
 
     fileReader.readAsText(file);
     await new Promise(resolve => fileReader.onload = () => resolve());
 
     let list = fileReader.result.split(/\n/);
-    itemCodes = getInputItemCodes(list);
+    itemCodeData["itemCodes"] = getInputItemCodes(list);
 
-    if (Object.keys(itemCodes).length === 0) throw new Error('no_item_code');
+    if (Object.keys(itemCodeData).length === 0) throw new Error('no_item_code');
 
-    let itemCodeInputDate = getDate();
+    itemCodeData["date"] = getDate();
 
-    setItemCodes(itemCodes, itemCodeInputDate);
-    displayInputItemCodesDetail(itemCodes, itemCodeInputDate);
+    setItemCodes(itemCodeData);
+    displayInputItemCodesDetail();
   }
   catch (e)
   {
@@ -133,12 +114,43 @@ async function clickInputItemCodes(event)
   }
 }
 
-function setItemCodes(itemCodes, itemCodeInputDate)
+function decoder()
 {
-  this.itemCodes = itemCodes;
-  localStorage.setItem("itemCodes", JSON.stringify(itemCodes));
-  this.itemCodeInputDate = itemCodeInputDate;
-  localStorage.setItem("itemCodeInputDate", JSON.stringify(itemCodeInputDate));
+  if (this.fileData.length === 0) return;
+  let fileData = this.fileData;
+  let itemCodes = this.itemCodeData["itemCodes"];
+  let charactors = [];
+  let shareBanks = [];
+  let allItems = [];
+
+  for (let i in fileData)
+  {
+    let binary = Object.values(fileData[i]["binary"]);
+
+    // 共有倉庫ファイルをデコード
+    if (fileData[i]["filename"].match(/psobank/) != null)
+    {
+      let shareBank = new ShareBank(binary, "Share Bank", itemCodes);
+      shareBanks.push(shareBank);
+      allItems = allItems.concat(shareBank.ShareBank);
+      continue;
+    }
+
+    //　キャラクターファイルをデコード
+    let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
+    let charactor = new Charactor(binary, slot, itemCodes);
+    charactors.push(charactor);
+
+    allItems = allItems.concat(charactor.Inventory);
+    allItems = allItems.concat(charactor.Bank);
+  }
+  // ソート
+  allItems = allItems.sort();
+
+  // グローバル変数初期化
+  removeCharactorData();
+  // グローバル変数とローカルストレージにセット
+  setCharactorData(charactors, shareBanks, allItems);
 }
 
 async function clickInputFile(event)
@@ -146,56 +158,29 @@ async function clickInputFile(event)
 
   let fileReader = new FileReader();
   let files = sortInputFiles(event.target.files);
-
-  let itemCodes = this.itemCodes;
-  let charactors = [];
-  let shareBanks = [];
-  let allItems = [];
+  let fileData = [];
 
   for (let i = 0; i < files.length; i++)
   {
     fileReader.readAsArrayBuffer(files[i]);
     await new Promise(resolve => fileReader.onload = () => resolve());
-    let buffer = new Uint8Array(fileReader.result);
+    let binary = new Uint8Array(fileReader.result);
 
-    // 共有倉庫ファイルをデコード
-    if (files[i].name.match(/psobank/) != null)
-    {
-      let shareBank = new ShareBank(buffer, "Share Bank", itemCodes);
-      shareBanks.push(shareBank);
-      allItems = allItems.concat(shareBank.ShareBank);
-      continue;
-    }
-
-    //　キャラクターファイルをデコード
-    let slot = files[i].name.match(/\s\d+/)[0].trim();
-    let charactor = new Charactor(buffer, slot, itemCodes);
-    charactors.push(charactor);
-
-    allItems = allItems.concat(charactor.Inventory);
-    allItems = allItems.concat(charactor.Bank);
+    fileData.push({
+      "filename": files[i].name,
+      "binary": binary
+    });
   }
 
-  // ソート
-  allItems = allItems.sort();
-  // ローカルストレージ初期化
-  removeCharactorData();
-  // ローカルストレージにセット
-  setCharactorData(charactors, shareBanks, allItems);
+  localStorage.setItem("fileData", JSON.stringify(fileData));
+  this.fileData = fileData;
+
+  // デコード
+  decoder();
   // ページャーを表示
   displayPager();
   // 詳細表示
   displayCharactorDetail();
-}
-
-function removeCharactorData()
-{
-  this.charactor = [];
-  this.shareBanks = [];
-  this.allItems = [];
-  localStorage.removeItem("charactors");
-  localStorage.removeItem("shareBanks");
-  localStorage.removeItem("allItems");
 }
 
 function setCharactorData(charactors, shareBanks, allItems)
@@ -203,21 +188,18 @@ function setCharactorData(charactors, shareBanks, allItems)
   if (charactors.length !== 0)
   {
     this.charactors = charactors;
-    localStorage.setItem("charactors", JSON.stringify(charactors));
     console.log(charactors);
   }
 
   if (shareBanks.length !== 0)
   {
     this.shareBanks = shareBanks;
-    localStorage.setItem("shareBanks", JSON.stringify(shareBanks));
     console.log(shareBanks);
   }
 
   if (allItems.length !== 0)
   {
     this.allItems = allItems;
-    localStorage.setItem("allItems", JSON.stringify(allItems));
     console.log(allItems);
   }
 }
@@ -293,4 +275,23 @@ function getInputItemCodes(list)
     }
   }
   return itemCodes;
+}
+
+function setItemCodes(itemCodeData)
+{
+  this.itemCodeData = itemCodeData;
+  localStorage.setItem("itemCodeData", JSON.stringify(itemCodeData));
+}
+
+function getDate()
+{
+  let date = new Date();
+  return date.toLocaleString();
+}
+
+function removeCharactorData()
+{
+  this.charactors = [];
+  this.shareBanks = [];
+  this.allItems = [];
 }

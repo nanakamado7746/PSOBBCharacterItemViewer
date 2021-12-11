@@ -4,7 +4,7 @@ class Abstract {
   constructor(charactorBuffer, slot, newItemCodes)
   {
     // addonのファイルリストを取得している場合、アイテムコードを更新する。
-    if (Object.keys(newItemCodes).length !== 0)
+    if (typeof newItemCodes !== "undefined")
     {
       this.config.ItemCodes = newItemCodes;
     }
@@ -256,7 +256,7 @@ class Abstract {
     ((0x030A00 <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= 0x030B06))
       ? number = itemBuffer[20]
       : number = itemBuffer[5];
-      
+
     let numberLabel = "";
     if (number > 0)
     {

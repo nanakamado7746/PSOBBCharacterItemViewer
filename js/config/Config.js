@@ -79,8 +79,8 @@ class Config {
   AttributeType = {
     "native": 0x01,
     "aBeast": 0x02,
-    "dark": 0x03,
-    "machine": 0x04,
+    "machine": 0x03,
+    "dark": 0x04,
     "hit": 0x05,
   }
 

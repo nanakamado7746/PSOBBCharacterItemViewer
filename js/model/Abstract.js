@@ -151,7 +151,7 @@ class Abstract {
 
   weapon(itemCode, itemBuffer)
   {
-    let name = this.getName(itemCode);
+    let name = this.getItemName(itemCode);
     let grinder = itemBuffer[3];
     let native = this.getNative(itemBuffer);
     let aBeast = this.getABeast(itemBuffer);
@@ -184,7 +184,7 @@ class Abstract {
 
   frame(itemCode, itemBuffer)
   {
-    let name = this.getName(itemCode);
+    let name = this.getItemName(itemCode);
     let slot = itemBuffer[5];
     let def = itemBuffer[6];
     let defMaxAddition = this.getAddition(name, this.config.FrameAdditions, this.config.AdditionType.DEF);
@@ -195,7 +195,7 @@ class Abstract {
 
   barrier(itemCode, itemBuffer)
   {
-    let name = this.getName(itemCode);
+    let name = this.getItemName(itemCode);
     let def = itemBuffer[6];
     let defMaxAddition = this.getAddition(name, this.config.BarrierAdditions, this.config.AdditionType.DEF);
     let avoid = itemBuffer[8];
@@ -205,13 +205,13 @@ class Abstract {
 
   unit(itemCode, itemBuffer)
   {
-    let name = this.getName(itemCode);
+    let name = this.getItemName(itemCode);
     return name;
   }
 
   mag(itemCode, itemBuffer)
   {
-    let name = this.getName(itemCode.substring(0, 4) + "00");
+    let name = this.getItemName(itemCode.substring(0, 4) + "00");
     let level = itemBuffer[2];
     let sync = itemBuffer[16];
     let iq = itemBuffer[17];
@@ -251,7 +251,7 @@ class Abstract {
 
   other(itemCode, itemBuffer)
   {
-    let name = this.getName(itemCode);
+    let name = this.getItemName(itemCode);
     let number;
     ((0x030A00 <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= 0x030B06))
       ? number = itemBuffer[20]
@@ -266,7 +266,7 @@ class Abstract {
     return `${name}${numberLabel}`;
   }
 
-  getName(itemCode)
+  getItemName(itemCode)
   {
     itemCode = "0x" + itemCode;
 

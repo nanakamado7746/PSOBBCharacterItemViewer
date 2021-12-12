@@ -128,16 +128,17 @@ function decoder()
     let binary = Object.values(fileData[i]["binary"]);
 
     // 共有倉庫ファイルをデコード
-    if (fileData[i]["filename"].match(/psobank/) != null)
+    if (fileData[i]["filename"].match(/psobank/) !== null)
     {
       let shareBank = new ShareBank(binary, "Share Bank", itemCodes);
       shareBanks.push(shareBank);
       allItems = allItems.concat(shareBank.ShareBank);
       continue;
     }
-    if (fileData[i]["filename"].match(/psochar/) != null)
+
+    //　キャラクターファイルをデコード
+    if (fileData[i]["filename"].match(/psochar/) !== null)
     {
-      //　キャラクターファイルをデコード
       let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
       let charactor = new Charactor(binary, slot, itemCodes);
       charactors.push(charactor);
@@ -164,6 +165,9 @@ async function clickInputFile(event)
 
   for (let i = 0; i < files.length; i++)
   {
+    //　キャラクターデータファイルだけ取り込み
+    if (files[i].name.match(/psobank|psochar/) == null) continue;
+
     fileReader.readAsArrayBuffer(files[i]);
     await new Promise(resolve => fileReader.onload = () => resolve());
     let binary = new Uint8Array(fileReader.result);
@@ -173,6 +177,9 @@ async function clickInputFile(event)
       "binary": binary
     });
   }
+
+  // なかったら終わり
+  if (fileData.length === 0) return;
 
   localStorage.setItem("fileData", JSON.stringify(fileData));
   this.fileData = fileData;

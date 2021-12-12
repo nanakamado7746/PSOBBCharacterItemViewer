@@ -66,6 +66,10 @@ class Abstract {
         return this.mag(itemCode, itemBuffer);
       case (this.config.ItemType.DISK):
         return this.disk(itemCode, itemBuffer);
+      case (this.config.ItemType.TOOL):
+        return this.tool(itemCode, itemBuffer);
+      case (this.config.ItemType.REINFORCEMENT):
+        return this.reinforcement(itemCode, itemBuffer);
       case (this.config.ItemType.OTHER):
         return this.other(itemCode, itemBuffer);
       default:
@@ -75,34 +79,15 @@ class Abstract {
 
   getItemType(itemCode)
   {
-    if (this.isSRankWeapon(itemCode))
-    {
-      return this.config.ItemType.SRANK_WEAPON;
-    }
-    if (this.isWeapon(itemCode))
-    {
-        return this.config.ItemType.WEAPON;
-    }
-    if (this.isFrame(itemCode))
-    {
-        return this.config.ItemType.FRAME;
-    }
-    if (this.isBarrier(itemCode))
-    {
-        return this.config.ItemType.BARRIER;
-    }
-    if (this.isUnit(itemCode))
-    {
-        return this.config.ItemType.UNIT;
-    }
-    if (this.isMag(itemCode))
-    {
-        return this.config.ItemType.MAG;
-    }
-    if (this.isDisk(itemCode))
-    {
-        return this.config.ItemType.DISK;
-    }
+    if (this.isSRankWeapon(itemCode)) return this.config.ItemType.SRANK_WEAPON;
+    if (this.isWeapon(itemCode)) return this.config.ItemType.WEAPON;
+    if (this.isFrame(itemCode)) return this.config.ItemType.FRAME;
+    if (this.isBarrier(itemCode)) return this.config.ItemType.BARRIER;
+    if (this.isUnit(itemCode)) return this.config.ItemType.UNIT;
+    if (this.isMag(itemCode)) return this.config.ItemType.MAG;
+    if (this.isDisk(itemCode)) return this.config.ItemType.DISK;
+    if (this.isTool(itemCode)) return this.config.ItemType.TOOL;
+    if (this.isReinforcement(itemCode)) return this.config.ItemType.REINFORCEMENT;
     return this.config.ItemType.OTHER;
   }
 
@@ -145,7 +130,11 @@ class Abstract {
   }
   isTool(itemCode)
   {
-    return (this.config.ToolRange[0] <= parseInt(itemCode.substring(0, 4), 16) && parseInt(itemCode.substring(0, 4), 16) <= this.config.ToolRange[1]);
+    return (this.config.ToolRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.config.ToolRange[1]);
+  }
+  isReinforcement(itemCode)
+  {
+    return (this.config.ReinforcementRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.config.ReinforcementRange[1]);
   }
 
   weapon(itemCode, itemBuffer)
@@ -158,27 +147,11 @@ class Abstract {
     let dark = this.getDark(itemBuffer);
     let hit = this.getHit(itemBuffer);
 
-    // グラインダーが1以上の場合
-    let grinderLabel = "";
-    if (grinder > 0)
-    {
-      grinderLabel = ` +${grinder}`;
-    }
-
     // コモン武器の場合はエレメントの設定をする。
     let element = "";
-    if (this.isCommonWeapon(itemCode))
-    {
-      element = this.getElement(itemBuffer);
-      if (element != "")
-      {
-        element = ` [${element}]`;
-      }
-    }
+    if (this.isCommonWeapon(itemCode)) element = ` [${this.getElement(itemBuffer)}]`;
 
-    // レア武器の場合はエレメント非表示
-    return `${name}${grinderLabel}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`;
-    //return `${name}${grinderLabel}`;
+    return `${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`;
   }
 
   frame(itemCode, itemBuffer)
@@ -238,31 +211,41 @@ class Abstract {
     let grinder = itemBuffer[3];
     let element = this.getSrankElement(itemBuffer);
 
-    // グラインダーが1以上の場合は表示する
-    let grinderLabel = "";
-    if (grinder > 0)
-    {
-        grinderLabel = ` +${grinder}`;
-    }
+    return `S-RANK ${name}${this.grinderLabel(grinder)} [${element}]`;
+  }
 
-    return `S-RANK ${name}${grinderLabel} [${element}]`;
+  tool(itemCode, itemBuffer)
+  {
+    let name = this.getItemName(itemCode);
+    let number = 0;
+    (itemBuffer.length === 28)
+      // イベントリの場合
+      ? number = itemBuffer[5]
+      // 倉庫の場合
+      : number = itemBuffer[20];
+
+    return `${name}${this.numberLabel(number)}`;
+  }
+
+  reinforcement(itemCode, itemBuffer)
+  {
+    let name = this.getItemName(itemCode);
+    let number = itemBuffer[20]
+
+    return `${name}${this.numberLabel(number)}`;
   }
 
   other(itemCode, itemBuffer)
   {
     let name = this.getItemName(itemCode);
-    let number;
-    ((0x030A00 <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= 0x030B06))
-      ? number = itemBuffer[20]
-      : number = itemBuffer[5];
+    let number = 0;
+    (itemBuffer.length === 28)
+      // イベントリの場合
+      ? number = itemBuffer[5]
+      // 倉庫の場合
+      : number = itemBuffer[20];
 
-    let numberLabel = "";
-    if (number > 0)
-    {
-      numberLabel = ` x${number}`;
-    }
-
-    return `${name}${numberLabel}`;
+    return `${name}${this.numberLabel(number)}`;
   }
 
   getItemName(itemCode)
@@ -356,6 +339,17 @@ class Abstract {
         return this.config.PBs[pbsCode];
     }
     return ["undefined", "undefined", "undefined"];
+  }
+  numberLabel(number)
+  {
+    if (number > 0) return ` x${number}`;
+    return "";
+  }
+
+  grinderLabel(number)
+  {
+    if (number > 0) return ` +${number}`;
+    return "";
   }
 
   joinArray(arr){

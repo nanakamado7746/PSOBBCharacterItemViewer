@@ -135,14 +135,16 @@ function decoder()
       allItems = allItems.concat(shareBank.ShareBank);
       continue;
     }
+    if (fileData[i]["filename"].match(/psochar/) != null)
+    {
+      //　キャラクターファイルをデコード
+      let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
+      let charactor = new Charactor(binary, slot, itemCodes);
+      charactors.push(charactor);
 
-    //　キャラクターファイルをデコード
-    let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
-    let charactor = new Charactor(binary, slot, itemCodes);
-    charactors.push(charactor);
-
-    allItems = allItems.concat(charactor.Inventory);
-    allItems = allItems.concat(charactor.Bank);
+      allItems = allItems.concat(charactor.Inventory);
+      allItems = allItems.concat(charactor.Bank);
+    }
   }
   // ソート
   allItems = allItems.sort();

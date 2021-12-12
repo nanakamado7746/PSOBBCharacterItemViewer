@@ -122,7 +122,6 @@ function displayInventory(id, inventory, title, mode)
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");
 
-  console.log(inventory);
   if (inventory.length == 0)
   {
     // イベントリがからの場合、NO ITEMと表示

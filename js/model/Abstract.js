@@ -13,7 +13,7 @@ class Abstract {
 
   setInventory(itemsBuffer, inventory, max, length, slot)
   {
-    console.log("items itemsBuffer:" + itemsBuffer);
+    console.log(itemsBuffer);
 
     let index = 0;
     let end = length;
@@ -22,7 +22,6 @@ class Abstract {
     {
         let itemBuffer = itemsBuffer.slice(index, end);
         console.log(itemBuffer);
-        console.log(this.joinArrayToString(itemBuffer));
         console.log("item itemBuffer length:" + itemBuffer.length);
         console.log(`item number:${i}, index:${index}, length:${length}, end:${end}`);
         // 空欄チェック

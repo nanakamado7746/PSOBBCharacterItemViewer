@@ -75,7 +75,7 @@ class Config {
     0x27: "Devil's",
     0x28: "Demon's"
   }
-  
+
   SrankElementCodes = {
     0x00: "Unchanged/Nothing",
     0x01: "Jellen",

@@ -6,8 +6,8 @@ class Config {
   BarrierRange = [ 0x010200, 0x0102A5 ];
   UnitRange = [ 0x010300, 0x010364 ];
   MagRange = [ 0x020000, 0x025200 ];
-  ToolRange = [ 0x030000, 0x030800 ];
-  ReinforcementRange = [ 0x030A00, 0x030B06 ];
+  ToolRange = [ 0x030000, 0x030B06 ];
+  ReinforcementRange = [ 0x030A00, 0x030B06 ]; // Toolに含まれる。実質使われていない
   MesetaRange = [ 0x030000, 0x030102 ];
   DiskRange = [ 0x050000, 0x05121D ];
   EphineaRange = [ 0x031005, 0x031810 ];

@@ -230,7 +230,11 @@ class Abstract {
   reinforcement(itemCode, itemBuffer)
   {
     let name = this.getItemName(itemCode);
-    let number = itemBuffer[20]
+    (itemBuffer.length === 28)
+      // イベントリの場合
+      ? number = itemBuffer[5]
+      // 倉庫の場合
+      : number = itemBuffer[20];
 
     return `${name}${this.numberLabel(number)}`;
   }
@@ -342,6 +346,7 @@ class Abstract {
   }
   numberLabel(number)
   {
+    if (number == 1) return "";
     if (number > 0) return ` x${number}`;
     return "";
   }

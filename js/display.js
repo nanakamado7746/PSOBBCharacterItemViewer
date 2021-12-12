@@ -1,8 +1,11 @@
 function displayItemCodes()
 {
-  let itemCodes = this.itemCodes;
+  let itemCodes = this.itemCodeData["itemCodes"];
   let id = document.getElementById("data");
   id.innerHTML = '';
+
+  if (typeof itemCodes === "undefined") return;
+
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode("ITEM CODES"));
   id.appendChild(h2);

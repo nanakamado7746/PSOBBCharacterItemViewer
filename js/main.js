@@ -23,7 +23,7 @@ function initializeItemCodes()
   catch (e)
   {
     console.log(e);
-    localStorage.removeItem("itemCodes");
+    localStorage.removeItem("itemCodeData");
     alert("Failed to display the item code");
   }
   finally
@@ -66,11 +66,11 @@ function clickResetItemCodes(event)
 
 function clickDisplayItemCodes(event)
 {
-  let itemCode = this.itemCodeData;
-  if (typeof itemCode["itemCodes"] === "undefined")
+  let itemCodes = this.itemCodeData["itemCodes"];
+  if (typeof itemCodes === "undefined")
   {
     let config = new Config();
-    itemCodes = config.ItemCodes;
+    this.itemCodeData["itemCodes"] = config.ItemCodes;
   }
   displayItemCodes();
 }

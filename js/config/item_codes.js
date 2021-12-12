@@ -1,7 +1,7 @@
 function getItemCodes() {
   return {
     "0x000000":   "Saber",
-    "0x000100":   "Saber",
+    "0x000100":   "Sabersssss",
     "0x000101":   "Brand",
     "0x000102":   "Buster",
     "0x000103":   "Pallasch",

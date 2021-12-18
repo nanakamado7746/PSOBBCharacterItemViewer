@@ -17,27 +17,27 @@ class Charactor extends Abstract {
   // キャラクターの倉庫品
   Bank = [];
 
-  constructor(binaryCharactor, slot, newItemCodes) {
-      super(binaryCharactor, slot, newItemCodes);
+  constructor(charactorData, slot, newItemCodes) {
+      super(charactorData, slot, newItemCodes);
       // キャラクターの名前をセット
-      this.setName(binaryCharactor);
+      this.setName(charactorData);
       // キャラクターのスロットをセット
       this.setSlot(slot);
       // キャラクターの種族をセット
-      this.setRace(binaryCharactor);
+      this.setRace(charactorData);
       // キャラクターのレベルをセット
-      this.setLevel(binaryCharactor);
+      this.setLevel(charactorData);
       // キャラクターの経験値をセット
-      this.setExperience(binaryCharactor);
+      this.setExperience(charactorData);
       // キャラクターの所持品をセット
-      this.setInventory(binaryCharactor.slice(20, 860), this.Inventory, 30, 28, slot);
+      this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot);
       // キャラクター倉庫アイテムをセット
-      this.setInventory(binaryCharactor.slice(1800, 6600), this.Bank, 200, 24, slot);
+      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, slot);
   }
 
-  setName(binaryCharactor)
+  setName(charactorData)
   {
-    let array = binaryCharactor.slice(968,988);
+    let array = charactorData.slice(968,988);
     let name = "";
     for (let i = 0; i < array.length; i += 2)
     {
@@ -52,7 +52,7 @@ class Charactor extends Abstract {
   {
     this.Slot = slot;
   }
-  setRace(binaryCharactor) {}
-  setLevel(binaryCharactor) {}
-  setExperience(binaryCharactor) {}
+  setRace(charactorData) {}
+  setLevel(charactorData) {}
+  setExperience(charactorData) {}
 }

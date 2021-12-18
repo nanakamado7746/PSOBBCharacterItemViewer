@@ -17,30 +17,42 @@ class Charactor extends Abstract {
   // キャラクターの倉庫品
   Bank = [];
 
-  constructor(charactorBuffer, slot, newItemCodes) {
-      super(charactorBuffer, slot, newItemCodes);
+  constructor(binaryCharactor, slot, newItemCodes) {
+      super(binaryCharactor, slot, newItemCodes);
       // キャラクターの名前をセット
-      this.setName(charactorBuffer);
+      this.setName(binaryCharactor);
       // キャラクターのスロットをセット
       this.setSlot(slot);
       // キャラクターの種族をセット
-      this.setRace(charactorBuffer);
+      this.setRace(binaryCharactor);
       // キャラクターのレベルをセット
-      this.setLevel(charactorBuffer);
+      this.setLevel(binaryCharactor);
       // キャラクターの経験値をセット
-      this.setExperience(charactorBuffer);
+      this.setExperience(binaryCharactor);
       // キャラクターの所持品をセット
-      this.setInventory(charactorBuffer.slice(20, 860), this.Inventory, 30, 28, slot);
+      this.setInventory(binaryCharactor.slice(20, 860), this.Inventory, 30, 28, slot);
       // キャラクター倉庫アイテムをセット
-      this.setInventory(charactorBuffer.slice(1800, 6600), this.Bank, 200, 24, slot);
+      this.setInventory(binaryCharactor.slice(1800, 6600), this.Bank, 200, 24, slot);
   }
 
-  setName(charactorBuffer) {}
+  setName(binaryCharactor)
+  {
+    let array = binaryCharactor.slice(968,988);
+    let name = "";
+    for (let i = 0; i < array.length; i += 2)
+    {
+      // 0値だったら
+      if (array[i] + array[i + 1] === 0) break;
+      name += String.fromCharCode((array[i + 1] << 8) | array[i]);
+    }
+    console.log(name);
+    this.Name = name;
+  }
   setSlot(slot)
   {
     this.Slot = slot;
   }
-  setRace(charactorBuffer) {}
-  setLevel(charactorBuffer) {}
-  setExperience(charactorBuffer) {}
+  setRace(binaryCharactor) {}
+  setLevel(binaryCharactor) {}
+  setExperience(binaryCharactor) {}
 }

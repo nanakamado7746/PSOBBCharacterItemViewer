@@ -102,6 +102,12 @@ function displayCharactor(charactor)
   td.appendChild(text);
   tr.appendChild(td);
   tbody.appendChild(tr);
+  let tr2 = document.createElement("tr");
+  let td2 = document.createElement("td");
+  let text2 = document.createTextNode(`NAME : ${charactor.Name}`);
+  td2.appendChild(text2);
+  tr2.appendChild(td2);
+  tbody.appendChild(tr2);
   table.appendChild(tbody);
   id.appendChild(table);
 

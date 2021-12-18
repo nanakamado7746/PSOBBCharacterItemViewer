@@ -5,13 +5,13 @@ class ShareBank extends Abstract {
   // 共有倉庫品
   ShareBank = [];
 
-  constructor(charactorBuffer, slot, newItemCodes)
+  constructor(binaryCharactor, slot, newItemCodes)
   {
-    super(charactorBuffer, slot, newItemCodes);
+    super(binaryCharactor, slot, newItemCodes);
     this.setMeseta();
-    this.setInventory(charactorBuffer.slice(8, 4808), this.ShareBank, 200, 24, slot);
+    this.setInventory(binaryCharactor.slice(8, 4808), this.ShareBank, 200, 24, slot);
   }
 
-  setMeseta(charactorBuffer) {}
+  setMeseta(binaryCharactor) {}
 
 }

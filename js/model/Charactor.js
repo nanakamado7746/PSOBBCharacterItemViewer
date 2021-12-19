@@ -1,11 +1,13 @@
 class Charactor extends Abstract {
 
+  // キャラクターのスロット番号
+  Slot;
   // キャラクターの名前
   Name;
-  // キャラクターの種族
-  Slot;
-  // キャラクターの種族
-  Race;
+  // キャラクターのクラス
+  Class;
+  // キャラクターのセクションID
+  SectionID;
   // キャラクターのレベル
   Level;
   // キャラクターの経験値
@@ -19,13 +21,15 @@ class Charactor extends Abstract {
 
   constructor(charactorData, slot, newItemCodes) {
       super(charactorData, slot, newItemCodes);
+      // キャラクターのスロット番号をセット
+      this.setSlot(slot);
       // キャラクターの名前をセット
       this.setName(charactorData);
-      // キャラクターのスロットをセット
-      this.setSlot(slot);
       // キャラクターの種族をセット
-      this.setRace(charactorData);
+      this.setClass(charactorData);
       // キャラクターのレベルをセット
+      this.setSectionID(charactorData);
+      // キャラクターの経験値をセット
       this.setLevel(charactorData);
       // キャラクターの経験値をセット
       this.setExperience(charactorData);
@@ -33,6 +37,11 @@ class Charactor extends Abstract {
       this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot);
       // キャラクター倉庫アイテムをセット
       this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, slot);
+  }
+
+  setSlot(slot)
+  {
+    this.Slot = slot;
   }
 
   setName(charactorData)
@@ -45,14 +54,31 @@ class Charactor extends Abstract {
       if (array[i] + array[i + 1] === 0) break;
       name += String.fromCharCode((array[i + 1] << 8) | array[i]);
     }
-    console.log(name);
+    console.log(`name: ${name}`);
     this.Name = name;
   }
-  setSlot(slot)
+
+  setClass(charactorData)
   {
-    this.Slot = slot;
+    (charactorData[937] in this.config.Classes)
+      ? this.Class = this.config.Classes[charactorData[937]]
+      : this.Class = "undefined";
+      console.log(`class: ${charactorData[937]}`);
   }
-  setRace(charactorData) {}
-  setLevel(charactorData) {}
+
+  setSectionID(charactorData)
+  {
+    (charactorData[936] in this.config.SectionIDs)
+      ? this.SectionID = this.config.SectionIDs[charactorData[936]]
+      : this.SectionID = "undefined";
+      console.log(`sectionID: ${charactorData[936]}`);
+  }
+
+  setLevel(charactorData)
+  {
+    console.log(`level: ${charactorData[876] + 1}`);
+    this.Level = charactorData[876] + 1;
+  }
+
   setExperience(charactorData) {}
 }

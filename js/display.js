@@ -96,23 +96,26 @@ function displayCharactor(charactor)
   id.appendChild(h2);
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");
-  let tr = document.createElement("tr");
-  let td = document.createElement("td");
-  let text = document.createTextNode(`SLOT : ${charactor.Slot}`);
-  td.appendChild(text);
-  tr.appendChild(td);
-  tbody.appendChild(tr);
-  let tr2 = document.createElement("tr");
-  let td2 = document.createElement("td");
-  let text2 = document.createTextNode(`NAME : ${charactor.Name}`);
-  td2.appendChild(text2);
-  tr2.appendChild(td2);
-  tbody.appendChild(tr2);
+  tr(tbody, "SLOT", charactor.Slot);
+  tr(tbody, "NAME", charactor.Name);
+  tr(tbody, "CLASS", charactor.Class);
+  tr(tbody, "SECTION ID", charactor.SectionID);
+  tr(tbody, "LEVEL", charactor.Level);
   table.appendChild(tbody);
   id.appendChild(table);
 
   displayInventory(id, charactor.Inventory, "INVENTORY")
   displayInventory(id, charactor.Bank, "BANK")
+}
+
+function tr(tbody, name, value)
+{
+  let tr = document.createElement("tr");
+  let td = document.createElement("td");
+  let text = document.createTextNode(`${name} : ${value}`);
+  td.appendChild(text);
+  tr.appendChild(td);
+  tbody.appendChild(tr);
 }
 
 function displayShareBank(shareBank, title)

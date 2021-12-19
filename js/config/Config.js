@@ -34,6 +34,35 @@ class Config {
     AVOID : 1
   };
 
+  Classes = {
+    0x00 : "HUmar",
+    0x01 : "Hunewearl",
+    0x02 : "HUcast",
+    0x03 : "RAmar",
+    0x04 : "RAcast",
+    0x05 : "RAcaseal",
+    0x06 : "FOmarl",
+    0x07 : "FOnewm",
+    0x08 : "FOnewearl",
+    0x09 : "HUcaseal",
+    0x0A : "FOmar",
+    0x0B : "RAmarl",
+  };
+
+  SectionIDs = {
+    0x00 : "VIRIDIA",
+    0x01 : "GREENILE",
+    0x02 : "SKYLY",
+    0x03 : "BLUEFULL",
+    0x04 : "PURPLENUM",
+    0x05 : "PINKAL",
+    0x06 : "REDRIA",
+    0x07 : "ORAN",
+    0x08 : "YELLOWBOZE",
+    0x09 : "WHITILL",
+    0x0A : "VIRIDIA",
+  };
+
   ElementCodes = {
     0x00: "Unchanged/Nothing",
     0x01: "Draw",

@@ -446,8 +446,6 @@ class Config {
     0x00A900: "AXE"
   }
 
-  constructor()
-  {
-  }
+  constructor() {}
 
 }

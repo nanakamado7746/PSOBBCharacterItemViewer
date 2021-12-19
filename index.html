@@ -13,25 +13,8 @@
   <div class="contents">
 
     <div class="input">
-      <div class="inputItemCodes" id="inputItemCodes">
-        <div class="inputItemCodesDescription" id="inputItemCodesDescription">
-        </div>
-        <div class="inputItemCodesDetail" id="inputItemCodesDetail"></div>
-        <label>
-          <input type="file" id="inputItemCodesButton" name="file" onchange=clickInputItemCodes(event)>
-        </label>
-        <label>
-          <button type="button" id="resetItemCodes" onClick=clickResetItemCodes(event)>RESET</button>
-        </label>
-        <label>
-          <button type="button" id="displayItemCodes" onClick=clickDisplayItemCodes(event)>CURRENT ITEM CODE</button>
-        </label>
-      </div>
-    </div>
-
-    <div class="input">
       <div class="inputFile">
-        <div class="inputFileDescription" id="inputFileDescription">
+        <div class="description" id="description">
           <p>Please input your character data file (s). (.psochar and .psobank)</p>
         </div>
         <label>
@@ -40,13 +23,21 @@
       </div>
     </div>
 
+    <div class="lang" id="radio">
+      <input type="radio" name="lang" value="en" checked onClick=clickLang() >English
+      <input type="radio" name="lang" value="ja" onClick=clickLang() >日本語（unstable）
+      <button type="button" id="displayItemCodes" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
+    </div>
+
     <div class="pager", id="pager"></div>
     <div class="data", id="data"></div>
   </div>
 </body>
 
 <script type="text/javascript" src="./js/config/item_codes.js"></script>
+<script type="text/javascript" src="./js/config/item_codes_ja.js"></script>
 <script type="text/javascript" src="./js/config/Config.js"></script>
+<script type="text/javascript" src="./js/config/Config_JA.js"></script>
 <script type="text/javascript" src="./js/model/Abstract.js"></script>
 <script type="text/javascript" src="./js/model/Charactor.js"></script>
 <script type="text/javascript" src="./js/model/ShareBank.js"></script>

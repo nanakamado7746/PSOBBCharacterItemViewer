@@ -44,35 +44,16 @@ h1
   margin-bottom: 2em;
 }
 
-.inputItemCodes
+.description p
+{
+  margin: 0em;
+}
+
+.lang
 {
   color: #FFFFFF;
 }
 
-.inputItemCodesDescription
-{
-  margin: 0em;
-}
-
-.inputItemCodesDescription p
-{
-  margin: 0em;
-}
-
-.inputItemCodesDetail
-{
-  margin-left: 0em;
-}
-
-.inputItemCodesDetail p
-{
-  margin: 0em;
-}
-
-.inputFileDescription p
-{
-  margin: 0em;
-}
 
 .data
 {

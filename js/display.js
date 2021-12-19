@@ -1,6 +1,26 @@
+function displayData()
+{
+  let charactors = this.charactors;
+  let shareBanks = this.shareBanks;
+
+  // 詳細表示
+  if (charactors.length !== 0)
+  {
+    displayCharactor(charactors[0]);
+  } else if (shareBanks.length !== 0)
+  {
+    displayShareBank(shareBanks[0]);
+  }
+}
+
+
 function displayItemCodes()
 {
-  let itemCodes = this.itemCodeData["itemCodes"];
+  let itemCodes;
+  (this.jmode)
+    ? itemCodes = getItemCodes_JA()
+    : itemCodes = getItemCodes();
+
   let id = document.getElementById("data");
   id.innerHTML = '';
 
@@ -32,58 +52,6 @@ function displayItemCodes()
 
   table.appendChild(tbody);
   id.appendChild(table);
-}
-
-function displayInputItemCodesDetail()
-{
-  let itemCodeData = this.itemCodeData;
-
-  //　初期化
-  let id = document.getElementById("inputItemCodesDescription");
-  id.innerHTML = '';
-  let id2 = document.getElementById("inputItemCodesDetail");
-  id2.innerHTML = '';
-
-  if (Object.keys(itemCodeData).length !== 0)
-  {
-    // 説明文
-    let description = document.createElement("p");
-    description.appendChild(document.createTextNode("You have inputted the item codes. Please refresh your browser."));
-    id.appendChild(description);
-
-    // アイテムコードの数
-    let p = document.createElement("p");
-    p.appendChild(document.createTextNode(`◆ Number of item codes inputted : ${Object.keys(itemCodeData["itemCodes"]).length}`));
-    id2.appendChild(p);
-
-    // アイテムコードを入力した日時
-    let p2 = document.createElement("p");
-    p2.appendChild(document.createTextNode(`◆ Date inputted : ${itemCodeData["date"]}`));
-    id2.appendChild(p2);
-  }
-  else
-  {
-    // 説明文
-    let description = document.createElement("p");
-    description.appendChild(document.createTextNode("Please Input the addon item code file (items_list.lua). It can be displayed with the latest item code. (Not covered by warranty)"));
-    id.appendChild(description);
-  }
-}
-
-
-function displayCharactorDetail()
-{
-  let charactors = this.charactors;
-  let shareBanks = this.shareBanks;
-
-  // 詳細表示
-  if (charactors.length !== 0)
-  {
-    displayCharactor(charactors[0]);
-  } else if (shareBanks.length !== 0)
-  {
-    displayShareBank(shareBanks[0]);
-  }
 }
 
 function displayCharactor(charactor)
@@ -127,6 +95,10 @@ function displayShareBank(shareBank, title)
 
 function displayInventory(id, inventory, title, mode)
 {
+  (this.jmode)
+    ? inventory = inventory[1]
+    : inventory = inventory[0];
+
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode(title));
   id.appendChild(h2);
@@ -154,6 +126,7 @@ function displayInventory(id, inventory, title, mode)
       tr.appendChild(td);
       if (mode == "allItems")
       {
+        inventory = inventory.sort();
         let td2 = document.createElement("td");
         let slot = document.createTextNode(`SLOT: ${inventory[i][2]}`);
         td2.appendChild(slot);
@@ -174,7 +147,7 @@ function displayPager()
   let allItems = this.allItems;
 
   let id = document.getElementById("pager");
-  resetInnerHtml("pager");
+  id.innerHTML = '';
 
   // キャラクターのページを表示する
   if (Object.keys(charactors).length !== 0)

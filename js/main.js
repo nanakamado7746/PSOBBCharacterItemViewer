@@ -1,34 +1,25 @@
 // 入力データ
 var fileData = [];
 var itemCodeData = [];
+var jmode = false;
 // デコード済みデータ
 var charactors = [];
 var shareBanks = [];
 var allItems = [];
 
 // 初期表示
-initializeItemCodes();
+initializeLang();
 initializeDisplay();
 
-function initializeItemCodes()
+function initializeLang()
 {
-  try
+  if (localStorage.getItem("jmode"))
   {
-    if (localStorage.getItem("itemCodeData"))
-    {
-      this.itemCodeData = JSON.parse(localStorage.getItem("itemCodeData"));
-      console.log(this.itemCodeData);
-    }
+    this.jmode = JSON.parse(localStorage.getItem("jmode"));
+    console.log(this.jmode);
   }
-  catch (e)
-  {
-    console.log(e);
-    localStorage.removeItem("itemCodeData");
-    alert("Failed to display the item code");
-  }
-  finally
-  {
-    displayInputItemCodesDetail();
+  if (this.jmode) {
+    document.getElementsByName("lang")[1].checked = true;
   }
 }
 
@@ -44,34 +35,28 @@ function initializeDisplay()
       decoder();
     }
     displayPager();
-    displayCharactorDetail();
+    displayData();
   }
   catch (e)
   {
     console.log(e);
-    resetInnerHtml("data");
-    resetInnerHtml("pager");
+    document.getElementById("data").innerHTML = '';
+    document.getElementById("pager").innerHTML = '';
     removeCharactorData();
-    alert("Failed to display the charactor data");
   }
 }
 
-function clickResetItemCodes(event)
+function clickLang()
 {
-  this.itemCodeData = [];
-  document.getElementById('inputItemCodesButton').value = '';
-  localStorage.removeItem("itemCodeData");
-  displayInputItemCodesDetail();
+  let jmode = document.getElementsByName("lang")[1].checked;
+  localStorage.setItem("jmode", JSON.stringify(jmode));
+  this.jmode = jmode;
+  console.log(this.jmode);
 }
+
 
 function clickDisplayItemCodes(event)
 {
-  let itemCodes = this.itemCodeData["itemCodes"];
-  if (typeof itemCodes === "undefined")
-  {
-    let config = new Config();
-    this.itemCodeData["itemCodes"] = config.ItemCodes;
-  }
   displayItemCodes();
 }
 
@@ -121,6 +106,8 @@ function decoder()
   let itemCodes = this.itemCodeData["itemCodes"];
   let charactors = [];
   let shareBanks = [];
+  let en = [];
+  let ja = [];
   let allItems = [];
 
   for (let i in fileData)
@@ -130,9 +117,10 @@ function decoder()
     // 共有倉庫ファイルをデコード
     if (fileData[i]["filename"].match(/psobank/) !== null)
     {
-      let shareBank = new ShareBank(binary, "Share Bank", itemCodes);
+      let shareBank = new ShareBank(binary, "Share Bank");
       shareBanks.push(shareBank);
-      allItems = allItems.concat(shareBank.ShareBank);
+      en = en.concat(shareBank.ShareBank[0]);
+      ja = ja.concat(shareBank.ShareBank[1]);
       continue;
     }
 
@@ -140,16 +128,21 @@ function decoder()
     if (fileData[i]["filename"].match(/psochar/) !== null)
     {
       let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
-      let charactor = new Charactor(binary, slot, itemCodes);
+      let charactor = new Charactor(binary, slot);
       charactors.push(charactor);
 
-      allItems = allItems.concat(charactor.Inventory);
-      allItems = allItems.concat(charactor.Bank);
+      en = en.concat(charactor.Inventory[0]);
+      en = en.concat(charactor.Bank[0]);
+      ja = ja.concat(charactor.Inventory[1]);
+      ja = ja.concat(charactor.Bank[1]);
     }
   }
-  // ソート
-  allItems = allItems.sort();
 
+  allItems.push(en);
+  allItems.push(ja);
+  // ソート
+  //allItems = allItems.sort();
+  console.log(allItems);
   // グローバル変数初期化
   removeCharactorData();
   // グローバル変数とローカルストレージにセット
@@ -189,7 +182,7 @@ async function clickInputFile(event)
   // ページャーを表示
   displayPager();
   // 詳細表示
-  displayCharactorDetail();
+  displayData();
 }
 
 function setCharactorData(charactors, shareBanks, allItems)

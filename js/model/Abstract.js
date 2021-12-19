@@ -1,19 +1,18 @@
 class Abstract {
   config = new Config();
 
-  constructor(charactorData, slot, newItemCodes)
+  constructor(charactorData, slot)
   {
-    // addonのファイルリストを取得している場合、アイテムコードを更新する。
-    if (typeof newItemCodes !== "undefined")
-    {
-      this.config.ItemCodes = newItemCodes;
-    }
     console.log(charactorData);
   }
 
   setInventory(itemsData, inventory, max, length, slot)
   {
     console.log(itemsData);
+
+    // 言語別インベントリ格納
+    let ja = [];
+    let en = [];
 
     let index = 0;
     let end = length;
@@ -32,21 +31,36 @@ class Abstract {
         // アイテムの種類を取得（武器、鎧、テクニックなど）
         let itemType = this.getItemType(itemCode);
         console.log("item type:" + itemType);
+
+        this.config = new Config();
+        // アイテム情報を取得
         let item = this.getItem(itemData, itemCode, itemType);
         console.log(item);
-        // アイテム情報を取得
-        let arry = [
+        // 所持品のリストにアイテム情報を追加
+        en.push([
           itemCode,
           item,
           slot
-        ];
+        ]);
+
+        this.config = new Config_JA();
+        // アイテム情報を取得
+        let item_ja = this.getItem(itemData, itemCode, itemType);
         // 所持品のリストにアイテム情報を追加
-        inventory.push(arry);
+        ja.push([
+          itemCode,
+          item_ja,
+          slot
+        ]);
 
         // アイテム情報の開始位置を次のアイテムに更新
         index += length;
         end += length;
       }
+
+      // ３次元配列。0にen、1にja
+      inventory.push(en);
+      inventory.push(ja);
   }
 
   getItem(itemData, itemCode, itemType)

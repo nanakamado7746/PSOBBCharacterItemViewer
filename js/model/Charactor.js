@@ -19,8 +19,8 @@ class Charactor extends Abstract {
   // キャラクターの倉庫品
   Bank = [];
 
-  constructor(charactorData, slot, newItemCodes) {
-      super(charactorData, slot, newItemCodes);
+  constructor(charactorData, slot) {
+      super(charactorData, slot);
       // キャラクターのスロット番号をセット
       this.setSlot(slot);
       // キャラクターの名前をセット

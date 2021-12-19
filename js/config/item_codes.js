@@ -296,7 +296,7 @@ function getItemCodes() {
     "0x009800":   "RIKA'S CLAW",
     "0x009900":   "ANGEL HARP",
     "0x009A00":   "DEMOLITION COMET",
-    "0x009B00":   "NEI'S CLAW",
+    "0x009B00":   "NEI'S CLAW[Genuine]",
     "0x009C00":   "RAINBOW BATON",
     "0x009D00":   "DARK FLOW",
     "0x009E00":   "DARK METEOR",

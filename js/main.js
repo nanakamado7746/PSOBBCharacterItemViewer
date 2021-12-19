@@ -39,10 +39,12 @@ function initializeDisplay()
   }
   catch (e)
   {
+    alert("error occurred. please super reload (F5)");
     console.log(e);
     document.getElementById("data").innerHTML = '';
     document.getElementById("pager").innerHTML = '';
     removeCharactorData();
+    localStorage.removeItem("fileData");
   }
 }
 

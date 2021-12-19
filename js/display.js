@@ -96,11 +96,11 @@ function displayCharactor(charactor)
   id.appendChild(h2);
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");
-  tr(tbody, "SLOT", charactor.Slot);
-  tr(tbody, "NAME", charactor.Name);
-  tr(tbody, "CLASS", charactor.Class);
-  tr(tbody, "SECTION ID", charactor.SectionID);
-  tr(tbody, "LEVEL", charactor.Level);
+  tr(tbody, `SLOT : ${Number(charactor.Slot) + 1}`);
+  tr(tbody, `NAME : ${charactor.Name}`);
+  tr(tbody, `CLASS : ${charactor.Class}`);
+  tr(tbody, `SECTION ID : ${charactor.SectionID}`);
+  tr(tbody, `LEVEL : ${charactor.Level}`);
   table.appendChild(tbody);
   id.appendChild(table);
 
@@ -108,12 +108,12 @@ function displayCharactor(charactor)
   displayInventory(id, charactor.Bank, "BANK")
 }
 
-function tr(tbody, name, value)
+function tr(tbody, text)
 {
   let tr = document.createElement("tr");
   let td = document.createElement("td");
-  let text = document.createTextNode(`${name} : ${value}`);
-  td.appendChild(text);
+  let node = document.createTextNode(text);
+  td.appendChild(node);
   tr.appendChild(td);
   tbody.appendChild(tr);
 }
@@ -186,7 +186,7 @@ function displayPager()
       button.setAttribute('class', "pager");
       button.setAttribute('name', i);
       button.setAttribute('onclick', 'clickCharactor(name)');
-      button.innerText = charactors[i].Slot;
+      button.innerText = Number(charactors[i].Slot) + 1;
       id.appendChild(button);
     }
   }

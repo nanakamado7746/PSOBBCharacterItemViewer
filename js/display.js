@@ -126,7 +126,6 @@ function displayInventory(id, inventory, title, mode)
       tr.appendChild(td);
       if (mode == "allItems")
       {
-        inventory = inventory.sort();
         let td2 = document.createElement("td");
         let slot = document.createTextNode(`SLOT: ${inventory[i][2]}`);
         td2.appendChild(slot);

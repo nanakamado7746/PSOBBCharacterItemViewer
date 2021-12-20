@@ -50,7 +50,7 @@ class Charactor extends Abstract {
     let name = "";
     for (let i = 0; i < array.length; i += 2)
     {
-      // 0値だったら
+      // ２バイトとも0値だったら終わり
       if (array[i] + array[i + 1] === 0) break;
       name += String.fromCharCode((array[i + 1] << 8) | array[i]);
     }

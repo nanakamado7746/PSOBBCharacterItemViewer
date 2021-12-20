@@ -62,45 +62,6 @@ function clickDisplayItemCodes(event)
   displayItemCodes();
 }
 
-async function clickInputItemCodes(event)
-{
-  try {
-
-    let fileReader = new FileReader();
-    let file = event.target.files[0];
-
-    if ( file.name.match(/^items_list.lua$/) == null) throw new Error('not_match_filename');
-
-    // アイテムコード初期化
-    let itemCodeData = {};
-
-    fileReader.readAsText(file);
-    await new Promise(resolve => fileReader.onload = () => resolve());
-
-    let list = fileReader.result.split(/\n/);
-    itemCodeData["itemCodes"] = getInputItemCodes(list);
-
-    if (Object.keys(itemCodeData).length === 0) throw new Error('no_item_code');
-
-    itemCodeData["date"] = getDate();
-
-    setItemCodes(itemCodeData);
-    displayInputItemCodesDetail();
-  }
-  catch (e)
-  {
-    console.log(e);
-    if (e.message == "not_match_filename")
-    {
-      alert("Please input 'items_list.lua'");
-    }
-    else
-    {
-      alert("Failed to read the file.");
-    }
-  }
-}
-
 function decoder()
 {
   if (this.fileData.length === 0) return;
@@ -143,7 +104,9 @@ function decoder()
   allItems.push(en);
   allItems.push(ja);
   // ソート
-  //allItems = allItems.sort();
+  allItems[0] = allItems[0].sort();
+  allItems[1] = allItems[1].sort();
+
   console.log(allItems);
   // グローバル変数初期化
   removeCharactorData();

@@ -15,9 +15,9 @@ class Charactor extends Abstract {
   // キャラクターのメセタ
   Meseta;
   // キャラクターの所持品
-  Inventory = [];
+  Inventory = {};
   // キャラクターの倉庫品
-  Bank = [];
+  Bank = {};
 
   constructor(charactorData, slot) {
       super(charactorData, slot);
@@ -34,9 +34,13 @@ class Charactor extends Abstract {
       // キャラクターの経験値をセット
       this.setExperience(charactorData);
       // キャラクターの所持品をセット
-      this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot);
+      this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot, "EN");
       // キャラクター倉庫アイテムをセット
-      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, slot);
+      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, `${slot} Bank`, "EN");
+      // キャラクターの所持品をセット
+      this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot, "JA");
+      // キャラクター倉庫アイテムをセット
+      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, `${slot} Bank`, "JA");
   }
 
   setSlot(slot)
@@ -60,16 +64,16 @@ class Charactor extends Abstract {
 
   setClass(charactorData)
   {
-    (charactorData[937] in this.config.Classes)
-      ? this.Class = this.config.Classes[charactorData[937]]
+    (charactorData[937] in this.Config.Classes)
+      ? this.Class = this.Config.Classes[charactorData[937]]
       : this.Class = "undefined";
       console.log(`class: ${charactorData[937]}`);
   }
 
   setSectionID(charactorData)
   {
-    (charactorData[936] in this.config.SectionIDs)
-      ? this.SectionID = this.config.SectionIDs[charactorData[936]]
+    (charactorData[936] in this.Config.SectionIDs)
+      ? this.SectionID = this.Config.SectionIDs[charactorData[936]]
       : this.SectionID = "undefined";
       console.log(`sectionID: ${charactorData[936]}`);
   }

@@ -18,8 +18,8 @@ function displayItemCodes()
 {
   let itemCodes;
   (this.jmode)
-    ? itemCodes = getItemCodes_JA()
-    : itemCodes = getItemCodes();
+    ? itemCodes = ItemCodes_JA()
+    : itemCodes = ItemCodes();
 
   let id = document.getElementById("data");
   id.innerHTML = '';
@@ -72,6 +72,7 @@ function displayCharactor(charactor)
   table.appendChild(tbody);
   id.appendChild(table);
 
+
   displayInventory(id, charactor.Inventory, "INVENTORY")
   displayInventory(id, charactor.Bank, "BANK")
 }
@@ -96,8 +97,8 @@ function displayShareBank(shareBank, title)
 function displayInventory(id, inventory, title, mode)
 {
   (this.jmode)
-    ? inventory = inventory[1]
-    : inventory = inventory[0];
+    ? inventory = inventory["JA"]
+    : inventory = inventory["EN"];
 
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode(title));
@@ -127,7 +128,7 @@ function displayInventory(id, inventory, title, mode)
       if (mode == "allItems")
       {
         let td2 = document.createElement("td");
-        let slot = document.createTextNode(`SLOT: ${inventory[i][2]}`);
+        let slot = document.createTextNode(`Slot: ${inventory[i][2]}`);
         td2.appendChild(slot);
         tr.appendChild(td2);
       }

@@ -65,13 +65,14 @@ function clickDisplayItemCodes(event)
 function decoder()
 {
   if (this.fileData.length === 0) return;
+
   let fileData = this.fileData;
-  let itemCodes = this.itemCodeData["itemCodes"];
   let charactors = [];
   let shareBanks = [];
-  let en = [];
-  let ja = [];
-  let allItems = [];
+  let allItems = {
+      "JA" : [],
+      "EN" : []
+    };
 
   for (let i in fileData)
   {
@@ -82,8 +83,8 @@ function decoder()
     {
       let shareBank = new ShareBank(binary, "Share Bank");
       shareBanks.push(shareBank);
-      en = en.concat(shareBank.ShareBank[0]);
-      ja = ja.concat(shareBank.ShareBank[1]);
+      allItems["EN"] = allItems["EN"].concat(shareBank.ShareBank["EN"]);
+      allItems["JA"] = allItems["JA"].concat(shareBank.ShareBank["JA"]);
       continue;
     }
 
@@ -94,18 +95,16 @@ function decoder()
       let charactor = new Charactor(binary, slot);
       charactors.push(charactor);
 
-      en = en.concat(charactor.Inventory[0]);
-      en = en.concat(charactor.Bank[0]);
-      ja = ja.concat(charactor.Inventory[1]);
-      ja = ja.concat(charactor.Bank[1]);
+      allItems["EN"] = allItems["EN"].concat(charactor.Inventory["EN"]);
+      allItems["EN"] = allItems["EN"].concat(charactor.Bank["EN"]);
+      allItems["JA"] = allItems["JA"].concat(charactor.Inventory["JA"]);
+      allItems["JA"] = allItems["JA"].concat(charactor.Bank["JA"]);
     }
   }
 
-  allItems.push(en);
-  allItems.push(ja);
   // ソート
-  allItems[0] = allItems[0].sort();
-  allItems[1] = allItems[1].sort();
+  allItems["EN"] = allItems["EN"].sort();
+  allItems["JA"] = allItems["JA"].sort();
 
   console.log(allItems);
   // グローバル変数初期化

@@ -24,22 +24,21 @@
     </div>
 
     <div class="lang" id="radio">
+      <button type="button" id="displayItemCodes" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
       <input type="radio" name="lang" value="en" checked onClick=clickLang() >English
       <input type="radio" name="lang" value="ja" onClick=clickLang() >日本語（unstable）
-      <button type="button" id="displayItemCodes" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
     </div>
 
     <div class="pager", id="pager"></div>
     <div class="data", id="data"></div>
   </div>
 </body>
-
+<script type="text/javascript" src="./js/model/item/item.js"></script>
 <script type="text/javascript" src="./js/config/item_codes.js"></script>
 <script type="text/javascript" src="./js/config/item_codes_ja.js"></script>
 <script type="text/javascript" src="./js/config/Config.js"></script>
-<script type="text/javascript" src="./js/config/Config_JA.js"></script>
-<script type="text/javascript" src="./js/model/Abstract.js"></script>
-<script type="text/javascript" src="./js/model/Charactor.js"></script>
-<script type="text/javascript" src="./js/model/ShareBank.js"></script>
+<script type="text/javascript" src="./js/model/charactor/Abstract.js"></script>
+<script type="text/javascript" src="./js/model/charactor/Charactor.js"></script>
+<script type="text/javascript" src="./js/model/charactor/ShareBank.js"></script>
 <script type="text/javascript" src="./js/display.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>

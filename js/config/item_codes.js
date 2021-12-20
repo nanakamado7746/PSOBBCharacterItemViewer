@@ -444,7 +444,7 @@ function ItemCodes() {
     "0x000C07":   "EARTH WAND BROWNIE",
     "0x000D00":   "PHOTON CLAW",
     "0x000D01":   "SILENCE CLAW",
-    "0x000D02":   "NEI'S CLAW",
+    "0x000D02":   "NEI'S CLAW[FAKE]",
     "0x000D03":   "PHOENIX CLAW",
     "0x000E00":   "DOUBLE SABER",
     "0x000E01":   "STAG CUTLERY",

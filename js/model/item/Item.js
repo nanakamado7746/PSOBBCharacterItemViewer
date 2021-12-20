@@ -104,9 +104,9 @@ class Item {
     let dark = this.getDark(itemData);
     let hit = this.getHit(itemData);
 
-    // コモン武器の場合はエレメントの設定をする。
+    // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
-    if (this.isCommonWeapon(itemCode)) element = ` [${this.getElement(itemData)}]`;
+    if (this.isCommonWeapon(itemCode) & itemData[4] !== 0x00) element = ` [${this.getElement(itemData)}]`;
 
     return `${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`;
   }
@@ -210,10 +210,10 @@ class Item {
 
   getElement(itemData)
   {
-      let elementCode = itemData[4];
-      if (elementCode in this.Config.ElementCodes)
+      let code = itemData[4];
+      if (code in this.Config.ElementCodes)
       {
-          return this.Config.ElementCodes[elementCode];
+          return this.Config.ElementCodes[code];
       }
 
       return "undefined";

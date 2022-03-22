@@ -92,7 +92,7 @@ function decoder()
     if (fileData[i]["filename"].match(/psochar/) !== null)
     {
       let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
-      let charactor = new Charactor(binary, slot);
+      let charactor = new Charactor(binary, Number(slot) + 1);
       charactors.push(charactor);
 
       allItems["EN"] = allItems["EN"].concat(charactor.Inventory["EN"]);

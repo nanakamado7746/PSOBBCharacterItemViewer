@@ -159,7 +159,7 @@ function displayPager()
       button.setAttribute('class', "pager");
       button.setAttribute('name', i);
       button.setAttribute('onclick', 'clickCharactor(name)');
-      button.innerText = Number(charactors[i].Slot) + 1;
+      button.innerText = charactors[i].Slot;
       id.appendChild(button);
     }
   }

@@ -64,7 +64,7 @@ function displayCharactor(charactor)
   id.appendChild(h2);
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");
-  tr(tbody, `SLOT : ${Number(charactor.Slot) + 1}`);
+  tr(tbody, `SLOT : ${charactor.Slot}`);
   tr(tbody, `NAME : ${charactor.Name}`);
   tr(tbody, `CLASS : ${charactor.Class}`);
   tr(tbody, `SECTION ID : ${charactor.SectionID}`);

@@ -16,10 +16,14 @@ class Abstract {
     // 全アイテムエリアをアイテム単位でループする。
     for (let i = 0;i < max; i++)
     {
+        console.log(`============ item data start ============`);
+        console.log(`item number:${i}, index:${index}, length:${length}, end:${end}`);
+        console.log("slot:" + slot);
+
+        console.log("itemData:");
         let itemData = itemsData.slice(index, end);
         console.log(itemData);
-        console.log("item itemData length:" + itemData.length);
-        console.log(`item number:${i}, index:${index}, length:${length}, end:${end}`);
+        console.log("itemData length:" + itemData.length);
 
         // 空欄チェック
         if (this.isBlank(itemData)) continue;
@@ -28,10 +32,13 @@ class Abstract {
         let itemCode = this.binArrayToString(itemData.slice(0, 3));
         console.log("item code:" + itemCode);
 
+        let item = new Item(itemData, itemCode, lang).Item;
+        console.log("item name:" + item);
+
         // 所持品のリストにアイテム情報を追加
         array.push([
           itemCode,
-          new Item(itemData, itemCode, lang).Item,
+          item,
           slot
         ]);
 

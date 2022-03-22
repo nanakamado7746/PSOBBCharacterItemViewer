@@ -16,7 +16,7 @@ function initializeLang()
   if (localStorage.getItem("jmode"))
   {
     this.jmode = JSON.parse(localStorage.getItem("jmode"));
-    console.log(this.jmode);
+    console.log("jmode:" + this.jmode);
   }
   if (this.jmode) {
     document.getElementsByName("lang")[1].checked = true;

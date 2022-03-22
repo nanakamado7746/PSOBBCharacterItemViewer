@@ -7,7 +7,6 @@ class Item {
   {
     // コンフィグ設定
     this.Config = new Config(lang);
-    console.log(this.Config);
 
     // アイテムの種類を取得（武器、鎧、テクニックなど）
     let itemType = this.getItemType(itemCode);
@@ -128,7 +127,7 @@ class Item {
     let def = itemData[6];
     let defMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.DEF);
     let avoid = itemData[8];
-    let avoidMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.DEF);
+    let avoidMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.AVOID);
     return `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}]`;
   }
 

@@ -191,8 +191,3 @@ function displayPager()
     id.appendChild(button);
   }
 }
-
-function resetInnerHtml(id)
-{
-  document.getElementById(id).innerHTML = '';
-}

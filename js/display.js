@@ -60,7 +60,7 @@ function displayCharactor(charactor)
   id.innerHTML = '';
 
   let h2 = document.createElement("h2");
-  h2.appendChild(document.createTextNode("CHARACTOR"));
+  h2.appendChild(document.createTextNode("CHARACTER"));
   id.appendChild(h2);
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");

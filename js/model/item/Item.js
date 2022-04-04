@@ -106,6 +106,7 @@ class Item {
     // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
     if (this.isCommonWeapon(itemCode) & itemData[4] !== 0x00) element = ` [${this.getElement(itemData)}]`;
+    if (this.isUnidentified(itemData)) name = "?" + name;
 
     return `${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`;
   }
@@ -278,6 +279,11 @@ class Item {
       return additions[name][type];
     }
     return "undefined";
+  }
+
+  isUnidentified(itemData)
+  {
+    return (itemData[4] === 0x80)
   }
 
   getPbs(pbsCode)

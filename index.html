@@ -19,24 +19,22 @@
 </head>
 
 <body>
-  <h1>PSOBB Character Item Viewer</h1>
+  <h1>PSOBB CHARACTER ITEM VIEWER</h1>
   <div class="contents">
 
     <div class="input">
-      <div class="inputFile">
-        <div class="description" id="description">
+        <div class="desc" id="desc">
           <p>Please input your character data file (s). (.psochar and .psobank)</p>
         </div>
         <label>
-          <input type="file" id="inputFileButton" name="file[]" multiple onchange=clickInputFile(event)>
+          <input type="file" id="inputb" name="file[]" multiple onchange=clickInput(event)>
         </label>
-      </div>
     </div>
 
     <div class="lang" id="radio">
-      <button type="button" id="displayItemCodes" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
-      <input type="radio" name="lang" value="en" checked onClick=clickLang() >English
-      <input type="radio" name="lang" value="ja" onClick=clickLang() >日本語（unstable）
+      <button type="button" id="langb" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
+      <input type="radio" name="lang" value="en" checked onClick=changeLang()>English
+      <input type="radio" name="lang" value="ja" onClick=changeLang() >日本語（unstable）
     </div>
 
     <div class="pager", id="pager"></div>

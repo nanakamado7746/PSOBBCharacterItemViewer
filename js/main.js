@@ -48,7 +48,7 @@ function initializeDisplay()
   }
 }
 
-function clickLang()
+function changeLang()
 {
   let jmode = document.getElementsByName("lang")[1].checked;
   localStorage.setItem("jmode", JSON.stringify(jmode));
@@ -113,7 +113,7 @@ function decoder()
   setCharactorData(charactors, shareBanks, allItems);
 }
 
-async function clickInputFile(event)
+async function clickInput(event)
 {
 
   let fileReader = new FileReader();

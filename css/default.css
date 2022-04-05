@@ -2,27 +2,32 @@ body
 {
   margin: 0em;
   background-color: #faebd7;
-  background-image: url("../resource/rune_black.png");
-  background-size: 300px;
+  background-image: url("../resource/raclcp.png");
+  background-size: 700px;
   background-repeat: no-repeat;
-  background-position: right 2% top 10%;
+  background-position: right 0% top 10%;
   background-attachment: fixed;
+
 }
 
 h1
 {
-  opacity:0.8;
-  margin: 0em;
-  padding: 1em;
-  color: #FFFFFF;
-  width: 100%;
-  border-color: : #afeeee;
-  background-color: #111111;
+    background-image: url("../resource/titleback.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.8;
+    margin: 0em;
+    padding: 1em 1em 1em 1em;
+    color: #FFFFFF;
+    width: 100%;
+    height: 50px;
+    border-color: : #afeeee;
+    background-color: #111111;
 }
 
 .contents
 {
-  margin-top: 3em;
+  margin-top: 2em;
   margin-left: 2em;
   margin-right: 2em;
 }

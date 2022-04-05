@@ -2,10 +2,10 @@ body
 {
   margin: 0em;
   background-color: #faebd7;
-  background-image: url("../resource/raclcp.png");
-  background-size: 700px;
+  background-image: url("../resource/rune_gray.png");
+  background-size: 300px;
   background-repeat: no-repeat;
-  background-position: right 0% top 10%;
+  background-position: right 2% top 10%;
   background-attachment: fixed;
 
 }

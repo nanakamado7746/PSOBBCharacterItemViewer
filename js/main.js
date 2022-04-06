@@ -362,7 +362,7 @@ function search(allItems, lang, itemname, hit, unTekked)
     );
   }
 
-  console.log("==== search result ====");
+  console.log("==== search results ====");
   console.log(result);
-  displayInventory(id, result, "SEARCH RESULT", "allItems")
+  displayInventory(id, result, "SEARCH RESULTS", "allItems")
 }

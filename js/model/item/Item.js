@@ -354,7 +354,7 @@ class Item {
     {
         if (attributes[i][0] == attributeType)
         {
-            return attributes[i][1];
+            return new Int8Array(attributes[i])[1];
         }
     }
     return 0;

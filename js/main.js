@@ -1,7 +1,7 @@
 // 入力データ
 var fileData = [];
 var itemCodeData = [];
-var jmode = false;
+var lang = "EN";
 // デコード済みデータ
 var charactors = [];
 var shareBanks = [];
@@ -13,12 +13,12 @@ initializeDisplay();
 
 function initializeLang()
 {
-  if (localStorage.getItem("jmode"))
+  if (localStorage.getItem("lang"))
   {
-    this.jmode = JSON.parse(localStorage.getItem("jmode"));
-    console.log("jmode:" + this.jmode);
+    this.lang = JSON.parse(localStorage.getItem("lang"));
+    console.log("lang:" + this.lang);
   }
-  if (this.jmode) {
+  if (this.lang == "JA") {
     document.getElementsByName("lang")[1].checked = true;
   }
 }
@@ -50,10 +50,12 @@ function initializeDisplay()
 
 function changeLang()
 {
-  let jmode = document.getElementsByName("lang")[1].checked;
-  localStorage.setItem("jmode", JSON.stringify(jmode));
-  this.jmode = jmode;
-  console.log(this.jmode);
+  (document.getElementsByName("lang")[1].checked)
+    ? this.lang = "JA"
+    : this.lang = "EN";
+
+  localStorage.setItem("lang", JSON.stringify(this.lang));
+  console.log(this.lang);
 }
 
 
@@ -179,7 +181,7 @@ function clickShareBank(name)
 {
   let id = document.getElementById("data");
   id.innerHTML = '';
-  displayInventory(id, this.shareBanks[name].ShareBank, "SHARE BANK")
+  displayInventory(id, this.shareBanks[name].ShareBank[this.lang], "SHARE BANK")
 }
 
 function clickAllItems(name)
@@ -187,7 +189,7 @@ function clickAllItems(name)
   let id = document.getElementById("data");
   id.innerHTML = '';
 
-  displayInventory(id, this.allItems, "ALL ITEMS", "allItems")
+  displayInventory(id, this.allItems[this.lang], "ALL ITEMS", "allItems")
 }
 
 // FileListをファイル名の照準にする
@@ -260,4 +262,80 @@ function removeCharactorData()
   this.charactors = [];
   this.shareBanks = [];
   this.allItems = [];
+}
+
+// 検索ボタンイベント
+function clickSearch(event)
+{
+
+  search(
+    this.allItems,
+    this.lang,
+    document.getElementsByName("itemname")[0].value,
+    document.getElementsByName("hit")[0].value,
+    document.getElementsByName("unTekked")[0].checked);
+}
+
+// 入力イベントの随時検索
+window.addEventListener('load', function(){
+
+  let word = document.getElementById("search");
+  let allItems = this.allItems;
+  let lang = this.lang;
+
+  // イベントリスナーでイベント「input」を登録
+  word.addEventListener("input",function(){
+    let itemname = document.getElementsByName("itemname")[0].value;
+    let hit = document.getElementsByName("hit")[0].value;
+    let unTekked = document.getElementsByName("unTekked")[0].checked;
+
+    search(allItems, lang, itemname, hit, unTekked);
+  });
+});
+
+function search(allItems, lang, itemname, hit, unTekked)
+{
+  console.log("==== search all items ====");
+  console.log(allItems);
+  console.log("search itemname:" + itemname);
+  console.log("search hit:" + hit);
+  console.log("search unTekked:" + unTekked);
+
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
+  // リストがない場合は終了
+  if (this.allItems.length === 0) return;
+
+  // 検索結果初期値。検索欄未入力で全アイテムを表示する
+  let result = allItems[lang];
+
+  // 名前が指定された場合
+  if (itemname !== "")
+  {
+    result = result.filter(x => x[1].name.toUpperCase().match(itemname.toUpperCase().trim()));
+  }
+
+  if (unTekked === true)
+  {
+    result = result.filter(function(x)
+      {
+        if (x[1].type === "w") return x[1].tekked === false;
+      }
+    );
+  }
+
+  // HIT値
+  if (hit !== "" & !isNaN(hit))
+  {
+    result = result.filter(function(x)
+      {
+        if (x[1].type === "w") return x[1].attribute["hit"] >= hit;
+      }
+    );
+  }
+
+  console.log("==== search result ====");
+  console.log(result);
+  displayInventory(id, result, "SEARCH RESULT", "allItems")
 }

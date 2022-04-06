@@ -15,7 +15,7 @@ class Item {
     this.Item = this.createItem(itemData, itemCode, itemType);
   };
 
-  createItem(itemData, itemCode, itemType)
+  createItem(itemData, itemCode, itemType, lang)
   {
     switch(itemType) {
       case (this.Config.ItemType.SRANK_WEAPON):
@@ -53,7 +53,6 @@ class Item {
     if (this.isTool(itemCode)) return this.Config.ItemType.TOOL;
     return this.Config.ItemType.OTHER;
   }
-
 
   isSRankWeapon(itemCode)
   {
@@ -95,6 +94,7 @@ class Item {
 
   weapon(itemCode, itemData)
   {
+
     let name = this.getItemName(itemCode);
     let grinder = itemData[3];
     let native = this.getNative(itemData);
@@ -102,13 +102,31 @@ class Item {
     let machine = this.getMachine(itemData);
     let dark = this.getDark(itemData);
     let hit = this.getHit(itemData);
+    let tekkedMode = this.isTekked(itemData);
+    let tekkedText = "";
 
     // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
     if (this.isCommonWeapon(itemCode) & itemData[4] !== 0x00) element = ` [${this.getElement(itemData)}]`;
-    if (this.isUnidentified(itemData)) name = "?" + name;
 
-    return `${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`;
+    // 未鑑定の場合は未鑑定表記する
+    if (!tekkedMode) tekkedText = "?";
+
+    return {
+      type: "w",
+      name: name,
+      element: element,
+      grinder: grinder,
+      attribute: {
+        native: native,
+        aBeast: aBeast,
+        machine: machine,
+        dark: dark,
+        hit: hit
+      },
+      tekked: tekkedMode,
+      display: `${tekkedText}${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`,
+    }
   }
 
   frame(itemCode, itemData)
@@ -119,7 +137,21 @@ class Item {
     let defMaxAddition = this.getAddition(name, this.Config.FrameAdditions, this.Config.AdditionType.DEF);
     let avoid = itemData[8];
     let avoidMaxAddition = this.getAddition(name, this.Config.FrameAdditions, this.Config.AdditionType.AVOID);
-    return `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}] [${slot}S]`;
+
+    return {
+      type: "f",
+      name: name,
+      slot: slot,
+      status: {
+        def: def,
+        avoid: avoid,
+      },
+      addition: {
+        def: defMaxAddition,
+        avoid: avoidMaxAddition,
+      },
+      display: `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}] [${slot}S]`
+    }
   }
 
   barrier(itemCode, itemData)
@@ -129,13 +161,30 @@ class Item {
     let defMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.DEF);
     let avoid = itemData[8];
     let avoidMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.AVOID);
-    return `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}]`;
+
+    return {
+      type: "b",
+      name: name,
+      addition: {
+        def: def,
+        avoid: avoid,
+      },
+      maxAddition: {
+        def: defMaxAddition,
+        avoid: avoidMaxAddition,
+      },
+      display: `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}]`
+    }
   }
 
   unit(itemCode, itemData)
   {
     let name = this.getItemName(itemCode);
-    return name;
+    return {
+      type: "u",
+      name: name,
+      display: name
+    }
   }
 
   mag(itemCode, itemData)
@@ -152,14 +201,38 @@ class Item {
     // pbsの要素は0=center, 1=right、2=left
     let pbs = this.getPbs(this.binArrayToString([itemData[3], itemData[18]]));
 
-    return `${name} LV${level} [${collor}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`;
+    return {
+      type: "m",
+      name: name,
+      level: level,
+      sync: sync,
+      iq: iq,
+      collor: collor,
+      status: {
+        def: def,
+        pow: pow,
+        dex: dex,
+        mind: mind
+      },
+      pds: [
+        pbs[0],
+        pbs[1],
+        pbs[2]
+      ],
+      display: `${name} LV${level} [${collor}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`
+    }
   }
 
   disk(itemCode, itemData)
   {
     let name = this.Config.DiskNameCodes[itemData[4]];
     let level = itemData[2] + 1;
-    return `${name} LV${level} disk`;
+    return {
+      type: "d",
+      name: name,
+      level: level,
+      display: `${name} LV${level} Disk`
+    }
   }
 
   sRankWeapon(itemCode, itemData)
@@ -168,7 +241,13 @@ class Item {
     let grinder = itemData[3];
     let element = this.getSrankElement(itemData);
 
-    return `S-RANK ${name}${this.grinderLabel(grinder)} [${element}]`;
+    return {
+      type: "s",
+      name: name,
+      grinder: grinder,
+      element: element,
+      display: `S-RANK ${name}${this.grinderLabel(grinder)} [${element}]`
+    }
   }
 
   tool(itemCode, itemData)
@@ -181,7 +260,12 @@ class Item {
       // 倉庫の場合
       : number = itemData[20];
 
-    return `${name}${this.numberLabel(number)}`;
+    return {
+      type: "t",
+      name: name,
+      number: number,
+      display: `${name}${this.numberLabel(number)}`
+    }
   }
 
   other(itemCode, itemData)
@@ -193,8 +277,12 @@ class Item {
       ? number = itemData[5]
       // 倉庫の場合
       : number = itemData[20];
-
-    return `${name}${this.numberLabel(number)}`;
+    return {
+      type: "o",
+      name: name,
+      number: number,
+      display: `${name}${this.numberLabel(number)}`
+    }
   }
 
   getItemName(itemCode)
@@ -281,9 +369,9 @@ class Item {
     return "undefined";
   }
 
-  isUnidentified(itemData)
+  isTekked(itemData)
   {
-    return (itemData[4] === 0x80)
+    return (itemData[4] !== 0x80)
   }
 
   getPbs(pbsCode)

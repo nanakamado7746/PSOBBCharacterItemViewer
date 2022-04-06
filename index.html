@@ -37,6 +37,16 @@
       <input type="radio" name="lang" value="ja" onClick=changeLang() >日本語（unstable）
     </div>
 
+    <div class="search" id="search">
+      Please reload web page if search results are incorrect. (検索結果が変なときはWEBページを更新してください。)
+      <div class="word">
+        <input type="text" class="itemname" name="itemname" placeholder="Input Item Name">
+        <input type="text" class="att" name="hit" placeholder="Hit value">
+        <input type="checkbox" class="" name="unTekked" value="1" >only unTekked(未鑑定のみ)
+        <button type="button" class="" id="searchb" onClick=clickSearch(event)></button>
+      </div>
+    </div>
+
     <div class="pager", id="pager"></div>
     <div class="data", id="data"></div>
   </div>

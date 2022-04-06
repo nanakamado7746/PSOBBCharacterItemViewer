@@ -13,11 +13,10 @@ function displayData()
   }
 }
 
-
 function displayItemCodes()
 {
   let itemCodes;
-  (this.jmode)
+  (this.lang === "JA")
     ? itemCodes = ItemCodes_JA()
     : itemCodes = ItemCodes();
 
@@ -73,8 +72,8 @@ function displayCharactor(charactor)
   id.appendChild(table);
 
 
-  displayInventory(id, charactor.Inventory, "INVENTORY")
-  displayInventory(id, charactor.Bank, "BANK")
+  displayInventory(id, charactor.Inventory[this.lang], "INVENTORY")
+  displayInventory(id, charactor.Bank[this.lang], "BANK")
 }
 
 function tr(tbody, text)
@@ -91,14 +90,11 @@ function displayShareBank(shareBank, title)
 {
   let id = document.getElementById("data");
   id.innerHTML = '';
-  displayInventory(id, shareBank.ShareBank, "SHARE BANK")
+  displayInventory(id, shareBank.ShareBank[this.lang], "SHARE BANK")
 }
 
 function displayInventory(id, inventory, title, mode)
 {
-  (this.jmode)
-    ? inventory = inventory["JA"]
-    : inventory = inventory["EN"];
 
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode(title));
@@ -122,7 +118,7 @@ function displayInventory(id, inventory, title, mode)
     {
       let tr = document.createElement("tr");
       let td = document.createElement("td");
-      let text = document.createTextNode(inventory[i][1]);
+      let text = document.createTextNode(inventory[i][1]["display"]);
       td.appendChild(text);
       tr.appendChild(td);
       if (mode == "allItems")
@@ -190,4 +186,42 @@ function displayPager()
     button.innerText = "AllItems";
     id.appendChild(button);
   }
+}
+
+function search(allItems, lang, itemname, hit)
+{
+
+  console.log("==== search all items ====");
+  console.log(allItems);
+  console.log("search itemname:" + itemname);
+  console.log("search hit:" + hit);
+
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
+  // リストがない場合は終了
+  if (allItems === undefined) return;
+
+  // 検索結果初期値。検索欄未入力で全アイテムを表示する
+  let result = allItems[lang];
+
+  // 名前が指定された場合
+  if (itemname !== "")
+  {
+    result = result.filter(x => x[1].name.toUpperCase().match(itemname.toUpperCase().trim()));
+  }
+
+  // HIT値
+  if (hit !== "" & !isNaN(hit))
+  {
+    result = result.filter(function(x)
+      {
+        if (x[1].type === "w") return x[1].attribute["hit"] >= hit;
+      }
+    );
+  }
+
+  console.log("==== search result ====");
+  console.log(result);
+  displayInventory(id, result, "SEARCH RESULT", "allItems")
 }

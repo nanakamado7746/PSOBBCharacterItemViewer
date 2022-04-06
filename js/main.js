@@ -338,7 +338,7 @@ function search(allItems, lang, itemname, hit, unTekked)
           return String.fromCharCode(s.charCodeAt(0) + 0x60);
         });
 
-        return x[1].name.toUpperCase().match(tmp2);
+        return tmp.match(tmp2);
       }
     );
   }

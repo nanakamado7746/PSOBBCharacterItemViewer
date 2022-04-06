@@ -38,9 +38,16 @@ h1
   margin-bottom: 2em;
 }
 
-.desc p
+.desc
 {
-  margin: 0em;
+  color: #000000;
+}
+
+.desc a
+{
+  font-size: 80%;
+  color:#000000;
+  font-weight: bold;
 }
 
 .lang

@@ -117,38 +117,50 @@ function decoder()
 
 async function clickInput(event)
 {
+  try {
+    let fileReader = new FileReader();
+    let files = sortInputFiles(event.target.files);
+    let fileData = [];
 
-  let fileReader = new FileReader();
-  let files = sortInputFiles(event.target.files);
-  let fileData = [];
+    for (let i = 0; i < files.length; i++)
+    {
+      //　キャラクターデータファイルだけ取り込み
+      if (files[i].name.match(/psobank|psochar/) == null) continue;
 
-  for (let i = 0; i < files.length; i++)
-  {
-    //　キャラクターデータファイルだけ取り込み
-    if (files[i].name.match(/psobank|psochar/) == null) continue;
+      fileReader.readAsArrayBuffer(files[i]);
+      await new Promise(resolve => fileReader.onload = () => resolve());
+      let binary = new Uint8Array(fileReader.result);
 
-    fileReader.readAsArrayBuffer(files[i]);
-    await new Promise(resolve => fileReader.onload = () => resolve());
-    let binary = new Uint8Array(fileReader.result);
+      fileData.push({
+        "filename": files[i].name,
+        "binary": binary
+      });
+    }
 
-    fileData.push({
-      "filename": files[i].name,
-      "binary": binary
-    });
+    // なかったら終わり
+    if (fileData.length === 0) return;
+
+    localStorage.setItem("fileData", JSON.stringify(fileData));
+    this.fileData = fileData;
+
+    // デコード
+    decoder();
+    // ページャーを表示
+    displayPager();
+    // 詳細表示
+    displayData();
+
+  } catch(e) {
+    //例外エラーが起きた時に実行する処理
+    console.log(e);
+    if (e.name === 'QuotaExceededError')
+    {
+      alert("File size is too large. Try to Reduce input file number or Browser cokkie settings\n"
+          + "ファイルサイズが多すぎます。 入力するファイル数を減らすか、ブラウザのクッキー設定を行ってください。");
+    } else {
+      alert(e);
+    }
   }
-
-  // なかったら終わり
-  if (fileData.length === 0) return;
-
-  localStorage.setItem("fileData", JSON.stringify(fileData));
-  this.fileData = fileData;
-
-  // デコード
-  decoder();
-  // ページャーを表示
-  displayPager();
-  // 詳細表示
-  displayData();
 }
 
 function setCharactorData(charactors, shareBanks, allItems)
@@ -320,7 +332,7 @@ function search(allItems, lang, itemname, hit, unTekked)
         let tmp2 = itemname.toUpperCase().trim().replace(/[ぁ-ん]/g, function(s) {
           return String.fromCharCode(s.charCodeAt(0) + 0x60);
         });
-        
+
         // 検索対象のアイテムを大文字に変換、ひらがなをカタカナに変換
         let tmp = x[1].name.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
           return String.fromCharCode(s.charCodeAt(0) + 0x60);

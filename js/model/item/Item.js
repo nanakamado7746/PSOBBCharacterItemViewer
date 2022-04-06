@@ -102,13 +102,12 @@ class Item {
     let machine = this.getMachine(itemData);
     let dark = this.getDark(itemData);
     let hit = this.getHit(itemData);
-    let tekkedMode = this.isTekked(itemData, itemCode);
-    let tekkedText = "";
-
     // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
     if (this.isCommonWeapon(itemCode) & itemData[4] !== 0x00) element = ` [${this.getElement(itemData)}]`;
 
+    let tekkedMode = this.isTekked(itemData, itemCode);
+    let tekkedText = "";
     // 未鑑定の場合は未鑑定表記する
     if (!tekkedMode) tekkedText = "?";
     if (!tekkedMode & this.isCommonWeapon(itemCode)) tekkedText = "????";
@@ -374,7 +373,7 @@ class Item {
   {
     if (this.isCommonWeapon(itemCode))
     {
-      return (itemData[14] !== 0x81)
+      return (!((itemData[14] === 0x81 | itemData[14] === 0x21) & itemData[4] !== 0x00))
     }
     return (itemData[4] !== 0x80)
   }

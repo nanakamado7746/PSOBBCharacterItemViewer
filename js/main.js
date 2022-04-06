@@ -313,7 +313,22 @@ function search(allItems, lang, itemname, hit, unTekked)
   // 名前が指定された場合
   if (itemname !== "")
   {
-    result = result.filter(x => x[1].name.toUpperCase().match(itemname.toUpperCase().trim()));
+    result = result.filter(function(x)
+      {
+
+        // 検索ワードを大文字に変換、ひらがなをカタカナに変換
+        let tmp2 = itemname.toUpperCase().trim().replace(/[ぁ-ん]/g, function(s) {
+          return String.fromCharCode(s.charCodeAt(0) + 0x60);
+        });
+        
+        // 検索対象のアイテムを大文字に変換、ひらがなをカタカナに変換
+        let tmp = x[1].name.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
+          return String.fromCharCode(s.charCodeAt(0) + 0x60);
+        });
+
+        return x[1].name.toUpperCase().match(tmp2);
+      }
+    );
   }
 
   if (unTekked === true)

@@ -2,24 +2,22 @@ body
 {
   margin: 0em;
   background-color: #faebd7;
-  background-image: url("../resource/rune_gray.png");
+  background-image: url("../resources/images/background/rune_gray.png");
   background-size: 300px;
   background-repeat: no-repeat;
   background-position: right 2% top 10%;
   background-attachment: fixed;
-
 }
 
 h1
 {
-  background-image: url("../resource/titleback.png");
+  background-image: url("../resources/images/background/title.png");
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.8;
   margin: 0em;
   padding: 1em 1em 1em 1em;
   color: #FFFFFF;
-  width: 100%;
   height: 50px;
   border-color: : #afeeee;
   background-color: #111111;
@@ -35,9 +33,10 @@ h1
 .input
 {
   font-size: 80%;
+  margin-top: 2em;
   margin-bottom: 2em;
-}
 
+}
 .desc
 {
   color: #000000;
@@ -83,7 +82,7 @@ h1
 
 #searchb
 {
-  background-image:url('../resource/search.png');
+  background-image:url('../resources/images/icon/search.png');
   background-repeat: no-repeat;
   background-color: #FFFFFF;
   background-position: center;
@@ -103,7 +102,7 @@ h2
   color: #ffffff;
   background-color: #444444;
   border-color: : #afeeee;
-  background-image: url("../resource/redbox_white.png");
+  background-image: url("../resources/images/icon/redbox_white.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0%;
@@ -116,5 +115,38 @@ td
   font-size: 80%;
   padding-left: 0.5em;
   padding-right: 0.5em;
+}
 
+.topic .info
+{
+  background-image: url("../resources/images/icon/info.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.topic .caution
+{
+  background-image: url("../resources/images/icon//caution.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.topic a
+{
+  color:#000000;
+  font-weight: bold;
+}
+
+.topic td
+{
+  font-size: 80%;
+}
+
+.topic tbody {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 75px;
 }

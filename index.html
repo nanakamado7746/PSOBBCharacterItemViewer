@@ -3,8 +3,8 @@
   <meta charset="utf-8">
   <title>PSOBB Character Item Viewer</title>
   <link rel="stylesheet" href="./css/default.css">
-  <link rel="shortcut icon" href="./resource/rune_white64.ico">
-  <link rel="icon" type="image/x-icon" href="./resource/rune_white64.ico">
+  <link rel="shortcut icon" href="./resources/images/favicon/rune_white64.ico">
+  <link rel="icon" type="image/x-icon" href="./resources/images/favicon/rune_white64.ico">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8V1ELJ4Z95"></script>
@@ -21,6 +21,23 @@
 <body>
   <h1>PSOBB CHARACTER ITEM VIEWER</h1>
   <div class="contents">
+
+    <div class="topic">
+      <table>
+        <tbody>
+        <tr>
+          <td class="info"></td>
+          <td><a href="https://www.pioneer2.net/community/threads/character-item-viewer-on-the-web.22882/" target="_blank">Bug reports and requests.</a><td>
+        </tr>
+        <tr>
+          <td class="caution"></td>
+          <td>The real-time display function of search results is being adjusted. If there are items that are not searched, please press the search button or reload the web page. </br>
+              検索結果のリアルタイム表示機能は調整中です。検索されないアイテムがある場合は、検索ボタンを押すかWEBページをリロードしてください。
+          <td>
+        </tr>
+      </tobody>
+      </table>
+    </div>
 
     <div class="input">
         <div class="desc" id="desc">
@@ -39,8 +56,6 @@
     </div>
 
     <div class="search" id="search">
-      Automatic display function of search results is being tested. (検索結果の自動表示機能はテスト中です。)</br>
-      Please press search button or reload web page if search results are incorrect. (検索結果が変なときは検索ボタンを押すかWEBページを更新してください。)
       <div class="word">
         <input type="text" class="itemname" name="itemname" placeholder="Input Item Name">
         <input type="text" class="att" name="hit" placeholder="Hit value">
@@ -52,6 +67,7 @@
     <div class="pager", id="pager"></div>
     <div class="data", id="data"></div>
   </div>
+
 </body>
 <script type="text/javascript" src="./js/model/item/Item.js"></script>
 <script type="text/javascript" src="./js/config/item_codes.js"></script>

@@ -372,10 +372,7 @@ class Item {
   isTekked(itemData, itemCode)
   {
     // コモン武器でエレメントが設定されている場合
-    if (this.isCommonWeapon(itemCode) & itemData[4] !== 0x00)
-    {
-      return (!(itemData[14] === 0x81 | itemData[14] === 0x21))
-    }
+    if (this.isCommonWeapon(itemCode)) return (itemData[4] < 0x80)
     return (itemData[4] !== 0x80)
   }
 

@@ -127,11 +127,20 @@ td
 
 .topic .caution
 {
-  background-image: url("../resources/images/icon//caution.png");
+  background-image: url("../resources/images/icon/caution.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
+
+.topic .solved
+{
+  background-image: url("../resources/images/icon/solved.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 
 .topic a
 {

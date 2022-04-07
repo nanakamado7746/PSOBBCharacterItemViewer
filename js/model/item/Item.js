@@ -237,7 +237,7 @@ class Item {
 
   sRankWeapon(itemCode, itemData)
   {
-    let name = this.Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)];
+    let name = `S-RANK ${this.Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
     let grinder = itemData[3];
     let element = this.getSrankElement(itemData);
 
@@ -246,7 +246,7 @@ class Item {
       name: name,
       grinder: grinder,
       element: element,
-      display: `S-RANK ${name}${this.grinderLabel(grinder)} [${element}]`
+      display: `${name}${this.grinderLabel(grinder)} [${element}]`
     }
   }
 

@@ -42,12 +42,11 @@
 
           <td>2022 Apr 7</td>
           <td class="info"></td>
-          <td>unTekked common weapon elements are now displayed. Corrected a conditional logic of Tekked / unTekked.  </br>
-              未鑑定コモン武器のエレメントが表示されるようになりました。鑑定・未鑑定の判断ロジックを修正しました。
+          <td>UnTekked common weapon elements are now displayed. UnTekked weapons are now correctly extracted.  </br>
+              未鑑定コモン武器のエレメントが表示されるようになりました。未鑑定武器が正しく抽出されるようになりました。
           <td>
         </tr>
         <tr>
-
           <td>2022 Apr 7</td>
           <td class="solved"></td>
           <td><s>Tekked and unTekked item may not be properly distinguished.</s> </br>
@@ -63,9 +62,7 @@
           Please input your character data file (s). (.psochar and .psobank)
           <a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">DOWN LOAD</a>
         </div>
-        <label>
           <input type="file" id="inputb" name="file[]" multiple onchange=clickInput(event)>
-        </label>
     </div>
 
     <div class="lang" id="radio">
@@ -73,7 +70,7 @@
       <input type="radio" name="lang" value="en" checked onClick=changeLang()>English
       <input type="radio" name="lang" value="ja" onClick=changeLang() >日本語（unstable）
     </div>
-
+    <div class="pager", id="pager"></div>
     <div class="search" id="search">
       <div class="word">
         <input type="text" class="itemname" name="itemname" placeholder="Input item name">
@@ -82,8 +79,6 @@
         <button type="button" class="" id="searchb" onClick=clickSearch(event)></button>
       </div>
     </div>
-
-    <div class="pager", id="pager"></div>
     <div class="data", id="data"></div>
   </div>
 

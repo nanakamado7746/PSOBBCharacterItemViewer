@@ -6,7 +6,7 @@ var lang = "EN";
 var charactors = [];
 var shareBanks = [];
 var allItems = [];
-var carrentdata;
+var currentpage;
 
 // 初期表示
 initializeLang();
@@ -57,13 +57,30 @@ function changeLang()
 
   localStorage.setItem("lang", JSON.stringify(this.lang));
   console.log(this.lang);
+
   // 入力リアルタイム検索機能ロード
   realtimeSearch();
+
+  // 言語変更でDOMを変更
+  if (localStorage.getItem("currentpage"))
+  {
+    let currentpage = JSON.parse(localStorage.getItem("currentpage"));
+    console.log("currentpage:" + currentpage);
+
+    let id = document.getElementById("data");
+    id.innerHTML = '';
+
+    if (currentpage === "itemcode") displayItemCodes();
+    if (currentpage === "shareBanks") displayInventory(this.shareBanks[0].ShareBank[this.lang], "SHARE BANK");
+    if (currentpage === "allItems")   displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
+    if (!isNaN(currentpage)) displayCharactor(this.charactors[currentpage]);
+  }
 }
 
 
 function clickDisplayItemCodes(event)
 {
+  localStorage.setItem("currentpage", JSON.stringify("itemcode"));
   displayItemCodes();
 }
 
@@ -154,6 +171,9 @@ async function clickInput(event)
     displayData();
     // 入力リアルタイム検索機能ロード
     realtimeSearch();
+
+    // 現在ページの情報を保存
+    localStorage.setItem("currentpage", JSON.stringify(0));
   } catch(e) {
     //例外エラーが起きた時に実行する処理
     console.log(e);
@@ -190,22 +210,27 @@ function setCharactorData(charactors, shareBanks, allItems)
 
 function clickCharactor(name)
 {
+  // 現在ページの情報を保存
+  localStorage.setItem("currentpage", JSON.stringify(name));
   displayCharactor(this.charactors[name]);
 }
 
 function clickShareBank(name)
 {
+  // 現在ページの情報を保存
+  localStorage.setItem("currentpage", JSON.stringify("shareBanks"));
   let id = document.getElementById("data");
   id.innerHTML = '';
-  displayInventory(id, this.shareBanks[name].ShareBank[this.lang], "SHARE BANK")
+  displayInventory(this.shareBanks[name].ShareBank[this.lang], "SHARE BANK")
 }
 
 function clickAllItems(name)
 {
+  // 現在ページの情報を保存
+  localStorage.setItem("currentpage", JSON.stringify("allItems"));
   let id = document.getElementById("data");
   id.innerHTML = '';
-
-  displayInventory(id, this.allItems[this.lang], "ALL ITEMS", "allItems")
+  displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems")
 }
 
 // FileListをファイル名の照準にする
@@ -376,7 +401,7 @@ function search(allItems, lang, itemname, hit, unTekked)
 
   console.log("==== search results ====");
   console.log(result);
-  displayInventory(id, result, "SEARCH RESULTS", "allItems")
+  displayInventory(result, "SEARCH RESULTS", "allItems")
 }
 
 // 初期表示でリアルタイム検索読み込み

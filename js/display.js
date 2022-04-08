@@ -72,8 +72,8 @@ function displayCharactor(charactor)
   id.appendChild(table);
 
 
-  displayInventory(id, charactor.Inventory[this.lang], "INVENTORY")
-  displayInventory(id, charactor.Bank[this.lang], "BANK")
+  displayInventory(charactor.Inventory[this.lang], "INVENTORY")
+  displayInventory(charactor.Bank[this.lang], "BANK")
 }
 
 function tr(tbody, text)
@@ -90,11 +90,12 @@ function displayShareBank(shareBank, title)
 {
   let id = document.getElementById("data");
   id.innerHTML = '';
-  displayInventory(id, shareBank.ShareBank[this.lang], "SHARE BANK")
+  displayInventory(shareBank.ShareBank[this.lang], "SHARE BANK")
 }
 
-function displayInventory(id, inventory, title, mode)
+function displayInventory(inventory, title, mode)
 {
+  let id = document.getElementById("data");
 
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode(title));

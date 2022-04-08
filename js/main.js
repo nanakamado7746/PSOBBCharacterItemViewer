@@ -67,7 +67,7 @@ function changeLang()
     let currentpage = JSON.parse(localStorage.getItem("currentpage"));
     console.log("currentpage:" + currentpage);
 
-    if (currentpage === "search") return;
+    if (document.getElementsByName("itemname")[0].value.trim() !== "") return;
 
     let id = document.getElementById("data");
     id.innerHTML = '';
@@ -75,6 +75,7 @@ function changeLang()
     if (currentpage === "itemcode") displayItemCodes();
     if (currentpage === "shareBanks") displayInventory(this.shareBanks[0].ShareBank[this.lang], "SHARE BANK");
     if (currentpage === "allItems") displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
+    if (currentpage === "search") search(this.allItems, this.lang);
     if (!isNaN(currentpage)) displayCharactor(this.charactors[currentpage]);
   }
 }

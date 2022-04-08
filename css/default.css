@@ -41,9 +41,15 @@ h1
 {
 }
 
-.desc a
+a
 {
-  color:#000000;
+  color: #fa8072;
+  font-weight: bold;
+}
+
+a:hover
+{
+  color: #cd5c5c;
   font-weight: bold;
 }
 
@@ -161,11 +167,6 @@ h2
   background-position: center;
 }
 
-.topic a
-{
-  color: #000000;
-  font-weight: bold;
-}
 
 .topic td
 {

@@ -6,6 +6,7 @@ var lang = "EN";
 var charactors = [];
 var shareBanks = [];
 var allItems = [];
+var carrentdata;
 
 // 初期表示
 initializeLang();

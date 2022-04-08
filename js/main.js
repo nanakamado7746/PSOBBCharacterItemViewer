@@ -56,6 +56,8 @@ function changeLang()
 
   localStorage.setItem("lang", JSON.stringify(this.lang));
   console.log(this.lang);
+  // 入力リアルタイム検索機能ロード
+  realtimeSearch();
 }
 
 
@@ -149,7 +151,8 @@ async function clickInput(event)
     displayPager();
     // 詳細表示
     displayData();
-
+    // 入力リアルタイム検索機能ロード
+    realtimeSearch();
   } catch(e) {
     //例外エラーが起きた時に実行する処理
     console.log(e);
@@ -289,21 +292,20 @@ function clickSearch(event)
 }
 
 // 入力イベントの随時検索
-window.addEventListener('load', function(){
-
-  let word = document.getElementById("search");
-  let allItems = this.allItems;
+function realtimeSearch()
+{
+  let id = document.getElementById("search");
+  let allitems = this.allItems;
   let lang = this.lang;
-
   // イベントリスナーでイベント「input」を登録
-  word.addEventListener("input",function(){
+  id.addEventListener("input",function(){
     let itemname = document.getElementsByName("itemname")[0].value;
     let hit = document.getElementsByName("hit")[0].value;
     let unTekked = document.getElementsByName("unTekked")[0].checked;
 
     search(allItems, lang, itemname, hit, unTekked);
   });
-});
+}
 
 function search(allItems, lang, itemname, hit, unTekked)
 {
@@ -375,3 +377,8 @@ function search(allItems, lang, itemname, hit, unTekked)
   console.log(result);
   displayInventory(id, result, "SEARCH RESULTS", "allItems")
 }
+
+// 初期表示でリアルタイム検索読み込み
+window.addEventListener('load', function(){
+  realtimeSearch();
+});

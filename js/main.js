@@ -72,7 +72,8 @@ function changeLang()
 
     if (currentpage === "itemcode") displayItemCodes();
     if (currentpage === "shareBanks") displayInventory(this.shareBanks[0].ShareBank[this.lang], "SHARE BANK");
-    if (currentpage === "allItems")   displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
+    if (currentpage === "allItems") displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
+    if (currentpage === "search") search(this.allItems, this.lang);
     if (!isNaN(currentpage)) displayCharactor(this.charactors[currentpage]);
   }
 }
@@ -311,10 +312,7 @@ function clickSearch(event)
 
   search(
     this.allItems,
-    this.lang,
-    document.getElementsByName("itemname")[0].value,
-    document.getElementsByName("hit")[0].value,
-    document.getElementsByName("unTekked")[0].checked);
+    this.lang);
 }
 
 // 入力イベントの随時検索
@@ -325,16 +323,18 @@ function realtimeSearch()
   let lang = this.lang;
   // イベントリスナーでイベント「input」を登録
   id.addEventListener("input",function(){
-    let itemname = document.getElementsByName("itemname")[0].value;
-    let hit = document.getElementsByName("hit")[0].value;
-    let unTekked = document.getElementsByName("unTekked")[0].checked;
 
-    search(allItems, lang, itemname, hit, unTekked);
+    search(allItems, lang);
   });
 }
 
-function search(allItems, lang, itemname, hit, unTekked)
+function search(allItems, lang)
 {
+
+  let itemname = document.getElementsByName("itemname")[0].value;
+  let hit = document.getElementsByName("hit")[0].value;
+  let unTekked = document.getElementsByName("unTekked")[0].checked;
+
   console.log("==== search all items ====");
   console.log(allItems);
   console.log("search itemname:" + itemname);
@@ -401,6 +401,9 @@ function search(allItems, lang, itemname, hit, unTekked)
 
   console.log("==== search results ====");
   console.log(result);
+
+  // 現在ページの情報を保存
+  localStorage.setItem("currentpage", JSON.stringify("search"));
   displayInventory(result, "SEARCH RESULTS", "allItems")
 }
 

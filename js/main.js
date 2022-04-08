@@ -322,23 +322,32 @@ function search(allItems, lang, itemname, hit, unTekked)
   // 検索結果初期値。検索欄未入力で全アイテムを表示する
   let result = allItems[lang];
 
+  // 検索ワードの全角を半角に変換
+  itemname = itemname.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+  // 検索ワードを大文字に変換、ひらがなをカタカナに変換、トリム
+  itemname = itemname.toUpperCase().trim().replace(/[ぁ-ん]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) + 0x60);
+  });
+
+  // 検索Hit値の全角を半角に変換
+  hit = hit.replace(/[０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+
+
   // 名前が指定された場合
   if (itemname !== "")
   {
     result = result.filter(function(x)
       {
-
-        // 検索ワードを大文字に変換、ひらがなをカタカナに変換
-        let tmp2 = itemname.toUpperCase().trim().replace(/[ぁ-ん]/g, function(s) {
-          return String.fromCharCode(s.charCodeAt(0) + 0x60);
-        });
-
         // 検索対象のアイテムを大文字に変換、ひらがなをカタカナに変換
         let tmp = x[1].name.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
           return String.fromCharCode(s.charCodeAt(0) + 0x60);
         });
 
-        return tmp.match(tmp2);
+        return tmp.match(itemname);
       }
     );
   }

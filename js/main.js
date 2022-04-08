@@ -67,7 +67,8 @@ function changeLang()
     let currentpage = JSON.parse(localStorage.getItem("currentpage"));
     console.log("currentpage:" + currentpage);
 
-    if (document.getElementsByName("itemname")[0].value.trim() !== "") return;
+    // アイテム名で検索をかけている場合、言語の表示を切り替えない
+    if (currentpage === "search" & document.getElementsByName("itemname")[0].value.trim() !== "") return;
 
     let id = document.getElementById("data");
     id.innerHTML = '';

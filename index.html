@@ -70,22 +70,24 @@
           <input type="file" id="inputb" name="file[]" multiple onchange=clickInput(event)>
     </div>
 
-    <div class="lang" id="radio">
-      <button type="button" id="langb" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
-      <input type="radio" name="lang" value="en" checked onClick=changeLang()>English
-      <input type="radio" name="lang" value="ja" onClick=changeLang() >日本語（unstable）
-    </div>
-    <div class="pager", id="pager"></div>
-    <div class="search" id="search">
-      <div class="word">
-        <input type="text" class="itemname" name="itemname" placeholder="Input item name">
-        <input type="text" class="att" name="hit" placeholder="Hit value">
-        <input type="checkbox" class="" name="unTekked" value="1" >only unTekked(未鑑定のみ)
-        <button type="button" class="" id="searchb" onClick=clickSearch(event)></button>
+    <div class="sticky">
+      <div class="lang" id="radio">
+        <button type="button" id="langb" onClick=clickDisplayItemCodes(event)>ITEM CODE</button>
+        <input type="radio" name="lang" value="en" checked onClick=changeLang()>English
+        <input type="radio" name="lang" value="ja" onClick=changeLang() >日本語（unstable）
+      </div>
+      <div class="pager", id="pager"></div>
+      <div class="search" id="search">
+        <div class="word">
+          <button type="button" class="" id="searchb" onClick=clickSearch(event)></button>
+          <input type="text" class="itemname" name="itemname" placeholder="Input item name">
+          <input type="text" class="att" name="hit" placeholder="Hit value">
+          <input type="checkbox" class="" name="unTekked" value="1" >only unTekked(未鑑定のみ)
+        </div>
       </div>
     </div>
     <div class="data", id="data"></div>
-  </div>
+</div>
 
 </body>
 <script type="text/javascript" src="./js/model/item/Item.js"></script>

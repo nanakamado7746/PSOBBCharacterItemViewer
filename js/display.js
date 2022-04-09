@@ -221,8 +221,15 @@ function displayNotification()
         a.setAttribute('target', '_blank');
         text.appendChild(a);
       } else {
-        let p = document.createElement("p")
-        p.textContent += line;
+        let p = document.createElement("p");
+        if (notification["status"] === "solved")
+        {
+          let del = document.createElement("del");
+          del.textContent += line;
+          p.appendChild(del);
+        } else {
+          p.textContent += line;
+        }
         text.appendChild(p);
       }
     }

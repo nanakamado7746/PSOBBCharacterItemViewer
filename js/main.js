@@ -177,8 +177,6 @@ async function clickInput(event)
     // 入力リアルタイム検索機能ロード
     realtimeSearch();
 
-    // 現在ページの情報を保存
-    localStorage.setItem("currentpage", JSON.stringify(0));
   } catch(e) {
     //例外エラーが起きた時に実行する処理
     console.log(e);

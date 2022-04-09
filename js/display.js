@@ -6,11 +6,16 @@ function displayData()
   // 詳細表示
   if (charactors.length !== 0)
   {
+    // 現在ページの情報を保存
+    localStorage.setItem("currentpage", JSON.stringify(0));
     displayCharactor(charactors[0]);
   } else if (shareBanks.length !== 0)
   {
+    // 現在ページの情報を保存
+    localStorage.setItem("currentpage", JSON.stringify("shareBanks"));
     displayShareBank(shareBanks[0]);
   }
+
 }
 
 function displayItemCodes()

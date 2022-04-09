@@ -13,7 +13,7 @@ function notification()
       "status": "info",
       "text": [
         "There was a problem with language switching after searching for item names, but this has been fixed.",
-        "アイテム名検索後の言語切り替えに障害がありましたが、修正しました。"
+        "アイテム名検索後の言語切り替えに不具合がありましたが、修正しました。"
       ]
     },
     {

@@ -6,6 +6,7 @@ var lang = "EN";
 var charactors = [];
 var shareBanks = [];
 var allItems = [];
+var searchResults = [];
 var currentpage;
 
 // 初期表示
@@ -69,7 +70,7 @@ function changeLang()
     console.log("currentpage:" + currentpage);
 
     // アイテム名で検索をかけている場合、言語の表示を切り替えない
-    if (currentpage === "search" & document.getElementsByName("itemname")[0].value.trim() !== "") return;
+    //if (currentpage === "search" & document.getElementsByName("itemname")[0].value.trim() !== "") return;
 
     let id = document.getElementById("data");
     id.innerHTML = '';
@@ -77,7 +78,15 @@ function changeLang()
     if (currentpage === "itemcode") displayItemCodes();
     if (currentpage === "shareBanks") displayInventory(this.shareBanks[0].ShareBank[this.lang], "SHARE BANK");
     if (currentpage === "allItems") displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
-    if (currentpage === "search") search(this.allItems, this.lang);
+    if (currentpage === "search") {
+      let tmp = [];
+      this.searchResults.forEach((value) => {
+        this.allItems[lang].forEach((value2) => {
+          if (value[3] === value2[3]) tmp.push(value2);
+        });
+      });
+      displayInventory(tmp, "SEARCH RESULTS", "allItems");
+    }
     if (!isNaN(currentpage)) displayCharactor(this.charactors[currentpage]);
   }
 }
@@ -133,7 +142,17 @@ function decoder()
   allItems["EN"] = allItems["EN"].sort();
   allItems["JA"] = allItems["JA"].sort();
 
+  allItems["EN"].forEach(function(value, i){
+    console.log(value);
+    value.push(i);
+  })
+  allItems["JA"].forEach(function(value, i){
+    console.log(value);
+    value.push(i);
+  })
+
   console.log(allItems);
+
   // グローバル変数初期化
   removeCharactorData();
   // グローバル変数とローカルストレージにセット
@@ -403,6 +422,8 @@ function search(allItems, lang)
 
   console.log("==== search results ====");
   console.log(result);
+
+  this.searchResults = result;
 
   // 現在ページの情報を保存
   localStorage.setItem("currentpage", JSON.stringify("search"));

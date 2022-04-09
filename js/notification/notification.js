@@ -10,7 +10,15 @@ function notification()
     },
     {
       "date": "2022 Apr 9",
-      "status": "caution",
+      "status": "info",
+      "text": [
+        "There was a problem with language switching after searching for item names, but this has been fixed.",
+        "アイテム名検索後の言語切り替えに障害がありましたが、修正しました。"
+      ]
+    },
+    {
+      "date": "2022 Apr 9",
+      "status": "solved",
       "text": [
         "When searching by item name, switching the display of language change is not supported. Currently, there is no prospect of support.",
         "アイテム名で検索をかけている場合、言語変更の表示切り替えをサポートしていません。 現在、対応の見通しはありません。"

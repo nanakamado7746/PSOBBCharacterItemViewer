@@ -1,3 +1,4 @@
+
 body
 {
   margin: 0em;
@@ -7,6 +8,7 @@ body
   background-repeat: no-repeat;
   background-position: right 0 bottom -300px;
   background-attachment: fixed;
+  font-family: sans-serif, 'Noto Sans JP','Quicksand','Montserrat';
 }
 
 h1

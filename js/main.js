@@ -11,6 +11,7 @@ var currentpage;
 // 初期表示
 initializeLang();
 initializeDisplay();
+displayNotification();
 
 function initializeLang()
 {

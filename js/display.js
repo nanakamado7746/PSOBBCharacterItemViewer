@@ -188,3 +188,44 @@ function displayPager()
     id.appendChild(button);
   }
 }
+
+function displayNotification()
+{
+  console.log("====== notification ======");
+  console.log(notification());
+  let notifications = notification();
+  let div = document.getElementById("notification");
+  let table = document.createElement("table");
+  let tbody = document.createElement("tbody");
+  for ( let notification of notifications ) {
+    console.log(notification);
+    let tr = document.createElement("tr");
+    let date = document.createElement("td");
+    date.textContent = notification["date"];
+    let status = document.createElement("td");
+    status.className = notification["status"];
+    let text = document.createElement("td");
+    for (let line of notification["text"])
+    {
+      if (line.match(/linker/))
+      {
+        let linker = line.split("||");
+        let a = document.createElement("a");
+        a.textContent = linker[1];;
+        a.setAttribute('href', linker[2]);
+        a.setAttribute('target', '_blank');
+        text.appendChild(a);
+      } else {
+        let p = document.createElement("p")
+        p.textContent += line;
+        text.appendChild(p);
+      }
+    }
+    tr.appendChild(date);
+    tr.appendChild(status);
+    tr.appendChild(text);
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+  div.appendChild(table);
+}

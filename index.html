@@ -27,73 +27,7 @@
   <h1>PSOBB CHARACTER ITEM VIEWER</h1>
   <div class="contents">
 
-    <div class="topic">
-      <table>
-        <tbody>
-        <tr>
-          <td></td>
-          <td class="info"></td>
-          <td><a href="https://www.pioneer2.net/community/threads/character-item-viewer-on-the-web.22882/" target="_blank">Bug reports and requests.</a><td>
-        </tr>
-        <tr>
-          <td>2022 Apr 9</td>
-          <td class="caution"></td>
-          <td>When searching by item name, switching the display of language change is not supported. Currently, there is no prospect of support.</br>
-              アイテム名で検索をかけている場合、言語変更の表示切り替えをサポートしていません。 現在、対応の見通しはありません。
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 9</td>
-          <td class="info"></td>
-          <td>The display is now dynamically switched by changing the language.</br>
-              言語変更で表示が動的に切り替わるようになりました。
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 8</td>
-          <td class="info"></td>
-          <td>Fixed a bug that the latest data could not be searched after inputting the data file and changing the language.</br>
-              データファイル後の入力と言語の変更後に最新のデータで検索できない不具合を修正しました。
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 8</td>
-          <td class="info"></td>
-          <td>You can search case-insensitively.</br>
-              かな/カナ、全角/半角、大文字/小文字を区別せず検索できます。
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 7</td>
-          <td class="info"></td>
-          <td>UnTekked common weapon elements are now displayed.</br>
-              未鑑定コモン武器のエレメントが表示されるようになりました。
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 7</td>
-          <td class="info"></td>
-          <td>There was an Bug in the search for unTekked weapons, but it has been fixed.  </br>
-              未鑑定武器の検索に誤りがありましたが、修正されました。
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 5</td>
-          <td class="solved"></td>
-          <td><s>If there are items that are not displayed after searching, please press the search button or reload the web page. </s></br>
-              <s>検索しても表示されないアイテムがある場合は、検索ボタンを押すかWEBページをリロードしてください。</s>
-          <td>
-        </tr>
-        <tr>
-          <td>2022 Apr 7</td>
-          <td class="solved"></td>
-          <td><s>Tekked and unTekked item may not be properly distinguished.</s> </br>
-              <s>鑑定、未鑑定アイテムが正しく区別されていない可能性があります。</s>
-          <td>
-        </tr>
-      </tobody>
-      </table>
-    </div>
+    <div class="notification" id="notification"></div>
 
     <div class="input">
         <div class="desc" id="desc">
@@ -123,6 +57,7 @@
 </div>
 
 </body>
+<script type="text/javascript" src="./js/notification/notification.js"></script>
 <script type="text/javascript" src="./js/model/item/Item.js"></script>
 <script type="text/javascript" src="./js/config/item_codes.js"></script>
 <script type="text/javascript" src="./js/config/item_codes_ja.js"></script>

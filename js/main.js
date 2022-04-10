@@ -143,11 +143,9 @@ function decoder()
   allItems["JA"] = allItems["JA"].sort();
 
   allItems["EN"].forEach(function(value, i){
-    console.log(value);
     value.push(i);
   })
   allItems["JA"].forEach(function(value, i){
-    console.log(value);
     value.push(i);
   })
 

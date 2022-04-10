@@ -13,7 +13,7 @@ function notification()
       "status": "info",
       "text": [
         "You can now check the progress of the challenge.",
-        "チャレンジの進行度を見ることができるようになりました。"
+        "チャレンジの進行度を確認できるようになりました。"
       ]
     },
     {

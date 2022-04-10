@@ -31,9 +31,9 @@ class Charactor extends Abstract {
       this.setName(charactorData);
       // キャラクターの種族をセット
       this.setClass(charactorData);
-      // キャラクターのレベルをセット
+      // キャラクターのセクションIDをセット
       this.setSectionID(charactorData);
-      // キャラクターの経験値をセット
+      // キャラクターのレベルをセット
       this.setLevel(charactorData);
       // キャラクターの経験値をセット
       this.setExperience(charactorData);
@@ -92,6 +92,8 @@ class Charactor extends Abstract {
     this.Level = charactorData[876] + 1;
   }
 
+  setExperience(charactorData) {}
+
   setEp1Progress(charactorData, index, number)
   {
     console.log("challenge progress: ep1")
@@ -109,8 +111,6 @@ class Charactor extends Abstract {
       ? this.Ep2Progress = "No Progress"
       : this.Ep2Progress = `Stage ${count} Cleared!`;
   }
-
-  setExperience(charactorData) {}
 
   clearCount(charactorData, index, number)
   {

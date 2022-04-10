@@ -73,8 +73,8 @@ function displayCharactor(charactor)
   tr(tbody, `CLASS : ${charactor.Class}`);
   tr(tbody, `SECTION ID : ${charactor.SectionID}`);
   tr(tbody, `LEVEL : ${charactor.Level}`);
-  tr(tbody, `CHALLENGE EP1 : ${charactor.Ep1Progress}`);
-  tr(tbody, `CHALLENGE EP2 : ${charactor.Ep2Progress}`);
+  tr(tbody, `EP1 CHALLENGE : ${charactor.Ep1Progress}`);
+  tr(tbody, `EP2 CHALLENGE : ${charactor.Ep2Progress}`);
   table.appendChild(tbody);
   id.appendChild(table);
 

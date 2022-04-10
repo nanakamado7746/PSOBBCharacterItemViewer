@@ -14,6 +14,10 @@ class Charactor extends Abstract {
   Experience;
   // キャラクターのメセタ
   Meseta;
+  // キャラクターのEp1チャレンジの進行度
+  Ep1Progress;
+  // キャラクターのEp2チャレンジの進行度
+  Ep2Progress;
   // キャラクターの所持品
   Inventory = {};
   // キャラクターの倉庫品
@@ -33,6 +37,10 @@ class Charactor extends Abstract {
       this.setLevel(charactorData);
       // キャラクターの経験値をセット
       this.setExperience(charactorData);
+      // キャラクターのEp1チャレンジの進行度
+      this.setEp1Progress(charactorData, 11460, 9);
+      // キャラクターのEp2チャレンジの進行度
+      this.setEp2Progress(charactorData, 11496, 6);
       // キャラクターの所持品をセット
       this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot, "EN");
       // キャラクター倉庫アイテムをセット
@@ -84,5 +92,40 @@ class Charactor extends Abstract {
     this.Level = charactorData[876] + 1;
   }
 
+  setEp1Progress(charactorData, index, number)
+  {
+    console.log("challenge progress: ep1")
+    const count = this.clearCount(charactorData, index, number);
+    (count === 0)
+      ? this.Ep1Progress = "No Progress"
+      : this.Ep1Progress = `Stage ${count} Cleared! | ${this.Config.Titles[count]}`;
+  }
+
+  setEp2Progress(charactorData, index, number)
+  {
+    console.log("challenge progress: ep2")
+    const count = this.clearCount(charactorData, index, number);
+    (count === 0)
+      ? this.Ep2Progress = "No Progress"
+      : this.Ep2Progress = `Stage ${count} Cleared!`;
+  }
+
   setExperience(charactorData) {}
+
+  clearCount(charactorData, index, number)
+  {
+    let count = 0;
+    for (let i = 0; i < number; i++)
+    {
+      if (charactorData.slice(index, index + 4).join('') != 0)
+      {
+        console.log("stage:" + i + 1);
+        console.log("clear time:");
+        console.log(charactorData.slice(index, index + 4));
+        count += 1;
+      }
+      index = index + 4;
+    }
+    return count;
+  }
 }

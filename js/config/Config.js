@@ -54,6 +54,18 @@ class Config {
     0x0B : "RAmarl",
   };
 
+  Titles = {
+    1 : "Ra-GOU",
+    2 : "Gi-GOU",
+    3 : "Bu-GOU",
+    4 : "Ra-ZAN",
+    5 : "Gi-ZAN",
+    6 : "Bu-ZAN",
+    7 : "Ra-EI",
+    8 : "Gi-EI",
+    9 : "Bu-EI",
+  };
+
   SectionIDs = {
     0x00 : "VIRIDIA",
     0x01 : "GREENILE",

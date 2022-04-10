@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 Apr 10",
+      "status": "info",
+      "text": [
+        "You can now check the progress of the challenge.",
+        "チャレンジの進行度を見ることができるようになりました。"
+      ]
+    },
+    {
       "date": "2022 Apr 9",
       "status": "info",
       "text": [

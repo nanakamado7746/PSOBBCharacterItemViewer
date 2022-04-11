@@ -237,7 +237,9 @@ class Item {
 
   sRankWeapon(itemCode, itemData)
   {
-    let name = `S-RANK ${this.Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
+
+    let cumstomName = this.getCustomName(itemData.slice(6, 12));
+    let name = `S-RANK ${cumstomName} ${this.Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
     let grinder = itemData[3];
     let element = this.getSrankElement(itemData);
 
@@ -246,8 +248,48 @@ class Item {
       name: name,
       grinder: grinder,
       element: element,
-      display: `${name}${this.grinderLabel(grinder)} [${element}]`
+      display: `${name} ${this.grinderLabel(grinder)} [${element}]`
     }
+  }
+
+  getCustomName(cumstomNameData)
+  {
+    let temp = (cumstomNameData[0] << 8 | cumstomNameData[1]) - 0x8000;
+
+    let array = [
+      Math.floor(temp / 0x20),
+      temp % 0x20
+    ];
+
+    array = array.concat(this.threeCustomName(cumstomNameData.slice(2, 4)));
+    array = array.concat(this.threeCustomName(cumstomNameData.slice(4, 6)));
+
+    console.log("customname int:");
+    console.log(array);
+    let customname = "";
+    for (let value of array) {
+      if (value !== 0) customname += String.fromCharCode(value + 64);
+    };
+
+    console.log("customname string:");
+    console.log(customname);
+
+    return customname.toUpperCase();
+
+  }
+
+  threeCustomName(cumstomNameData)
+  {
+    cumstomNameData[0] = (cumstomNameData[0] - 0x80);
+    let third = Math.floor(cumstomNameData[0] / 0x04);
+    let forth = Math.floor(((cumstomNameData[0] % 0x04) << 8 | cumstomNameData[1]) / 0x20);
+    let fifth = cumstomNameData[1] % 0x20;
+    console.log("fifth:" + fifth);
+    return [
+      third,
+      forth,
+      fifth
+    ];
   }
 
   tool(itemCode, itemData)

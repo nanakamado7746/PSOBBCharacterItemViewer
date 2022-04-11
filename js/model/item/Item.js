@@ -229,7 +229,7 @@ class Item {
     let level = itemData[2] + 1;
     return {
       type: "d",
-      name: name,
+      name: `${name} LV${level} Disk`,
       level: level,
       display: `${name} LV${level} Disk`
     }

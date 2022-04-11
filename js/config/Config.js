@@ -29,9 +29,8 @@ class Config {
     MAG : 5,
     DISK : 6,
     TOOL : 7,
-    REINFORCEMENT : 8,
-    SRANK_WEAPON : 9,
-    OTHER : 10
+    SRANK_WEAPON : 8,
+    OTHER : 9
   };
 
   AdditionType = {

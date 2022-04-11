@@ -113,7 +113,7 @@ class Item {
     if (!tekkedMode & this.isCommonWeapon(itemCode)) tekkedText = "????";
 
     return {
-      type: "w",
+      type: 1,
       name: name,
       element: element,
       grinder: grinder,
@@ -139,7 +139,7 @@ class Item {
     let avoidMaxAddition = this.getAddition(name, this.Config.FrameAdditions, this.Config.AdditionType.AVOID);
 
     return {
-      type: "f",
+      type: 2,
       name: name,
       slot: slot,
       status: {
@@ -163,7 +163,7 @@ class Item {
     let avoidMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.AVOID);
 
     return {
-      type: "b",
+      type: 3,
       name: name,
       addition: {
         def: def,
@@ -181,7 +181,7 @@ class Item {
   {
     let name = this.getItemName(itemCode);
     return {
-      type: "u",
+      type: 4,
       name: name,
       display: name
     }
@@ -202,7 +202,7 @@ class Item {
     let pbs = this.getPbs(this.binArrayToString([itemData[3], itemData[18]]));
 
     return {
-      type: "m",
+      type: 5,
       name: name,
       level: level,
       sync: sync,
@@ -228,7 +228,7 @@ class Item {
     let name = this.Config.DiskNameCodes[itemData[4]];
     let level = itemData[2] + 1;
     return {
-      type: "d",
+      type: 6,
       name: `${name} LV${level} Disk`,
       level: level,
       display: `${name} LV${level} Disk`
@@ -244,7 +244,7 @@ class Item {
     let element = this.getSrankElement(itemData);
 
     return {
-      type: "s",
+      type: 8,
       name: name,
       grinder: grinder,
       element: element,
@@ -303,7 +303,7 @@ class Item {
       : number = itemData[20];
 
     return {
-      type: "t",
+      type: 7,
       name: name,
       number: number,
       display: `${name}${this.numberLabel(number)}`
@@ -320,7 +320,7 @@ class Item {
       // 倉庫の場合
       : number = itemData[20];
     return {
-      type: "o",
+      type: 9,
       name: name,
       number: number,
       display: `${name}${this.numberLabel(number)}`

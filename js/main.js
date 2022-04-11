@@ -353,12 +353,17 @@ function search(allItems, lang)
   let itemname = document.getElementsByName("itemname")[0].value;
   let hit = document.getElementsByName("hit")[0].value;
   let unTekked = document.getElementsByName("unTekked")[0].checked;
+  let types = document.getElementsByName("types");
 
   console.log("==== search all items ====");
   console.log(allItems);
   console.log("search itemname:" + itemname);
   console.log("search hit:" + hit);
   console.log("search unTekked:" + unTekked);
+  types.forEach((item) => {
+    console.log(`search types: ${item.value} ${item.checked}`);
+  });
+
 
   let id = document.getElementById("data");
   id.innerHTML = '';
@@ -367,7 +372,7 @@ function search(allItems, lang)
   if (this.allItems.length === 0) return;
 
   // 検索結果初期値。検索欄未入力で全アイテムを表示する
-  let result = allItems[lang];
+  let result = [];
 
   // 検索ワードの全角を半角に変換
   itemname = itemname.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
@@ -383,6 +388,21 @@ function search(allItems, lang)
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
   });
 
+  for (let value of types)
+  {
+    if (value.checked)
+    {
+      result = result.concat(allItems[lang].filter(function(x)
+        {
+            return (x[1].type == value.value);
+        }
+      ));
+    }
+  }
+
+  // typesがすべてfalse（未選択）だった場合、すべてのアイテムを対象にする。
+  if (result.length === 0) result = allItems[lang];
+
 
   // 名前が指定された場合
   if (itemname !== "")
@@ -394,7 +414,7 @@ function search(allItems, lang)
           return String.fromCharCode(s.charCodeAt(0) + 0x60);
         });
 
-        if (x[1].type === "w" | x[1].type === "s")
+        if (x[1].type === 1 | x[1].type === 8)
         {
           tmp = tmp.concat(x[1].element.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
             return String.fromCharCode(s.charCodeAt(0) + 0x60);
@@ -406,11 +426,11 @@ function search(allItems, lang)
     );
   }
 
-  if (unTekked === true)
+  if (unTekked)
   {
     result = result.filter(function(x)
       {
-        if (x[1].type === "w") return x[1].tekked === false;
+        if (x[1].type === 1) return x[1].tekked === false;
       }
     );
   }
@@ -420,7 +440,7 @@ function search(allItems, lang)
   {
     result = result.filter(function(x)
       {
-        if (x[1].type === "w") return x[1].attribute["hit"] >= hit;
+        if (x[1].type === 1) return x[1].attribute["hit"] >= hit;
       }
     );
   }

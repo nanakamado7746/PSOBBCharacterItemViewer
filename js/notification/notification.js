@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 Apr 12",
+      "status": "info",
+      "text": [
+        "Items can now be filtered by item type.",
+        "アイテムの種類で絞り込みできるようになりました。"
+      ]
+    },
+    {
       "date": "2022 Apr 11",
       "status": "info",
       "text": [

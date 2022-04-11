@@ -394,6 +394,13 @@ function search(allItems, lang)
           return String.fromCharCode(s.charCodeAt(0) + 0x60);
         });
 
+        if (x[1].type === "w" | x[1].type === "s")
+        {
+          tmp = tmp.concat(x[1].element.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) + 0x60);
+          }));
+        }
+
         return tmp.match(itemname);
       }
     );

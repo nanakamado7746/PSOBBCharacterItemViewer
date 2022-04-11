@@ -12,6 +12,14 @@ function notification()
       "date": "2022 Apr 11",
       "status": "info",
       "text": [
+        "You can now search the special attacks (hell, demon etc).",
+        "武器のエレメント（ヘル、デーモンなど）で検索できるようになりました。"
+      ]
+    },
+    {
+      "date": "2022 Apr 11",
+      "status": "info",
+      "text": [
         "You can now check the ES(S-Rank) weapon custom name.",
         "Sランク武器のカスタム名を確認できるようになりました。"
       ]

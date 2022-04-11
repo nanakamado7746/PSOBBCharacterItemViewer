@@ -20,7 +20,7 @@ function notification()
       "date": "2022 Apr 11",
       "status": "info",
       "text": [
-        "You can now check the ES(S-Rank) weapon custom name.",
+        "You can now check the S-Rank(ES) weapon custom name.",
         "Sランク武器のカスタム名を確認できるようになりました。"
       ]
     },

@@ -388,10 +388,14 @@ function search(allItems, lang)
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
   });
 
-  for (let value of types)
+  // typeの選択状態を表す
+  let typeSelected = false;
+  for (const value of types)
   {
     if (value.checked)
     {
+      // typeが選択されていると、選択状態をtrueにする
+      typeSelected = true;
       result = result.concat(allItems[lang].filter(function(x)
         {
             return (x[1].type == value.value);
@@ -401,7 +405,7 @@ function search(allItems, lang)
   }
 
   // typesがすべてfalse（未選択）だった場合、すべてのアイテムを対象にする。
-  if (result.length === 0) result = allItems[lang];
+  if (!typeSelected) result = allItems[lang];
 
 
   // 名前が指定された場合

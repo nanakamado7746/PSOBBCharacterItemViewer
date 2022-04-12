@@ -403,21 +403,21 @@ class Item {
   getCustomName(cumstomNameData)
   {
     // 名前格納用
-    let array = [];
+    let temp = [];
 
     // ２文字目（実質１文字目）が小文字データなので大文字に戻す
     cumstomNameData[0] -= 0x04;
     // ３文字＊３回取得するが、１文字目は空なので実質８文字
-    array = array.concat(this.threeLetters(cumstomNameData.slice(0, 2)));
-    array = array.concat(this.threeLetters(cumstomNameData.slice(2, 4)));
-    array = array.concat(this.threeLetters(cumstomNameData.slice(4, 6)));
+    temp = temp.concat(this.threeLetters(cumstomNameData.slice(0, 2)));
+    temp = temp.concat(this.threeLetters(cumstomNameData.slice(2, 4)));
+    temp = temp.concat(this.threeLetters(cumstomNameData.slice(4, 6)));
 
     console.log("customname int:");
-    console.log(array);
+    console.log(temp);
 
     // １文字ずつアルファベットに変換
     let customname = "";
-    for (let value of array) {
+    for (let value of temp) {
       if (value !== 0) customname += String.fromCharCode(value + 64);
     };
 

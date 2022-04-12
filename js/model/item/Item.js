@@ -252,46 +252,6 @@ class Item {
     }
   }
 
-  getCustomName(cumstomNameData)
-  {
-    let temp = (cumstomNameData[0] << 8 | cumstomNameData[1]) - 0x8000;
-
-    let array = [
-      Math.floor(temp / 0x20),
-      temp % 0x20
-    ];
-
-    array = array.concat(this.threeCustomName(cumstomNameData.slice(2, 4)));
-    array = array.concat(this.threeCustomName(cumstomNameData.slice(4, 6)));
-
-    console.log("customname int:");
-    console.log(array);
-    let customname = "";
-    for (let value of array) {
-      if (value !== 0) customname += String.fromCharCode(value + 64);
-    };
-
-    console.log("customname string:");
-    console.log(customname);
-
-    return customname.toUpperCase();
-
-  }
-
-  threeCustomName(cumstomNameData)
-  {
-    cumstomNameData[0] = (cumstomNameData[0] - 0x80);
-    let third = Math.floor(cumstomNameData[0] / 0x04);
-    let forth = Math.floor(((cumstomNameData[0] % 0x04) << 8 | cumstomNameData[1]) / 0x20);
-    let fifth = cumstomNameData[1] % 0x20;
-    console.log("fifth:" + fifth);
-    return [
-      third,
-      forth,
-      fifth
-    ];
-  }
-
   tool(itemCode, itemData)
   {
     let name = this.getItemName(itemCode);
@@ -437,6 +397,49 @@ class Item {
   {
     if (number > 0) return ` +${number}`;
     return "";
+  }
+
+
+  getCustomName(cumstomNameData)
+  {
+    // 名前格納用
+    let array = [];
+
+    // ２文字目（実質１文字目）が小文字データなので大文字に戻す
+    cumstomNameData[0] -= 0x04;
+    // ３文字＊３回取得するが、１文字目は空なので実質８文字
+    array = array.concat(this.threeLetters(cumstomNameData.slice(0, 2)));
+    array = array.concat(this.threeLetters(cumstomNameData.slice(2, 4)));
+    array = array.concat(this.threeLetters(cumstomNameData.slice(4, 6)));
+
+    console.log("customname int:");
+    console.log(array);
+
+    // １文字ずつアルファベットに変換
+    let customname = "";
+    for (let value of array) {
+      if (value !== 0) customname += String.fromCharCode(value + 64);
+    };
+
+    console.log("customname string:");
+    console.log(customname);
+
+    return customname;
+
+  }
+
+  threeLetters(array)
+  {
+    // 計算に関係のない初期データを削除
+    array[0] = (array[0] - 0x80);
+    let first = Math.floor(array[0] / 0x04);
+    let second = Math.floor(((array[0] % 0x04) << 8 | array[1]) / 0x20);
+    let third = array[1] % 0x20;
+    return [
+      first,
+      second,
+      third
+    ];
   }
 
   binArrayToInt(arr){

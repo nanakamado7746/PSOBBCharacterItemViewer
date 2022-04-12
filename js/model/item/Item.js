@@ -416,6 +416,7 @@ class Item {
     console.log(temp);
 
     // １文字ずつアルファベットに変換
+    // 1 -> A, 26 -> Zのようになる。 0はSkip
     let customname = "";
     for (let value of temp) {
       if (value !== 0) customname += String.fromCharCode(value + 64);

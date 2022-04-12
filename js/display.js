@@ -106,7 +106,7 @@ function displayInventory(inventory, title, mode)
 
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode(title));
-  h2.appendChild(document.createTextNode(`　　　...${inventory.length} items`));
+  h2.appendChild(document.createTextNode(`　...${inventory.length}`));
   id.appendChild(h2);
 
   let table = document.createElement("table");

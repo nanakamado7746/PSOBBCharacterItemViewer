@@ -70,6 +70,7 @@ function displayCharactor(charactor)
   let tbody = document.createElement("tbody");
   tr(tbody, `SLOT : ${charactor.Slot}`);
   tr(tbody, `NAME : ${charactor.Name}`);
+  tr(tbody, `GUILD CARD : ${charactor.GuildCardNumber}`);
   tr(tbody, `CLASS : ${charactor.Class}`);
   tr(tbody, `SECTION ID : ${charactor.SectionID}`);
   tr(tbody, `LEVEL : ${charactor.Level}`);

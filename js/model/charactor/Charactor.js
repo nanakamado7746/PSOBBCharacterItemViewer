@@ -4,6 +4,8 @@ class Charactor extends Abstract {
   Slot;
   // キャラクターの名前
   Name;
+  // キャラクターのギルドカード番号
+  GuildCardNumber;
   // キャラクターのクラス
   Class;
   // キャラクターのセクションID
@@ -29,6 +31,8 @@ class Charactor extends Abstract {
       this.setSlot(slot);
       // キャラクターの名前をセット
       this.setName(charactorData);
+      // キャラクターの種族をセット
+      this.setGuildCardNumber(charactorData.slice(888,896));
       // キャラクターの種族をセット
       this.setClass(charactorData);
       // キャラクターのセクションIDをセット
@@ -68,6 +72,17 @@ class Charactor extends Abstract {
     }
     console.log(`name: ${name}`);
     this.Name = name;
+  }
+
+  setGuildCardNumber(charactorData)
+  {
+    let guildCardNumber = "";
+    for (let value of charactorData)
+    {
+      guildCardNumber += value & 0x0F;
+      console.log(`guildCardNumber: ${guildCardNumber}`);
+    }
+    this.GuildCardNumber = guildCardNumber;
   }
 
   setClass(charactorData)

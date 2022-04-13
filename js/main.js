@@ -350,14 +350,14 @@ function realtimeSearch()
 function search(allItems, lang)
 {
 
-  let itemname = document.getElementsByName("itemname")[0].value;
+  let searchword = document.getElementsByName("searchword")[0].value;
   let hit = document.getElementsByName("hit")[0].value;
   let unTekked = document.getElementsByName("unTekked")[0].checked;
   let types = document.getElementsByName("types");
 
   console.log("==== search all items ====");
   console.log(allItems);
-  console.log("search itemname:" + itemname);
+  console.log("search searchword:" + searchword);
   console.log("search hit:" + hit);
   console.log("search unTekked:" + unTekked);
   types.forEach((item) => {
@@ -375,18 +375,24 @@ function search(allItems, lang)
   let result = [];
 
   // 検索ワードの全角を半角に変換
-  itemname = itemname.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-  });
-  // 検索ワードを大文字に変換、ひらがなをカタカナに変換、トリム
-  itemname = itemname.toUpperCase().trim().replace(/[ぁ-ん]/g, function(s) {
-    return String.fromCharCode(s.charCodeAt(0) + 0x60);
-  });
+  // 検索ワードのひらがなをかたかなに変換
+  // 検索ワードを大文字化、トリム
+  searchword = searchword
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+    })
+    .replace(/[ぁ-ん]/g, function(s) {
+      return String.fromCharCode(s.charCodeAt(0) + 0x60);
+    })
+    .toUpperCase().trim();
 
   // 検索Hit値の全角を半角に変換
   hit = hit.replace(/[０-９]/g, function(s) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
   });
+
+  console.log("search searchword converted:" + searchword);
+  console.log("search hit converted:" + hit);
 
   // typeの選択状態を表す
   let typeSelected = false;
@@ -409,23 +415,32 @@ function search(allItems, lang)
 
 
   // 名前が指定された場合
-  if (itemname !== "")
+  if (searchword !== "")
   {
     result = result.filter(function(x)
       {
-        // 検索対象のアイテムを大文字に変換、ひらがなをカタカナに変換
-        let tmp = x[1].name.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
+
+        // 検索対象の全角を半角に変換
+        // 検索対象のひらがなをかたかなに変換
+        // 検索対象を大文字化、トリム
+        let target = x[1].name.
+          replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+          })
+          .replace(/[ぁ-ん]/g, function(s) {
           return String.fromCharCode(s.charCodeAt(0) + 0x60);
-        });
+          })
+          .toUpperCase();
 
         if (x[1].type === 1 | x[1].type === 8)
         {
-          tmp = tmp.concat(x[1].element.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
+          // 武器かS武器の場合、検索対象のエレメント名をカタカナ、大文字へ変換
+          target = target.concat(x[1].element.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
             return String.fromCharCode(s.charCodeAt(0) + 0x60);
           }));
         }
 
-        return tmp.match(itemname);
+        return target.match(searchword);
       }
     );
   }

@@ -127,7 +127,7 @@ function decoder()
     //　キャラクターファイルをデコード
     if (fileData[i]["filename"].match(/psochar/) !== null)
     {
-      let slot = fileData[i]["filename"].match(/\s\d+/)[0].trim();
+      let slot = fileData[i]["filename"].match(/[0-9]+(?=\.)/);
       let charactor = new Charactor(binary, Number(slot) + 1);
       charactors.push(charactor);
 
@@ -261,10 +261,10 @@ function sortInputFiles(files)
 
     // ファイル名のスロット番号を切り取って数値に変換する
     if (a.name.match(/\s\d+/) != null) {
-      a = parseInt(a.name.match(/\s\d+/)[0].trim());
+      a = parseInt(a.name.match(/[0-9]+(?=\.)/));
     }
     if (b.name.match(/\s\d+/) != null){
-      b = parseInt(b.name.match(/\s\d+/)[0].trim());
+      b = parseInt(b.name.match(/[0-9]+(?=\.)/));
     }
 
     if ( a > b ) {

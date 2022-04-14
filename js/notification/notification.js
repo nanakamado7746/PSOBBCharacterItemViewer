@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 Apr 14",
+      "status": "info",
+      "text": [
+        "Added support for the latest unitxt. You can check it in the item code field.",
+        "最新のunitxtに対応しました。アイテムコード欄で確認できます。"
+      ]
+    },
+    {
       "date": "2022 Apr 12",
       "status": "info",
       "text": [

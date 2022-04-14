@@ -12,7 +12,7 @@ function notification()
       "date": "2022 Apr 14",
       "status": "info",
       "text": [
-        "Added support for the latest unitxt. You can check it in the item code field.",
+        "Added support for the latest unitxt. You can check it in the item codes field.",
         "最新のunitxtに対応しました。アイテムコード欄で確認できます。"
       ]
     },

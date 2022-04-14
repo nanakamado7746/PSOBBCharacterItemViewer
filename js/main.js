@@ -199,8 +199,8 @@ async function clickInput(event)
     console.log(e);
     if (e.name === 'QuotaExceededError')
     {
-      alert("File size is too large. Try to Reduce input file number or Browser cokkie settings.\n"
-          + "ファイルサイズが多すぎます。 入力するファイル数を減らすか、ブラウザのクッキー設定を行ってください。");
+      alert("File size has exceeded local storage capacity. Try to Reduce input file number or Browser settings.\n"
+          + "ファイルサイズがローカルストレージの容量を超えました。 入力するファイル数を減らすか、ブラウザの設定を行ってください。");
     } else {
       alert(e);
     }

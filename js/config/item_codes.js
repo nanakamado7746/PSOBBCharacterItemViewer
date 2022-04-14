@@ -335,6 +335,10 @@ function DiskNameCodes() {
   }
 }
 
+function DiskNameLanguage() {
+  return "Disk";
+}
+
 function PBs() {
   return {
     "0000": ["","",""],

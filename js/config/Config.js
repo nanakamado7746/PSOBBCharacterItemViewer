@@ -6,6 +6,7 @@ class Config {
   FrameAdditions;
   BarrierAdditions;
   DiskNameCodes;
+  DiskNameLanguage;
   PBs;
   WeaponRange = [ 0x000000, 0x00ED00 ];
   FrameRange = [ 0x010100, 0x010158 ];
@@ -163,6 +164,7 @@ class Config {
         this.FrameAdditions = FrameAdditions_JA();
         this.BarrierAdditions = BarrierAdditions_JA();
         this.DiskNameCodes = DiskNameCodes_JA();
+        this.DiskNameLanguage = DiskNameLanguage_JA();
         this.PBs = PBs_JA();
       break;
 
@@ -173,6 +175,7 @@ class Config {
         this.FrameAdditions = FrameAdditions();
         this.BarrierAdditions = BarrierAdditions();
         this.DiskNameCodes = DiskNameCodes();
+        this.DiskNameLanguage = DiskNameLanguage();
         this.PBs = PBs();
     }
   }

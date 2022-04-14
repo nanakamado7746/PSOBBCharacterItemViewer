@@ -225,13 +225,14 @@ class Item {
 
   disk(itemCode, itemData)
   {
+
     let name = this.Config.DiskNameCodes[itemData[4]];
     let level = itemData[2] + 1;
     return {
       type: 6,
-      name: `${name} LV${level} Disk`,
+      name: `${name} LV${level} ${this.Config.DiskNameLanguage}`,
       level: level,
-      display: `${name} LV${level} Disk`
+      display: `${name} LV${level} ${this.Config.DiskNameLanguage}`
     }
   }
 

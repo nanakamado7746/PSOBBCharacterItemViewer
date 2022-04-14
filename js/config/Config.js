@@ -105,7 +105,19 @@ class Config {
     0x0E: "Grey",
     0x0F: "Cream",
     0x10: "Pink",
-    0x11: "Dark Green"
+    0x11: "Dark Green",
+    0x12: "Chartreuse",
+    0x13: "Azure",
+    0x14: "Royal Purple",
+    0x15: "Ruby",
+    0x16: "Sapphire",
+    0x17: "Emerald",
+    0x18: "Gold",
+    0x19: "Silver",
+    0x1A: "Bronze",
+    0x1B: "Plum",
+    0x1C: "Violet",
+    0x1D: "Goldenrod"
   }
 
   SRankWeaponCodes = {

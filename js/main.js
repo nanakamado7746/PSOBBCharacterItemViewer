@@ -350,14 +350,16 @@ function realtimeSearch()
 function search(allItems, lang)
 {
 
-  let searchword = document.getElementsByName("searchword")[0].value;
+  let word = document.getElementsByName("word")[0].value;
+  let element = document.getElementsByName("element")[0].value;
   let hit = document.getElementsByName("hit")[0].value;
   let unTekked = document.getElementsByName("unTekked")[0].checked;
   let types = document.getElementsByName("types");
 
   console.log("==== search all items ====");
   console.log(allItems);
-  console.log("search searchword:" + searchword);
+  console.log("search word:" + word);
+  console.log("search element:" + element);
   console.log("search hit:" + hit);
   console.log("search unTekked:" + unTekked);
   types.forEach((item) => {
@@ -377,7 +379,16 @@ function search(allItems, lang)
   // 検索ワードの全角を半角に変換
   // 検索ワードのひらがなをかたかなに変換
   // 検索ワードを大文字化、トリム
-  searchword = searchword
+  word = word
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+    })
+    .replace(/[ぁ-ん]/g, function(s) {
+      return String.fromCharCode(s.charCodeAt(0) + 0x60);
+    })
+    .toUpperCase().trim();
+
+  element = element
     .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
       return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     })
@@ -391,7 +402,7 @@ function search(allItems, lang)
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
   });
 
-  console.log("search searchword converted:" + searchword);
+  console.log("search word converted:" + word);
   console.log("search hit converted:" + hit);
 
   // typeの選択状態を表す
@@ -415,7 +426,7 @@ function search(allItems, lang)
 
 
   // 名前が指定された場合
-  if (searchword !== "")
+  if (word !== "")
   {
     result = result.filter(function(x)
       {
@@ -423,8 +434,8 @@ function search(allItems, lang)
         // 検索対象の全角を半角に変換
         // 検索対象のひらがなをかたかなに変換
         // 検索対象を大文字化、トリム
-        let target = x[1].name.
-          replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+        let target = x[1].name
+          .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
             return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
           })
           .replace(/[ぁ-ん]/g, function(s) {
@@ -432,15 +443,27 @@ function search(allItems, lang)
           })
           .toUpperCase();
 
+        return target.match(word);
+      }
+    );
+  }
+
+  // エレメントが指定された場合
+  if (element !== "")
+  {
+    result = result.filter(function(x)
+      {
         if (x[1].type === 1 | x[1].type === 8)
         {
           // 武器かS武器の場合、検索対象のエレメント名をカタカナ、大文字へ変換
-          target = target.concat(x[1].element.toUpperCase().replace(/[ぁ-ん]/g, function(s) {
-            return String.fromCharCode(s.charCodeAt(0) + 0x60);
-          }));
-        }
+          target = x[1].element
+            .replace(/[ぁ-ん]/g, function(s) {
+              return String.fromCharCode(s.charCodeAt(0) + 0x60);
+            })
+            .toUpperCase();
 
-        return target.match(searchword);
+          return target.match(element);
+        }
       }
     );
   }

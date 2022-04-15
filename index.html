@@ -48,6 +48,7 @@
       <div class="pager", id="pager"></div>
       <div class="search" id="search">
         <div class="type">
+          <div class="sep"><button type="button" class="searchb" id="searchb" onClick=clickSearch(event)></button></div>
           <input type="checkbox" class="" name="types" value="1" >Weapons
           <input type="checkbox" class="" name="types" value="2" >Frames
           <input type="checkbox" class="" name="types" value="3" >Barriers
@@ -58,11 +59,11 @@
           <input type="checkbox" class="" name="types" value="8" >S-Ranks
           <input type="checkbox" class="" name="types" value="9" >Other
         </div>
-        <div class="word">
-          <button type="button" class="" id="searchb" onClick=clickSearch(event)></button>
-          <input type="text" class="searchword" name="searchword" placeholder="Input item name, special attacks, disk level">
-          <input type="text" class="att" name="hit" placeholder="Hit value">
-          <input type="checkbox" class="" name="unTekked" value="1" >only unTekked(未鑑定のみ)
+        <div class="wordsearches">
+          <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
+          <div class="sep"><input type="text" class="element" name="element" placeholder="special attack (element)"></div>
+          <div class="sep"><input type="text" class="att" name="hit" placeholder="Hit value"></div>
+          <div class="sep"><input type="checkbox" class="unTekked" name="unTekked" value="1" >only unTekked(未鑑定のみ)</div>
         </div>
       </div>
     </div>

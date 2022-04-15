@@ -99,6 +99,12 @@ a:hover
   width: 60px;
 }
 
+::placeholder {
+  style: italic;
+  font-style: italic;
+  color: #a9a9a9;
+}
+
 .unTekked
 {
   vertical-align: middle;

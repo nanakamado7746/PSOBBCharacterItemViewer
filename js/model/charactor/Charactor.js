@@ -80,8 +80,8 @@ class Charactor extends Abstract {
     for (let value of charactorData)
     {
       guildCardNumber += value & 0x0F;
-      console.log(`guildCardNumber: ${guildCardNumber}`);
     }
+    console.log(`guildCardNumber: ${guildCardNumber}`);
     this.GuildCardNumber = guildCardNumber;
   }
 

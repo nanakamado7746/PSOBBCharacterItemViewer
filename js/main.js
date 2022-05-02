@@ -13,6 +13,21 @@ var currentpage;
 initializeLang();
 initializeDisplay();
 displayNotification();
+initializeStyleSheet();
+
+function initializeStyleSheet()
+{
+  if (localStorage.getItem("styleSheet"))
+  {
+    var styleSheet = JSON.parse(localStorage.getItem("styleSheet"));
+    console.log("styleSheet:" + styleSheet);
+    document.getElementById("stylesheet").href = `./css/${styleSheet}.css`;
+  }
+  if (styleSheet !== "classic") {
+    document.getElementsByName("stylesheets")[1].checked = true;
+  }
+}
+
 
 function initializeLang()
 {
@@ -501,3 +516,9 @@ function search(allItems, lang)
 window.addEventListener('load', function(){
   realtimeSearch();
 });
+
+function clickChangeStyleSheet(value)
+{
+  document.getElementById("stylesheet").href = `./css/${value}.css`;
+  localStorage.setItem("styleSheet", JSON.stringify(value));
+}

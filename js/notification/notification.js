@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 2",
+      "status": "info",
+      "text": [
+        "You can now select styles.",
+        "スタイルを選択できるようになりました。"
+      ]
+    },
+    {
       "date": "2022 Apr 14",
       "status": "info",
       "text": [

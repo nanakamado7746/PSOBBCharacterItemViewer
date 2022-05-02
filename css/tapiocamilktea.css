@@ -1,4 +1,4 @@
-
+html {}
 body
 {
   margin: 0em;
@@ -16,14 +16,23 @@ h1
   background-image: url("../resources/images/background/title.png");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.8;
   margin: 0em;
   padding: 1em 1em 1em 1em;
   color: #FFFFFF;
   height: 50px;
   border-color: : #afeeee;
   background-color: #111111;
+  opacity: 0.8;
 }
+
+.stylesheet
+{
+  font-size: 80%;
+  padding-left: 1em;
+  background-color: #D3C7B8;
+  opacity: 0.9;
+}
+
 
 .contents
 {
@@ -135,27 +144,53 @@ a:hover
 
 .data{}
 
-h2
+.data .data_banner
 {
-  opacity:0.9;
+  height: auto;
+  display: flex;
   overflow: auto;
-  padding: 0em 0 0em 2em;
+  margin: 1em 0em 1em 0;
+  padding: 0em 0 0em 3em;
   color: #ffffff;
-  background-color: #444444;
+  background-color: #555555;
   border-color: : #afeeee;
   background-image: url("../resources/images/icon/redbox_white.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0%;
+  opacity: 0.9;
+}
+
+.data .data_heading
+{
+  margin-right: 2em;
+}
+
+.data .data_heading_body
+{
+  margin: 0;
+}
+
+h2
+{}
+
+.data .data_number
+{
+  font-size: 150%;
+  align-self: center;
+}
+
+.data .data_body
+{
 }
 
 .data table {}
 .data th {}
 .data td
 {
-    font-size: 80%;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+  font-size: 80%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .notification

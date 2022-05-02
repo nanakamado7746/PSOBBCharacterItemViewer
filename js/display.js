@@ -30,11 +30,35 @@ function displayItemCodes()
 
   if (typeof itemCodes === "undefined") return;
 
+  let div = document.createElement("div");
+  div.setAttribute('class', "data_window");
+
+  let banner = document.createElement("div");
+  banner.setAttribute('class', "data_banner");
+
+  let heading = document.createElement("div");
+  heading.setAttribute('class', "data_heading");
+  let heading_left = document.createElement("div");
+  heading_left.setAttribute('class', "data_heading_left");
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode("ITEM CODES"));
-  id.appendChild(h2);
+  h2.setAttribute('class', "data_heading_body");
+  let heading_right = document.createElement("div");
+  heading_right.setAttribute('class', "data_heading_right");
+
+  heading.appendChild(heading_left);
+  heading.appendChild(h2);
+  heading.appendChild(heading_right);
+  banner.appendChild(heading);
+  div.appendChild(banner);
+
+  let header = document.createElement("div");
+  header.setAttribute('class', "data_header");
+  div.appendChild(header);
 
   let table = document.createElement("table");
+
+  table.setAttribute('class', "data_body");
   let tbody = document.createElement("tbody");
 
   if (Object.keys(itemCodes).lenght !== 0)
@@ -55,7 +79,11 @@ function displayItemCodes()
   }
 
   table.appendChild(tbody);
-  id.appendChild(table);
+  div.appendChild(table);
+  let footer = document.createElement("div");
+  footer.setAttribute('class', "data_footer");
+  div.appendChild(footer);
+  id.appendChild(div);
 }
 
 function displayCharactor(charactor)
@@ -63,11 +91,37 @@ function displayCharactor(charactor)
   let id = document.getElementById("data");
   id.innerHTML = '';
 
+  let div = document.createElement("div");
+  div.setAttribute('class', "data_window");
+
+  let banner = document.createElement("div");
+  banner.setAttribute('class', "data_banner");
+
+  let heading = document.createElement("div");
+  heading.setAttribute('class', "data_heading");
+  let heading_left = document.createElement("div");
+  heading_left.setAttribute('class', "data_heading_left");
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode("CHARACTER"));
-  id.appendChild(h2);
+  h2.setAttribute('class', "data_heading_body");
+  let heading_right = document.createElement("div");
+  heading_right.setAttribute('class', "data_heading_right");
+
+  heading.appendChild(heading_left);
+  heading.appendChild(h2);
+  heading.appendChild(heading_right);
+  banner.appendChild(heading);
+  div.appendChild(banner);
+
+  let header = document.createElement("div");
+  header.setAttribute('class', "data_header");
+  div.appendChild(header);
+
   let table = document.createElement("table");
+  table.setAttribute('class', "data_body");
+
   let tbody = document.createElement("tbody");
+
   tr(tbody, `SLOT : ${charactor.Slot}`);
   tr(tbody, `NAME : ${charactor.Name}`);
   tr(tbody, `GUILD CARD : ${charactor.GuildCardNumber}`);
@@ -76,9 +130,13 @@ function displayCharactor(charactor)
   tr(tbody, `LEVEL : ${charactor.Level}`);
   tr(tbody, `EP1 CHALLENGE : ${charactor.Ep1Progress}`);
   tr(tbody, `EP2 CHALLENGE : ${charactor.Ep2Progress}`);
-  table.appendChild(tbody);
-  id.appendChild(table);
 
+  table.appendChild(tbody);
+  div.appendChild(table);
+  let footer = document.createElement("div");
+  footer.setAttribute('class', "data_footer");
+  div.appendChild(footer);
+  id.appendChild(div);
 
   displayInventory(charactor.Inventory[this.lang], "INVENTORY")
   displayInventory(charactor.Bank[this.lang], "BANK")
@@ -105,12 +163,49 @@ function displayInventory(inventory, title, mode)
 {
   let id = document.getElementById("data");
 
+  let div = document.createElement("div");
+  div.setAttribute('class', "data_window");
+
+  let banner = document.createElement("div");
+  banner.setAttribute('class', "data_banner");
+
+  let heading = document.createElement("div");
+  heading.setAttribute('class', "data_heading");
+  let heading_left = document.createElement("div");
+  heading_left.setAttribute('class', "data_heading_left");
   let h2 = document.createElement("h2");
   h2.appendChild(document.createTextNode(title));
-  h2.appendChild(document.createTextNode(`　...${inventory.length}`));
-  id.appendChild(h2);
+  h2.setAttribute('class', "data_heading_body");
+  let heading_right = document.createElement("div");
+  heading_right.setAttribute('class', "data_heading_right");
+
+  heading.appendChild(heading_left);
+  heading.appendChild(h2);
+  heading.appendChild(heading_right);
+  banner.appendChild(heading);
+
+  let number = document.createElement("div");
+  number.setAttribute('class', "data_number");
+  let number_left = document.createElement("div");
+  number_left.setAttribute('class', "data_number_left");
+  let number_body = document.createElement("div");
+  number_body.setAttribute('class', "data_number_body");
+  number_body.appendChild(document.createTextNode(`Qty: ${inventory.length}`));
+  let number_right = document.createElement("div");
+  number_right.setAttribute('class', "data_number_right");
+  number.appendChild(number_left);
+  number.appendChild(number_body);
+  number.appendChild(number_right);
+  banner.appendChild(number);
+
+  div.appendChild(banner);
+
+  let header = document.createElement("div");
+  header.setAttribute('class', "data_header");
+  div.appendChild(header);
 
   let table = document.createElement("table");
+  table.setAttribute('class', "data_body");
   let tbody = document.createElement("tbody");
 
   if (inventory.length == 0)
@@ -143,7 +238,11 @@ function displayInventory(inventory, title, mode)
   }
 
   table.appendChild(tbody);
-  id.appendChild(table);
+  div.appendChild(table);
+  let footer = document.createElement("div");
+  footer.setAttribute('class', "data_footer");
+  div.appendChild(footer);
+  id.appendChild(div);
 }
 
 function displayPager()

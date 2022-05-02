@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html" charset="UTF-8">
   <meta name="keywords" content="PSO,PSOBB,Ephinea,tool">
   <meta name="description" content="PSOBBの所有キャラクターとアイテムを閲覧できます。 View characters and items owned by PSOBB.">
-  <link rel="stylesheet" href="./css/default.css">
+  <link id="stylesheet" rel="stylesheet" href="./css/classic.css">
   <link rel="shortcut icon" href="./resources/images/favicon/rune_white64.ico">
   <link rel="icon" type="image/x-icon" href="./resources/images/favicon/rune_white64.ico">
   <style>
@@ -27,6 +27,11 @@
 
 <body>
   <h1>PSOBB CHARACTER ITEM VIEWER</h1>
+
+    <div class="stylesheet" id="stylesheet">
+      <input type="radio" name="stylesheets" value="classic" checked onClick=clickChangeStyleSheet(value)>Classic-style
+      <input type="radio" name="stylesheets" value="tapiocamilktea" onClick=clickChangeStyleSheet(value) >Tapioca milktea-style
+    </div>
   <div class="contents">
 
     <div class="notification" id="notification"></div>

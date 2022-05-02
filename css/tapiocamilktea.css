@@ -1,4 +1,7 @@
-html {}
+html {
+  font-family: sans-serif, 'Noto Sans JP','Quicksand','Montserrat';
+}
+
 body
 {
   margin: 0em;
@@ -8,7 +11,6 @@ body
   background-repeat: no-repeat;
   background-position: right 0 bottom -300px;
   background-attachment: fixed;
-  font-family: sans-serif, 'Noto Sans JP','Quicksand','Montserrat';
 }
 
 h1
@@ -19,6 +21,7 @@ h1
   margin: 0em;
   padding: 1em 1em 1em 1em;
   color: #FFFFFF;
+  font-family: 'Orbitron', sans-serif;
   height: 50px;
   border-color: : #afeeee;
   background-color: #111111;

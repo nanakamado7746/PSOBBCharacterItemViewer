@@ -1,4 +1,6 @@
-html {}
+html {
+  font-family: sans-serif, 'Noto Sans JP','Quicksand','Montserrat';
+}
 
 body {
   margin: 0em;
@@ -6,7 +8,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: sans-serif, 'Noto Sans JP','Quicksand','Montserrat';
   color: #ffffff;
 }
 
@@ -30,12 +31,14 @@ h1
 {
   font-size: 80%;
   padding-left: 1em;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .notification
 {
   z-index: 100;
-  /* background-color: #faebd7; */
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100px;
@@ -162,7 +165,7 @@ a:hover
 ::placeholder {
   style: italic;
   font-style: italic;
-  color: #a9a9a9;
+  color: #888888;
 }
 
 .unTekked
@@ -185,14 +188,13 @@ a:hover
 .data {}
 
 .data .data_window {
-  width: 700px;
+  width: 900px;
 }
 
 .data .data_banner
 {
   display: flex;
-  z-index: 10;
-  margin: 1em 0 -2.2em 1em;
+  margin: 1em 0 -3.5em 0em;
   position: relative;
 }
 
@@ -201,10 +203,9 @@ a:hover
   /* padding: 0em 0 0em 2em; */
   padding: 0em 0 0em 1em;
   margin: 1em 0 1em 0;
-  color: #ffffff;
+  color: #000000;
   font-size: 150%;
-  /* background-color: #444444; */
-  /* border-color: : #afeeee; */
+  text-align: center;
   background-image: url("../resources/images/background/banner.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -213,7 +214,7 @@ a:hover
 .data .data_heading
 {
   display: flex;
-  padding: 0em 0.5em 0em 1em;
+  padding: 0em 0em 0em 0em;
   height: 50px;
   display: table;
 }
@@ -254,8 +255,8 @@ a:hover
 .data .data_number
 {
   display: flex;
-  padding: 0e;
-  font-size: 80%;
+  margin-left: -0.5em;
+  padding: 0;
   height: 50px;
   display: table;
 }
@@ -288,10 +289,11 @@ a:hover
   background-image: url("../resources/images/background/number_body.png");
   background-size: contain;
   background-repeat: repeat;
-  font-size: 150%;
+  font-size: 120%;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  font-weight: bold;
 }
 
 .data table {
@@ -308,11 +310,12 @@ a:hover
   padding-right: 2em;
   width: 0%;
   color: #ffffff;
+  font-weight: bold;
 }
 
 .data .data_header
 {
-  height: 52px;
+  height: 65px;
   width: 100%;
   background-image: url("../resources/images/background/data_header.png");
   background-size: 100%;
@@ -328,7 +331,7 @@ a:hover
 
 .data .data_footer
 {
-  height: 52px;
+  height: 65px;
   width: 100%;
   background-image: url("../resources/images/background/data_footer.png");
   background-size: 100%;

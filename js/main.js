@@ -13,18 +13,18 @@ var currentpage;
 initializeLang();
 initializeDisplay();
 displayNotification();
-initializeStyleSheet();
+initializeTheme();
 
-function initializeStyleSheet()
+function initializeTheme()
 {
-  if (localStorage.getItem("styleSheet"))
+  if (localStorage.getItem("theme"))
   {
-    var styleSheet = JSON.parse(localStorage.getItem("styleSheet"));
-    console.log("styleSheet:" + styleSheet);
-    document.getElementById("stylesheet").href = `./css/${styleSheet}.css`;
+    var theme = JSON.parse(localStorage.getItem("theme"));
+    console.log("theme:" + theme);
+    document.getElementById("stylesheet").href = `./css/${theme}.css`;
   }
-  if (styleSheet !== "classic") {
-    document.getElementsByName("stylesheets")[1].checked = true;
+  if (theme !== "classic") {
+    document.getElementsByName("themes")[1].checked = true;
   }
 }
 
@@ -517,8 +517,9 @@ window.addEventListener('load', function(){
   realtimeSearch();
 });
 
-function clickChangeStyleSheet(value)
+function clickChangeTheme(value)
 {
   document.getElementById("stylesheet").href = `./css/${value}.css`;
-  localStorage.setItem("styleSheet", JSON.stringify(value));
+  console.log("change to:" + value);
+  localStorage.setItem("theme", JSON.stringify(value));
 }

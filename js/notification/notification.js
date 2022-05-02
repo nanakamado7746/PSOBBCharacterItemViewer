@@ -12,8 +12,8 @@ function notification()
       "date": "2022 May 2",
       "status": "info",
       "text": [
-        "You can now select styles.",
-        "スタイルを選択できるようになりました。"
+        "You can now select Themes.",
+        "テーマを選択できるようになりました。"
       ]
     },
     {

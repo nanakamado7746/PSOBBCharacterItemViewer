@@ -298,6 +298,7 @@ a:hover
 
 .data table {
   width: 100%;
+  border-spacing: 0px;
 }
 
 .data th {}
@@ -311,6 +312,13 @@ a:hover
   width: 0%;
   color: #ffffff;
   font-weight: bold;
+}
+
+.data tr:hover {
+  background-image: url("../resources/images/background/cursor.png");
+  background-size: 97% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .data .data_header

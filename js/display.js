@@ -190,7 +190,7 @@ function displayInventory(inventory, title, mode)
   number_left.setAttribute('class', "data_number_left");
   let number_body = document.createElement("div");
   number_body.setAttribute('class', "data_number_body");
-  number_body.appendChild(document.createTextNode(`Qty: ${inventory.length}`));
+  number_body.appendChild(document.createTextNode(`${inventory.length}`));
   let number_right = document.createElement("div");
   number_right.setAttribute('class', "data_number_right");
   number.appendChild(number_left);

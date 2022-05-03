@@ -104,7 +104,7 @@ class Item {
     let hit = this.getHit(itemData);
     // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
-    if (this.isCommonWeapon(itemCode) & itemData[4] !== 0x00) element = ` [${this.getElement(itemData)}]`;
+    if (itemData[4] !== 0x00 & itemData[4] !== 0x80) element = ` [${this.getElement(itemData)}]`;
 
     let tekkedMode = this.isTekked(itemData, itemCode);
     let tekkedText = "";

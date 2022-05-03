@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 3",
+      "status": "info",
+      "text": [
+        "Special of TypeM weapon are now displayed.",
+        "TypeM武器のエレメントが表示されるようになりました。"
+      ]
+    },
+    {
       "date": "2022 May 2",
       "status": "info",
       "text": [

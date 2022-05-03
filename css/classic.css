@@ -11,13 +11,38 @@ body {
   color: #ffffff;
 }
 
+.title
+{
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background-image: url("../resources/images/background/title2_upper.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 900px;
+  height: 128px;
+  margin: 0;
+}
+
 h1
 {
   color: #FFFFFF;
-  height: 50px;
-  border-color: : #afeeee;
-  margin: 0em;
-  padding: 1em 1em 1em 1em;
+  padding: 2.3em 0 0 6em;
+  margin: 0;
+}
+
+.theme_frame
+{
+  background-image: url("../resources/images/background/title2_under.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 900px;
+  height: 37px;
+  font-size: 80%;
+}
+
+.theme
+{
+  padding: 1em 0 0 18em;
 }
 
 .contents
@@ -27,14 +52,6 @@ h1
   margin-right: 2em;
 }
 
-.theme
-{
-  font-size: 80%;
-  padding-left: 1em;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .notification
 {

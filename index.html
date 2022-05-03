@@ -27,16 +27,18 @@
 </head>
 
 <body>
-  <h1>PSOBB CHARACTER ITEM VIEWER</h1>
-
-    <div class="theme" id="theme">
+  <div class="title">
+    <h1>PSOBB CHARACTER ITEM VIEWER</h1>
+  </div>
+  <div class="theme_frame" id="theme_frame">
+    <div class="theme">
       <input type="radio" name="themes" value="classic" checked onClick=clickChangeTheme(value)>Classic-theme
       <input type="radio" name="themes" value="tapiocamilktea" onClick=clickChangeTheme(value)>Tapioca milktea-theme
     </div>
+  </div>
+
   <div class="contents">
-
     <div class="notification" id="notification"></div>
-
     <div class="input">
         <div class="desc" id="desc">
           Please input your character data file (s). (.psochar and .psobank)

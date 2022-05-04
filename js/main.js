@@ -8,8 +8,6 @@ var shareBanks = [];
 var allItems = [];
 var searchResults = [];
 var currentpage;
-var sound;
-var theme;
 
 // 初期表示
 initializeLang();
@@ -521,9 +519,7 @@ window.addEventListener('load', function(){
 
 function clickChangeTheme(value)
 {
-  (value === "classic")
-   ? setVolume(document.getElementById("volume_range").value)
-   : setVolume(0);
+  refreshVolume();
   document.getElementById("stylesheet").href = `./css/${value}.css`;
   console.log("change to:" + value);
   localStorage.setItem("theme", JSON.stringify(value));
@@ -531,6 +527,7 @@ function clickChangeTheme(value)
 
 function clicVolumeSlider(value)
 {
+  document.getElementById("theme")
   setVolume(value);
 }
 
@@ -570,4 +567,16 @@ function setVolume(value)
       }
     }
   }
+}
+
+function refreshVolume()
+{
+  (document.getElementsByName("themes")[0].checked === true)
+   ? setVolume(document.getElementById("volume_range").value)
+   : setVolume(0);
+}
+
+function isClassicTheme()
+{
+  return document.getElementsByName("themes")[0].checked;
 }

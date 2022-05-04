@@ -30,19 +30,39 @@ h1
   margin: 0;
 }
 
-.theme_frame
+.settings
 {
+  display: flex;
   background-image: url("../resources/images/background/title2_under.png");
-  background-size: contain;
+  background-size: 100%;
   background-repeat: no-repeat;
   width: 900px;
   height: 37px;
   font-size: 80%;
 }
 
+.volume
+{
+  display: flex;
+  padding: 0.1em 0 0 7em;
+}
+
+.volume img
+{
+  padding: 0em 0.5em 0 0em;
+  height: 22px;
+}
+
+.volume input[type=range]
+{
+  margin: 0;
+  width: 40px;
+  height: 22px;
+}
+
 .theme
 {
-  padding: 1em 0 0 18em;
+  padding: 1em 0 0 5em;
 }
 
 .contents

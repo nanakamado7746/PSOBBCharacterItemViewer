@@ -8,6 +8,8 @@ var shareBanks = [];
 var allItems = [];
 var searchResults = [];
 var currentpage;
+var sound;
+var theme;
 
 // 初期表示
 initializeLang();
@@ -19,11 +21,11 @@ function initializeTheme()
 {
   if (localStorage.getItem("theme"))
   {
-    var theme = JSON.parse(localStorage.getItem("theme"));
-    console.log("theme:" + theme);
-    document.getElementById("stylesheet").href = `./css/${theme}.css`;
+    this.theme = JSON.parse(localStorage.getItem("theme"));
+    console.log("theme:" + this.theme);
+    document.getElementById("stylesheet").href = `./css/${this.theme}.css`;
   }
-  if (theme !== "classic") {
+  if (this.theme !== "classic") {
     document.getElementsByName("themes")[1].checked = true;
   }
 }
@@ -519,7 +521,53 @@ window.addEventListener('load', function(){
 
 function clickChangeTheme(value)
 {
+  (value === "classic")
+   ? setVolume(document.getElementById("volume_range").value)
+   : setVolume(0);
   document.getElementById("stylesheet").href = `./css/${value}.css`;
   console.log("change to:" + value);
   localStorage.setItem("theme", JSON.stringify(value));
+}
+
+function clicVolumeSlider(value)
+{
+  setVolume(value);
+}
+
+function clicVolumeImage()
+{
+  let range = document.getElementById("volume_range");
+  console.log(range.value);
+  if( Number(range.value) === 0)
+  {
+    range.setAttribute('value', 1);
+    setItemVolume(1);
+  } else {
+    range.setAttribute('value', 0);
+    setVolume(0);
+  }
+}
+
+function setVolume(value)
+{
+  const sound = new Audio("./resources/sounds/se/cursor_A01.wav");
+  console.log("change volume to:" + value);
+  sound.volume = value;
+
+  let img = document.getElementById("volume_img");
+  (sound.volume > 0)
+    ? img.setAttribute('src', "./resources/images/icon/volume_on.png")
+    : img.setAttribute('src', "./resources/images/icon/volume_off.png");
+
+  let els = document.getElementsByClassName("data_body");
+  for (let el of els)
+  {
+    el.onmouseover = function() {
+      if (sound !== undefined & sound.volume > 0) {
+        console.log("instance volume:" + sound.volume);
+        sound.currentTime = 0;
+        sound.play();
+      }
+    }
+  }
 }

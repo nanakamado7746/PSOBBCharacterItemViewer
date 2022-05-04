@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 4",
+      "status": "info",
+      "text": [
+        "Added sound effects and volume controler. It can be used with the classic theme.",
+        "サウンドエフェクトとボリューム機能を追加しました。クラシックテーマの時に使用できます。 "
+      ]
+    },
+    {
       "date": "2022 May 3",
       "status": "info",
       "text": [

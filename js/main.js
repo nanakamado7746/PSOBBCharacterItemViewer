@@ -83,7 +83,7 @@ function changeLang()
   console.log(this.lang);
 
   // 入力リアルタイム検索機能ロード
-  realtimeSearch();
+  dynamicSearch();
 
   // 言語変更でDOMを変更
   if (localStorage.getItem("currentpage"))
@@ -214,7 +214,7 @@ async function clickInput(event)
     // 詳細表示
     displayData();
     // 入力リアルタイム検索機能ロード
-    realtimeSearch();
+    dynamicSearch();
 
   } catch(e) {
     //例外エラーが起きた時に実行する処理
@@ -357,7 +357,7 @@ function clickSearch(event)
 }
 
 // 入力イベントの随時検索
-function realtimeSearch()
+function dynamicSearch()
 {
   let id = document.getElementById("search");
   let allitems = this.allItems;
@@ -521,7 +521,7 @@ function search(allItems, lang)
 
 // 初期表示でリアルタイム検索読み込み
 window.addEventListener('load', function(){
-  realtimeSearch();
+  dynamicSearch();
 });
 
 function clickChangeTheme(value)

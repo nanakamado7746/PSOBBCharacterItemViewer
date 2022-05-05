@@ -559,7 +559,7 @@ function setVolume(value)
   {
     el.onmouseover = function() {
       if (value > 0) {
-        let sound = new Audio("./resources/sounds/se/cursor_A01.wav");
+        let sound = new Audio("./resources/sounds/se/cursor_A02.wav");
         sound.volume = value;
         sound.play();
       }

@@ -266,11 +266,11 @@ function displayPager()
     for( let i in charactors)
     {
       let button = document.createElement("button");
-      button.setAttribute('id', `pager${charactors[i].Slot}`);
-      button.setAttribute('class', "pager");
+      button.setAttribute('id', `page`);
+      button.setAttribute('class', "page");
       button.setAttribute('name', i);
       button.setAttribute('onclick', 'clickCharactor(name)');
-      button.innerText = charactors[i].Slot;
+      button.innerText = `${charactors[i].Slot}:${charactors[i].Name}`;
       id.appendChild(button);
     }
   }
@@ -281,8 +281,8 @@ function displayPager()
     for( let i in shareBanks)
     {
       let button = document.createElement("button");
-      button.setAttribute('id', `pagerShareBank${[i]}`);
-      button.setAttribute('class', "pager");
+      button.setAttribute('id', `page`);
+      button.setAttribute('class', "page");
       button.setAttribute('name', i);
       button.setAttribute('onclick', 'clickShareBank(name)');
       button.innerText = "ShareBank";
@@ -294,8 +294,8 @@ function displayPager()
   if (Object.keys(allItems).length !== 0)
   {
     let button = document.createElement("button");
-    button.setAttribute('id', "allItems");
-    button.setAttribute('class', "pager");
+    button.setAttribute('id', "page");
+    button.setAttribute('class', "page");
     button.setAttribute('name', "allItems");
     button.setAttribute('onclick', 'clickAllItems(name)');
     button.innerText = "AllItems";

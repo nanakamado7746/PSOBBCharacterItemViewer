@@ -222,6 +222,21 @@ a:hover
   border-radius: 20px;
 }
 
+.pager
+{
+  display: table;
+  min-height: 28px;
+  width: 900px;
+}
+
+.page
+{
+  height:  25px;
+  margin: 0 auto;
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .data {}
 
 .data .data_window {

@@ -171,12 +171,12 @@ a:hover
   display: flex;
 }
 
-.wordsearches
+.wordsearch
 {
   display: flex;
 }
 
-.wordsearches .sep
+.wordsearch .sep
 {
   margin-right: 0.5em;
 }

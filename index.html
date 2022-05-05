@@ -34,7 +34,7 @@
   <div class="settings">
     <div id="volume" class="volume">
       <img id="volume_img" src="./resources/images/icon/volume_off.png">
-      <input type="range" id="volume_range" name="volume_range" min="0" max="1" step="0.5" value="0" onClick=clicVolumeSlider(value)>
+      <input type="range" id="volume_range" name="volume_range" min="0" max="0.6" step="0.3" value="0" onClick=clicVolumeSlider(value)>
     </div>
     <div class="theme">
       <input type="radio" name="themes" value="classic" checked onClick=clickChangeTheme(value)>Classic-theme
@@ -61,22 +61,24 @@
       <div class="pager", id="pager"></div>
       <div class="search" id="search">
         <div class="type">
-          <div class="sep"><button type="button" class="searchb" id="searchb" onClick=clickSearch(event)></button></div>
-          <input type="checkbox" class="" name="types" value="1" >Weapons
-          <input type="checkbox" class="" name="types" value="2" >Frames
-          <input type="checkbox" class="" name="types" value="3" >Barriers
-          <input type="checkbox" class="" name="types" value="4" >Units
-          <input type="checkbox" class="" name="types" value="5" >Mags
-          <input type="checkbox" class="" name="types" value="6" >Disks
-          <input type="checkbox" class="" name="types" value="7" >Tools
-          <input type="checkbox" class="" name="types" value="8" >S-Ranks
-          <input type="checkbox" class="" name="types" value="9" >Other
+          <div id="ｃategorysearch">
+            <button type="button" class="searchb" id="searchb" onClick=clickSearch(event)></button>
+            <input type="checkbox" class="" name="types" value="1" >Weapons
+            <input type="checkbox" class="" name="types" value="2" >Frames
+            <input type="checkbox" class="" name="types" value="3" >Barriers
+            <input type="checkbox" class="" name="types" value="4" >Units
+            <input type="checkbox" class="" name="types" value="5" >Mags
+            <input type="checkbox" class="" name="types" value="6" >Disks
+            <input type="checkbox" class="" name="types" value="7" >Tools
+            <input type="checkbox" class="" name="types" value="8" >S-Ranks
+            <input type="checkbox" class="" name="types" value="9" >Other
+            <input type="checkbox" class="types" name="unTekked" value="1" >only unTekked(未鑑定のみ)
+          </div>
         </div>
-        <div class="wordsearches">
+        <div id="wordsearch" class="wordsearch">
           <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
           <div class="sep"><input type="text" class="element" name="element" placeholder="special attack (element)"></div>
           <div class="sep"><input type="text" class="att" name="hit" placeholder="HIT value"></div>
-          <div class="sep"><input type="checkbox" class="unTekked" name="unTekked" value="1" >only unTekked(未鑑定のみ)</div>
         </div>
       </div>
     </div>

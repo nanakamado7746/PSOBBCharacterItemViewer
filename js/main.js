@@ -16,6 +16,11 @@ displayNotification();
 initializeTheme();
 initializeVolume();
 
+// 初期表示でリアルタイム検索読み込み
+window.addEventListener('load', function(){
+  dynamicSearch();
+});
+
 function initializeVolume()
 {
   // firefox用
@@ -42,6 +47,8 @@ function initializeLang()
   {
     this.lang = JSON.parse(localStorage.getItem("lang"));
     console.log("lang:" + this.lang);
+  } else {
+    localStorage.setItem("lang", JSON.stringify("EN"));
   }
   if (this.lang == "JA") {
     document.getElementsByName("lang")[1].checked = true;
@@ -75,15 +82,21 @@ function initializeDisplay()
 
 function changeLang()
 {
+
+  let lang;
   (document.getElementsByName("lang")[1].checked)
-    ? this.lang = "JA"
-    : this.lang = "EN";
+    ? lang = "JA"
+    : lang = "EN";
+
+  if (lang === this.lang) return;
+  this.lang = lang;
+
+  playSoundOpen();
 
   localStorage.setItem("lang", JSON.stringify(this.lang));
   console.log(this.lang);
 
-  // 入力リアルタイム検索機能ロード
-  dynamicSearch();
+  dynamicSearch("changeLang");
 
   // 言語変更でDOMを変更
   if (localStorage.getItem("currentpage"))
@@ -116,6 +129,7 @@ function changeLang()
 
 function clickDisplayItemCodes(event)
 {
+  playSoundOpen();
   localStorage.setItem("currentpage", JSON.stringify("itemcode"));
   displayItemCodes();
 }
@@ -182,6 +196,7 @@ function decoder()
 async function clickInput(event)
 {
   try {
+
     let fileReader = new FileReader();
     let files = sortInputFiles(event.target.files);
     let fileData = [];
@@ -216,6 +231,8 @@ async function clickInput(event)
     // 入力リアルタイム検索機能ロード
     dynamicSearch();
 
+    playSoundEnter();
+
   } catch(e) {
     //例外エラーが起きた時に実行する処理
     console.log(e);
@@ -226,6 +243,7 @@ async function clickInput(event)
     } else {
       alert(e);
     }
+  } finally {
   }
 }
 
@@ -252,6 +270,7 @@ function setCharactorData(charactors, shareBanks, allItems)
 
 function clickCharactor(name)
 {
+  playSoundOpen();
   // 現在ページの情報を保存
   localStorage.setItem("currentpage", JSON.stringify(name));
   displayCharactor(this.charactors[name]);
@@ -259,6 +278,7 @@ function clickCharactor(name)
 
 function clickShareBank(name)
 {
+  playSoundOpen();
   // 現在ページの情報を保存
   localStorage.setItem("currentpage", JSON.stringify("shareBanks"));
   let id = document.getElementById("data");
@@ -268,6 +288,7 @@ function clickShareBank(name)
 
 function clickAllItems(name)
 {
+  playSoundOpen();
   // 現在ページの情報を保存
   localStorage.setItem("currentpage", JSON.stringify("allItems"));
   let id = document.getElementById("data");
@@ -354,17 +375,23 @@ function clickSearch(event)
   search(
     this.allItems,
     this.lang);
+
 }
 
 // 入力イベントの随時検索
-function dynamicSearch()
+function dynamicSearch(call)
 {
-  let id = document.getElementById("search");
+
   let allitems = this.allItems;
   let lang = this.lang;
   // イベントリスナーでイベント「input」を登録
-  id.addEventListener("input",function(){
+  document.getElementById("ｃategorysearch").addEventListener("input",function(){
+    if (call !== "changeLang") playSoundOpen();
+    search(allItems, lang);
+  });
 
+  document.getElementById("wordsearch").addEventListener("input",function(){
+    if (call !== "changeLang") playSoundCancel();
     search(allItems, lang);
   });
 }
@@ -516,13 +543,9 @@ function search(allItems, lang)
 
   // 現在ページの情報を保存
   localStorage.setItem("currentpage", JSON.stringify("search"));
+
   displayInventory(result, "SEARCH RESULTS", "allItems")
 }
-
-// 初期表示でリアルタイム検索読み込み
-window.addEventListener('load', function(){
-  dynamicSearch();
-});
 
 function clickChangeTheme(value)
 {
@@ -566,9 +589,7 @@ function setVolume(value)
   {
     el.onmouseover = function() {
       if (value > 0) {
-        let sound = new Audio("./resources/sounds/se/cursor.wav");
-        sound.volume = value;
-        sound.play();
+        playSoundCursor(value);
       }
     }
   }
@@ -591,4 +612,40 @@ function refreshOpenSound()
 function isClassicTheme()
 {
   return document.getElementsByName("themes")[0].checked;
+}
+
+function playSoundOpen()
+{
+  if (isClassicTheme()) {
+    let sound = new Audio("./resources/sounds/se/open.wav");
+    sound.volume = document.getElementById("volume_range").value;
+    sound.play();
+  }
+}
+
+function playSoundCancel()
+{
+  if (isClassicTheme()) {
+    let sound = new Audio("./resources/sounds/se/cancel.wav");
+    sound.volume = document.getElementById("volume_range").value;
+    sound.play();
+  }
+}
+
+function playSoundCursor(value)
+{
+  if (isClassicTheme()) {
+    let sound = new Audio("./resources/sounds/se/cursor.wav");
+    sound.volume = value;
+    sound.play();
+  }
+}
+
+function playSoundEnter()
+{
+  if (isClassicTheme()) {
+    let sound = new Audio("./resources/sounds/se/enter.wav");
+    sound.volume = document.getElementById("volume_range").value;
+    sound.play();
+  }
 }

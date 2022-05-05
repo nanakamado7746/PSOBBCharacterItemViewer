@@ -14,6 +14,13 @@ initializeLang();
 initializeDisplay();
 displayNotification();
 initializeTheme();
+initializeVolume();
+
+function initializeVolume()
+{
+  // firefox用
+  document.getElementById("volume_range").value = 0;
+}
 
 function initializeTheme()
 {
@@ -559,7 +566,7 @@ function setVolume(value)
   {
     el.onmouseover = function() {
       if (value > 0) {
-        let sound = new Audio("./resources/sounds/se/cursor_A02.wav");
+        let sound = new Audio("./resources/sounds/se/cursor.wav");
         sound.volume = value;
         sound.play();
       }
@@ -569,14 +576,14 @@ function setVolume(value)
 
 function refreshVolume()
 {
-  (document.getElementsByName("themes")[0].checked === true)
+  (document.getElementsByName("themes")[0].checked)
    ? setVolume(document.getElementById("volume_range").value)
    : setVolume(0);
 }
 
 function refreshOpenSound()
 {
-  (document.getElementsByName("themes")[0].checked === true)
+  (document.getElementsByName("themes")[0].checked)
    ? setVolume(document.getElementById("volume_range").value)
    : setVolume(0);
 }

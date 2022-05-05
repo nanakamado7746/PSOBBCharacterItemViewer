@@ -547,12 +547,10 @@ function clicVolumeImage()
 
 function setVolume(value)
 {
-  const sound = new Audio("./resources/sounds/se/cursor_A01.wav");
   console.log("change volume to:" + value);
-  sound.volume = value;
 
   let img = document.getElementById("volume_img");
-  (sound.volume > 0)
+  (value > 0)
     ? img.setAttribute('src', "./resources/images/icon/volume_on.png")
     : img.setAttribute('src', "./resources/images/icon/volume_off.png");
 
@@ -560,9 +558,9 @@ function setVolume(value)
   for (let el of els)
   {
     el.onmouseover = function() {
-      if (sound !== undefined & sound.volume > 0) {
-        console.log("instance volume:" + sound.volume);
-        sound.currentTime = 0;
+      if (value > 0) {
+        let sound = new Audio("./resources/sounds/se/cursor_A01.wav");
+        sound.volume = value;
         sound.play();
       }
     }
@@ -570,6 +568,13 @@ function setVolume(value)
 }
 
 function refreshVolume()
+{
+  (document.getElementsByName("themes")[0].checked === true)
+   ? setVolume(document.getElementById("volume_range").value)
+   : setVolume(0);
+}
+
+function refreshOpenSound()
 {
   (document.getElementsByName("themes")[0].checked === true)
    ? setVolume(document.getElementById("volume_range").value)

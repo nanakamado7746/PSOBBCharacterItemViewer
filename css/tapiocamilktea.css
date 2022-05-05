@@ -79,6 +79,17 @@ a:hover
   font-size: 80%;
 }
 
+.sticky
+{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0em; /*ここで止める位置を調整する*/
+  z-index: 1;
+  background-color: #faebd7;
+  padding: 1em 0em 1em 0em;
+  width: auto;
+}
+
 .search
 {
   margin-top: 0.5em;
@@ -90,12 +101,12 @@ a:hover
   display: flex;
 }
 
-.wordsearches
+.wordsearch
 {
   display: flex;
 }
 
-.wordsearches .sep
+.wordsearch .sep
 {
   margin-right: 0.5em;
 }
@@ -141,15 +152,19 @@ a:hover
   border-radius: 20px;
 }
 
-.sticky
+.pager
 {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0em; /*ここで止める位置を調整する*/
-  z-index: 1;
-  background-color: #faebd7;
-  padding: 1em 0em 1em 0em;
-  width: auto;
+  display: table;
+  min-height: 28px;
+  width: 900px;
+}
+
+.page
+{
+  height:  25px;
+  margin: 0 auto;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .data{}

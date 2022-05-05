@@ -231,8 +231,6 @@ async function clickInput(event)
     // 入力リアルタイム検索機能ロード
     dynamicSearch();
 
-    playSoundEnter();
-
   } catch(e) {
     //例外エラーが起きた時に実行する処理
     console.log(e);

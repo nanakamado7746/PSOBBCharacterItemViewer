@@ -9,11 +9,19 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 6",
+      "status": "caution",
+      "text": [
+        "Temporarily stops sound functionality due to memory management issues.",
+        "メモリ管理の問題により、サウンド機能を一時的に停止します。"
+      ]
+    },
+    {
       "date": "2022 May 4",
       "status": "info",
       "text": [
         "Added sound effects and volume controler. It can be used with the classic theme.",
-        "サウンドエフェクトとボリューム機能を追加しました。クラシックテーマの時に使用できます。 "
+        "サウンドエフェクトとボリューム機能を追加しました。クラシックテーマで使用できます。 "
       ]
     },
     {

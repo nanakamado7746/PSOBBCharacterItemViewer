@@ -5,7 +5,7 @@ function notification()
       "date": "",
       "status": "info",
       "text": [
-        "linker||Bug reports and requests.||https://www.pioneer2.net/community/threads/character-item-viewer-on-the-web.22882/||"
+        "linker||How to use and Bug reports and requests.||https://www.pioneer2.net/community/threads/character-item-viewer-on-the-web.22882/||"
       ]
     },
     {

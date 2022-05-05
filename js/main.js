@@ -389,7 +389,7 @@ function dynamicSearch(call)
   });
 
   document.getElementById("wordsearch").addEventListener("input",function(){
-    if (call !== "changeLang") playSoundCancel();
+    // if (call !== "changeLang") playSoundCursor();
     search(allItems, lang);
   });
 }

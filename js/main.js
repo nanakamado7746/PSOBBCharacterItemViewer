@@ -665,9 +665,9 @@ function download()
     zip = createCharacterDataFile(zip, character, `psobb_character_data/alldata`);
   }
   // ShareBankデータファイル作成
-  zip = createShareBanksDataFile(zip, this.shareBanks[0], "psobb_character_data/alldata");
+  zip = createShareBanksDataFile(zip, this.shareBanks[0]["ShareBank"][this.lang], `psobb_character_data/alldata`);
   // AllItemsデータファイル作成
-  zip = createAllItemsDataFile(zip, this.allItems, "psobb_character_data/alldata");
+  zip = createAllItemsDataFile(zip, this.allItems[this.lang], `psobb_character_data/alldata`);
 
   // 現在ページのデータファイルを作成
   if (localStorage.getItem("currentpage"))
@@ -688,8 +688,8 @@ function download()
 function createCurrentPageDataFile(zip, currentpage)
 {
   if (currentpage[0] === "character") return createCharacterDataFile(zip, currentpage[1], "psobb_character_data");
-  if (currentpage[0] === "shareBanks") return createShareBanksDataFile(zip, currentpage[1], "psobb_character_data");
-  if (currentpage[0] === "allItems") return createAllItemsDataFile(zip, currentpage[1], "psobb_character_data");
+  if (currentpage[0] === "shareBanks") return createShareBanksDataFile(zip, currentpage[1]["ShareBank"][this.lang], "psobb_character_data");
+  if (currentpage[0] === "allItems") return createAllItemsDataFile(zip, currentpage[1][this.lang], "psobb_character_data");
   if (currentpage[0] === "searchResults") return createSearchResultsDataFile(zip, currentpage[1], "psobb_character_data");
   return zip;
 }
@@ -723,34 +723,49 @@ function createCharacterDataFile(zip, character, folder)
   return zip;
 }
 
-function createShareBanksDataFile(zip, shareBank, folder)
+function createShareBanksDataFile(zip, shareBank, path)
 {
-  if (shareBank !== undefined & shareBank !== 0) {
-    shareBank = shareBank["ShareBank"][this.lang].map(item => item[1]["display"]).join("\r\n");
-    zip.addFile(new TextEncoder().encode(shareBank), {
-      filename: new TextEncoder().encode(`${folder}/shareBank.txt`)
+  zip = createDataFile(zip, shareBank, `${path}/ShareBanks`);
+  return zip;
+}
+
+function createAllItemsDataFile(zip, allItems, path)
+{
+  zip = createDataFile(zip, allItems, `${path}/allItems`);
+  zip = createDataFileWithSlot(zip, allItems, `${path}/allItems`)
+  return zip;
+}
+
+function createSearchResultsDataFile(zip, searchResults, path)
+{
+  zip = createDataFile(zip, searchResults, `${path}/searchResults`);
+  zip = createDataFileWithSlot(zip, searchResults, `${path}/searchResults`)
+  return zip;
+}
+
+
+function createDataFile(zip, data, path)
+{
+  if (data !== undefined & data !== 0) {
+    let buffer  = data.map(item => item[1]["display"]).join("\r\n");
+    zip.addFile(new TextEncoder().encode(buffer), {
+      filename: new TextEncoder().encode(`${path}_no_slot.txt`)
     });
   }
   return zip;
 }
 
-function createAllItemsDataFile(zip, allItems, folder)
+function createDataFileWithSlot(zip, data, path)
 {
-  if (allItems !== undefined & allItems !== 0) {
-    allItems = allItems[this.lang].map(item => item[1]["display"]).join("\r\n");
-    zip.addFile(new TextEncoder().encode(allItems), {
-      filename: new TextEncoder().encode(`${folder}/allItems.txt`)
-    });
+  let tmp = [];
+  for (let item of data)
+  {
+    tmp.push(`${item[1]["display"]}, Slot: ${item[2]}`);
   }
-  return zip;
-}
 
-function createSearchResultsDataFile(zip, searchResults, folder)
-{
-  if (searchResults !== undefined & searchResults !== 0) {
-    searchResults = searchResults.map(item => item[1]["display"]).join("\r\n");
-    zip.addFile(new TextEncoder().encode(searchResults), {
-      filename: new TextEncoder().encode(`${folder}/searchResults.txt`)
+  if (data !== undefined & data !== 0) {
+    zip.addFile(new TextEncoder().encode(tmp.join("\r\n")), {
+      filename: new TextEncoder().encode(`${path}.txt`)
     });
   }
   return zip;

@@ -161,13 +161,13 @@ a:hover
 .pager
 {
   display: table;
-  min-height: 28px;
   width: 900px;
+  margin-top: 0.5em;
 }
 
 .page
 {
-  height:  25px;
+  height:  30px;
   margin: 0 auto;
   display: table-cell;
   vertical-align: middle;

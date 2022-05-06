@@ -725,20 +725,20 @@ function createCharacterDataFile(zip, character, folder)
 
 function createShareBanksDataFile(zip, shareBank, path)
 {
-  zip = createDataFile(zip, shareBank, `${path}/ShareBanks`);
+  zip = createDataFile(zip, shareBank, `${path}/shareBanks`);
   return zip;
 }
 
 function createAllItemsDataFile(zip, allItems, path)
 {
-  zip = createDataFile(zip, allItems, `${path}/allItems`);
+  zip = createDataFile(zip, allItems, `${path}/allItems_no_slot`);
   zip = createDataFileWithSlot(zip, allItems, `${path}/allItems`)
   return zip;
 }
 
 function createSearchResultsDataFile(zip, searchResults, path)
 {
-  zip = createDataFile(zip, searchResults, `${path}/searchResults`);
+  zip = createDataFile(zip, searchResults, `${path}/searchResults_no_slot`);
   zip = createDataFileWithSlot(zip, searchResults, `${path}/searchResults`)
   return zip;
 }
@@ -749,7 +749,7 @@ function createDataFile(zip, data, path)
   if (data !== undefined & data !== 0) {
     let buffer  = data.map(item => item[1]["display"]).join("\r\n");
     zip.addFile(new TextEncoder().encode(buffer), {
-      filename: new TextEncoder().encode(`${path}_no_slot.txt`)
+      filename: new TextEncoder().encode(`${path}.txt`)
     });
   }
   return zip;

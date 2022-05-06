@@ -3,11 +3,10 @@ var fileData = [];
 var itemCodeData = [];
 var lang = "EN";
 // デコード済みデータ
-var charactors = [];
+var characters = [];
 var shareBanks = [];
 var allItems = [];
 var searchResults = [];
-var currentpage;
 
 // 初期表示
 initializeLang();
@@ -104,25 +103,25 @@ function changeLang()
     let currentpage = JSON.parse(localStorage.getItem("currentpage"));
     console.log("currentpage:" + currentpage);
 
-    // アイテム名で検索をかけている場合、言語の表示を切り替えない
-    //if (currentpage === "search" & document.getElementsByName("itemname")[0].value.trim() !== "") return;
-
     let id = document.getElementById("data");
     id.innerHTML = '';
 
-    if (currentpage === "itemcode") displayItemCodes();
-    if (currentpage === "shareBanks") displayInventory(this.shareBanks[0].ShareBank[this.lang], "SHARE BANK");
-    if (currentpage === "allItems") displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
-    if (currentpage === "search") {
+    if (currentpage[0] === "itemcode") displayItemCodes();
+    if (currentpage[0] === "shareBanks") displayInventory(currentpage[1].ShareBank[this.lang], "SHARE BANK");
+    if (currentpage[0] === "allItems") displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
+    if (currentpage[0] === "searchResults") {
       let tmp = [];
-      this.searchResults.forEach((value) => {
+      currentpage[1].forEach((value) => {
         this.allItems[lang].forEach((value2) => {
           if (value[3] === value2[3]) tmp.push(value2);
         });
       });
+      // 現在ページの情報を保存
+      this.searchResults = tmp;
+      localStorage.setItem("currentpage", JSON.stringify(["searchResults", tmp]));
       displayInventory(tmp, "SEARCH RESULTS", "allItems");
     }
-    if (!isNaN(currentpage)) displayCharactor(this.charactors[currentpage]);
+    if (currentpage[0] === "character") displayCharactor(currentpage[1]);
   }
 }
 
@@ -130,7 +129,7 @@ function changeLang()
 function clickDisplayItemCodes(event)
 {
   playSoundOpen();
-  localStorage.setItem("currentpage", JSON.stringify("itemcode"));
+  localStorage.setItem("currentpage", JSON.stringify(["itemcode", ""]));
   displayItemCodes();
 }
 
@@ -139,7 +138,7 @@ function decoder()
   if (this.fileData.length === 0) return;
 
   let fileData = this.fileData;
-  let charactors = [];
+  let characters = [];
   let shareBanks = [];
   let allItems = {
       "JA" : [],
@@ -165,7 +164,7 @@ function decoder()
     {
       let slot = fileData[i]["filename"].match(/[0-9]+(?=\.)/);
       let charactor = new Charactor(binary, Number(slot) + 1);
-      charactors.push(charactor);
+      characters.push(charactor);
 
       allItems["EN"] = allItems["EN"].concat(charactor.Inventory["EN"]);
       allItems["EN"] = allItems["EN"].concat(charactor.Bank["EN"]);
@@ -190,7 +189,7 @@ function decoder()
   // グローバル変数初期化
   removeCharactorData();
   // グローバル変数とローカルストレージにセット
-  setCharactorData(charactors, shareBanks, allItems);
+  setCharactorData(characters, shareBanks, allItems);
 }
 
 async function clickInput(event)
@@ -245,12 +244,12 @@ async function clickInput(event)
   }
 }
 
-function setCharactorData(charactors, shareBanks, allItems)
+function setCharactorData(characters, shareBanks, allItems)
 {
-  if (charactors.length !== 0)
+  if (characters.length !== 0)
   {
-    this.charactors = charactors;
-    console.log(charactors);
+    this.characters = characters;
+    console.log(characters);
   }
 
   if (shareBanks.length !== 0)
@@ -270,15 +269,15 @@ function clickCharactor(name)
 {
   playSoundOpen();
   // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify(name));
-  displayCharactor(this.charactors[name]);
+  localStorage.setItem("currentpage", JSON.stringify(["character", this.characters[name]]));
+  displayCharactor(this.characters[name]);
 }
 
 function clickShareBank(name)
 {
   playSoundOpen();
   // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify("shareBanks"));
+  localStorage.setItem("currentpage", JSON.stringify(["shareBanks", this.shareBanks[name]]));
   let id = document.getElementById("data");
   id.innerHTML = '';
   displayInventory(this.shareBanks[name].ShareBank[this.lang], "SHARE BANK")
@@ -288,7 +287,7 @@ function clickAllItems(name)
 {
   playSoundOpen();
   // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify("allItems"));
+  localStorage.setItem("currentpage", JSON.stringify(["allItems", this.allItems]));
   let id = document.getElementById("data");
   id.innerHTML = '';
   displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems")
@@ -361,7 +360,7 @@ function getDate()
 
 function removeCharactorData()
 {
-  this.charactors = [];
+  this.characters = [];
   this.shareBanks = [];
   this.allItems = [];
 }
@@ -540,7 +539,7 @@ function search(allItems, lang)
   this.searchResults = result;
 
   // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify("search"));
+  localStorage.setItem("currentpage", JSON.stringify(["searchResults", this.searchResults]));
 
   displayInventory(result, "SEARCH RESULTS", "allItems")
 }
@@ -646,4 +645,108 @@ function playSoundEnter()
     sound.volume = document.getElementById("volume_range").value;
     sound.play();
   }
+}
+
+function download()
+{
+
+  if (localStorage.getItem("fileData") === null) return;
+
+  var zip = new Zlib.Zip();
+
+  // キャラクターデータファイル作成
+  for (let character of this.characters)
+  {
+    zip = createCharacterDataFile(zip, character, `psobb_character_data/alldata`);
+  }
+  // ShareBankデータファイル作成
+  zip = createShareBanksDataFile(zip, this.shareBanks[0], "psobb_character_data/alldata");
+  // AllItemsデータファイル作成
+  zip = createAllItemsDataFile(zip, this.allItems, "psobb_character_data/alldata");
+
+  // 現在ページのデータファイルを作成
+  if (localStorage.getItem("currentpage"))
+  {
+    zip = createCurrentPageDataFile(zip, JSON.parse(localStorage.getItem("currentpage")));
+  }
+
+  let compressed = zip.compress();
+  let blob = new Blob([compressed], { 'type': 'application/zip' });
+
+  let link = document.createElement('a');
+  link.setAttribute('download', "psobb_character_data.zip");
+  link.setAttribute('href', window.webkitURL.createObjectURL(blob));
+  link.click();
+
+}
+
+function createCurrentPageDataFile(zip, currentpage)
+{
+  if (currentpage[0] === "character") return createCharacterDataFile(zip, currentpage[1], "psobb_character_data");
+  if (currentpage[0] === "shareBanks") return createShareBanksDataFile(zip, currentpage[1], "psobb_character_data");
+  if (currentpage[0] === "allItems") return createAllItemsDataFile(zip, currentpage[1], "psobb_character_data");
+  if (currentpage[0] === "searchResults") return createSearchResultsDataFile(zip, currentpage[1], "psobb_character_data");
+  return zip;
+}
+
+function createCharacterDataFile(zip, character, folder)
+{
+    let character_data = [
+      "SLOT : " + character.Slot,
+      "NAME : " + character.Name,
+      "GUILD CARD : " + character.GuildCardNumber,
+      "CLASS : " + character.Class,
+      "SECTION ID : " + character.SectionID,
+      "LEVEL : " + character.Level,
+      "EP1 CHALLENGE : " + character.Ep1Progress,
+      "EP2 CHALLENGE : " + character.Ep2Progress
+    ];
+    zip.addFile(new TextEncoder().encode(character_data.join("\r\n")), {
+      filename: new TextEncoder().encode(`${folder}/${character.Slot}_${character.Name}/character.txt`)
+    });
+
+    let inventory = character["Inventory"][this.lang].map(item => item[1]["display"]).join("\r\n");
+    zip.addFile(new TextEncoder().encode(inventory), {
+      filename: new TextEncoder().encode(`${folder}/${character.Slot}_${character.Name}/inventory.txt`)
+    });
+
+    let bank = character["Bank"][this.lang].map(item => item[1]["display"]).join("\r\n");
+    zip.addFile(new TextEncoder().encode(bank), {
+      filename: new TextEncoder().encode(`${folder}/${character.Slot}_${character.Name}/bank.txt`)
+    });
+
+  return zip;
+}
+
+function createShareBanksDataFile(zip, shareBank, folder)
+{
+  if (shareBank !== undefined & shareBank !== 0) {
+    shareBank = shareBank["ShareBank"][this.lang].map(item => item[1]["display"]).join("\r\n");
+    zip.addFile(new TextEncoder().encode(shareBank), {
+      filename: new TextEncoder().encode(`${folder}/shareBank.txt`)
+    });
+  }
+  return zip;
+}
+
+function createAllItemsDataFile(zip, allItems, folder)
+{
+  if (allItems !== undefined & allItems !== 0) {
+    allItems = allItems[this.lang].map(item => item[1]["display"]).join("\r\n");
+    zip.addFile(new TextEncoder().encode(allItems), {
+      filename: new TextEncoder().encode(`${folder}/allItems.txt`)
+    });
+  }
+  return zip;
+}
+
+function createSearchResultsDataFile(zip, searchResults, folder)
+{
+  if (searchResults !== undefined & searchResults !== 0) {
+    searchResults = searchResults.map(item => item[1]["display"]).join("\r\n");
+    zip.addFile(new TextEncoder().encode(searchResults), {
+      filename: new TextEncoder().encode(`${folder}/searchResults.txt`)
+    });
+  }
+  return zip;
 }

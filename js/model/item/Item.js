@@ -109,8 +109,8 @@ class Item {
     let tekkedMode = this.isTekked(itemData, itemCode);
     let tekkedText = "";
     // 未鑑定の場合は未鑑定表記する
-    if (!tekkedMode) tekkedText = "?";
-    if (!tekkedMode & this.isCommonWeapon(itemCode)) tekkedText = "????";
+    if (!tekkedMode) tekkedText = "? ";
+    if (!tekkedMode & this.isCommonWeapon(itemCode)) tekkedText = "???? ";
 
     return {
       type: 1,
@@ -125,7 +125,7 @@ class Item {
         hit: hit
       },
       tekked: tekkedMode,
-      display: `${tekkedText} ${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`,
+      display: `${tekkedText}${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`,
     }
   }
 

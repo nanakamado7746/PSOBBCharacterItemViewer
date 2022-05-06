@@ -1,18 +1,18 @@
 function displayData()
 {
-  let charactors = this.charactors;
+  let characters = this.characters;
   let shareBanks = this.shareBanks;
 
   // 詳細表示
-  if (charactors.length !== 0)
+  if (characters.length !== 0)
   {
     // 現在ページの情報を保存
-    localStorage.setItem("currentpage", JSON.stringify(0));
-    displayCharactor(charactors[0]);
+    localStorage.setItem("currentpage", JSON.stringify(["character", this.characters[0]]));
+    displayCharactor(characters[0]);
   } else if (shareBanks.length !== 0)
   {
     // 現在ページの情報を保存
-    localStorage.setItem("currentpage", JSON.stringify("shareBanks"));
+    localStorage.setItem("currentpage", JSON.stringify(["shareBanks", this.shareBanks[0]]));
     displayShareBank(shareBanks[0]);
   }
 
@@ -253,7 +253,7 @@ function displayInventory(inventory, title, mode)
 
 function displayPager()
 {
-  let charactors = this.charactors;
+  let characters = this.characters;
   let shareBanks = this.shareBanks;
   let allItems = this.allItems;
 
@@ -261,16 +261,16 @@ function displayPager()
   id.innerHTML = '';
 
   // キャラクターのページを表示する
-  if (Object.keys(charactors).length !== 0)
+  if (Object.keys(characters).length !== 0)
   {
-    for( let i in charactors)
+    for( let i in characters)
     {
       let button = document.createElement("button");
       button.setAttribute('id', `page`);
       button.setAttribute('class', "page");
       button.setAttribute('name', i);
       button.setAttribute('onclick', 'clickCharactor(name)');
-      button.innerText = `${charactors[i].Slot}:${charactors[i].Name}`;
+      button.innerText = `${characters[i].Slot}:${characters[i].Name}`;
       id.appendChild(button);
     }
   }

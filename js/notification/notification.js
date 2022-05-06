@@ -17,6 +17,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 6",
+      "status": "info",
+      "text": [
+        "Input data can now be downloaded as text file.",
+        "入力したデータをテキストファイルとしてダウンロードできるようになりました。"
+      ]
+    },
+    {
       "date": "2022 May 4",
       "status": "info",
       "text": [

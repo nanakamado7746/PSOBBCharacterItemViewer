@@ -152,6 +152,12 @@ a:hover
   border-radius: 20px;
 }
 
+.download
+{
+  margin-top: 0.5em;
+  height: 30px;
+}
+
 .pager
 {
   display: table;

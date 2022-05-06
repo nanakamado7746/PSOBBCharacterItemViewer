@@ -15,9 +15,11 @@ displayNotification();
 initializeTheme();
 initializeVolume();
 
-// 初期表示でリアルタイム検索読み込み
+// DOM取得後の初期表示
 window.addEventListener('load', function(){
+
   dynamicSearch();
+  displayAfterEnterd()
 });
 
 function initializeVolume()
@@ -57,6 +59,7 @@ function initializeLang()
 // ローカルストレージが存在していた場合、画面に表示する
 function initializeDisplay()
 {
+
   try
   {
     if (localStorage.getItem("fileData"))
@@ -220,6 +223,8 @@ async function clickInput(event)
 
     localStorage.setItem("fileData", JSON.stringify(fileData));
     this.fileData = fileData;
+
+    displayAfterEnterd();
 
     // デコード
     decoder();
@@ -749,4 +754,11 @@ function createSearchResultsDataFile(zip, searchResults, folder)
     });
   }
   return zip;
+}
+
+function displayAfterEnterd()
+{
+    (localStorage.getItem("fileData") === null)
+      ? document.getElementById("afterEnterd").style.opacity = 0
+      : document.getElementById("afterEnterd").style.opacity = 1;
 }

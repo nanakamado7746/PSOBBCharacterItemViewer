@@ -10,18 +10,18 @@ function notification()
     },
     {
       "date": "2022 May 6",
-      "status": "caution",
-      "text": [
-        "Temporarily stops sound functionality due to memory management issues.",
-        "メモリ管理の問題により、サウンド機能を一時的に停止します。"
-      ]
-    },
-    {
-      "date": "2022 May 6",
       "status": "info",
       "text": [
         "Input data can now be downloaded as text file.",
         "入力したデータをテキストファイルとしてダウンロードできるようになりました。"
+      ]
+    },
+    {
+      "date": "2022 May 6",
+      "status": "caution",
+      "text": [
+        "Temporarily stops sound functionality due to memory management issues.",
+        "メモリ管理の問題により、サウンド機能を一時的に停止します。"
       ]
     },
     {

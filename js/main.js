@@ -707,17 +707,17 @@ function createCharacterDataFile(zip, character, folder)
       "EP2 CHALLENGE : " + character.Ep2Progress
     ];
     zip.addFile(new TextEncoder().encode(character_data.join("\r\n")), {
-      filename: new TextEncoder().encode(`${folder}/${character.Slot}_${character.Name}/character.txt`)
+      filename: new TextEncoder().encode(`${folder}/${character.Slot}/character.txt`)
     });
 
     let inventory = character["Inventory"][this.lang].map(item => item[1]["display"]).join("\r\n");
     zip.addFile(new TextEncoder().encode(inventory), {
-      filename: new TextEncoder().encode(`${folder}/${character.Slot}_${character.Name}/inventory.txt`)
+      filename: new TextEncoder().encode(`${folder}/${character.Slot}/inventory.txt`)
     });
 
     let bank = character["Bank"][this.lang].map(item => item[1]["display"]).join("\r\n");
     zip.addFile(new TextEncoder().encode(bank), {
-      filename: new TextEncoder().encode(`${folder}/${character.Slot}_${character.Name}/bank.txt`)
+      filename: new TextEncoder().encode(`${folder}/${character.Slot}/bank.txt`)
     });
 
   return zip;

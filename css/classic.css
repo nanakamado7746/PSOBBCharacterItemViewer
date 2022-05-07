@@ -12,46 +12,36 @@ body {
   color: #ffffff;
 }
 
-.sticky
-{
-  background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
-  url("../resources/images/background/lobby_overlook_contrast.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  position: sticky;
-  top: 0em; /*ここで止める位置を調整する*/
-  z-index: 100;
-  padding: 1em 0em 1em 0em;
-  width: auto;
-}
-
 .title
 {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
   background-image: url("../resources/images/background/title2_upper.png");
-  background-size: contain;
+  background-size: 930px 100%;
   background-repeat: no-repeat;
-  width: 900px;
-  height: 128px;
+  height: 140px;
   margin: 0;
 }
 
 h1
 {
   color: #FFFFFF;
-  padding: 2.3em 0 0 6em;
+  padding: 2.5em 0 0 6em;
   margin: 0;
+}
+
+.subTitle
+{
+  font-size: 100%;
+  margin: 0 0 0 45em;
 }
 
 .settings
 {
   display: flex;
   background-image: url("../resources/images/background/title2_under.png");
-  background-size: 100%;
+  background-size: 930px 100%;
   background-repeat: no-repeat;
-  width: 900px;
   height: 37px;
   font-size: 80%;
 }
@@ -157,6 +147,20 @@ a:hover
 {
   color: #cd5c5c;
   font-weight: bold;
+}
+
+.sticky
+{
+  background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
+  url("../resources/images/background/lobby_overlook_contrast.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: sticky;
+  top: 0em; /*ここで止める位置を調整する*/
+  z-index: 100;
+  padding: 1em 0em 1em 0em;
+  width: auto;
 }
 
 

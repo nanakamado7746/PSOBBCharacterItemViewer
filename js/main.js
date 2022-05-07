@@ -665,7 +665,10 @@ function download()
     zip = createCharacterDataFile(zip, character, `psobb_character_data/alldata`);
   }
   // ShareBankデータファイル作成
-  zip = createShareBanksDataFile(zip, this.shareBanks[0]["ShareBank"][this.lang], `psobb_character_data/alldata`);
+  if (this.shareBanks !== null & this.shareBanks.length !== 0)
+  {
+    zip = createShareBanksDataFile(zip, this.shareBanks[0]["ShareBank"][this.lang], `psobb_character_data/alldata`);
+  }
   // AllItemsデータファイル作成
   zip = createAllItemsDataFile(zip, this.allItems[this.lang], `psobb_character_data/alldata`);
 
@@ -725,7 +728,7 @@ function createCharacterDataFile(zip, character, folder)
 
 function createShareBanksDataFile(zip, shareBank, path)
 {
-  zip = createDataFile(zip, shareBank, `${path}/shareBanks`);
+  zip = createDataFile(zip, shareBank, `${path}/shareBank`);
   return zip;
 }
 

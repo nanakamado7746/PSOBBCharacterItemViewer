@@ -4,11 +4,26 @@ html {
 
 body {
   margin: 0em;
-  background-image: url("../resources/images/background/login.png");
+  background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
+  url("../resources/images/background/lobby_overlook_contrast.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: #ffffff;
+}
+
+.sticky
+{
+  background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
+  url("../resources/images/background/lobby_overlook_contrast.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: sticky;
+  top: 0em; /*ここで止める位置を調整する*/
+  z-index: 100;
+  padding: 1em 0em 1em 0em;
+  width: auto;
 }
 
 .title
@@ -63,7 +78,8 @@ h1
 
 .theme
 {
-  padding: 1em 0 0 5em;
+  padding: 0em 1em 0 1em;
+  margin: 1em 0 0 4em;
 }
 
 .contents
@@ -143,18 +159,6 @@ a:hover
   font-weight: bold;
 }
 
-.sticky
-{
-  background-image: url("../resources/images/background/login.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  position: sticky;
-  top: 0em; /*ここで止める位置を調整する*/
-  z-index: 100;
-  padding: 1em 0em 1em 0em;
-  width: auto;
-}
 
 .lang
 {

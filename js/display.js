@@ -84,8 +84,6 @@ function displayItemCodes()
   footer.setAttribute('class', "data_footer");
   div.appendChild(footer);
   id.appendChild(div);
-
-  refreshVolume();
 }
 
 function displayCharactor(charactor)
@@ -140,10 +138,8 @@ function displayCharactor(charactor)
   div.appendChild(footer);
   id.appendChild(div);
 
-  displayInventory(charactor.Inventory[this.lang], "INVENTORY")
-  displayInventory(charactor.Bank[this.lang], "BANK")
-
-  refreshVolume();
+  displayInventory(charactor.Inventory[this.lang], "INVENTORY");
+  displayInventory(charactor.Bank[this.lang], "BANK");
 }
 
 function tr(tbody, text)
@@ -247,8 +243,6 @@ function displayInventory(inventory, title, mode)
   footer.setAttribute('class', "data_footer");
   div.appendChild(footer);
   id.appendChild(div);
-
-  refreshVolume();
 }
 
 function displayPager()

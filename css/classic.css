@@ -12,7 +12,7 @@ body {
   color: #ffffff;
 }
 
-.title
+.header
 {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
@@ -20,20 +20,23 @@ body {
   background-size: 930px 100%;
   background-repeat: no-repeat;
   height: 140px;
-  margin: 0;
+}
+
+.title
+{
+  padding: 5em 0 0 13em;
+  color: #FFFFFF;
 }
 
 h1
 {
-  color: #FFFFFF;
-  padding: 2.5em 0 0 6em;
   margin: 0;
 }
 
 .subTitle
 {
   font-size: 100%;
-  margin: 0 0 0 45em;
+  padding: 0em 0 0 32em;
 }
 
 .settings

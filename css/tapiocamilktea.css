@@ -13,19 +13,32 @@ body
   background-attachment: fixed;
 }
 
-h1
+.header
 {
+  font-family: 'Orbitron', sans-serif;
   background-image: url("../resources/images/background/title.png");
   background-repeat: no-repeat;
   background-size: contain;
-  margin: 0em;
-  padding: 1em 1em 1em 1em;
-  color: #FFFFFF;
-  font-family: 'Orbitron', sans-serif;
-  height: 50px;
-  border-color: : #afeeee;
   background-color: #111111;
   opacity: 0.8;
+}
+
+.title
+{
+  padding: 2em 0 1em 2em;
+  font-family: 'Orbitron', sans-serif;
+  color: #FFFFFF;
+}
+
+h1
+{
+  margin: 0;
+}
+
+.subTitle
+{
+  font-size: 100%;
+  padding: 0em 0 0 35em;
 }
 
 .volume

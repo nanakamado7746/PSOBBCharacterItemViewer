@@ -10,6 +10,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: #ffffff;
+  font-weight: bold;
 }
 
 .header
@@ -76,25 +77,54 @@ h1
 
 .contents
 {
-  margin-top: 2em;
-  margin-left: 2em;
-  margin-right: 2em;
+  margin: 1em 2em 0 2em;
 }
 
+
+.notification_wrap
+{
+  display: flex;
+  height: 100px;
+  width: 1100px;
+}
+
+.notification_left
+{
+  background-image: url("../resources/images/background/hukidashi_left_pink.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 56.5px;
+}
+
+.notification_body
+{
+  background-image: url("../resources/images/background/hukidashi_body_pink.png");
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+
+.notification_right
+{
+  background-image: url("../resources/images/background/hukidashi_right_pink.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 62.5px;
+}
 
 .notification
 {
   z-index: 100;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 100px;
   display: inline-block;
-  width: auto;
+  color: #000000;
+  padding: 0.5em 0em 0.5em 0em;
+  font-size: 80%;
 }
 
 .notification .info
 {
-  background-image: url("../resources/images/icon/info_white.png");
+  background-image: url("../resources/images/icon/info.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -102,7 +132,7 @@ h1
 
 .notification .caution
 {
-  background-image: url("../resources/images/icon/caution_white.png");
+  background-image: url("../resources/images/icon/caution.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -110,7 +140,7 @@ h1
 
 .notification .solved
 {
-  background-image: url("../resources/images/icon/solved_white.png");
+  background-image: url("../resources/images/icon/solved.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -118,7 +148,6 @@ h1
 
 .notification td
 {
-  font-size: 80%;
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
@@ -132,23 +161,66 @@ h1
 
 .input
 {
-  font-size: 80%;
-  margin-top: 2em;
-
+  margin-top: 1em;
 }
 
-.desc {}
+.input_bg_wrap
+{
+  display: flex;
+  color: #000000;
+  height: 120px;
+  width: 900px;
+}
+
+.input_bg_left
+{
+  background-image: url("../resources/images/background/hukidashi_left_green.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 63px;
+}
+
+.input_bg_body
+{
+  background-image: url("../resources/images/background/hukidashi_body_green.png");
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+
+.input_bg_right
+{
+  background-image: url("../resources/images/background/hukidashi_right_green.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 70px;
+}
+
+.desc
+{
+  padding: 0.5em 0em 0.5em 0em;
+  font-size: 80%;
+}
+
+.space
+{
+  padding-left: 2em;
+}
+
+.inputb
+{
+ margin-top: 0em;
+}
 
 a
 {
-  color: #fa8072;
-  font-weight: bold;
+color: #0000FF;
+font-weight: bold;
 }
 
 a:hover
 {
-  color: #cd5c5c;
-  font-weight: bold;
+color: #000088;
+font-weight: bold;
 }
 
 .sticky

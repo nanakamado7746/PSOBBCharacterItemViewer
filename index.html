@@ -46,13 +46,26 @@
   </div>
 
   <div class="contents">
-    <div class="notification" id="notification"></div>
+    <div class="notification_wrap">
+      <div class="notification_left"></div>
+      <div class="notification notification_body" id="notification"></div>
+      <div class="notification_right"></div>
+    </div>
+
     <div class="input">
-        <div class="desc" id="desc">
-          First, <a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">Download</a> your character data. Next, Press Browse button to Input this Extracted files (.psochar and .psobank).<br>
-          最初に、あなたのキャラクターデータを<a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">ダウンロード</a>してください。 次に、ファイル選択ボタンを押して展開したファイル(.psocharと.psobank)を入力してください。<br>
+      <div class="input_bg_wrap">
+        <div class="input_bg_left"></div>
+        <div class="desc input_bg_body" id="desc">
+          <input type="file" class="inputb" id="inputb" name="file[]" multiple onchange=clickInput(event)></br>
+          First, <a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">Download</a> your character data.</br>
+          <span class="space">Next, Press Browse button to Input this Extracted files (.psochar and .psobank).</span></br>
+          最初に、あなたのキャラクターデータを<a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">ダウンロード</a>してください。</br>
+          <span class="space">次に、ファイル選択ボタンを押して展開したファイル(.psocharと.psobank)を入力してください。
         </div>
-          <input type="file" id="inputb" name="file[]" multiple onchange=clickInput(event)>
+
+        <div class="input_bg_right"></div>
+      </div>
+      <!-- <div class="input_bg_under"></div> -->
     </div>
 
     <div id="sticky" class="sticky">

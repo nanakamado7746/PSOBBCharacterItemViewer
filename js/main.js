@@ -431,6 +431,14 @@ function dynamicSearch(call)
 
   let allitems = this.allItems;
   let lang = this.lang;
+
+  let openbtns =  document.getElementsByClassName("openbtn");
+  for (let btn of openbtns)
+  {
+    btn.addEventListener("input",function(){
+      if (call !== "changeLang") playAudioOpen();
+    });
+  }
   // イベントリスナーでイベント「input」を登録
   document.getElementById("ｃategorysearch").addEventListener("input",function(){
     if (call !== "changeLang") playAudioOpen();
@@ -460,10 +468,6 @@ function search(allItems, lang)
   console.log("search element:" + element);
   console.log("search hit:" + hit);
   console.log("search unTekked:" + unTekked);
-  types.forEach((item) => {
-    console.log(`search types: ${item.value} ${item.checked}`);
-  });
-
 
   let id = document.getElementById("data");
   id.innerHTML = '';
@@ -644,7 +648,7 @@ function setVolume(value)
 
 function setCursorAudio()
 {
-  let els = document.getElementsByClassName("data_body");
+  let els = document.getElementsByClassName("data_cursor");
   for (let el of els)
   {
     el.onmouseover = function() {
@@ -832,9 +836,13 @@ function createDataFileWithSlot(zip, data, path)
 
 function displayAfterEnterd()
 {
-    (localStorage.getItem("fileData") === null)
-      ? document.getElementById("afterEnterd").style.opacity = 0
-      : document.getElementById("afterEnterd").style.opacity = 1;
+    if (localStorage.getItem("fileData") === null) {
+      document.getElementById("afterEnterd").style.opacity = 0;
+      document.getElementById("afterEnterd").style.height = 0;
+    } else {
+      document.getElementById("afterEnterd").style.opacity = 1;
+      document.getElementById("afterEnterd").style.height = "auto";
+    }
 }
 
 function callAdterLoded(call)

@@ -4,8 +4,9 @@ html {
 
 body {
   margin: 0em;
-  background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
-  url("../resources/images/background/lobby_overlook_contrast.png");
+  /* background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
+  url("../resources/images/background/lobby_overlook_contrast.png"); */
+  background-image: url("../resources/images/background/lobby_overlook_contrast.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -225,16 +226,22 @@ font-weight: bold;
 
 .sticky
 {
-  background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
-  url("../resources/images/background/lobby_overlook_contrast.png");
+  /* background: linear-gradient( 90deg, rgba(0, 20, 0, 0.6), rgba(0, 0, 0, 0)),
+  url("../resources/images/background/lobby_overlook_contrast.png"); */
+  background-image: url("../resources/images/background/lobby_overlook_contrast.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: sticky;
   top: 0em; /*ここで止める位置を調整する*/
   z-index: 100;
-  padding: 1em 0em 1em 0em;
+  padding: 1em 0em 0em 0em;
   width: auto;
+}
+
+.sticky_indent
+{
+  padding: 0 2em 0 2em;
 }
 
 
@@ -328,7 +335,7 @@ font-weight: bold;
 
 .data {}
 
-.data .data_window {
+.data_window {
   width: 900px;
 }
 
@@ -462,7 +469,7 @@ font-weight: bold;
   background-position: center center;
 }
 
-.data .data_header
+.data_header
 {
   height: 25px;
   width: 100%;
@@ -472,13 +479,13 @@ font-weight: bold;
   background-position: bottom;
 }
 
-.data .data_body
+.data_body
 {
   background-image: url("../resources/images/background/data_body.png");
   background-size: 100%;
 }
 
-.data .data_footer
+.data_footer
 {
   height: 25px;
   width: 100%;

@@ -59,6 +59,7 @@ function displayItemCodes()
   let table = document.createElement("table");
 
   table.setAttribute('class', "data_body");
+  table.classList.add("data_cursor");
   let tbody = document.createElement("tbody");
 
   if (Object.keys(itemCodes).lenght !== 0)
@@ -119,6 +120,7 @@ function displayCharactor(charactor)
 
   let table = document.createElement("table");
   table.setAttribute('class', "data_body");
+  table.classList.add("data_cursor");
 
   let tbody = document.createElement("tbody");
 
@@ -206,6 +208,8 @@ function displayInventory(inventory, title, mode)
 
   let table = document.createElement("table");
   table.setAttribute('class', "data_body");
+  table.classList.add("data_cursor");
+
   let tbody = document.createElement("tbody");
 
   if (inventory.length == 0)

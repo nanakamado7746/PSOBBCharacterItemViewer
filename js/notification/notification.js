@@ -12,8 +12,8 @@ function notification()
       "date": "2022 May 9",
       "status": "info",
       "text": [
-        "The problem with the sound function has been resolved and restored.",
-        "サウンド機能の問題が解決され、復旧をしました。"
+        "Sound functionality has been restored.",
+        "サウンド機能を復旧をしました。"
       ]
     },
     {

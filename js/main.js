@@ -677,12 +677,9 @@ function playAudio()
 
 function playAudio(audios)
 {
-  console.log("a");
   if (isClassicTheme()) {
-    console.log("b");
     for (const audio of audios)
     {
-      console.log("c");
       if (audio.ended) audio.currentTime = 0;
       if (audio.currentTime !== 0) continue;
       audio.currentTime = 0;

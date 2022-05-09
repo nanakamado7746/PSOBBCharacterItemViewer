@@ -56,6 +56,7 @@ initializeVolume();
 window.addEventListener('load', function(){
 
   dynamicSearch();
+  refreshVolume();
   displayAfterEnterd()
 });
 
@@ -163,6 +164,8 @@ function changeLang()
     }
     if (currentpage[0] === "character") displayCharactor(currentpage[1]);
   }
+  setCursorAudio();
+
 }
 
 
@@ -171,7 +174,7 @@ function clickDisplayItemCodes(event)
   playAudio(this.open_audios);
   localStorage.setItem("currentpage", JSON.stringify(["itemcode", ""]));
   displayItemCodes();
-  refreshVolume();
+  setCursorAudio();
 }
 
 function decoder()
@@ -273,7 +276,7 @@ async function clickInput(event)
     // 入力リアルタイム検索機能ロード
     dynamicSearch();
 
-    refreshVolume();
+    setCursorAudio();
   } catch(e) {
     //例外エラーが起きた時に実行する処理
     console.log(e);
@@ -315,7 +318,7 @@ function clickCharactor(name)
   // 現在ページの情報を保存
   localStorage.setItem("currentpage", JSON.stringify(["character", this.characters[name]]));
   displayCharactor(this.characters[name]);
-  refreshVolume();
+  setCursorAudio();
 }
 
 function clickShareBank(name)
@@ -326,7 +329,7 @@ function clickShareBank(name)
   let id = document.getElementById("data");
   id.innerHTML = '';
   displayInventory(this.shareBanks[name].ShareBank[this.lang], "SHARE BANK");
-  refreshVolume();
+  setCursorAudio();
 }
 
 function clickAllItems(name)
@@ -337,7 +340,7 @@ function clickAllItems(name)
   let id = document.getElementById("data");
   id.innerHTML = '';
   displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
-  refreshVolume();
+  setCursorAudio();
 }
 
 // FileListをファイル名の照準にする
@@ -432,13 +435,13 @@ function dynamicSearch(call)
   document.getElementById("ｃategorysearch").addEventListener("input",function(){
     if (call !== "changeLang") playAudioOpen();
     search(allItems, lang);
-    refreshVolume();
+    setCursorAudio();
   });
 
   document.getElementById("wordsearch").addEventListener("input",function(){
     // if (call !== "changeLang") playAudioCancel();
     search(allItems, lang);
-    refreshVolume();
+    setCursorAudio();
   });
 }
 
@@ -598,6 +601,7 @@ function clickChangeTheme(value)
   refreshVolume();
   document.getElementById("stylesheet").href = `./css/${value}.css`;
   console.log("change to:" + value);
+
   localStorage.setItem("theme", JSON.stringify(value));
 }
 
@@ -635,11 +639,16 @@ function setVolume(value)
   this.enter_audios.map(item => item.volume = value);
   this.cancel_audios.map(item => item.volume = value);
 
+  setCursorAudio();
+}
+
+function setCursorAudio()
+{
   let els = document.getElementsByClassName("data_body");
   for (let el of els)
   {
     el.onmouseover = function() {
-      if (value > 0) {
+      if (document.getElementById("volume_range").value > 0) {
         playAudioCursor();
       }
     }
@@ -662,7 +671,6 @@ function playAudio()
 {
   if (isClassicTheme()) {
     let sound = new Audio("./resources/sounds/se/open.wav");
-    sound.volume = document.getElementById("volume_range").value;
     sound.play();
   }
 }

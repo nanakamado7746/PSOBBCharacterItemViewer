@@ -13,6 +13,18 @@ body {
   color: #ffffff;
 }
 
+a
+{
+  color: #0000FF;
+  font-weight: bold;
+}
+
+a:hover
+{
+  color: #000088;
+  font-weight: bold;
+}
+
 .header
 {
   margin: 0;
@@ -86,7 +98,6 @@ h1
   display: flex;
   height: 100px;
   width: 1100px;
-  font-weight: bold;
 }
 
 .notification_left
@@ -94,7 +105,7 @@ h1
   background-image: url("../resources/images/background/hukidashi_left_pink.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 56.5px;
+  width: 53px;
 }
 
 .notification_body
@@ -109,7 +120,7 @@ h1
   background-image: url("../resources/images/background/hukidashi_right_pink.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 62.5px;
+  width: 58.5px;
 }
 
 .notification
@@ -169,9 +180,8 @@ h1
 {
   display: flex;
   color: #000000;
-  height: 120px;
-  width: 900px;
-  font-weight: bold;
+  height: 95px;
+  width: 1100px;
 }
 
 .input_bg_left
@@ -179,7 +189,7 @@ h1
   background-image: url("../resources/images/background/hukidashi_left_green.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 63px;
+  width: 50px;
 }
 
 .input_bg_body
@@ -194,7 +204,17 @@ h1
   background-image: url("../resources/images/background/hukidashi_right_green.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 70px;
+  width: 55px;
+}
+
+.input_text_wrap
+{
+  display: flex;
+}
+
+.input_text_wrap .input_text_btn
+{
+  padding-top: 2em;
 }
 
 .desc
@@ -205,24 +225,12 @@ h1
 
 .space
 {
-  padding-left: 2em;
+  /* padding-left: 2em; */
 }
 
 .inputb
 {
  margin-top: 0em;
-}
-
-a
-{
-color: #0000FF;
-font-weight: bold;
-}
-
-a:hover
-{
-color: #000088;
-font-weight: bold;
 }
 
 .sticky
@@ -238,8 +246,7 @@ font-weight: bold;
   z-index: 100;
   padding: 1em 0em 0em 0em;
   width: auto;
-  font-size: 100%;
-  font-weight: bold;
+  font-size: 80%;
 }
 
 .sticky_indent
@@ -250,12 +257,11 @@ font-weight: bold;
 
 .lang
 {
-  font-size: 100%;
+  /* font-size: 100%; */
 }
 
 .langb
 {
-  height: 30px;
 }
 
 .search
@@ -299,7 +305,7 @@ font-weight: bold;
 ::placeholder {
   style: italic;
   font-style: italic;
-  color: #888888;
+  color: #AAAAAA;
 }
 
 .unTekked
@@ -322,7 +328,6 @@ font-weight: bold;
 .download
 {
   margin-top: 0.5em;
-  height: 30px;
 }
 
 .pager
@@ -334,7 +339,8 @@ font-weight: bold;
 
 .page
 {
-  height:  30px;
+
+  height: 25px;
   margin: 0 auto;
   display: table-cell;
   vertical-align: middle;

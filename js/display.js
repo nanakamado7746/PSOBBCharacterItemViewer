@@ -7,15 +7,18 @@ function displayData()
   if (characters.length !== 0)
   {
     // 現在ページの情報を保存
-    localStorage.setItem("currentpage", JSON.stringify(["character", this.characters[0]]));
-    displayCharactor(characters[0]);
+    displayCharacter(characters[0]);
+    this.currentData["page"] = "character";
+    this.currentData["searching"] = ["character", 0, this.characters[0]];
+    pushedPageColoer(`pagecharacter${0}`);
   } else if (shareBanks.length !== 0)
   {
     // 現在ページの情報を保存
-    localStorage.setItem("currentpage", JSON.stringify(["shareBanks", this.shareBanks[0]]));
     displayShareBank(shareBanks[0]);
+    this.currentData["page"] = "shareBank";
+    this.currentData["searching"] = ["shareBank", 0, this.shareBanks[0]];
+    pushedPageColoer(`pageshareBank${0}`);
   }
-
 }
 
 function displayItemCodes()
@@ -32,6 +35,7 @@ function displayItemCodes()
 
   let div = document.createElement("div");
   div.setAttribute('class', "data_window");
+  div.setAttribute('id', "data_window");
 
   let banner = document.createElement("div");
   banner.setAttribute('class', "data_banner");
@@ -87,13 +91,14 @@ function displayItemCodes()
   id.appendChild(div);
 }
 
-function displayCharactor(charactor)
+function displayCharacter(charactor)
 {
   let id = document.getElementById("data");
   id.innerHTML = '';
 
   let div = document.createElement("div");
   div.setAttribute('class', "data_window");
+  div.setAttribute('id', "data_window");
 
   let banner = document.createElement("div");
   banner.setAttribute('class', "data_banner");
@@ -167,6 +172,7 @@ function displayInventory(inventory, title, mode)
 
   let div = document.createElement("div");
   div.setAttribute('class', "data_window");
+  div.setAttribute('id', "data_window");
 
   let banner = document.createElement("div");
   banner.setAttribute('class', "data_banner");
@@ -264,10 +270,10 @@ function displayPager()
     for( let i in characters)
     {
       let button = document.createElement("button");
-      button.setAttribute('id', `page`);
+      button.setAttribute('id', `pagecharacter${i}`);
       button.setAttribute('class', "page");
       button.setAttribute('name', i);
-      button.setAttribute('onclick', 'clickCharactor(name)');
+      button.setAttribute('onclick', 'clickPage("character", name)');
       button.innerText = `${characters[i].Slot}:${characters[i].Name}`;
       id.appendChild(button);
     }
@@ -279,10 +285,10 @@ function displayPager()
     for( let i in shareBanks)
     {
       let button = document.createElement("button");
-      button.setAttribute('id', `page`);
+      button.setAttribute('id', `pageshareBank${i}`);
       button.setAttribute('class', "page");
       button.setAttribute('name', i);
-      button.setAttribute('onclick', 'clickShareBank(name)');
+      button.setAttribute('onclick', 'clickPage("shareBank", name)');
       button.innerText = "ShareBank";
       id.appendChild(button);
     }
@@ -292,10 +298,10 @@ function displayPager()
   if (Object.keys(allItems).length !== 0)
   {
     let button = document.createElement("button");
-    button.setAttribute('id', "page");
+    button.setAttribute('id', `pageallItemsdefault`);
     button.setAttribute('class', "page");
     button.setAttribute('name', "allItems");
-    button.setAttribute('onclick', 'clickAllItems(name)');
+    button.setAttribute('onclick', 'clickPage("allItems", "default")');
     button.innerText = "AllItems";
     id.appendChild(button);
   }

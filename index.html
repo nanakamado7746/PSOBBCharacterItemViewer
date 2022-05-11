@@ -58,12 +58,12 @@
         <div class="desc input_bg_body" id="desc">
           <div class="input_text_wrap">
             <div class="input_text_btn">
-              <input type="file" class="inputb" id="inputb" name="file[]" multiple onchange=clickInput(event)></br>
+              <input type="file" class="inputb" id="inputb" name="file[]" multiple onchange=clickInput(event)>
             </div>
             <div class="input_text">
-              First, <a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">Download</a> your character data.</br>
-              <span class="space">Next, Press Browse button to Input this Extracted files (.psochar and .psobank).</span></br>
-              最初に、あなたのキャラクターデータを<a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">ダウンロード</a>してください。</br>
+              First, <a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">Download</a> your character data.<br>
+              <span class="space">Next, Press Browse button to Input this Extracted files (.psochar and .psobank).</span><br>
+              最初に、あなたのキャラクターデータを<a class="download" href="https://ephinea.pioneer2.net/download-data/" target="_blank">ダウンロード</a>してください。<br>
               <span class="space">次に、ファイル選択ボタンを押して展開したファイル(.psocharと.psobank)を入力してください。
             </div>
           </div>
@@ -87,23 +87,23 @@
             <div class="search" id="search">
               <div class="type">
                 <div id="ｃategorysearch" class="openbtn">
-                  <button type="button" class="searchb" id="searchb" onClick=clickSearch(event)></button>
-                  <input type="checkbox" class="" name="types" value="1" >Weapons
-                  <input type="checkbox" class="" name="types" value="2" >Frames
-                  <input type="checkbox" class="" name="types" value="3" >Barriers
-                  <input type="checkbox" class="" name="types" value="4" >Units
-                  <input type="checkbox" class="" name="types" value="5" >Mags
-                  <input type="checkbox" class="" name="types" value="6" >Disks
-                  <input type="checkbox" class="" name="types" value="7" >Tools
-                  <input type="checkbox" class="" name="types" value="8" >S-Ranks
-                  <input type="checkbox" class="" name="types" value="9" >Other
+                  <button type="button" class="reset" id="reset" onClick=clickReset(event)></button>
+                  <input type="checkbox" class="" name="types" value="1" onClick=clickSearch(event)>Weapons
+                  <input type="checkbox" class="" name="types" value="2" onClick=clickSearch(event)>Frames
+                  <input type="checkbox" class="" name="types" value="3" onClick=clickSearch(event)>Barriers
+                  <input type="checkbox" class="" name="types" value="4" onClick=clickSearch(event)>Units
+                  <input type="checkbox" class="" name="types" value="5" onClick=clickSearch(event)>Mags
+                  <input type="checkbox" class="" name="types" value="6" onClick=clickSearch(event)>Disks
+                  <input type="checkbox" class="" name="types" value="7" onClick=clickSearch(event)>Tools
+                  <input type="checkbox" class="" name="types" value="8" onClick=clickSearch(event)>S-Ranks
+                  <input type="checkbox" class="" name="types" value="9" onClick=clickSearch(event)>Other
                 </div>
               </div>
               <div id="wordsearch" class="wordsearch">
                 <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
                 <div class="sep"><input type="text" class="element" name="element" placeholder="special attack (element)"></div>
                 <div class="sep"><input type="text" class="att" name="hit" placeholder="HIT value"></div>
-                <div class="sep"><input type="checkbox" class="openbtn" name="unTekked" value="1" >only unTekked(未鑑定のみ)</div>
+                <div class="sep"><input type="checkbox" class="openbtn" name="unTekked" value="1" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div>
               </div>
               <button id="download" class="download" onClick='download()'>Getting as Text File</button>
             </div>
@@ -124,6 +124,9 @@
 <script type="text/javascript" src="./js/model/charactor/Abstract.js"></script>
 <script type="text/javascript" src="./js/model/charactor/Charactor.js"></script>
 <script type="text/javascript" src="./js/model/charactor/ShareBank.js"></script>
+<script type="text/javascript" src="./js/event.js"></script>
 <script type="text/javascript" src="./js/display.js"></script>
+<script type="text/javascript" src="./js/initial.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
+<script type="text/javascript" src="./js/search.js"></script>
 <script type="text/javascript" src="./js/lib/zlib/zip.min.js"></script>

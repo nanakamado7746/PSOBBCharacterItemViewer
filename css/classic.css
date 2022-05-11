@@ -313,21 +313,21 @@ h1
   vertical-align: middle;
 }
 
-.searchb
+.reset
 {
-  background-image:url('../resources/images/icon/search.png');
+  background-image:url('../resources/images/icon/batsu.png');
+  background-size: 50%;
   background-repeat: no-repeat;
-  background-color: #FFFFFF;
   background-position: center;
-  width: 22px;
+  width: 20px;
   height: 20px;
-  background-color: #f5f5f5;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .download
 {
   margin-top: 0.5em;
+  height: 30px;
 }
 
 .pager

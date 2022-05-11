@@ -13,6 +13,19 @@ body
   background-attachment: fixed;
 }
 
+a
+{
+  color: #fa8072;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+a:hover
+{
+  color: #cd5c5c;
+  font-weight: bold;
+}
+
 .header
 {
   font-family: 'Orbitron', sans-serif;
@@ -70,21 +83,10 @@ h1
 
 }
 
+
+
 .desc
 {
-}
-
-a
-{
-  color: #fa8072;
-  font-weight: bold;
-  word-wrap: break-word;
-}
-
-a:hover
-{
-  color: #cd5c5c;
-  font-weight: bold;
 }
 
 .lang
@@ -153,16 +155,15 @@ a:hover
   vertical-align: middle;
 }
 
-.searchb
+.reset
 {
-  background-image:url('../resources/images/icon/search.png');
+  background-image:url('../resources/images/icon/batsu.png');
+  background-size: 50%;
   background-repeat: no-repeat;
-  background-color: #FFFFFF;
   background-position: center;
-  width: 22px;
+  width: 20px;
   height: 20px;
-  background-color: #f5f5f5;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .download

@@ -8,6 +8,8 @@ var shareBanks = [];
 var allItems = [];
 var searchResults = [];
 
+var currentData = {};
+
 var cursor_audios = [
   new Audio("./resources/sounds/se/cursor.wav"),
   new Audio("./resources/sounds/se/cursor.wav"),
@@ -51,131 +53,6 @@ initializeDisplay();
 displayNotification();
 initializeTheme();
 initializeVolume();
-
-// DOM取得後の初期表示
-window.addEventListener('load', function(){
-
-  dynamicSearch();
-  refreshVolume();
-  displayAfterEnterd()
-});
-
-function initializeVolume()
-{
-  // firefox用
-  document.getElementById("volume_range").value = 0;
-}
-
-function initializeTheme()
-{
-  if (localStorage.getItem("theme"))
-  {
-    this.theme = JSON.parse(localStorage.getItem("theme"));
-    console.log("theme:" + this.theme);
-    document.getElementById("stylesheet").href = `./css/${this.theme}.css`;
-  }
-  if (this.theme !== "classic") {
-    document.getElementsByName("themes")[1].checked = true;
-  }
-}
-
-
-function initializeLang()
-{
-  if (localStorage.getItem("lang"))
-  {
-    this.lang = JSON.parse(localStorage.getItem("lang"));
-    console.log("lang:" + this.lang);
-  } else {
-    localStorage.setItem("lang", JSON.stringify("EN"));
-  }
-  if (this.lang == "JA") {
-    document.getElementsByName("lang")[1].checked = true;
-  }
-}
-
-// ローカルストレージが存在していた場合、画面に表示する
-function initializeDisplay()
-{
-
-  try
-  {
-    if (localStorage.getItem("fileData"))
-    {
-      this.fileData = JSON.parse(localStorage.getItem("fileData"));
-      console.log(JSON.parse(localStorage.getItem("fileData")));
-      decoder();
-    }
-    displayPager();
-    displayData();
-  }
-  catch (e)
-  {
-    alert("error occurred. please super reload (F5)");
-    console.log(e);
-    document.getElementById("data").innerHTML = '';
-    document.getElementById("pager").innerHTML = '';
-    removeCharactorData();
-    localStorage.removeItem("fileData");
-  }
-}
-
-function changeLang()
-{
-
-  let lang;
-  (document.getElementsByName("lang")[1].checked)
-    ? lang = "JA"
-    : lang = "EN";
-
-  if (lang === this.lang) return;
-  this.lang = lang;
-
-  playAudio(this.open_audios);
-
-  localStorage.setItem("lang", JSON.stringify(this.lang));
-  console.log(this.lang);
-
-  dynamicSearch("changeLang");
-
-  // 言語変更でDOMを変更
-  if (localStorage.getItem("currentpage"))
-  {
-    let currentpage = JSON.parse(localStorage.getItem("currentpage"));
-    console.log("currentpage:" + currentpage);
-
-    let id = document.getElementById("data");
-    id.innerHTML = '';
-
-    if (currentpage[0] === "itemcode") displayItemCodes();
-    if (currentpage[0] === "shareBanks") displayInventory(currentpage[1].ShareBank[this.lang], "SHARE BANK");
-    if (currentpage[0] === "allItems") displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
-    if (currentpage[0] === "searchResults") {
-      let tmp = [];
-      currentpage[1].forEach((value) => {
-        this.allItems[lang].forEach((value2) => {
-          if (value[3] === value2[3]) tmp.push(value2);
-        });
-      });
-      // 現在ページの情報を保存
-      this.searchResults = tmp;
-      localStorage.setItem("currentpage", JSON.stringify(["searchResults", tmp]));
-      displayInventory(tmp, "SEARCH RESULTS", "allItems");
-    }
-    if (currentpage[0] === "character") displayCharactor(currentpage[1]);
-  }
-  setCursorAudio();
-
-}
-
-
-function clickDisplayItemCodes(event)
-{
-  playAudio(this.open_audios);
-  localStorage.setItem("currentpage", JSON.stringify(["itemcode", ""]));
-  displayItemCodes();
-  setCursorAudio();
-}
 
 function decoder()
 {
@@ -236,60 +113,6 @@ function decoder()
   setCharactorData(characters, shareBanks, allItems);
 }
 
-async function clickInput(event)
-{
-  try {
-
-    let fileReader = new FileReader();
-    let files = sortInputFiles(event.target.files);
-    let fileData = [];
-
-    for (let i = 0; i < files.length; i++)
-    {
-      //　キャラクターデータファイルだけ取り込み
-      if (files[i].name.match(/psobank|psochar/) == null) continue;
-
-      fileReader.readAsArrayBuffer(files[i]);
-      await new Promise(resolve => fileReader.onload = () => resolve());
-      let binary = new Uint8Array(fileReader.result);
-
-      fileData.push({
-        "filename": files[i].name,
-        "binary": binary
-      });
-    }
-
-    // なかったら終わり
-    if (fileData.length === 0) return;
-
-    localStorage.setItem("fileData", JSON.stringify(fileData));
-    this.fileData = fileData;
-
-    displayAfterEnterd();
-
-    // デコード
-    decoder();
-    // ページャーを表示
-    displayPager();
-    // 詳細表示
-    displayData();
-    // 入力リアルタイム検索機能ロード
-    dynamicSearch();
-
-    setCursorAudio();
-  } catch(e) {
-    //例外エラーが起きた時に実行する処理
-    console.log(e);
-    if (e.name === 'QuotaExceededError')
-    {
-      alert("File size has exceeded local storage capacity. Try to Reduce input file number or Browser settings.\n"
-          + "ファイルサイズがローカルストレージの容量を超えました。 入力するファイル数を減らすか、ブラウザの設定を行ってください。");
-    } else {
-      alert(e);
-    }
-  } finally {
-  }
-}
 
 function setCharactorData(characters, shareBanks, allItems)
 {
@@ -310,37 +133,6 @@ function setCharactorData(characters, shareBanks, allItems)
     this.allItems = allItems;
     console.log(allItems);
   }
-}
-
-function clickCharactor(name)
-{
-  playAudio(this.open_audios);
-  // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify(["character", this.characters[name]]));
-  displayCharactor(this.characters[name]);
-  setCursorAudio();
-}
-
-function clickShareBank(name)
-{
-  playAudio(this.open_audios);
-  // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify(["shareBanks", this.shareBanks[name]]));
-  let id = document.getElementById("data");
-  id.innerHTML = '';
-  displayInventory(this.shareBanks[name].ShareBank[this.lang], "SHARE BANK");
-  setCursorAudio();
-}
-
-function clickAllItems(name)
-{
-  playAudio(this.open_audios);
-  // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify(["allItems", this.allItems]));
-  let id = document.getElementById("data");
-  id.innerHTML = '';
-  displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
-  setCursorAudio();
 }
 
 // FileListをファイル名の照準にする
@@ -415,200 +207,6 @@ function removeCharactorData()
   this.allItems = [];
 }
 
-// 検索ボタンイベント
-function clickSearch(event)
-{
-
-  search(
-    this.allItems,
-    this.lang);
-
-}
-
-// 入力イベントの随時検索
-function dynamicSearch(call)
-{
-
-  let allitems = this.allItems;
-  let lang = this.lang;
-
-  let openbtns =  document.getElementsByClassName("openbtn");
-  for (let btn of openbtns)
-  {
-    btn.addEventListener("input",function(){
-      if (call !== "changeLang") playAudioOpen();
-    });
-  }
-  // イベントリスナーでイベント「input」を登録
-  document.getElementById("ｃategorysearch").addEventListener("input",function(){
-    if (call !== "changeLang") playAudioOpen();
-    search(allItems, lang);
-    setCursorAudio();
-  });
-
-  document.getElementById("wordsearch").addEventListener("input",function(){
-    // if (call !== "changeLang") playAudioCancel();
-    search(allItems, lang);
-    setCursorAudio();
-  });
-}
-
-function search(allItems, lang)
-{
-
-  let word = document.getElementsByName("word")[0].value;
-  let element = document.getElementsByName("element")[0].value;
-  let hit = document.getElementsByName("hit")[0].value;
-  let unTekked = document.getElementsByName("unTekked")[0].checked;
-  let types = document.getElementsByName("types");
-
-  console.log("==== search all items ====");
-  console.log(allItems);
-  console.log("search word:" + word);
-  console.log("search element:" + element);
-  console.log("search hit:" + hit);
-  console.log("search unTekked:" + unTekked);
-
-  let id = document.getElementById("data");
-  id.innerHTML = '';
-
-  // リストがない場合は終了
-  if (this.allItems.length === 0) return;
-
-  // 検索結果初期値。検索欄未入力で全アイテムを表示する
-  let result = [];
-
-  // 検索ワードの全角を半角に変換
-  // 検索ワードのひらがなをかたかなに変換
-  // 検索ワードを大文字化、トリム
-  word = word
-    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-    })
-    .replace(/[ぁ-ん]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) + 0x60);
-    })
-    .toUpperCase().trim();
-
-  element = element
-    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-    })
-    .replace(/[ぁ-ん]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) + 0x60);
-    })
-    .toUpperCase().trim();
-
-  // 検索Hit値の全角を半角に変換
-  hit = hit.replace(/[０-９]/g, function(s) {
-    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-  });
-
-  console.log("search word converted:" + word);
-  console.log("search hit converted:" + hit);
-
-  // typeの選択状態を表す
-  let typeSelected = false;
-  for (const value of types)
-  {
-    if (value.checked)
-    {
-      // typeが選択されていると、選択状態をtrueにする
-      typeSelected = true;
-      result = result.concat(allItems[lang].filter(function(x)
-        {
-            return (x[1].type == value.value);
-        }
-      ));
-    }
-  }
-
-  // typesがすべてfalse（未選択）だった場合、すべてのアイテムを対象にする。
-  if (!typeSelected) result = allItems[lang];
-
-
-  // 名前が指定された場合
-  if (word !== "")
-  {
-    result = result.filter(function(x)
-      {
-
-        // 検索対象の全角を半角に変換
-        // 検索対象のひらがなをかたかなに変換
-        // 検索対象を大文字化、トリム
-        let target = x[1].name
-          .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-          })
-          .replace(/[ぁ-ん]/g, function(s) {
-          return String.fromCharCode(s.charCodeAt(0) + 0x60);
-          })
-          .toUpperCase();
-
-        return target.match(word);
-      }
-    );
-  }
-
-  // エレメントが指定された場合
-  if (element !== "")
-  {
-    result = result.filter(function(x)
-      {
-        if (x[1].type === 1 | x[1].type === 8)
-        {
-          // 武器かS武器の場合、検索対象のエレメント名をカタカナ、大文字へ変換
-          target = x[1].element
-            .replace(/[ぁ-ん]/g, function(s) {
-              return String.fromCharCode(s.charCodeAt(0) + 0x60);
-            })
-            .toUpperCase();
-
-          return target.match(element);
-        }
-      }
-    );
-  }
-
-  if (unTekked)
-  {
-    result = result.filter(function(x)
-      {
-        if (x[1].type === 1) return x[1].tekked === false;
-      }
-    );
-  }
-
-  // HIT値
-  if (hit !== "" & !isNaN(hit))
-  {
-    result = result.filter(function(x)
-      {
-        if (x[1].type === 1) return x[1].attribute["hit"] >= hit;
-      }
-    );
-  }
-
-  console.log("==== search results ====");
-  console.log(result);
-
-  this.searchResults = result;
-
-  // 現在ページの情報を保存
-  localStorage.setItem("currentpage", JSON.stringify(["searchResults", this.searchResults]));
-
-  displayInventory(result, "SEARCH RESULTS", "allItems")
-}
-
-function clickChangeTheme(value)
-{
-  refreshVolume();
-  document.getElementById("stylesheet").href = `./css/${value}.css`;
-  console.log("change to:" + value);
-
-  localStorage.setItem("theme", JSON.stringify(value));
-}
-
 function clicVolumeSlider(value)
 {
   document.getElementById("theme")
@@ -666,11 +264,6 @@ function refreshVolume()
    : setVolume(0);
 }
 
-function isClassicTheme()
-{
-  return document.getElementsByName("themes")[0].checked;
-}
-
 function playAudio()
 {
   if (isClassicTheme()) {
@@ -712,48 +305,13 @@ function playAudioEnter()
 {
 }
 
-function download()
+
+function createCurrentPageDataFile(zip, currentData)
 {
-
-  if (localStorage.getItem("fileData") === null) return;
-
-  var zip = new Zlib.Zip();
-
-  // キャラクターデータファイル作成
-  for (let character of this.characters)
-  {
-    zip = createCharacterDataFile(zip, character, `psobb_character_data/alldata`);
-  }
-  // ShareBankデータファイル作成
-  if (this.shareBanks !== null & this.shareBanks.length !== 0)
-  {
-    zip = createShareBanksDataFile(zip, this.shareBanks[0]["ShareBank"][this.lang], `psobb_character_data/alldata`);
-  }
-  // AllItemsデータファイル作成
-  zip = createAllItemsDataFile(zip, this.allItems[this.lang], `psobb_character_data/alldata`);
-
-  // 現在ページのデータファイルを作成
-  if (localStorage.getItem("currentpage"))
-  {
-    zip = createCurrentPageDataFile(zip, JSON.parse(localStorage.getItem("currentpage")));
-  }
-
-  let compressed = zip.compress();
-  let blob = new Blob([compressed], { 'type': 'application/zip' });
-
-  let link = document.createElement('a');
-  link.setAttribute('download', "psobb_character_data.zip");
-  link.setAttribute('href', window.webkitURL.createObjectURL(blob));
-  link.click();
-
-}
-
-function createCurrentPageDataFile(zip, currentpage)
-{
-  if (currentpage[0] === "character") return createCharacterDataFile(zip, currentpage[1], "psobb_character_data");
-  if (currentpage[0] === "shareBanks") return createShareBanksDataFile(zip, currentpage[1]["ShareBank"][this.lang], "psobb_character_data");
-  if (currentpage[0] === "allItems") return createAllItemsDataFile(zip, currentpage[1][this.lang], "psobb_character_data");
-  if (currentpage[0] === "searchResults") return createSearchResultsDataFile(zip, currentpage[1], "psobb_character_data");
+  if (currentData["page"] === "character") return createCharacterDataFile(zip, currentData["searching"][1], "psobb_character_data");
+  if (currentData["page"] === "shareBank") return createShareBanksDataFile(zip, currentData["searching"][1]["ShareBank"][this.lang], "psobb_character_data");
+  if (currentData["page"] === "allItems") return createAllItemsDataFile(zip, currentData["searching"][1][this.lang], "psobb_character_data");
+  if (currentData["page"] === "searchResults") return createSearchResultsDataFile(zip, currentData["searchResults"], "psobb_character_data");
   return zip;
 }
 
@@ -848,4 +406,18 @@ function displayAfterEnterd()
 function callAdterLoded(call)
 {
   window.addEventListener('load', call());
+}
+
+
+function isClassicTheme()
+{
+  return localStorage.getItem("theme") === "classic";
+}
+
+
+function pushedPageColoer(id)
+{
+  isClassicTheme()
+    ? document.getElementById(id).style.backgroundColor = "#fb7c03"
+    : document.getElementById(id).style.backgroundColor = "#D2B48C";
 }

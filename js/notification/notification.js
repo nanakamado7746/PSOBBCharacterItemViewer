@@ -12,6 +12,14 @@ function notification()
       "date": "2022 May 9",
       "status": "info",
       "text": [
+        "The search specifications have been updated.",
+        "検索の仕様が新しくなりました。"
+      ]
+    },
+    {
+      "date": "2022 May 9",
+      "status": "info",
+      "text": [
         "Sound functionality has been restored.",
         "サウンド機能を復旧をしました。"
       ]

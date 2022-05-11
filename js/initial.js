@@ -17,9 +17,10 @@ function initializeTheme()
   {
     this.theme = localStorage.getItem("theme");
     console.log("theme:" + this.theme);
-    document.getElementById("stylesheet").href = `./css/${this.theme}.css`;
+    let theme = this.theme.replace(/\"/g,"");
+    document.getElementById("stylesheet").href = `./css/${theme}.css`;
   }
-  if (this.theme !== "classic") {
+  if (theme !== "classic") {
     document.getElementsByName("themes")[1].checked = true;
   }
 }

@@ -308,9 +308,9 @@ function playAudioEnter()
 
 function createCurrentPageDataFile(zip, currentData)
 {
-  if (currentData["page"] === "character") return createCharacterDataFile(zip, currentData["searching"][1], "psobb_character_data");
-  if (currentData["page"] === "shareBank") return createShareBanksDataFile(zip, currentData["searching"][1]["ShareBank"][this.lang], "psobb_character_data");
-  if (currentData["page"] === "allItems") return createAllItemsDataFile(zip, currentData["searching"][1][this.lang], "psobb_character_data");
+  if (currentData["page"] === "character") return createCharacterDataFile(zip, currentData["searching"][2], "psobb_character_data");
+  if (currentData["page"] === "shareBank") return createShareBanksDataFile(zip, currentData["searching"][2]["ShareBank"][this.lang], "psobb_character_data");
+  if (currentData["page"] === "allItems") return createAllItemsDataFile(zip, currentData["searching"][2][this.lang], "psobb_character_data");
   if (currentData["page"] === "searchResults") return createSearchResultsDataFile(zip, currentData["searchResults"], "psobb_character_data");
   return zip;
 }

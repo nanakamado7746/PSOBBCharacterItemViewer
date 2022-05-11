@@ -104,7 +104,7 @@ function clickPage(catecory, index)
       break;
     default:
   }
-  
+
   if (window.scrollY >= document.getElementById('sticky').offsetTop)
   {
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
@@ -193,7 +193,8 @@ function download()
   zip = createAllItemsDataFile(zip, this.allItems[this.lang], `psobb_character_data/alldata`);
 
   // 現在ページのデータファイルを作成
-  if (this.currentData)
+  console.log(this.currentData);
+  if (this.currentData !== undefined)
   {
     zip = createCurrentPageDataFile(zip, this.currentData);
   }

@@ -25,6 +25,12 @@ a:hover
   font-weight: bold;
 }
 
+.br::after
+{
+  content: "\A";
+  white-space: pre;
+}
+
 .header
 {
   margin: 0;

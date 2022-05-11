@@ -18,6 +18,7 @@ function initializeTheme()
     this.theme = localStorage.getItem("theme");
     console.log("theme:" + this.theme);
     let theme = this.theme.replace(/\"/g,"");
+    localStorage.setItem("theme", theme);
     document.getElementById("stylesheet").href = `./css/${theme}.css`;
   }
   if (theme !== "classic") {

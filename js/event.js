@@ -54,10 +54,24 @@ async function clickInput(event)
 
 function clickDisplayItemCodes(event)
 {
+  this.currentData["page"] = "itemcode";
+  let beforeScrollY = window.scrollY;
+
   playAudio(this.open_audios);
   displayItemCodes();
+
+  if (document.getElementById('sticky').getBoundingClientRect().top > 0 | beforeScrollY !== window.scrollY)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, beforeScrollY);
+  }
+  else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    document.getElementById('sticky').scrollIntoView();
+  }
+
   setCursorAudio();
-  this.currentData["page"] = "itemcode";
 }
 
 function clickPage(catecory, index)
@@ -237,7 +251,6 @@ function clickChangeTheme(value)
   document.getElementById("stylesheet").href = `./css/${value}.css`;
   console.log("change to:" + value);
   localStorage.setItem("theme", value);
-  console.log(this.currentData);
   pushedPageColoer(`page${this.currentData["searching"][0]}${this.currentData["searching"][1]}`);
 }
 

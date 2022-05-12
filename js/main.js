@@ -421,3 +421,16 @@ function pushedPageColoer(id)
     ? document.getElementById(id).style.backgroundColor = "#fb7c03"
     : document.getElementById(id).style.backgroundColor = "#D2B48C";
 }
+
+function resetSearchItems()
+{
+  for (let type of document.getElementsByName("types"))
+  {
+    type.checked = false;
+  }
+
+  document.getElementsByName("word")[0].value = "";
+  document.getElementsByName("element")[0].value = "";
+  document.getElementsByName("hit")[0].value = "";
+  document.getElementsByName("unTekked")[0].checked = false;
+}

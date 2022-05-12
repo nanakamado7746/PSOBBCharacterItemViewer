@@ -1,6 +1,18 @@
 
 function search(call)
 {
+  let lang = this.lang; //　使ってない
+
+  if (!hasSearchItem()) {
+    resetPage();
+    return;
+  }
+
+  let beforeScrollY = window.scrollY;
+  let breforeStickyOffset = document.getElementById('sticky').offsetTop;
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
   let data = {};
   if (this.currentData["searching"][0] === "character") {
     data["EN"] = this.currentData["searching"][2].Inventory["EN"].concat(this.currentData["searching"][2].Bank["EN"]);
@@ -8,10 +20,7 @@ function search(call)
   }
   if (this.currentData["searching"][0] === "shareBank") data = this.currentData["searching"][2].ShareBank;
   if (this.currentData["searching"][0] === "allItems") data = this.currentData["searching"][2];
-  console.log(data);
   if (data.length === 0) return;
-  // let allitems = this.allItems;
-  let lang = this.lang;
 
   let openbtns =  document.getElementsByClassName("openbtn");
   for (let btn of openbtns)
@@ -21,50 +30,18 @@ function search(call)
     });
   }
 
-  let beforeScrollY = window.scrollY;
-  if (window.scrollY >= document.getElementById('sticky').offsetTop)
+  query(data, lang);
+  if (document.getElementById('sticky').getBoundingClientRect().top > 0)
   {
-    console.log("１回目");
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, beforeScrollY);
+  }
+  else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
+  {
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }
-
-  let id = document.getElementById("data");
-  id.innerHTML = '';
-
-  if (!hasSearchItem()) {
-    delete this.currentData["searchResults"];
-    if ( this.currentData["searching"][0] === "character") {
-      this.currentData["page"] = "character";
-      displayCharacter(this.currentData["searching"][2]);
-    }
-    if ( this.currentData["searching"][0] === "shareBank") {
-      this.currentData["page"] = "shareBank";
-      displayShareBank(this.currentData["searching"][2]);
-    }
-    if ( this.currentData["searching"][0] === "allItems") {
-      this.currentData["page"] = "allItems";
-      displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
-    }
-
-    setCursorAudio();
-
-    if (beforeScrollY < window.scrollY)
-    {
-      scrollTo(0, beforeScrollY);
-    }
-    return;
-  }
-
   setCursorAudio();
-  query(data, lang);
-  console.log(beforeScrollY);
-  console.log(window.scrollY);
-  console.log(window.scrollY);
-  if (beforeScrollY < window.scrollY)
-  {
-    scrollTo(0, beforeScrollY);
-  }
 }
 
 
@@ -227,17 +204,4 @@ function hasSearchItem()
       & document.getElementsByName("element")[0].value === ""
       & document.getElementsByName("hit")[0].value === ""
       & document.getElementsByName("unTekked")[0].checked === false))
-}
-
-function resetSearchItems()
-{
-  for (let type of document.getElementsByName("types"))
-  {
-    type.checked = false;
-  }
-
-  document.getElementsByName("word")[0].value = "";
-  document.getElementsByName("element")[0].value = "";
-  document.getElementsByName("hit")[0].value = "";
-  document.getElementsByName("unTekked")[0].checked = false;
 }

@@ -63,11 +63,13 @@ function clickDisplayItemCodes(event)
 function clickPage(catecory, index)
 {
 
-  let breforeScrollY  = window.scrollY;
-  let id = document.getElementById("data");
-  id.innerHTML = '';
+  let beforeScrollY  = window.scrollY;
   for (let page of document.getElementsByClassName("page")) page.style.backgroundColor = "";
+
   pushedPageColoer(`page${catecory}${index}`);
+
+  let id = document.getElementById("data");
+
 
   console.log(this.currentData);
   switch (catecory) {
@@ -79,6 +81,7 @@ function clickPage(catecory, index)
         search();
         break;
       }
+      id.innerHTML = '';
       displayCharacter(this.characters[index]);
       break;
     case "shareBank":
@@ -89,6 +92,7 @@ function clickPage(catecory, index)
         search();
         break;
       }
+      id.innerHTML = '';
       displayInventory(this.shareBanks[index].ShareBank[this.lang], "SHARE BANK");
       break;
     case "allItems":
@@ -100,18 +104,22 @@ function clickPage(catecory, index)
         search();
         break;
       }
+      id.innerHTML = '';
       displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
       break;
     default:
   }
 
-  if (window.scrollY >= document.getElementById('sticky').offsetTop)
+  if (document.getElementById('sticky').getBoundingClientRect().top > 0)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, beforeScrollY);
+  }
+  else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
   {
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }
-
-  if (window.scrollY !== breforeScrollY) document.getElementById('sticky').scrollIntoView();
 
   playAudio(this.open_audios);
   setCursorAudio();
@@ -217,7 +225,7 @@ function clickSearch(call)
 function clickReset()
 {
   resetSearchItems();
-  search(data, lang);
+  resetPage();
   playAudioOpen();
 }
 
@@ -229,4 +237,40 @@ function clickChangeTheme(value)
   localStorage.setItem("theme", value);
   console.log(this.currentData);
   pushedPageColoer(`page${this.currentData["searching"][0]}${this.currentData["searching"][1]}`);
+}
+
+function resetPage()
+{
+
+  delete this.currentData["searchResults"];
+  let beforeScrollY = window.scrollY;
+
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
+  console.log(this.currentData);
+  if ( this.currentData["searching"][0] === "character") {
+    this.currentData["page"] = "character";
+    displayCharacter(this.currentData["searching"][2]);
+  }
+  if ( this.currentData["searching"][0] === "shareBank") {
+    this.currentData["page"] = "shareBank";
+    displayShareBank(this.currentData["searching"][2]);
+  }
+  if ( this.currentData["searching"][0] === "allItems") {
+    this.currentData["page"] = "allItems";
+    displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
+  }
+
+  if (document.getElementById('sticky').getBoundingClientRect().top > 0 | beforeScrollY !== window.scrollY)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, beforeScrollY);
+  }
+  else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    document.getElementById('sticky').scrollIntoView();
+  }
+  setCursorAudio();
 }

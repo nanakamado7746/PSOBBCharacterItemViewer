@@ -83,10 +83,11 @@ h1
 
 }
 
+.desc{}
 
-
-.desc
+.itemcodeb
 {
+  height: 25px;
 }
 
 .lang

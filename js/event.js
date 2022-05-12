@@ -174,6 +174,8 @@ function changeLang()
       // 現在ページの情報を保存
       this.searchResults = tmp;
       displayInventory(tmp, "SEARCH RESULTS", "allItems");
+      this.currentData["page"] = "searchResults";
+      this.currentData["searchResults"] = tmp;
     }
   }
   setCursorAudio();

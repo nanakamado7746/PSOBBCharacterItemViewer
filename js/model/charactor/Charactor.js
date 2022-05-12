@@ -14,8 +14,6 @@ class Charactor extends Abstract {
   Level;
   // キャラクターの経験値
   Experience;
-  // キャラクターのメセタ
-  Meseta;
   // キャラクターのEp1チャレンジの進行度
   Ep1Progress;
   // キャラクターのEp2チャレンジの進行度
@@ -53,6 +51,14 @@ class Charactor extends Abstract {
       this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot, "JA");
       // キャラクター倉庫アイテムをセット
       this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, `${slot} Bank`, "JA");
+      // キャラクターの所持メセタをインベントリに追加
+      this.setMeseta(charactorData.slice(884,887), this.Inventory, slot, "EN");
+      // キャラクターの所持メセタをインベントリに追加
+      this.setMeseta(charactorData.slice(1795,1799), this.Bank, `${slot} Bank`, "EN");
+      // キャラクターの倉庫メセタを倉庫に追加
+      this.setMeseta(charactorData.slice(884,887), this.Inventory, slot, "JA");
+      // キャラクターの倉庫メセタを倉庫に追加
+      this.setMeseta(charactorData.slice(1795,1799), this.Bank, `${slot} Bank`, "JA");
   }
 
   setSlot(slot)

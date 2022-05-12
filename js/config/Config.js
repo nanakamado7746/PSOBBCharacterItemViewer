@@ -31,7 +31,8 @@ class Config {
     DISK : 6,
     TOOL : 7,
     SRANK_WEAPON : 8,
-    OTHER : 9
+    OTHER : 9,
+    MESETA : 10,
   };
 
   AdditionType = {

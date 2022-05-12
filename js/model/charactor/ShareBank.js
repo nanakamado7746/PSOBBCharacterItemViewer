@@ -1,18 +1,17 @@
 class ShareBank extends Abstract {
 
-  // キャラクターのメセタ
-  Meseta;
   // 共有倉庫品
   ShareBank = {};
 
-  constructor(binaryCharactor, slot)
+  constructor(characterData, slot)
   {
-    super(binaryCharactor, slot);
-    this.setMeseta();
-    this.setInventory(binaryCharactor.slice(8, 4808), this.ShareBank, 200, 24, slot, "EN");
-    this.setInventory(binaryCharactor.slice(8, 4808), this.ShareBank, 200, 24, slot, "JA");
+    super(characterData, slot);
+    this.setInventory(characterData.slice(8, 4808), this.ShareBank, 200, 24, slot, "EN");
+    this.setInventory(characterData.slice(8, 4808), this.ShareBank, 200, 24, slot, "JA");
+    // キャラクターの所持メセタをインベントリに追加
+    this.setMeseta(characterData.slice(4, 7), this.ShareBank, slot, "EN");
+    // キャラクターの倉庫メセタを倉庫に追加
+    this.setMeseta(characterData.slice(4, 7), this.ShareBank, slot, "JA");
   }
-
-  setMeseta(binaryCharactor) {}
 
 }

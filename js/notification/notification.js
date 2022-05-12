@@ -9,7 +9,15 @@ function notification()
       ]
     },
     {
-      "date": "2022 May 9",
+      "date": "2022 May 12",
+      "status": "info",
+      "text": [
+        "TMeseta is now displayed.",
+        "メセタが表示されるようになりました。"
+      ]
+    },
+    {
+      "date": "2022 May 12",
       "status": "info",
       "text": [
         "The search specifications have been updated.",

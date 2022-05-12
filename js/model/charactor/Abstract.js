@@ -45,9 +45,23 @@ class Abstract {
         // アイテム情報の開始位置を次のアイテムに更新
         index += length;
         end += length;
-      }
-
+    }
       inventory[lang] = array;
+  }
+
+  setMeseta(mesetaData, inventory, slot, lang)
+  {
+    const name = (lang === "EN") ? "MESETA" : "メセタ";
+    const item = {
+      type: 10,
+      name: name,
+      display: `${(mesetaData[2] << 8 | mesetaData[1]) << 8 | mesetaData[0]} ${name} `,
+    };
+    inventory[lang].push([
+      "999999",
+      item,
+      slot
+    ]);
   }
 
   isBlank(itemData)

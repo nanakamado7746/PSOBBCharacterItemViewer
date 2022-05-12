@@ -12,8 +12,8 @@ function notification()
       "date": "2022 May 12",
       "status": "info",
       "text": [
-        "TMeseta is now displayed.",
-        "メセタが表示されるようになりました。"
+        "Meseta is now available for viewing..",
+        "メセタの閲覧ができるようになりました。"
       ]
     },
     {

@@ -355,7 +355,7 @@ h1
 .data {}
 
 .data_window {
-  width: 900px;
+  width: 1000px;
 }
 
 .data .data_banner
@@ -473,12 +473,19 @@ h1
 
 .data td
 {
+  padding: 0 0 0 2em;
   font-size: 100%;
-  padding-left: 2em;
-  padding-right: 2em;
-  width: 0%;
   color: #ffffff;
   font-weight: bold;
+  table-layout: fixed;
+  width: 0;
+}
+
+.data .data_td_item {}
+
+.data .data_td_slot
+{
+  padding: 0 1em 0 0em;
 }
 
 .data tr:hover {
@@ -490,7 +497,7 @@ h1
 
 .data_header
 {
-  height: 25px;
+  height: 27px;
   width: 100%;
   background-image: url("../resources/images/background/data_header.png");
   background-size: 100%;

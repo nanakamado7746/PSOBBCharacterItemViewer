@@ -233,12 +233,14 @@ function displayInventory(inventory, title, mode)
     {
       let tr = document.createElement("tr");
       let td = document.createElement("td");
+      td.setAttribute('class', "data_td_item");
       let text = document.createTextNode(inventory[i][1]["display"]);
       td.appendChild(text);
       tr.appendChild(td);
       if (mode == "allItems")
       {
         let td2 = document.createElement("td");
+        td2.setAttribute('class', "data_td_slot");
         let slot = document.createTextNode(`Slot: ${inventory[i][2]}`);
         td2.appendChild(slot);
         tr.appendChild(td2);

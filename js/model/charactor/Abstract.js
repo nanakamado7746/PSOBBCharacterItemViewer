@@ -52,13 +52,15 @@ class Abstract {
   setMeseta(mesetaData, inventory, slot, lang)
   {
     const name = (lang === "EN") ? "MESETA" : "メセタ";
+    const meseta = (mesetaData[2] << 8 | mesetaData[1]) << 8 | mesetaData[0];
     const item = {
       type: 10,
       name: name,
-      display: `${(mesetaData[2] << 8 | mesetaData[1]) << 8 | mesetaData[0]} ${name} `,
+      value: meseta,
+      display: `${meseta} ${name} `,
     };
     inventory[lang].push([
-      "999999",
+      "09" + meseta.toString().padStart(7, '0'),
       item,
       slot
     ]);

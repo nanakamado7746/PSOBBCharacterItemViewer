@@ -84,13 +84,13 @@ function decoder()
     if (fileData[i]["filename"].match(/psochar/) !== null)
     {
       let slot = fileData[i]["filename"].match(/[0-9]+(?=\.)/);
-      let charactor = new Charactor(binary, Number(slot) + 1);
-      characters.push(charactor);
+      let character = new Character(binary, Number(slot) + 1);
+      characters.push(character);
 
-      allItems["EN"] = allItems["EN"].concat(charactor.Inventory["EN"]);
-      allItems["EN"] = allItems["EN"].concat(charactor.Bank["EN"]);
-      allItems["JA"] = allItems["JA"].concat(charactor.Inventory["JA"]);
-      allItems["JA"] = allItems["JA"].concat(charactor.Bank["JA"]);
+      allItems["EN"] = allItems["EN"].concat(character.Inventory["EN"]);
+      allItems["EN"] = allItems["EN"].concat(character.Bank["EN"]);
+      allItems["JA"] = allItems["JA"].concat(character.Inventory["JA"]);
+      allItems["JA"] = allItems["JA"].concat(character.Bank["JA"]);
     }
   }
 

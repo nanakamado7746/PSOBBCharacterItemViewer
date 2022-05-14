@@ -1,4 +1,4 @@
-class Charactor extends Abstract {
+class Character extends Abstract {
 
   // キャラクターのスロット番号
   Slot;
@@ -23,42 +23,42 @@ class Charactor extends Abstract {
   // キャラクターの倉庫品
   Bank = {};
 
-  constructor(charactorData, slot) {
-      super(charactorData, slot);
+  constructor(characterData, slot) {
+      super(characterData, slot);
       // キャラクターのスロット番号をセット
       this.setSlot(slot);
       // キャラクターの名前をセット
-      this.setName(charactorData);
+      this.setName(characterData);
       // キャラクターの種族をセット
-      this.setGuildCardNumber(charactorData.slice(888,896));
+      this.setGuildCardNumber(characterData.slice(888,896));
       // キャラクターの種族をセット
-      this.setClass(charactorData);
+      this.setClass(characterData);
       // キャラクターのセクションIDをセット
-      this.setSectionID(charactorData);
+      this.setSectionID(characterData);
       // キャラクターのレベルをセット
-      this.setLevel(charactorData);
+      this.setLevel(characterData);
       // キャラクターの経験値をセット
-      this.setExperience(charactorData);
+      this.setExperience(characterData);
       // キャラクターのEp1チャレンジの進行度
-      this.setEp1Progress(charactorData, 11460, 9);
+      this.setEp1Progress(characterData, 11460, 9);
       // キャラクターのEp2チャレンジの進行度
-      this.setEp2Progress(charactorData, 11496, 6);
+      this.setEp2Progress(characterData, 11496, 6);
       // キャラクターの所持品をセット
-      this.setInventory(charactorData.slice(20, 860), this.Inventory, 28, slot, "EN");
+      this.setInventory(characterData.slice(20, 860), this.Inventory, 28, slot, "EN");
       // キャラクター倉庫アイテムをセット
-      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 24, `${slot} Bank`, "EN");
+      this.setInventory(characterData.slice(1800, 6600), this.Bank, 24, `${slot} Bank`, "EN");
       // キャラクターの所持品をセット
-      this.setInventory(charactorData.slice(20, 860), this.Inventory, 28, slot, "JA");
+      this.setInventory(characterData.slice(20, 860), this.Inventory, 28, slot, "JA");
       // キャラクター倉庫アイテムをセット
-      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 24, `${slot} Bank`, "JA");
+      this.setInventory(characterData.slice(1800, 6600), this.Bank, 24, `${slot} Bank`, "JA");
       // キャラクターの所持メセタをインベントリに追加
-      this.setMeseta(charactorData.slice(884,887), this.Inventory, slot, "EN");
+      this.setMeseta(characterData.slice(884,887), this.Inventory, slot, "EN");
       // キャラクターの所持メセタをインベントリに追加
-      this.setMeseta(charactorData.slice(1795,1799), this.Bank, `${slot} Bank`, "EN");
+      this.setMeseta(characterData.slice(1795,1799), this.Bank, `${slot} Bank`, "EN");
       // キャラクターの倉庫メセタを倉庫に追加
-      this.setMeseta(charactorData.slice(884,887), this.Inventory, slot, "JA");
+      this.setMeseta(characterData.slice(884,887), this.Inventory, slot, "JA");
       // キャラクターの倉庫メセタを倉庫に追加
-      this.setMeseta(charactorData.slice(1795,1799), this.Bank, `${slot} Bank`, "JA");
+      this.setMeseta(characterData.slice(1795,1799), this.Bank, `${slot} Bank`, "JA");
   }
 
   setSlot(slot)
@@ -66,9 +66,9 @@ class Charactor extends Abstract {
     this.Slot = slot;
   }
 
-  setName(charactorData)
+  setName(characterData)
   {
-    const array = charactorData.slice(968,988);
+    const array = characterData.slice(968,988);
     let name = "";
     for (let i = 0; i < array.length; i += 2)
     {
@@ -80,10 +80,10 @@ class Charactor extends Abstract {
     this.Name = name;
   }
 
-  setGuildCardNumber(charactorData)
+  setGuildCardNumber(characterData)
   {
     let guildCardNumber = "";
-    for (let value of charactorData)
+    for (let value of characterData)
     {
       guildCardNumber += value & 0x0F;
     }
@@ -91,58 +91,58 @@ class Charactor extends Abstract {
     this.GuildCardNumber = guildCardNumber;
   }
 
-  setClass(charactorData)
+  setClass(characterData)
   {
-    (charactorData[937] in Config.Classes)
-      ? this.Class = Config.Classes[charactorData[937]]
+    (characterData[937] in Config.Classes)
+      ? this.Class = Config.Classes[characterData[937]]
       : this.Class = "undefined";
-      console.log(`class: ${charactorData[937]}`);
+      console.log(`class: ${characterData[937]}`);
   }
 
-  setSectionID(charactorData)
+  setSectionID(characterData)
   {
-    (charactorData[936] in Config.SectionIDs)
-      ? this.SectionID = Config.SectionIDs[charactorData[936]]
+    (characterData[936] in Config.SectionIDs)
+      ? this.SectionID = Config.SectionIDs[characterData[936]]
       : this.SectionID = "undefined";
-      console.log(`sectionID: ${charactorData[936]}`);
+      console.log(`sectionID: ${characterData[936]}`);
   }
 
-  setLevel(charactorData)
+  setLevel(characterData)
   {
-    console.log(`level: ${charactorData[876] + 1}`);
-    this.Level = charactorData[876] + 1;
+    console.log(`level: ${characterData[876] + 1}`);
+    this.Level = characterData[876] + 1;
   }
 
-  setExperience(charactorData) {}
+  setExperience(characterData) {}
 
-  setEp1Progress(charactorData, index, number)
+  setEp1Progress(characterData, index, number)
   {
     console.log("challenge progress: ep1")
-    const count = this.clearCount(charactorData, index, number);
+    const count = this.clearCount(characterData, index, number);
     (count === 0)
       ? this.Ep1Progress = "No Progress"
       : this.Ep1Progress = `Stage ${count} Cleared! | ${Config.Titles[count]}`;
   }
 
-  setEp2Progress(charactorData, index, number)
+  setEp2Progress(characterData, index, number)
   {
     console.log("challenge progress: ep2")
-    const count = this.clearCount(charactorData, index, number);
+    const count = this.clearCount(characterData, index, number);
     (count === 0)
       ? this.Ep2Progress = "No Progress"
       : this.Ep2Progress = `Stage ${count} Cleared!`;
   }
 
-  clearCount(charactorData, index, number)
+  clearCount(characterData, index, number)
   {
     let count = 0;
     for (let i = 0; i < number; i++)
     {
-      if (charactorData.slice(index, index + 4).join('') != 0)
+      if (characterData.slice(index, index + 4).join('') != 0)
       {
         console.log("stage:" + i + 1);
         console.log("clear time:");
-        console.log(charactorData.slice(index, index + 4));
+        console.log(characterData.slice(index, index + 4));
         count += 1;
       }
       index = index + 4;

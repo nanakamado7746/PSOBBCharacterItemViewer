@@ -252,7 +252,7 @@ h1
   z-index: 100;
   padding: 1em 0em 0em 0em;
   width: auto;
-  font-size: 80%;
+  font-size: 100%;
 }
 
 .sticky_indent
@@ -323,10 +323,10 @@ h1
 .reset
 {
   background-image:url('../resources/images/icon/batsu.png');
-  background-size: 50%;
+  background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 20px;
+  width: 30px;
   height: 20px;
   border-radius: 10px;
 }

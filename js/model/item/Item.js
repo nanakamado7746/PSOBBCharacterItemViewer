@@ -55,7 +55,7 @@ class Item {
 
   isSRankWeapon(itemCode)
   {
-    return (Config.SRankWeaponRange[0] <= itemCode >> 8 &&  itemCode >> 8 <= Config.SRankWeaponRange[1]);
+    return (Config.SRankWeaponRange[0] <= itemCode >> 8 && itemCode >> 8 <= Config.SRankWeaponRange[1]);
   }
   isWeapon(itemCode)
   {
@@ -193,16 +193,16 @@ class Item {
     const sync = itemData[16];
     const iq = itemData[17];
     const color = Config.MagColorCodes[itemData[19]];
-    const def = itemData[5] << 8 | itemData[4] / 100;
-    const pow = itemData[7] << 8 | itemData[6] / 100;
-    const dex = itemData[9] << 8 | itemData[8] / 100;
-    const mind = itemData[11] << 8 | itemData[10] / 100;
+    const def = (itemData[5] << 8 | itemData[4]) / 100;
+    const pow = (itemData[7] << 8 | itemData[6]) / 100;
+    const dex = (itemData[9] << 8 | itemData[8]) / 100;
+    const mind = (itemData[11] << 8 | itemData[10]) / 100;
     // pbsの要素は0=center, 1=right、2=left
     const pbs = this.getPbs(this.binaryArrayToHex([itemData[3], itemData[18]]));
 
     return {
       type: 5,
-      name: name,
+      name: `${name} LV${level} [${color}]`,
       level: level,
       sync: sync,
       iq: iq,

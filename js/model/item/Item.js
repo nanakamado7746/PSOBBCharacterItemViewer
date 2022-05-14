@@ -8,7 +8,7 @@ class Item {
     Config.init(lang);
 
     // アイテムの種類を取得（武器、鎧、テクニックなど）
-    let itemType = this.getItemType(itemCode);
+    const itemType = this.getItemType(itemCode);
     console.log("item type:" + itemType);
 
     this.Item = this.createItem(itemData, itemCode, itemType);
@@ -94,18 +94,18 @@ class Item {
   weapon(itemCode, itemData)
   {
 
-    let name = this.getItemName(itemCode);
-    let grinder = itemData[3];
-    let native = this.getNative(itemData);
-    let aBeast = this.getABeast(itemData);
-    let machine = this.getMachine(itemData);
-    let dark = this.getDark(itemData);
-    let hit = this.getHit(itemData);
+    const name = this.getItemName(itemCode);
+    const grinder = itemData[3];
+    const native = this.getNative(itemData);
+    const aBeast = this.getABeast(itemData);
+    const machine = this.getMachine(itemData);
+    const dark = this.getDark(itemData);
+    const hit = this.getHit(itemData);
     // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
     if (itemData[4] !== 0x00 & itemData[4] !== 0x80) element = ` [${this.getElement(itemData)}]`;
 
-    let tekkedMode = this.isTekked(itemData, itemCode);
+    const tekkedMode = this.isTekked(itemData, itemCode);
     let tekkedText = "";
     // 未鑑定の場合は未鑑定表記する
     if (!tekkedMode) tekkedText = "? ";
@@ -130,12 +130,12 @@ class Item {
 
   frame(itemCode, itemData)
   {
-    let name = this.getItemName(itemCode);
-    let slot = itemData[5];
-    let def = itemData[6];
-    let defMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.DEF);
-    let avoid = itemData[8];
-    let avoidMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.AVOID);
+    const name = this.getItemName(itemCode);
+    const slot = itemData[5];
+    const def = itemData[6];
+    const defMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.DEF);
+    const avoid = itemData[8];
+    const avoidMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.AVOID);
 
     return {
       type: 2,
@@ -155,11 +155,11 @@ class Item {
 
   barrier(itemCode, itemData)
   {
-    let name = this.getItemName(itemCode);
-    let def = itemData[6];
-    let defMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.DEF);
-    let avoid = itemData[8];
-    let avoidMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.AVOID);
+    const name = this.getItemName(itemCode);
+    const def = itemData[6];
+    const defMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.DEF);
+    const avoid = itemData[8];
+    const avoidMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.AVOID);
 
     return {
       type: 3,
@@ -178,7 +178,7 @@ class Item {
 
   unit(itemCode, itemData)
   {
-    let name = this.getItemName(itemCode);
+    const name = this.getItemName(itemCode);
     return {
       type: 4,
       name: name,
@@ -188,17 +188,17 @@ class Item {
 
   mag(itemCode, itemData)
   {
-    let name = this.getItemName(itemCode.substring(0, 4) + "00");
-    let level = itemData[2];
-    let sync = itemData[16];
-    let iq = itemData[17];
-    let color = Config.MagColorCodes[itemData[19]];
-    let def = this.binArrayToInt([itemData[5], itemData[4]]) / 100;
-    let pow = this.binArrayToInt([itemData[7], itemData[6]]) / 100;
-    let dex = this.binArrayToInt([itemData[9], itemData[8]]) / 100;
-    let mind = this.binArrayToInt([itemData[11], itemData[10]]) / 100;
+    const name = this.getItemName(itemCode.substring(0, 4) + "00");
+    const level = itemData[2];
+    const sync = itemData[16];
+    const iq = itemData[17];
+    const color = Config.MagColorCodes[itemData[19]];
+    const def = this.binaryArrayToInt([itemData[5], itemData[4]]) / 100;
+    const pow = this.binaryArrayToInt([itemData[7], itemData[6]]) / 100;
+    const dex = this.binaryArrayToInt([itemData[9], itemData[8]]) / 100;
+    const mind = this.binaryArrayToInt([itemData[11], itemData[10]]) / 100;
     // pbsの要素は0=center, 1=right、2=left
-    let pbs = this.getPbs(this.binArrayToString([itemData[3], itemData[18]]));
+    const pbs = this.getPbs(this.binaryArrayToHex([itemData[3], itemData[18]]));
 
     return {
       type: 5,
@@ -225,8 +225,8 @@ class Item {
   disk(itemCode, itemData)
   {
 
-    let name = Config.DiskNameCodes[itemData[4]];
-    let level = itemData[2] + 1;
+    const name = Config.DiskNameCodes[itemData[4]];
+    const level = itemData[2] + 1;
     return {
       type: 6,
       name: `${name} LV${level} ${Config.DiskNameLanguage}`,
@@ -238,10 +238,10 @@ class Item {
   sRankWeapon(itemCode, itemData)
   {
 
-    let cumstomName = this.getCustomName(itemData.slice(6, 12));
-    let name = `S-RANK ${cumstomName} ${Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
-    let grinder = itemData[3];
-    let element = this.getSrankElement(itemData);
+    const cumstomName = this.getCustomName(itemData.slice(6, 12));
+    const name = `S-RANK ${cumstomName} ${Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
+    const grinder = itemData[3];
+    const element = this.getSrankElement(itemData);
 
     return {
       type: 8,
@@ -254,7 +254,7 @@ class Item {
 
   tool(itemCode, itemData)
   {
-    let name = this.getItemName(itemCode);
+    const name = this.getItemName(itemCode);
     let number = 0;
     (itemData.length === 28)
       // イベントリの場合
@@ -272,7 +272,7 @@ class Item {
 
   other(itemCode, itemData)
   {
-    let name = this.getItemName(itemCode);
+    const name = this.getItemName(itemCode);
     let number = 0;
     (itemData.length === 28)
       // イベントリの場合
@@ -343,7 +343,7 @@ class Item {
 
   getAttribute(attributeType, itemData)
   {
-    let attributes =
+    const attributes =
     [
         // ひとつめの属性値
         itemData.slice(6, 8),
@@ -433,9 +433,9 @@ class Item {
   {
     // 計算に関係のない初期データを削除
     array[0] = (array[0] - 0x80);
-    let first = Math.floor(array[0] / 0x04);
-    let second = Math.floor(((array[0] % 0x04) << 8 | array[1]) / 0x20);
-    let third = array[1] % 0x20;
+    const first = Math.floor(array[0] / 0x04);
+    const second = Math.floor(((array[0] % 0x04) << 8 | array[1]) / 0x20);
+    const third = array[1] % 0x20;
     return [
       first,
       second,
@@ -443,16 +443,16 @@ class Item {
     ];
   }
 
-  binArrayToInt(arr){
-    let str = '';
-    for(let el of arr)
+  binaryArrayToInt(arr){
+    let int;
+    for (let el of arr)
     {
-      str += el.toString('16').padStart(2, '0')
+      int = int << 8 | el;
     }
-    return parseInt(str, 16);
+    return int;
   }
 
-  binArrayToString(arr){
+  binaryArrayToHex(arr){
     let str = '';
     for(let el of arr)
     {

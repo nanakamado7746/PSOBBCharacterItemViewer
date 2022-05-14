@@ -44,13 +44,13 @@ class Charactor extends Abstract {
       // キャラクターのEp2チャレンジの進行度
       this.setEp2Progress(charactorData, 11496, 6);
       // キャラクターの所持品をセット
-      this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot, "EN");
+      this.setInventory(charactorData.slice(20, 860), this.Inventory, 28, slot, "EN");
       // キャラクター倉庫アイテムをセット
-      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, `${slot} Bank`, "EN");
+      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 24, `${slot} Bank`, "EN");
       // キャラクターの所持品をセット
-      this.setInventory(charactorData.slice(20, 860), this.Inventory, 30, 28, slot, "JA");
+      this.setInventory(charactorData.slice(20, 860), this.Inventory, 28, slot, "JA");
       // キャラクター倉庫アイテムをセット
-      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 200, 24, `${slot} Bank`, "JA");
+      this.setInventory(charactorData.slice(1800, 6600), this.Bank, 24, `${slot} Bank`, "JA");
       // キャラクターの所持メセタをインベントリに追加
       this.setMeseta(charactorData.slice(884,887), this.Inventory, slot, "EN");
       // キャラクターの所持メセタをインベントリに追加
@@ -68,7 +68,7 @@ class Charactor extends Abstract {
 
   setName(charactorData)
   {
-    let array = charactorData.slice(968,988);
+    const array = charactorData.slice(968,988);
     let name = "";
     for (let i = 0; i < array.length; i += 2)
     {

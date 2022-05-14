@@ -1,9 +1,9 @@
 class Abstract {
 
-  constructor(charactorData, slot)
+  constructor(characterData, slot)
   {
     Config.init();
-    console.log(charactorData);
+    console.log(characterData);
   }
 
   setInventory(itemsData, inventory, length, slot, lang)
@@ -28,14 +28,15 @@ class Abstract {
         if (this.isBlank(itemData)) continue;
 
         // アイテムコード取得
-        let itemCode = this.binaryArrayToHex(itemData.slice(0, 3));
-        console.log("item code:" + itemCode);
+        let itemCode = this.binaryArrayToInt(itemData.slice(0, 3));
+        let itemCodeHex = this.binaryArrayToHex(itemData.slice(0, 3));
+        console.log("item code:" + itemCodeHex);
 
         let item = new Item(itemData, itemCode, lang).Item;
 
         // 所持品のリストにアイテム情報を追加
         array.push([
-          itemCode,
+          itemCodeHex,
           item,
           slot
         ]);
@@ -54,7 +55,7 @@ class Abstract {
       display: `${meseta} ${name} `,
     };
     inventory[lang].push([
-      "09" + meseta.toString().padStart(7, '0'),
+      "09" + meseta.toString().padStart(7, '0'), // prefixをつけてメセタをアイテムコードの最大値にする。
       item,
       slot
     ]);

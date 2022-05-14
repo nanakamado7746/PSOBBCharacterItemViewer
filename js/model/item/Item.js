@@ -55,40 +55,40 @@ class Item {
 
   isSRankWeapon(itemCode)
   {
-    return (Config.SRankWeaponRange[0] <= parseInt(itemCode.substring(0, 4), 16) && parseInt(itemCode.substring(0, 4), 16) <= Config.SRankWeaponRange[1]);
+    return (Config.SRankWeaponRange[0] <= itemCode >> 8 &&  itemCode >> 8 <= Config.SRankWeaponRange[1]);
   }
   isWeapon(itemCode)
   {
-    return (Config.WeaponRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.WeaponRange[1]);
+    return (Config.WeaponRange[0] <= itemCode && itemCode <= Config.WeaponRange[1]);
   }
   isCommonWeapon(itemCode)
   {
     // コモン武器が含まれている最小アイテムコード以下、かつコモン武器のグレード数以下であること
-    return (parseInt(itemCode, 16) <= Config.CommonWeaponContainsCode && parseInt(itemCode.substring(4, 6), 16) <= Config.CommonWeaponsMaxCode);
+    return (itemCode <= Config.CommonWeaponContainsCode && itemCode & 0x00FFFF <= Config.CommonWeaponsMaxCode);
   }
   isFrame(itemCode)
   {
-    return (Config.FrameRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.FrameRange[1]);
+    return (Config.FrameRange[0] <= itemCode && itemCode <= Config.FrameRange[1]);
   }
   isBarrier(itemCode)
   {
-    return (Config.BarrierRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.BarrierRange[1]);
+    return (Config.BarrierRange[0] <= itemCode && itemCode <= Config.BarrierRange[1]);
   }
   isUnit(itemCode)
   {
-    return (Config.UnitRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.UnitRange[1]);
+    return (Config.UnitRange[0] <= itemCode && itemCode <= Config.UnitRange[1]);
   }
   isMag(itemCode)
   {
-    return (Config.MagRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.MagRange[1]);
+    return (Config.MagRange[0] <= itemCode && itemCode <= Config.MagRange[1]);
   }
   isDisk(itemCode)
   {
-    return (parseInt(itemCode.substring(0, 4), 16) == Config.DiskCode);
+    return (itemCode >> 8 == Config.DiskCode);
   }
   isTool(itemCode)
   {
-    return (Config.ToolRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.ToolRange[1]);
+    return (Config.ToolRange[0] <= itemCode && itemCode <= Config.ToolRange[1]);
   }
 
   weapon(itemCode, itemData)
@@ -188,15 +188,15 @@ class Item {
 
   mag(itemCode, itemData)
   {
-    const name = this.getItemName(itemCode.substring(0, 4) + "00");
+    const name = this.getItemName(itemCode & 0xFFFF00);
     const level = itemData[2];
     const sync = itemData[16];
     const iq = itemData[17];
     const color = Config.MagColorCodes[itemData[19]];
-    const def = this.binaryArrayToInt([itemData[5], itemData[4]]) / 100;
-    const pow = this.binaryArrayToInt([itemData[7], itemData[6]]) / 100;
-    const dex = this.binaryArrayToInt([itemData[9], itemData[8]]) / 100;
-    const mind = this.binaryArrayToInt([itemData[11], itemData[10]]) / 100;
+    const def = itemData[5] << 8 | itemData[4] / 100;
+    const pow = itemData[7] << 8 | itemData[6] / 100;
+    const dex = itemData[9] << 8 | itemData[8] / 100;
+    const mind = itemData[11] << 8 | itemData[10] / 100;
     // pbsの要素は0=center, 1=right、2=left
     const pbs = this.getPbs(this.binaryArrayToHex([itemData[3], itemData[18]]));
 
@@ -239,7 +239,7 @@ class Item {
   {
 
     const cumstomName = this.getCustomName(itemData.slice(6, 12));
-    const name = `S-RANK ${cumstomName} ${Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
+    const name = `S-RANK ${cumstomName} ${Config.SRankWeaponCodes[itemCode & 0xFFFF00]}`;
     const grinder = itemData[3];
     const element = this.getSrankElement(itemData);
 
@@ -289,10 +289,11 @@ class Item {
 
   getItemName(itemCode)
   {
-    itemCode = "0x" + itemCode;
 
+      console.log(itemCode);
     if (itemCode in Config.ItemCodes)
     {
+
       return Config.ItemCodes[itemCode];
     }
     return `undefined. (${itemCode})`;

@@ -27,6 +27,8 @@ function displayItemCodes()
   (this.lang === "JA")
     ? itemCodes = ItemCodes_JA()
     : itemCodes = ItemCodes();
+    
+  console.log(itemCodes);
 
   let id = document.getElementById("data");
   id.innerHTML = '';
@@ -66,13 +68,13 @@ function displayItemCodes()
   table.classList.add("data_cursor");
   let tbody = document.createElement("tbody");
 
-  if (Object.keys(itemCodes).lenght !== 0)
+  if (Object.keys(itemCodes).length !== 0)
   {
     for (let key in itemCodes)
     {
       let tr = document.createElement("tr");
       let td = document.createElement("td");
-      let text = document.createTextNode(key);
+      let text = document.createTextNode("0x" + Number(key).toString(16).padStart(6, 0).toUpperCase());
       td.appendChild(text);
       tr.appendChild(td);
       let td2 = document.createElement("td");

@@ -93,16 +93,16 @@ class Charactor extends Abstract {
 
   setClass(charactorData)
   {
-    (charactorData[937] in this.Config.Classes)
-      ? this.Class = this.Config.Classes[charactorData[937]]
+    (charactorData[937] in Config.Classes)
+      ? this.Class = Config.Classes[charactorData[937]]
       : this.Class = "undefined";
       console.log(`class: ${charactorData[937]}`);
   }
 
   setSectionID(charactorData)
   {
-    (charactorData[936] in this.Config.SectionIDs)
-      ? this.SectionID = this.Config.SectionIDs[charactorData[936]]
+    (charactorData[936] in Config.SectionIDs)
+      ? this.SectionID = Config.SectionIDs[charactorData[936]]
       : this.SectionID = "undefined";
       console.log(`sectionID: ${charactorData[936]}`);
   }
@@ -121,7 +121,7 @@ class Charactor extends Abstract {
     const count = this.clearCount(charactorData, index, number);
     (count === 0)
       ? this.Ep1Progress = "No Progress"
-      : this.Ep1Progress = `Stage ${count} Cleared! | ${this.Config.Titles[count]}`;
+      : this.Ep1Progress = `Stage ${count} Cleared! | ${Config.Titles[count]}`;
   }
 
   setEp2Progress(charactorData, index, number)

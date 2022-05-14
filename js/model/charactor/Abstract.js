@@ -1,8 +1,8 @@
 class Abstract {
-  Config = new Config();
 
   constructor(charactorData, slot)
   {
+    Config.init();
     console.log(charactorData);
   }
 

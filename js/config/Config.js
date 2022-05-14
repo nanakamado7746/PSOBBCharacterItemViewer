@@ -1,28 +1,28 @@
 class Config {
   // 全アイテムコードは長いのでjsを分けて取得
-  ItemCodes;
-  ElementCodes;
-  SrankElementCodes;
-  FrameAdditions;
-  BarrierAdditions;
-  DiskNameCodes;
-  DiskNameLanguage;
-  PBs;
-  WeaponRange = [ 0x000000, 0x00ED00 ];
-  FrameRange = [ 0x010100, 0x010158 ];
-  BarrierRange = [ 0x010200, 0x0102A5 ];
-  UnitRange = [ 0x010300, 0x010364 ];
-  MagRange = [ 0x020000, 0x025200 ];
-  ToolRange = [ 0x030000, 0x030102 ];
-  MesetaRange = [ 0x040000, 0x040000 ];
-  DiskRange = [ 0x050000, 0x05121D ];
-  EphineaRange = [ 0x031005, 0x031810 ];
-  SRankWeaponRange = [ 0x0070, 0x0088 ];
-  DiskCode = 0x0302;
-  CommonWeaponContainsCode = 0x000C03;
-  CommonWeaponsMaxCode = 0x04;
+  static ItemCodes;
+  static ElementCodes;
+  static SrankElementCodes;
+  static FrameAdditions;
+  static BarrierAdditions;
+  static DiskNameCodes;
+  static DiskNameLanguage;
+  static PBs;
+  static WeaponRange = [ 0x000000, 0x00ED00 ];
+  static FrameRange = [ 0x010100, 0x010158 ];
+  static BarrierRange = [ 0x010200, 0x0102A5 ];
+  static UnitRange = [ 0x010300, 0x010364 ];
+  static MagRange = [ 0x020000, 0x025200 ];
+  static ToolRange = [ 0x030000, 0x030102 ];
+  static MesetaRange = [ 0x040000, 0x040000 ];
+  static DiskRange = [ 0x050000, 0x05121D ];
+  static EphineaRange = [ 0x031005, 0x031810 ];
+  static SRankWeaponRange = [ 0x0070, 0x0088 ];
+  static DiskCode = 0x0302;
+  static CommonWeaponContainsCode = 0x000C03;
+  static CommonWeaponsMaxCode = 0x04;
 
-  ItemType = {
+  static ItemType = {
     WEAPON : 1,
     FRAME : 2,
     BARRIER : 3,
@@ -35,12 +35,12 @@ class Config {
     MESETA : 10,
   };
 
-  AdditionType = {
+  static AdditionType = {
     DEF : 0,
     AVOID : 1
   };
 
-  Classes = {
+  static Classes = {
     0x00 : "HUmar",
     0x01 : "Hunewearl",
     0x02 : "HUcast",
@@ -55,7 +55,7 @@ class Config {
     0x0B : "RAmarl",
   };
 
-  Titles = {
+  static Titles = {
     1 : "Ra-GOU",
     2 : "Gi-GOU",
     3 : "Bu-GOU",
@@ -67,7 +67,7 @@ class Config {
     9 : "Bu-EI",
   };
 
-  SectionIDs = {
+  static SectionIDs = {
     0x00 : "VIRIDIA",
     0x01 : "GREENILE",
     0x02 : "SKYLY",
@@ -81,7 +81,7 @@ class Config {
     0x0A : "VIRIDIA",
   };
 
-  AttributeType = {
+  static AttributeType = {
     "native": 0x01,
     "aBeast": 0x02,
     "machine": 0x03,
@@ -89,7 +89,7 @@ class Config {
     "hit": 0x05,
   }
 
-  MagCollorCodes = {
+  static MagColorCodes = {
     0x00: "Red",
     0x01: "Blue",
     0x02: "Yellow",
@@ -122,7 +122,7 @@ class Config {
     0x1D: "Goldenrod"
   }
 
-  SRankWeaponCodes = {
+  static SRankWeaponCodes = {
     0x007000: "SABER",
     0x007100: "SWORD",
     0x007200: "BLADE",
@@ -155,7 +155,7 @@ class Config {
     0x00A900: "AXE"
   }
 
-  constructor(mode)
+  static init(mode)
   {
     switch (mode) {
       case "JA":

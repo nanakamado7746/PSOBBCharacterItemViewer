@@ -1,12 +1,11 @@
 class Item {
 
-  Config;
   Item;
 
   constructor(itemData, itemCode, lang)
   {
     // コンフィグ設定
-    this.Config = new Config(lang);
+    Config.init(lang);
 
     // アイテムの種類を取得（武器、鎧、テクニックなど）
     let itemType = this.getItemType(itemCode);
@@ -18,23 +17,23 @@ class Item {
   createItem(itemData, itemCode, itemType, lang)
   {
     switch(itemType) {
-      case (this.Config.ItemType.SRANK_WEAPON):
+      case (Config.ItemType.SRANK_WEAPON):
         return this.sRankWeapon(itemCode, itemData);
-      case (this.Config.ItemType.WEAPON):
+      case (Config.ItemType.WEAPON):
         return this.weapon(itemCode, itemData);
-      case (this.Config.ItemType.FRAME):
+      case (Config.ItemType.FRAME):
         return this.frame(itemCode, itemData);
-      case (this.Config.ItemType.BARRIER):
+      case (Config.ItemType.BARRIER):
         return this.barrier(itemCode, itemData);
-      case (this.Config.ItemType.UNIT):
+      case (Config.ItemType.UNIT):
         return this.unit(itemCode, itemData);
-      case (this.Config.ItemType.MAG):
+      case (Config.ItemType.MAG):
         return this.mag(itemCode, itemData);
-      case (this.Config.ItemType.DISK):
+      case (Config.ItemType.DISK):
         return this.disk(itemCode, itemData);
-      case (this.Config.ItemType.TOOL):
+      case (Config.ItemType.TOOL):
         return this.tool(itemCode, itemData);
-      case (this.Config.ItemType.OTHER):
+      case (Config.ItemType.OTHER):
         return this.other(itemCode, itemData);
       default:
         return `unknown. (${itemCode}). There's a possibility that New Ephinea Item`;
@@ -43,53 +42,53 @@ class Item {
 
   getItemType(itemCode)
   {
-    if (this.isSRankWeapon(itemCode)) return this.Config.ItemType.SRANK_WEAPON;
-    if (this.isWeapon(itemCode)) return this.Config.ItemType.WEAPON;
-    if (this.isFrame(itemCode)) return this.Config.ItemType.FRAME;
-    if (this.isBarrier(itemCode)) return this.Config.ItemType.BARRIER;
-    if (this.isUnit(itemCode)) return this.Config.ItemType.UNIT;
-    if (this.isMag(itemCode)) return this.Config.ItemType.MAG;
-    if (this.isDisk(itemCode)) return this.Config.ItemType.DISK;
-    if (this.isTool(itemCode)) return this.Config.ItemType.TOOL;
-    return this.Config.ItemType.OTHER;
+    if (this.isSRankWeapon(itemCode)) return Config.ItemType.SRANK_WEAPON;
+    if (this.isWeapon(itemCode)) return Config.ItemType.WEAPON;
+    if (this.isFrame(itemCode)) return Config.ItemType.FRAME;
+    if (this.isBarrier(itemCode)) return Config.ItemType.BARRIER;
+    if (this.isUnit(itemCode)) return Config.ItemType.UNIT;
+    if (this.isMag(itemCode)) return Config.ItemType.MAG;
+    if (this.isDisk(itemCode)) return Config.ItemType.DISK;
+    if (this.isTool(itemCode)) return Config.ItemType.TOOL;
+    return Config.ItemType.OTHER;
   }
 
   isSRankWeapon(itemCode)
   {
-    return (this.Config.SRankWeaponRange[0] <= parseInt(itemCode.substring(0, 4), 16) && parseInt(itemCode.substring(0, 4), 16) <= this.Config.SRankWeaponRange[1]);
+    return (Config.SRankWeaponRange[0] <= parseInt(itemCode.substring(0, 4), 16) && parseInt(itemCode.substring(0, 4), 16) <= Config.SRankWeaponRange[1]);
   }
   isWeapon(itemCode)
   {
-    return (this.Config.WeaponRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.Config.WeaponRange[1]);
+    return (Config.WeaponRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.WeaponRange[1]);
   }
   isCommonWeapon(itemCode)
   {
     // コモン武器が含まれている最小アイテムコード以下、かつコモン武器のグレード数以下であること
-    return (parseInt(itemCode, 16) <= this.Config.CommonWeaponContainsCode && parseInt(itemCode.substring(4, 6), 16) <= this.Config.CommonWeaponsMaxCode);
+    return (parseInt(itemCode, 16) <= Config.CommonWeaponContainsCode && parseInt(itemCode.substring(4, 6), 16) <= Config.CommonWeaponsMaxCode);
   }
   isFrame(itemCode)
   {
-    return (this.Config.FrameRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.Config.FrameRange[1]);
+    return (Config.FrameRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.FrameRange[1]);
   }
   isBarrier(itemCode)
   {
-    return (this.Config.BarrierRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.Config.BarrierRange[1]);
+    return (Config.BarrierRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.BarrierRange[1]);
   }
   isUnit(itemCode)
   {
-    return (this.Config.UnitRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.Config.UnitRange[1]);
+    return (Config.UnitRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.UnitRange[1]);
   }
   isMag(itemCode)
   {
-    return (this.Config.MagRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.Config.MagRange[1]);
+    return (Config.MagRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.MagRange[1]);
   }
   isDisk(itemCode)
   {
-    return (parseInt(itemCode.substring(0, 4), 16) == this.Config.DiskCode);
+    return (parseInt(itemCode.substring(0, 4), 16) == Config.DiskCode);
   }
   isTool(itemCode)
   {
-    return (this.Config.ToolRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= this.Config.ToolRange[1]);
+    return (Config.ToolRange[0] <= parseInt(itemCode, 16) && parseInt(itemCode, 16) <= Config.ToolRange[1]);
   }
 
   weapon(itemCode, itemData)
@@ -134,9 +133,9 @@ class Item {
     let name = this.getItemName(itemCode);
     let slot = itemData[5];
     let def = itemData[6];
-    let defMaxAddition = this.getAddition(name, this.Config.FrameAdditions, this.Config.AdditionType.DEF);
+    let defMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.DEF);
     let avoid = itemData[8];
-    let avoidMaxAddition = this.getAddition(name, this.Config.FrameAdditions, this.Config.AdditionType.AVOID);
+    let avoidMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.AVOID);
 
     return {
       type: 2,
@@ -158,9 +157,9 @@ class Item {
   {
     let name = this.getItemName(itemCode);
     let def = itemData[6];
-    let defMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.DEF);
+    let defMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.DEF);
     let avoid = itemData[8];
-    let avoidMaxAddition = this.getAddition(name, this.Config.BarrierAdditions, this.Config.AdditionType.AVOID);
+    let avoidMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.AVOID);
 
     return {
       type: 3,
@@ -193,7 +192,7 @@ class Item {
     let level = itemData[2];
     let sync = itemData[16];
     let iq = itemData[17];
-    let collor = this.Config.MagCollorCodes[itemData[19]];
+    let color = Config.MagColorCodes[itemData[19]];
     let def = this.binArrayToInt([itemData[5], itemData[4]]) / 100;
     let pow = this.binArrayToInt([itemData[7], itemData[6]]) / 100;
     let dex = this.binArrayToInt([itemData[9], itemData[8]]) / 100;
@@ -207,7 +206,7 @@ class Item {
       level: level,
       sync: sync,
       iq: iq,
-      collor: collor,
+      color: color,
       status: {
         def: def,
         pow: pow,
@@ -219,20 +218,20 @@ class Item {
         pbs[1],
         pbs[2]
       ],
-      display: `${name} LV${level} [${collor}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`
+      display: `${name} LV${level} [${color}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`
     }
   }
 
   disk(itemCode, itemData)
   {
 
-    let name = this.Config.DiskNameCodes[itemData[4]];
+    let name = Config.DiskNameCodes[itemData[4]];
     let level = itemData[2] + 1;
     return {
       type: 6,
-      name: `${name} LV${level} ${this.Config.DiskNameLanguage}`,
+      name: `${name} LV${level} ${Config.DiskNameLanguage}`,
       level: level,
-      display: `${name} LV${level} ${this.Config.DiskNameLanguage}`
+      display: `${name} LV${level} ${Config.DiskNameLanguage}`
     }
   }
 
@@ -240,7 +239,7 @@ class Item {
   {
 
     let cumstomName = this.getCustomName(itemData.slice(6, 12));
-    let name = `S-RANK ${cumstomName} ${this.Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
+    let name = `S-RANK ${cumstomName} ${Config.SRankWeaponCodes[parseInt(itemCode.substring(0, 4) + "00", 16)]}`;
     let grinder = itemData[3];
     let element = this.getSrankElement(itemData);
 
@@ -292,9 +291,9 @@ class Item {
   {
     itemCode = "0x" + itemCode;
 
-    if (itemCode in this.Config.ItemCodes)
+    if (itemCode in Config.ItemCodes)
     {
-      return this.Config.ItemCodes[itemCode];
+      return Config.ItemCodes[itemCode];
     }
     return `undefined. (${itemCode})`;
   }
@@ -302,9 +301,9 @@ class Item {
   getElement(itemData)
   {
       let code = itemData[4];
-      if (code in this.Config.ElementCodes)
+      if (code in Config.ElementCodes)
       {
-          return this.Config.ElementCodes[code];
+          return Config.ElementCodes[code];
       }
 
       return "undefined";
@@ -313,9 +312,9 @@ class Item {
   getSrankElement(itemData)
   {
       let elementCode = itemData[2];
-      if (elementCode in this.Config.SrankElementCodes)
+      if (elementCode in Config.SrankElementCodes)
       {
-          return this.Config.SrankElementCodes[elementCode];
+          return Config.SrankElementCodes[elementCode];
       }
 
       return "undefined";
@@ -323,23 +322,23 @@ class Item {
 
   getNative(itemData)
   {
-    return this.getAttribute(this.Config.AttributeType["native"], itemData);
+    return this.getAttribute(Config.AttributeType["native"], itemData);
   }
   getABeast(itemData)
   {
-    return this.getAttribute(this.Config.AttributeType["aBeast"], itemData);
+    return this.getAttribute(Config.AttributeType["aBeast"], itemData);
   }
   getMachine(itemData)
   {
-    return this.getAttribute(this.Config.AttributeType["machine"], itemData);
+    return this.getAttribute(Config.AttributeType["machine"], itemData);
   }
   getDark(itemData)
   {
-    return this.getAttribute(this.Config.AttributeType["dark"], itemData);
+    return this.getAttribute(Config.AttributeType["dark"], itemData);
   }
   getHit(itemData)
   {
-    return this.getAttribute(this.Config.AttributeType["hit"], itemData);
+    return this.getAttribute(Config.AttributeType["hit"], itemData);
   }
 
   getAttribute(attributeType, itemData)
@@ -381,9 +380,9 @@ class Item {
 
   getPbs(pbsCode)
   {
-    if (pbsCode in this.Config.PBs)
+    if (pbsCode in Config.PBs)
     {
-        return this.Config.PBs[pbsCode];
+        return Config.PBs[pbsCode];
     }
     return ["undefined", "undefined", "undefined"];
   }

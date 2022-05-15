@@ -1,3 +1,38 @@
+function MagColorCodes_JA() {
+  return {
+    0x00: "赤",
+    0x01: "青",
+    0x02: "黄",
+    0x03: "緑",
+    0x04: "紫",
+    0x05: "黒",
+    0x06: "白",
+    0x07: "水",
+    0x08: "茶",
+    0x09: "橙",
+    0x0A: "薄青",
+    0x0B: "黄土",
+    0x0C: "薄緑",
+    0x0D: "赤紫",
+    0x0E: "灰",
+    0x0F: "乳白",
+    0x10: "桃",
+    0x11: "深緑",
+    0x12: "Chartreuse",
+    0x13: "Azure",
+    0x14: "Royal Purple",
+    0x15: "Ruby",
+    0x16: "Sapphire",
+    0x17: "Emerald",
+    0x18: "Gold",
+    0x19: "Silver",
+    0x1A: "Bronze",
+    0x1B: "Plum",
+    0x1C: "Violet",
+    0x1D: "Goldenrod"
+  }
+}
+
 function ElementCodes_JA() {
   return {
     0x00: "Unchanged/Nothing",

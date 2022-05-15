@@ -8,6 +8,7 @@ class Config {
   static DiskNameCodes;
   static DiskNameLanguage;
   static PBs;
+  static MagColorCodes;
   static WeaponRange = [ 0x000000, 0x00ED00 ];
   static FrameRange = [ 0x010100, 0x010158 ];
   static BarrierRange = [ 0x010200, 0x0102A5 ];
@@ -167,6 +168,7 @@ class Config {
         this.DiskNameCodes = DiskNameCodes_JA();
         this.DiskNameLanguage = DiskNameLanguage_JA();
         this.PBs = PBs_JA();
+        this.MagColorCodes = MagColorCodes_JA();
       break;
 
       default:
@@ -178,6 +180,7 @@ class Config {
         this.DiskNameCodes = DiskNameCodes();
         this.DiskNameLanguage = DiskNameLanguage();
         this.PBs = PBs();
+        this.MagColorCodes = MagColorCodes();
     }
   }
 

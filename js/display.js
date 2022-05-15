@@ -27,7 +27,7 @@ function displayItemCodes()
   (this.lang === "JA")
     ? itemCodes = ItemCodes_JA()
     : itemCodes = ItemCodes();
-    
+
   console.log(itemCodes);
 
   let id = document.getElementById("data");
@@ -236,9 +236,22 @@ function displayInventory(inventory, title, mode)
       let tr = document.createElement("tr");
       let td = document.createElement("td");
       td.setAttribute('class', "data_td_item");
-      let text = document.createTextNode(inventory[i][1]["display"]);
-      td.appendChild(text);
+      //
+      if (inventory[i][1]["type"] == "5")
+      {
+        let color = document.createElement("div");
+        color.setAttribute('class', "magcolor");
+        color.style = `background-color: ${inventory[i][1]["rgb"]};`;
+        td.appendChild(document.createTextNode(inventory[i][1]["display_front"]));
+        td.appendChild(color);
+        td.appendChild(document.createTextNode(inventory[i][1]["display_end"]));
+      } else {
+        let text = document.createTextNode(inventory[i][1]["display"]);
+        td.appendChild(text);
+      }
       tr.appendChild(td);
+
+      // スロット列作成
       if (mode == "allItems")
       {
         let td2 = document.createElement("td");

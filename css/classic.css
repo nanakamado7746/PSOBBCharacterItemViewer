@@ -489,6 +489,14 @@ h1
   padding: 0 1em 0 0em;
 }
 
+.magcolor
+{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+
 .data tr:hover {
   background-image: url("../resources/images/background/cursor.png");
   background-size: 97% 100%;

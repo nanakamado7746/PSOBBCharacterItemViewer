@@ -239,6 +239,11 @@ h2
   padding-right: 0.5em;
 }
 
+.magcolor
+{
+  display: inline-block;
+}
+
 .notification
 {
   z-index: 1;

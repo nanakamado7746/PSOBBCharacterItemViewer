@@ -219,7 +219,7 @@ class Item {
         pbs[1],
         pbs[2]
       ],
-      display: `${name} LV${level} [${color}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`,
+      display: `${name} LV${level} [${color[1]}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`,
       display_front: `${name} LV${level} [${color[1]}`,
       display_end: `] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`
     }

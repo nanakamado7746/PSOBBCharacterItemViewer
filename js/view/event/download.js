@@ -18,7 +18,9 @@ function clickDownload()
   zip = createAllItemsDataFile(zip, this.allItems[this.lang], `psobb_character_data/alldata`);
 
   // 現在ページのデータファイルを作成
-  if (this.currentData !== undefined) zip = createCurrentPageDataFile(zip, this.currentData);
+  if (this.currentData !== undefined) {
+    zip = createCurrentPageDataFile(zip, this.currentData, "psobb_character_data");
+  }
 
   const compressed = zip.compress();
   const blob = new Blob([compressed], { 'type': 'application/zip' });
@@ -29,17 +31,7 @@ function clickDownload()
   link.click();
 }
 
-
-function createCurrentPageDataFile(zip, currentData)
-{
-  if (currentData["page"] === "character") return createCharacterDataFile(zip, currentData["searching"][2], "psobb_character_data");
-  if (currentData["page"] === "shareBank") return createShareBanksDataFile(zip, currentData["searching"][2]["ShareBank"][this.lang], "psobb_character_data");
-  if (currentData["page"] === "allItems") return createAllItemsDataFile(zip, currentData["searching"][2][this.lang], "psobb_character_data");
-  if (currentData["page"] === "searchResults") return createSearchResultsDataFile(zip, currentData["searchResults"], "psobb_character_data");
-  return zip;
-}
-
-function createCharacterDataFile(zip, character, folder)
+function createCharacterDataFile(zip, character, path)
 {
     let character_data = [
       "SLOT : " + character.Slot,
@@ -53,17 +45,17 @@ function createCharacterDataFile(zip, character, folder)
     ];
 
     zip.addFile(new TextEncoder().encode(character_data.join("\r\n")), {
-      filename: new TextEncoder().encode(`${folder}/${character.Slot}/character.txt`)
+      filename: new TextEncoder().encode(`${path}/${character.Slot}/character.txt`)
     });
 
     let inventory = character["Inventory"][this.lang].map(item => item[1]["display"]).join("\r\n");
     zip.addFile(new TextEncoder().encode(inventory), {
-      filename: new TextEncoder().encode(`${folder}/${character.Slot}/inventory.txt`)
+      filename: new TextEncoder().encode(`${path}/${character.Slot}/inventory.txt`)
     });
 
     let bank = character["Bank"][this.lang].map(item => item[1]["display"]).join("\r\n");
     zip.addFile(new TextEncoder().encode(bank), {
-      filename: new TextEncoder().encode(`${folder}/${character.Slot}/bank.txt`)
+      filename: new TextEncoder().encode(`${path}/${character.Slot}/bank.txt`)
     });
 
   return zip;
@@ -71,30 +63,29 @@ function createCharacterDataFile(zip, character, folder)
 
 function createShareBanksDataFile(zip, shareBank, path)
 {
-  return createDataFile(zip, shareBank, `${path}/shareBank`);
+  return createDataFile(zip, shareBank, `${path}/shareBank.txt`);
 }
 
 function createAllItemsDataFile(zip, allItems, path)
 {
-  zip = createDataFile(zip, allItems, `${path}/allItems_no_slot`);
-  zip = createDataFileWithSlot(zip, allItems, `${path}/allItems`)
+  zip = createDataFile(zip, allItems, `${path}/allItems_no_slot.txt`);
+  zip = createDataFileWithSlot(zip, allItems, `${path}/allItems.txt`)
   return zip;
 }
 
 function createSearchResultsDataFile(zip, searchResults, path)
 {
-  zip = createDataFile(zip, searchResults, `${path}/searchResults_no_slot`);
-  zip = createDataFileWithSlot(zip, searchResults, `${path}/searchResults`)
+  zip = createDataFile(zip, searchResults, `${path}/searchResults_no_slot.txt`);
+  zip = createDataFileWithSlot(zip, searchResults, `${path}/searchResults.txt`)
   return zip;
 }
-
 
 function createDataFile(zip, data, path)
 {
   if (data !== undefined & data !== 0) {
     let buffer  = data.map(item => item[1]["display"]).join("\r\n");
     zip.addFile(new TextEncoder().encode(buffer), {
-      filename: new TextEncoder().encode(`${path}.txt`)
+      filename: new TextEncoder().encode(path)
     });
   }
   return zip;
@@ -110,8 +101,17 @@ function createDataFileWithSlot(zip, data, path)
 
   if (data !== undefined & data !== 0) {
     zip.addFile(new TextEncoder().encode(tmp.join("\r\n")), {
-      filename: new TextEncoder().encode(`${path}.txt`)
+      filename: new TextEncoder().encode(path)
     });
   }
+  return zip;
+}
+
+function createCurrentPageDataFile(zip, currentData, path)
+{
+  if (currentData["page"] === "character") return createCharacterDataFile(zip, currentData["searching"][2], path);
+  if (currentData["page"] === "shareBank") return createShareBanksDataFile(zip, currentData["searching"][2]["ShareBank"][this.lang], path);
+  if (currentData["page"] === "allItems") return createAllItemsDataFile(zip, currentData["searching"][2][this.lang], path);
+  if (currentData["page"] === "searchResults") return createSearchResultsDataFile(zip, currentData["searchResults"], path);
   return zip;
 }

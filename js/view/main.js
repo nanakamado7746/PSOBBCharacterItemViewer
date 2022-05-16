@@ -1,6 +1,4 @@
 // 入力データ
-var fileData = [];
-var itemCodeData = [];
 var lang = "EN";
 // デコード済みデータ
 var characters = [];
@@ -48,12 +46,12 @@ var enter_audios = [
 // 初期表示
 initializeVolume();
 initializeLang();
-initializeDisplay();
-displayNotification();
 initializeTheme();
+displayNotification();
+initializeDisplay();
 // DOM取得後の初期表示
 window.addEventListener('load', function(){
   refreshVolume();
   displayAfterEnterd();
-});
-window.addEventListener('load', dynamicSearch, false);
+  dynamicSearch();
+}, false);

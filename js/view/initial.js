@@ -7,17 +7,17 @@ function initializeVolume()
 
 function initializeTheme()
 {
+  let theme;
   if (localStorage.getItem("theme"))
   {
-    this.theme = localStorage.getItem("theme");
-    console.log("theme:" + this.theme);
-    let theme = this.theme.replace(/\"/g,"");
-    localStorage.setItem("theme", theme);
+    theme = localStorage.getItem("theme").replace(/\"/g,"");
+    console.log("theme:" + theme);
     document.getElementById("stylesheet").href = `./css/${theme}.css`;
+    if (theme !== "classic") document.getElementsByName("themes")[1].checked = true;
+  } else {
+    localStorage.setItem("theme", "classic");
   }
-  if (theme !== "classic") {
-    document.getElementsByName("themes")[1].checked = true;
-  }
+
 }
 
 
@@ -25,10 +25,10 @@ function initializeLang()
 {
   if (localStorage.getItem("lang"))
   {
-    this.lang = JSON.parse(localStorage.getItem("lang"));
+    this.lang = localStorage.getItem("lang").replace(/\"/g,"");
     console.log("lang:" + this.lang);
   } else {
-    localStorage.setItem("lang", JSON.stringify("EN"));
+    localStorage.setItem("lang", "EN");
   }
   if (this.lang == "JA") {
     document.getElementsByName("lang")[1].checked = true;
@@ -43,8 +43,8 @@ function initializeDisplay()
   {
     if (localStorage.getItem("fileData"))
     {
-      this.fileData = JSON.parse(localStorage.getItem("fileData"));
-      decoder();
+      let fileData = JSON.parse(localStorage.getItem("fileData"));
+      decoder(fileData);
     }
     displayPager();
     displayData();

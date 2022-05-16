@@ -26,13 +26,11 @@ async function clickInput(event)
     if (fileData.length === 0) return;
 
     localStorage.setItem("fileData", JSON.stringify(fileData));
-    this.fileData = fileData;
 
     // ファイル入力をきっかけにDOM表示
     displayAfterEnterd();
-
     // デコード
-    decoder();
+    decoder(fileData);
     // ページャーを表示
     displayPager();
     // 詳細表示
@@ -52,11 +50,10 @@ async function clickInput(event)
   }
 }
 
-function decoder()
+function decoder(fileData)
 {
-  if (this.fileData.length === 0) return;
+  if (fileData.length === 0) return;
 
-  let fileData = this.fileData;
   let characters = [];
   let shareBanks = [];
   let allItems = {

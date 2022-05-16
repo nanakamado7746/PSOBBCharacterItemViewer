@@ -4,7 +4,7 @@ function clickChangeLang(lang)
 
   this.lang = lang;
 
-  localStorage.setItem("lang", JSON.stringify(lang));
+  localStorage.setItem("lang", lang);
   console.log("changelang to:" + lang);
 
   // 言語変更でDOMを変更

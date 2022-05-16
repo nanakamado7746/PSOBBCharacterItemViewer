@@ -3,7 +3,8 @@
 function clickPage(catecory, index)
 {
 
-  let beforeScrollY  = window.scrollY;
+  const beforeScrollPosition = window.scrollY;
+  const beforeStickyPosition = document.getElementById('sticky').getBoundingClientRect().top;
   for (let page of document.getElementsByClassName("page")) page.style.backgroundColor = "";
 
   pushedPageColoer(`page${catecory}${index}`);
@@ -50,17 +51,50 @@ function clickPage(catecory, index)
 
   console.log(this.currentData);
 
-  if (document.getElementById('sticky').getBoundingClientRect().top > 0)
+  scroll(beforeScrollPosition, beforeStickyPosition);
+  playAudio(this.open_audios);
+  setCursorAudio();
+}
+
+function resetPage()
+{
+
+  delete this.currentData["searchResults"];
+  const beforeScrollPosition = window.scrollY;
+  const beforeStickyPosition = document.getElementById('sticky').getBoundingClientRect().top;
+
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
+  console.log(this.currentData);
+  if ( this.currentData["searching"][0] === "character") {
+    this.currentData["page"] = "character";
+    displayCharacter(this.currentData["searching"][2]);
+  }
+  if ( this.currentData["searching"][0] === "shareBank") {
+    this.currentData["page"] = "shareBank";
+    displayShareBank(this.currentData["searching"][2]);
+  }
+  if ( this.currentData["searching"][0] === "allItems") {
+    this.currentData["page"] = "allItems";
+    displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
+  }
+
+  scroll(beforeScrollPosition, beforeStickyPosition);
+}
+
+function scroll(beforeScrollPosition, beforeStickyPosition)
+{
+  if (document.getElementById('sticky').getBoundingClientRect().top > 0 | beforeStickyPosition > 0)
   {
+    console.log("scroll current position");
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
-    scrollTo(0, beforeScrollY);
+    scrollTo(0, beforeScrollPosition);
   }
   else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
   {
+    console.log("scroll sticky position");
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }
-
-  playAudio(this.open_audios);
-  setCursorAudio();
 }

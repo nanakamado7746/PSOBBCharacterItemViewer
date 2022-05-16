@@ -53,5 +53,5 @@ initializeDisplay();
 window.addEventListener('load', function(){
   refreshVolume();
   displayAfterEnterd();
-  dynamicSearch();
+  keyUpSearch();
 }, false);

@@ -1,10 +1,8 @@
 
 function clickSearch(call)
 {
-  hasSearchItem()
-    ? search()
-    : resetPage();
-
+  hasSearchItem() ? search()
+                  : resetPage();
   playAudio(this.open_audios);
 }
 

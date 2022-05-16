@@ -1,9 +1,8 @@
 function clickDownload()
 {
-
   if (localStorage.getItem("fileData") === null) return;
 
-  var zip = new Zlib.Zip();
+  let zip = new Zlib.Zip();
 
   // キャラクターデータファイル作成
   for (let character of this.characters)
@@ -19,16 +18,12 @@ function clickDownload()
   zip = createAllItemsDataFile(zip, this.allItems[this.lang], `psobb_character_data/alldata`);
 
   // 現在ページのデータファイルを作成
-  console.log(this.currentData);
-  if (this.currentData !== undefined)
-  {
-    zip = createCurrentPageDataFile(zip, this.currentData);
-  }
+  if (this.currentData !== undefined) zip = createCurrentPageDataFile(zip, this.currentData);
 
-  let compressed = zip.compress();
-  let blob = new Blob([compressed], { 'type': 'application/zip' });
+  const compressed = zip.compress();
+  const blob = new Blob([compressed], { 'type': 'application/zip' });
 
-  let link = document.createElement('a');
+  const link = document.createElement('a');
   link.setAttribute('download', "psobb_character_data.zip");
   link.setAttribute('href', window.webkitURL.createObjectURL(blob));
   link.click();
@@ -56,6 +51,7 @@ function createCharacterDataFile(zip, character, folder)
       "EP1 CHALLENGE : " + character.Ep1Progress,
       "EP2 CHALLENGE : " + character.Ep2Progress
     ];
+
     zip.addFile(new TextEncoder().encode(character_data.join("\r\n")), {
       filename: new TextEncoder().encode(`${folder}/${character.Slot}/character.txt`)
     });
@@ -75,8 +71,7 @@ function createCharacterDataFile(zip, character, folder)
 
 function createShareBanksDataFile(zip, shareBank, path)
 {
-  zip = createDataFile(zip, shareBank, `${path}/shareBank`);
-  return zip;
+  return createDataFile(zip, shareBank, `${path}/shareBank`);
 }
 
 function createAllItemsDataFile(zip, allItems, path)

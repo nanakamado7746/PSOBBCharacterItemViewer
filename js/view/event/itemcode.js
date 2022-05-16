@@ -1,7 +1,8 @@
 function clickDisplayItemCodes(event)
 {
   this.currentData["page"] = "itemcode";
-  let beforeScrollY = window.scrollY;
+  const beforeScrollY = window.scrollY;
+
 
   displayItemCodes();
 
@@ -15,6 +16,4 @@ function clickDisplayItemCodes(event)
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }
-  
-  playAudio(this.open_audios);
 }

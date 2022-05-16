@@ -1,7 +1,7 @@
 function displayData()
 {
-  let characters = this.characters;
-  let shareBanks = this.shareBanks;
+  const characters = this.characters;
+  const shareBanks = this.shareBanks;
 
   // 詳細表示
   if (characters.length !== 0)

@@ -91,9 +91,10 @@ function displayItemCodes()
   footer.setAttribute('class', "data_footer");
   div.appendChild(footer);
   id.appendChild(div);
+  setCursorAudio();
 }
 
-function displayCharacter(charactor)
+function displayCharacter(character)
 {
   let id = document.getElementById("data");
   id.innerHTML = '';
@@ -131,14 +132,14 @@ function displayCharacter(charactor)
 
   let tbody = document.createElement("tbody");
 
-  tr(tbody, `SLOT : ${charactor.Slot}`);
-  tr(tbody, `NAME : ${charactor.Name}`);
-  tr(tbody, `GUILD CARD : ${charactor.GuildCardNumber}`);
-  tr(tbody, `CLASS : ${charactor.Class}`);
-  tr(tbody, `SECTION ID : ${charactor.SectionID}`);
-  tr(tbody, `LEVEL : ${charactor.Level}`);
-  tr(tbody, `EP1 CHALLENGE : ${charactor.Ep1Progress}`);
-  tr(tbody, `EP2 CHALLENGE : ${charactor.Ep2Progress}`);
+  tr(tbody, `SLOT : ${character.Slot}`);
+  tr(tbody, `NAME : ${character.Name}`);
+  tr(tbody, `GUILD CARD : ${character.GuildCardNumber}`);
+  tr(tbody, `CLASS : ${character.Class}`);
+  tr(tbody, `SECTION ID : ${character.SectionID}`);
+  tr(tbody, `LEVEL : ${character.Level}`);
+  tr(tbody, `EP1 CHALLENGE : ${character.Ep1Progress}`);
+  tr(tbody, `EP2 CHALLENGE : ${character.Ep2Progress}`);
 
   table.appendChild(tbody);
   div.appendChild(table);
@@ -147,8 +148,8 @@ function displayCharacter(charactor)
   div.appendChild(footer);
   id.appendChild(div);
 
-  displayInventory(charactor.Inventory[this.lang], "INVENTORY");
-  displayInventory(charactor.Bank[this.lang], "BANK");
+  displayInventory(character.Inventory[this.lang], "INVENTORY");
+  displayInventory(character.Bank[this.lang], "BANK");
 }
 
 function tr(tbody, text)
@@ -270,6 +271,7 @@ function displayInventory(inventory, title, mode)
   footer.setAttribute('class', "data_footer");
   div.appendChild(footer);
   id.appendChild(div);
+  setCursorAudio();
 }
 
 function displayPager()
@@ -333,7 +335,6 @@ function displayNotification()
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");
   for ( let notification of notifications ) {
-    console.log(notification);
     let tr = document.createElement("tr");
     let date = document.createElement("td");
     date.textContent = notification["date"];
@@ -370,4 +371,15 @@ function displayNotification()
   }
   table.appendChild(tbody);
   div.appendChild(table);
+}
+
+function displayAfterEnterd()
+{
+    if (localStorage.getItem("fileData") === null) {
+      document.getElementById("afterEnterd").style.opacity = 0;
+      document.getElementById("afterEnterd").style.height = 0;
+    } else {
+      document.getElementById("afterEnterd").style.opacity = 1;
+      document.getElementById("afterEnterd").style.height = "auto";
+    }
 }

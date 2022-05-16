@@ -79,8 +79,8 @@
         <div class="data_body sticky_indent">
           <div class="lang" id="radio">
             <button type="button" id="itemcodeb" class="itemcodeb" onClick=clickDisplayItemCodes(event)>ITEM CODES</button>
-            <input type="radio" name="lang" value="en" checked onClick=changeLang()>English
-            <input type="radio" name="lang" value="ja" onClick=changeLang() >日本語（unstable）
+            <input type="radio" name="lang" value="EN" checked onClick=clickChangeLang(value)>English
+            <input type="radio" name="lang" value="JA" onClick=clickChangeLang(value) >日本語（unstable）
           </div>
           <div id="afterEnterd" >
             <div class="pager", id="pager"></div>
@@ -106,7 +106,7 @@
                 <div class="sep"><input type="text" class="att" name="hit" placeholder="HIT value"></div>
                 <div class="sep"><input type="checkbox" class="openbtn" name="unTekked" value="1" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div>
               </div>
-              <button id="download" class="download" onClick='download()'>Getting as Text File</button>
+              <button id="download" class="download" onClick='clickDownload()'>Getting as Text File</button>
             </div>
           </div>
         </div>
@@ -117,17 +117,24 @@
 </div>
 
 </body>
-<script type="text/javascript" src="./js/notification/notification.js"></script>
 <script type="text/javascript" src="./js/model/item/Item.js"></script>
 <script type="text/javascript" src="./js/config/item_codes.js"></script>
 <script type="text/javascript" src="./js/config/item_codes_ja.js"></script>
 <script type="text/javascript" src="./js/config/Config.js"></script>
 <script type="text/javascript" src="./js/model/character/Abstract.js"></script>
-<script type="text/javascript" src="./js/model/character/Character.js"></script>
+<script type="text/javascript" src="./js/model/character/Character.js"></script>s
 <script type="text/javascript" src="./js/model/character/ShareBank.js"></script>
-<script type="text/javascript" src="./js/event.js"></script>
-<script type="text/javascript" src="./js/display.js"></script>
-<script type="text/javascript" src="./js/initial.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
-<script type="text/javascript" src="./js/search.js"></script>
+<script type="text/javascript" src="./js/view/notification/notification.js"></script>
+<script type="text/javascript" src="./js/view/event/changelang.js"></script>
+<script type="text/javascript" src="./js/view/event/download.js"></script>
+<script type="text/javascript" src="./js/view/event/input.js"></script>
+<script type="text/javascript" src="./js/view/event/itemcode.js"></script>
+<script type="text/javascript" src="./js/view/event/page.js"></script>
+<script type="text/javascript" src="./js/view/event/search.js"></script>
+<script type="text/javascript" src="./js/view/event/changetheme.js"></script>
+<script type="text/javascript" src="./js/view/event/volume.js"></script>
+<script type="text/javascript" src="./js/view/display.js"></script>
+<script type="text/javascript" src="./js/view/initial.js"></script>
+<script type="text/javascript" src="./js/view/common.js"></script>
+<script type="text/javascript" src="./js/view/main.js"></script>
 <script type="text/javascript" src="./js/lib/zlib/zip.min.js"></script>

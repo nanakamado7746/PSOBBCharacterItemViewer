@@ -3,11 +3,13 @@ class Abstract {
   constructor(characterData, slot)
   {
     Config.init();
+    console.log("====== characterData ======");
     console.log(characterData);
   }
 
   setInventory(itemsData, inventory, length, slot, lang)
   {
+    console.log("====== itemsData ======");
     console.log(itemsData);
 
     let array = [];
@@ -20,12 +22,11 @@ class Abstract {
         console.log(`item number:${i / length}, index:${i}, length:${length}, end:${i + length}`);
         console.log("slot:" + slot);
 
-        console.log("itemData:");
         let itemData = itemsData.slice(i, i + length);
-        console.log(itemData);
-
+        console.log("itemData:");
         // 空欄チェック
         if (this.isBlank(itemData)) continue;
+        console.log(itemData);
 
         // アイテムコード取得
         let itemCode = this.binaryArrayToInt(itemData.slice(0, 3));

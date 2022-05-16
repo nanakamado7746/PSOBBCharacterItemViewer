@@ -140,9 +140,6 @@ class Character extends Abstract {
     {
       if (characterData.slice(index, index + 4).join('') != 0)
       {
-        console.log("stage:" + i + 1);
-        console.log("clear time:");
-        console.log(characterData.slice(index, index + 4));
         count += 1;
       }
       index = index + 4;

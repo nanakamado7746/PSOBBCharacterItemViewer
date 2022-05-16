@@ -293,7 +293,6 @@ class Item {
   getItemName(itemCode)
   {
 
-      console.log(itemCode);
     if (itemCode in Config.ItemCodes)
     {
 

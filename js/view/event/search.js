@@ -1,4 +1,27 @@
 
+function clickSearch(call)
+{
+  search();
+  playAudio(this.open_audios);
+}
+
+function clickReset()
+{
+  if (!hasSearchItem()) return;
+  resetSearchItems();
+  resetPage();
+  playAudio(this.open_audios);
+}
+
+function dynamicSearch()
+{
+  document.getElementById("wordsearch").addEventListener("keyup",function(){
+    console.log(localStorage.getItem("lang"));
+    search(data, lang);
+  }, false);
+}
+
+
 function search(call)
 {
   let lang = this.lang; //　使ってない
@@ -22,15 +45,7 @@ function search(call)
   if (this.currentData["searching"][0] === "allItems") data = this.currentData["searching"][2];
   if (data.length === 0) return;
 
-  let openbtns =  document.getElementsByClassName("openbtn");
-  for (let btn of openbtns)
-  {
-    btn.addEventListener("input",function(){
-      if (call !== "changeLang") playAudioOpen();
-    });
-  }
-
-  query(data, lang);
+  displayInventory(query(data, lang), "SEARCH RESULTS", "allItems")
   if (document.getElementById('sticky').getBoundingClientRect().top > 0)
   {
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
@@ -41,7 +56,6 @@ function search(call)
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }
-  setCursorAudio();
 }
 
 
@@ -188,7 +202,7 @@ function query(data, lang)
   this.currentData["page"] = "searchResults";
   this.currentData["searchResults"] = this.searchResults;
 
-  displayInventory(result, "SEARCH RESULTS", "allItems")
+  return result;
 }
 
 function hasSearchItem()
@@ -204,4 +218,39 @@ function hasSearchItem()
       & document.getElementsByName("element")[0].value === ""
       & document.getElementsByName("hit")[0].value === ""
       & document.getElementsByName("unTekked")[0].checked === false))
+}
+
+function resetPage()
+{
+
+  delete this.currentData["searchResults"];
+  let beforeScrollY = window.scrollY;
+
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
+  console.log(this.currentData);
+  if ( this.currentData["searching"][0] === "character") {
+    this.currentData["page"] = "character";
+    displayCharacter(this.currentData["searching"][2]);
+  }
+  if ( this.currentData["searching"][0] === "shareBank") {
+    this.currentData["page"] = "shareBank";
+    displayShareBank(this.currentData["searching"][2]);
+  }
+  if ( this.currentData["searching"][0] === "allItems") {
+    this.currentData["page"] = "allItems";
+    displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
+  }
+
+  if (document.getElementById('sticky').getBoundingClientRect().top > 0 | beforeScrollY !== window.scrollY)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, beforeScrollY);
+  }
+  else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
+  {
+    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    document.getElementById('sticky').scrollIntoView();
+  }
 }

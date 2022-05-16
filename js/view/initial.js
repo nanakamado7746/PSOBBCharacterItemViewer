@@ -1,9 +1,3 @@
-// DOM取得後の初期表示
-window.addEventListener('load', function(){
-
-  refreshVolume();
-  displayAfterEnterd()
-});
 
 function initializeVolume()
 {
@@ -50,7 +44,6 @@ function initializeDisplay()
     if (localStorage.getItem("fileData"))
     {
       this.fileData = JSON.parse(localStorage.getItem("fileData"));
-      console.log(JSON.parse(localStorage.getItem("fileData")));
       decoder();
     }
     displayPager();
@@ -62,7 +55,7 @@ function initializeDisplay()
     console.log(e);
     document.getElementById("data").innerHTML = '';
     document.getElementById("pager").innerHTML = '';
-    removeCharactorData();
+    removeCharacterData();
     localStorage.removeItem("fileData");
   }
 }

@@ -270,9 +270,9 @@ h2
   background-position: center;
 }
 
-.notification .solved
+.notification .resolved
 {
-  background-image: url("../resources/images/icon/solved.png");
+  background-image: url("../resources/images/icon/resolved.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

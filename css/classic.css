@@ -156,9 +156,9 @@ h1
   background-position: center;
 }
 
-.notification .solved
+.notification .resolved
 {
-  background-image: url("../resources/images/icon/solved_black.png");
+  background-image: url("../resources/images/icon/resolved_black.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -527,4 +527,12 @@ h1
   background-image: url("../resources/images/background/data_footer.png");
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.sectionid_image
+{
+  display: inline-block;
+  /* background-size: contain;
+  width: 15px;
+  height: 15px; */
 }

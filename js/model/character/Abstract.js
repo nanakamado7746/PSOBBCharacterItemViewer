@@ -32,6 +32,7 @@ class Abstract {
         console.log("item code:" + itemCodeHex);
 
         const item = new Item(itemData, itemCode, lang).Item;
+        console.log("item name:" + item["display"]);
 
         // 所持品のリストにアイテム情報を追加
         array.push([

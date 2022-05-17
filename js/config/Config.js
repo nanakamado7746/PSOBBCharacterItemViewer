@@ -70,7 +70,7 @@ class Config {
 
   static SectionIDs = {
     0x00 : "VIRIDIA",
-    0x01 : "GREENILE",
+    0x01 : "GREENILL",
     0x02 : "SKYLY",
     0x03 : "BLUEFULL",
     0x04 : "PURPLENUM",

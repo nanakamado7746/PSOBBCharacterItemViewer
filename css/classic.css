@@ -38,6 +38,7 @@ a:hover
   background-image: url("../resources/images/background/title2_upper.png");
   background-size: 1020px 100%;
   background-repeat: no-repeat;
+  height: 145px;
 }
 
 .title
@@ -66,6 +67,7 @@ h1
   background-repeat: no-repeat;
   font-size: 80%;
   height: 40px;
+
 }
 
 .volume
@@ -529,10 +531,19 @@ h1
   background-repeat: no-repeat;
 }
 
+.sectionid
+{
+  display: flex;
+}
+.sectionid_text
+{
+  white-space: nowrap;
+}
 .sectionid_image
 {
-  display: inline-block;
-  /* background-size: contain;
-  width: 15px;
-  height: 15px; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 23px;
+  height: 23px;
+  padding: 0 0.3em 0 0.3em;
 }

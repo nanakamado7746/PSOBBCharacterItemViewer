@@ -90,10 +90,9 @@ function displayCharacter(character)
   tbody.appendChild(trCreater(tdCreater(textNodeCreater(`NAME : ${character.Name}`))));
   tbody.appendChild(trCreater(tdCreater(textNodeCreater(`GUILD CARD : ${character.GuildCardNumber}`))));
   tbody.appendChild(trCreater(tdCreater(textNodeCreater(`CLASS : ${character.Class}`))));
-  let sectionid_image = tagCreater("div", "class::sectionid_image");
-  // sectionid_image.style = `background-color: 'url("../resources/images/icon/${character.SectionID}.png")';`;
-  // sectionid_image.style.backgroundImage = 'url(' + `../resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png` + ')';
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater("SECTION ID : "), sectionid_image, textNodeCreater(character.SectionID))));
+  let sectionid_image = tagCreater("img", "class::sectionid_image");
+  sectionid_image.src = `./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`;
+  tbody.appendChild(trCreater(tdCreater("class::sectionid", tagCreater("div", "class::sectionid_text", textNodeCreater("SECTION ID : ")), sectionid_image, tagCreater("div", "class::sectionid_text", textNodeCreater(character.SectionID)))));
   tbody.appendChild(trCreater(tdCreater(textNodeCreater(`LEVEL : ${character.Level}`))));
   tbody.appendChild(trCreater(tdCreater(textNodeCreater(`EP1 CHALLENGE : ${character.Ep1Progress}`))));
   tbody.appendChild(trCreater(tdCreater(textNodeCreater(`EP2 CHALLENGE : ${character.Ep2Progress}`))));
@@ -135,7 +134,7 @@ function displayInventory(inventory, title, mode)
   let number_body = tagCreater("div", "class::data_number_body");
   number_body.appendChild(document.createTextNode(`${inventory.length}`));
   let number_right = tagCreater("div", "class::data_number_right");
-  number = appendChilds(heading, number_left, number_body, number_right);
+  number = appendChilds(number, number_left, number_body, number_right);
   banner.appendChild(number);
   let header = tagCreater("div", "class::data_header");
   div = appendChilds(div, banner, header);

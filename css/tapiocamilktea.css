@@ -292,3 +292,19 @@ h2
 .notification p {
   margin: 0;
 }
+
+.sectionid
+{
+  display: flex;
+}
+.sectionid_text
+{
+  display: inline-block;
+}
+.sectionid_image
+{
+  width: 0;
+  height: 0;
+  padding: 0 0em 0 0.3em;
+  display: inline-block;
+}

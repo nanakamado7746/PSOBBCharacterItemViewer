@@ -377,8 +377,7 @@ class Item {
   isTekked(itemData, itemCode)
   {
     // コモン武器でエレメントが設定されている場合
-    if (this.isCommonWeapon(itemCode)) return (itemData[4] < 0x80)
-    return (itemData[4] !== 0x80)
+    return (itemData[4] < 0x80)
   }
 
   getPbs(pbsCode)

@@ -334,14 +334,14 @@ function displayNotification()
   let div = document.getElementById("notification");
   let table = document.createElement("table");
   let tbody = document.createElement("tbody");
-  for ( let notification of notifications ) {
+  for ( const notification of notifications ) {
     let tr = document.createElement("tr");
     let date = document.createElement("td");
     date.textContent = notification["date"];
     let status = document.createElement("td");
     status.className = notification["status"];
     let text = document.createElement("td");
-    for (let line of notification["text"])
+    for (const line of notification["text"])
     {
       if (line.match(/linker/))
       {

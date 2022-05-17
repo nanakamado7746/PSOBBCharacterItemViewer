@@ -26,7 +26,7 @@ function setVolume(value)
 function setCursorAudio()
 {
   let els = document.getElementsByClassName("data_cursor");
-  for (let el of els)
+  for (const el of els)
   {
     el.onmouseover = function() {
       if (document.getElementById("volume_range").value > 0) {
@@ -82,7 +82,7 @@ function isClassicTheme()
 
 function resetSearchItems()
 {
-  for (let type of document.getElementsByName("types"))
+  for (const type of document.getElementsByName("types"))
   {
     type.checked = false;
   }

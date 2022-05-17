@@ -5,7 +5,7 @@ function clickPage(catecory, index)
 
   const beforeScrollPosition = window.scrollY;
   const beforeStickyPosition = document.getElementById('sticky').getBoundingClientRect().top;
-  for (let page of document.getElementsByClassName("page")) page.style.backgroundColor = "";
+  for (const page of document.getElementsByClassName("page")) page.style.backgroundColor = "";
 
   pushedPageColoer(`page${catecory}${index}`);
 

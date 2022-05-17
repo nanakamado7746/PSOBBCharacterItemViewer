@@ -133,15 +133,14 @@ class Character extends Abstract {
       : this.Ep2Progress = `Stage ${count} Cleared!`;
   }
 
-  clearCount(characterData, index, number)
+  clearCount(characterData, index, max)
   {
     let count = 0;
-    for (let i = 0; i < number; i++)
+    for (let i = 0; i < max; i++)
     {
-      if (characterData.slice(index, index + 4).join('') != 0)
-      {
-        count += 1;
-      }
+      // 4バイトの合計が０の場合は終了（そのステージのクリア実績なし）
+      if (characterData.slice(index, index + 4).join('') == 0) break;
+      count += 1;
       index = index + 4;
     }
     return count;

@@ -13,8 +13,6 @@ class Abstract {
     console.log(itemsData);
 
     let array = [];
-    let index = 0;
-    let end = length;
     // 全アイテムエリアをアイテム単位でループする。
     for (let i = 0;i < itemsData.length; i += length)
     {
@@ -22,18 +20,18 @@ class Abstract {
         console.log(`item number:${i / length}, index:${i}, length:${length}, end:${i + length}`);
         console.log("slot:" + slot);
 
-        let itemData = itemsData.slice(i, i + length);
+        const itemData = itemsData.slice(i, i + length);
         console.log("itemData:");
         // 空欄チェック
         if (this.isBlank(itemData)) continue;
         console.log(itemData);
 
         // アイテムコード取得
-        let itemCode = this.binaryArrayToInt(itemData.slice(0, 3));
-        let itemCodeHex = this.binaryArrayToHex(itemData.slice(0, 3));
+        const itemCode = this.binaryArrayToInt(itemData.slice(0, 3));
+        const itemCodeHex = this.binaryArrayToHex(itemData.slice(0, 3));
         console.log("item code:" + itemCodeHex);
 
-        let item = new Item(itemData, itemCode, lang).Item;
+        const item = new Item(itemData, itemCode, lang).Item;
 
         // 所持品のリストにアイテム情報を追加
         array.push([
@@ -69,7 +67,7 @@ class Abstract {
 
   binaryArrayToInt(arr){
     let int;
-    for (let el of arr)
+    for (const el of arr)
     {
       int = int << 8 | el;
     }
@@ -79,7 +77,7 @@ class Abstract {
   binaryArrayToHex(arr){
 
     let str = '';
-    for(let el of arr)
+    for(const el of arr)
     {
         str += el.toString('16').padStart(2, '0')
     }

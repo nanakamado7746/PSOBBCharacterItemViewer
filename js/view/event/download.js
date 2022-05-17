@@ -94,7 +94,7 @@ function createDataFile(zip, data, path)
 function createDataFileWithSlot(zip, data, path)
 {
   let tmp = [];
-  for (let item of data)
+  for (const item of data)
   {
     tmp.push(`${item[1]["display"]}, Slot: ${item[2]}`);
   }

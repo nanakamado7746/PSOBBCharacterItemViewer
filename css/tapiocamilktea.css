@@ -38,7 +38,7 @@ a:hover
 
 .title
 {
-  padding: 2em 0 1em 2em;
+  padding: 2em 0 2em 2em;
   font-family: 'Orbitron', sans-serif;
   color: #FFFFFF;
 }
@@ -50,8 +50,8 @@ h1
 
 .subTitle
 {
-  font-size: 100%;
-  padding: 0em 0 0 35em;
+  font-size: 80%;
+  padding: 0em 0 0 0.5em;
 }
 
 .volume

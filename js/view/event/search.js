@@ -193,7 +193,7 @@ function query(data, lang)
 function hasSearchItem()
 {
   let typesChecked = false;
-  for (let type of document.getElementsByName("types"))
+  for (const type of document.getElementsByName("types"))
   {
     if (type.checked) typesChecked = true;
   }

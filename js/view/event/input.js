@@ -7,7 +7,7 @@ async function clickInput(event)
     const files = sortInputFiles(event.target.files);
     let fileData = [];
 
-    for (let file of files)
+    for (const file of files)
     {
       //　キャラクターデータファイルだけ取り込み
       if (file.name.match(/psobank|psochar/) == null) continue;

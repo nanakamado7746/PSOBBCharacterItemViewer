@@ -248,7 +248,7 @@ function displayNotification()
         text.appendChild(a);
       } else {
         let p = document.createElement("p");
-        if (notification["status"] === "solved")
+        if (notification["status"] === "resolved")
         {
           let del = document.createElement("del");
           del.textContent += line;

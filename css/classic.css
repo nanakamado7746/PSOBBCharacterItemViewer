@@ -36,9 +36,8 @@ a:hover
   margin: 0;
   font-family: 'Orbitron', sans-serif;
   background-image: url("../resources/images/background/title2_upper.png");
-  background-size: 930px 100%;
+  background-size: 1025px 100%;
   background-repeat: no-repeat;
-  height: 140px;
 }
 
 .title
@@ -63,9 +62,8 @@ h1
 {
   display: flex;
   background-image: url("../resources/images/background/title2_under.png");
-  background-size: 930px 100%;
+  background-size: 1025px 100%;
   background-repeat: no-repeat;
-  height: 37px;
   font-size: 80%;
 }
 

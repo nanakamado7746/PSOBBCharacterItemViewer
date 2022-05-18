@@ -19,6 +19,7 @@ function clickChangeLang(lang)
     if (this.currentData["page"] === "allItems") displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
     if (this.currentData["page"] === "searchResults")
     {
+      let tmp = [];
       // 検索結果のアイテムに付与されているインデックス番号と同じアイテムを切り替え言語の全アイテムから取り出す。
       for (const i of this.currentData["searchResults"])
       {

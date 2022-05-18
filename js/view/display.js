@@ -95,7 +95,7 @@ function displayInventory(inventory, title, mode)
     }
   }
 
-  id.appendChild(data_window_creater(tbody, title));
+  id.appendChild(data_window_creater(tbody, title, inventory.length));
   setCursorAudio();
 }
 

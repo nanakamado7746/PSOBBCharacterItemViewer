@@ -10,8 +10,9 @@ function setVolume(value)
 {
   console.log("change volume to:" + value);
   let img = document.getElementById("volume_img");
-  (value > 0) ? img.setAttribute('src', "./resources/images/icon/volume/volume_on.png")
-              : img.setAttribute('src', "./resources/images/icon/volume/volume_off.png");
+  (value > 0)
+    ? img.setAttribute('src', "./resources/images/icon/volume/volume_on.png")
+    : img.setAttribute('src', "./resources/images/icon/volume/volume_off.png");
 
   this.cursor_audios.map(item => item.volume = value);
   this.open_audios.map(item => item.volume = value);
@@ -47,8 +48,9 @@ function playAudio(audios)
 
 function refreshVolume()
 {
-  (isClassicTheme()) ? setVolume(document.getElementById("volume_range").value)
-                     : setVolume(0);
+  (isClassicTheme())
+    ? setVolume(document.getElementById("volume_range").value)
+    : setVolume(0);
 }
 
 function playAudioOpen()
@@ -89,8 +91,9 @@ function resetSearchItems()
 
 function pushedPageColoer(id)
 {
-  isClassicTheme() ? document.getElementById(id).style.backgroundColor = "#fb7c03"
-                   : document.getElementById(id).style.backgroundColor = "#D2B48C";
+  isClassicTheme()
+    ? document.getElementById(id).style.backgroundColor = "#fb7c03"
+    : document.getElementById(id).style.backgroundColor = "#D2B48C";
 }
 
 function sortInventory(inventory)
@@ -114,11 +117,11 @@ function sortInventory(inventory)
 
 function displayAfterEnterd()
 {
-    if (localStorage.getItem("fileData") === null) {
-      document.getElementById("afterEnterd").style.opacity = 0;
-      document.getElementById("afterEnterd").style.height = 0;
-    } else {
-      document.getElementById("afterEnterd").style.opacity = 1;
-      document.getElementById("afterEnterd").style.height = "auto";
-    }
+  if (localStorage.getItem("fileData") === null) {
+    document.getElementById("afterEnterd").style.opacity = 0;
+    document.getElementById("afterEnterd").style.height = 0;
+  } else {
+    document.getElementById("afterEnterd").style.opacity = 1;
+    document.getElementById("afterEnterd").style.height = "auto";
+  }
 }

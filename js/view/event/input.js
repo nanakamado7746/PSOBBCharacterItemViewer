@@ -155,24 +155,16 @@ function setCharacterData(characters, shareBanks, allItems)
 function sortInputFiles(files)
 {
   let sorted = [].slice.call(files).sort(function(a, b) {
+    // psobankは最後尾
     if (a.name.match(/psobank/)) return -1;
 
     // ファイル名のスロット番号を切り取って数値に変換する
-    if (a.name.match(/\s\d+/) != null) {
-      a = parseInt(a.name.match(/[0-9]+(?=\.)/));
-    }
-    if (b.name.match(/\s\d+/) != null){
-      b = parseInt(b.name.match(/[0-9]+(?=\.)/));
-    }
+    if (a.name.match(/\s\d+/) != null) a = parseInt(a.name.match(/[0-9]+(?=\.)/));
+    if (b.name.match(/\s\d+/) != null) b = parseInt(b.name.match(/[0-9]+(?=\.)/));
 
-    if ( a > b ) {
-      return 1;
-    } else if ( a < b )
-    {
-      return -1;
-    } else {
-      return 0;
-    }
+    if ( a > b ) return 1;
+    else if ( a < b ) return -1;
+    else return 0;
   });
   return sorted;
 }

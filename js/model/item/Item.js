@@ -101,6 +101,7 @@ class Item {
     const machine = this.getMachine(itemData);
     const dark = this.getDark(itemData);
     const hit = this.getHit(itemData);
+    const isCommon = this.isCommonWeapon(itemCode);
     // コモン武器の場合はエレメントの設定をする。elementがない場合は設定しない。
     let element = "";
     if (itemData[4] !== 0x00 & itemData[4] !== 0x80) element = ` [${this.getElement(itemData)}]`;
@@ -109,7 +110,7 @@ class Item {
     let tekkedText = "";
     // 未鑑定の場合は未鑑定表記する
     if (!tekkedMode) tekkedText = "? ";
-    if (!tekkedMode & this.isCommonWeapon(itemCode)) tekkedText = "???? ";
+    if (!tekkedMode & isCommon) tekkedText = "???? ";
 
     return {
       type: 1,
@@ -124,6 +125,7 @@ class Item {
         hit: hit
       },
       tekked: tekkedMode,
+      rare: !isCommon,
       display: `${tekkedText}${name}${this.grinderLabel(grinder)}${element} [${native}/${aBeast}/${machine}/${dark}|${hit}]`,
     }
   }

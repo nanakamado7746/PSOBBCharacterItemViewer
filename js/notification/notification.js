@@ -9,10 +9,18 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 18",
+      "status": "info",
+      "text": [
+        "Search items were split between Common and Rare weapons.",
+        "レア武器とコモン武器で検索項目を分割しました。"
+      ]
+    },
+    {
       "date": "2022 May 12",
       "status": "info",
       "text": [
-        "Meseta is now available for viewing..",
+        "Meseta is now available for viewing.",
         "メセタの閲覧ができるようになりました。"
       ]
     },
@@ -42,7 +50,7 @@ function notification()
     },
     {
       "date": "2022 May 6",
-      "status": "solved",
+      "status": "resolved",
       "text": [
         "Temporarily stops sound functionality due to memory management issues.",
         "メモリ管理の問題により、サウンド機能を一時的に停止します。"
@@ -122,7 +130,7 @@ function notification()
     },
     {
       "date": "2022 Apr 9",
-      "status": "solved",
+      "status": "resolved",
       "text": [
         "When searching by item name, switching the display of language change is not supported. Currently, there is no prospect of support.",
         "アイテム名で検索をかけている場合、言語変更の表示切り替えをサポートしていません。 現在、対応の見通しはありません。"
@@ -170,7 +178,7 @@ function notification()
     },
     {
       "date": "2022 Apr 7",
-      "status": "solved",
+      "status": "resolved",
       "text": [
         "Tekked and unTekked item may not be properly distinguished.",
         "鑑定、未鑑定アイテムが正しく区別されていない可能性があります。"
@@ -178,7 +186,7 @@ function notification()
     },
     {
       "date": "2022 Apr 5",
-      "status": "solved",
+      "status": "resolved",
       "text": [
         "If there are items that are not displayed after searching, please press the search button or reload the web page.",
         "検索しても表示されないアイテムがある場合は、検索ボタンを押すかWEBページをリロードしてください。"

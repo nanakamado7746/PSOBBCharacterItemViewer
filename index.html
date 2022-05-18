@@ -84,14 +84,15 @@
               <div class="type">
                 <div id="ｃategorysearch" class="openbtn">
                   <button type="button" class="reset" id="reset" onClick=clickReset(event)></button>
-                  <input type="checkbox" class="" name="types" value="1" onClick=clickSearch(event)>Weapons
-                  <input type="checkbox" class="" name="types" value="2" onClick=clickSearch(event)>Frames
-                  <input type="checkbox" class="" name="types" value="3" onClick=clickSearch(event)>Barriers
-                  <input type="checkbox" class="" name="types" value="4" onClick=clickSearch(event)>Units
-                  <input type="checkbox" class="" name="types" value="5" onClick=clickSearch(event)>Mags
-                  <input type="checkbox" class="" name="types" value="6" onClick=clickSearch(event)>Disks
-                  <input type="checkbox" class="" name="types" value="7" onClick=clickSearch(event)>Tools
-                  <input type="checkbox" class="" name="types" value="8" onClick=clickSearch(event)>S-Ranks
+                  <input type="checkbox" class="" name="types" value="1:rare" onClick=clickSearch(event)>Rare Weapon
+                  <input type="checkbox" class="" name="types" value="1:common" onClick=clickSearch(event)>Common Weapon
+                  <input type="checkbox" class="" name="types" value="2" onClick=clickSearch(event)>Frame
+                  <input type="checkbox" class="" name="types" value="3" onClick=clickSearch(event)>Barrier
+                  <input type="checkbox" class="" name="types" value="4" onClick=clickSearch(event)>Unit
+                  <input type="checkbox" class="" name="types" value="5" onClick=clickSearch(event)>Mag
+                  <input type="checkbox" class="" name="types" value="6" onClick=clickSearch(event)>Disk
+                  <input type="checkbox" class="" name="types" value="7" onClick=clickSearch(event)>Tool
+                  <input type="checkbox" class="" name="types" value="8" onClick=clickSearch(event)>S-Rank
                   <input type="checkbox" class="" name="types" value="9" onClick=clickSearch(event)>Other
                   <input type="checkbox" class="" name="types" value="10" onClick=clickSearch(event)>Meseta
                 </div>
@@ -100,7 +101,7 @@
                 <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
                 <div class="sep"><input type="text" class="element" name="element" placeholder="special attack (element)"></div>
                 <div class="sep"><input type="text" class="att" name="hit" placeholder="HIT value"></div>
-                <div class="sep"><input type="checkbox" class="openbtn" name="unTekked" value="1" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div>
+                <div class="sep"><input type="checkbox" class="openbtn" name="unTekked" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div>
               </div>
               <button id="download" class="download" onClick='clickDownload()'>Getting as Text File</button>
             </div>
@@ -120,7 +121,7 @@
 <script type="text/javascript" src="./js/model/character/Abstract.js"></script>
 <script type="text/javascript" src="./js/model/character/Character.js"></script>
 <script type="text/javascript" src="./js/model/character/ShareBank.js"></script>
-<script type="text/javascript" src="./js/view/notification/notification.js"></script>
+<script type="text/javascript" src="./js/notification/notification.js"></script>
 <script type="text/javascript" src="./js/view/event/changelang.js"></script>
 <script type="text/javascript" src="./js/view/event/download.js"></script>
 <script type="text/javascript" src="./js/view/event/input.js"></script>

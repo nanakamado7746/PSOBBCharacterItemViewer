@@ -106,6 +106,13 @@ function query(data, lang)
       typeSelected = true;
       result = result.concat(data[lang].filter(function(x)
         {
+            if (value.value.split(":")[0] == 1 & value.value.split(":")[1] == "rare") {
+              return (x[1].type == 1 & x[1].rare === true);
+            }
+            if (value.value.split(":")[0] == 1 & value.value.split(":")[1] == "common") {
+              return (x[1].type == 1 & x[1].rare === false);
+            }
+
             return (x[1].type == value.value);
         }
       ));
@@ -114,7 +121,6 @@ function query(data, lang)
 
   // typesがすべてfalse（未選択）だった場合、すべてのアイテムを対象にする。
   if (!typeSelected) result = data[lang];
-
 
   // 名前が指定された場合
   if (word !== "")

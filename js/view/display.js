@@ -9,38 +9,18 @@ function displayItemCodes()
   let id = document.getElementById("data");
   id.innerHTML = '';
 
-  if (typeof itemCodes === "undefined") return;
-
-  let div = tagCreater("div", "class::data_window", "id::data_window");
-  let banner = tagCreater("div", "class::data_banner");
-  let data_title = tagCreater("div", "class::data_title");
-  let data_title_left = tagCreater("div", "class::data_title_left");
-  let data_title_body = tagCreater("h2", "class::data_title_body");
-  data_title_body.appendChild(document.createTextNode("ITEM CODES"));
-  let heading_right = tagCreater("div", "class::data_heading_right");
-  data_title = appendChilds(data_title, data_title_left, data_title_body, heading_right);
-  banner.appendChild(data_title);
-  let header = tagCreater("div", "class::data_header");
-  div = appendChilds(div, banner, header);
-
-  let table = tagCreater("table", "class::data_body", "clas::data_cursor");
-  let tbody = tagCreater("tbody");
+  let tbody = tag("tbody");
 
   if (Object.keys(itemCodes).length !== 0)
   {
     for (let key in itemCodes)
     {
-      let td = tdCreater(textNodeCreater("0x" + Number(key).toString(16).padStart(6, 0).toUpperCase()));
-      let td2 = tdCreater(textNodeCreater(itemCodes[key]));
-      tbody.appendChild(trCreater(td, td2));
+      tbody.appendChild(tr(td(textNode("0x" + Number(key).toString(16).padStart(6, 0).toUpperCase())),
+                            td(textNode(itemCodes[key]))));
     }
   }
 
-  table.appendChild(tbody);
-  div.appendChild(table);
-  let footer = tagCreater("div", "class::data_footer");
-  div.appendChild(footer);
-  id.appendChild(div);
+  id.appendChild(data_window_creater(tbody, "ITEM CODES"));
   setCursorAudio();
 }
 
@@ -49,36 +29,22 @@ function displayCharacter(character)
   let id = document.getElementById("data");
   id.innerHTML = '';
 
-  let div = tagCreater("div", "class::data_window", "id::data_window");
-  let banner = tagCreater("div", "class::data_banner");
-  let data_title = tagCreater("div", "class::data_title");
-  let data_title_left = tagCreater("div", "class::data_title_left");
-  let data_title_body = tagCreater("h2", "class::data_title_body");
-  data_title_body.appendChild(document.createTextNode("CHARACTER"));
-  let data_title_right = tagCreater("div", "class::data_title_right");
-  let header = tagCreater("div", "class::data_header");
-  data_title = appendChilds(data_title, data_title_left, data_title_body, data_title_right);
-  banner.appendChild(data_title);
-  div = appendChilds(div, banner, header);
+  // sectionIDのイメージタグ
+  let sectionid_image = tag("img", "class::sectionid_image");
+      sectionid_image.src = `./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`;
+  let tbody = tag("tbody", tr(td(textNode(`SLOT : ${character.Slot}`))),
+                           tr(td(textNode(`NAME : ${character.Name}`))),
+                           tr(td(textNode(`GUILD CARD : ${character.GuildCardNumber}`))),
+                           tr(td(textNode(`CLASS : ${character.Class}`))),
+                           tr(td("class::sectionid", tag("div", "class::sectionid_text",
+                                                     textNode("SECTION ID : ")), sectionid_image,
+                                                     tag("div", "class::sectionid_text",
+                                                     textNode(character.SectionID)))),
+                           tr(td(textNode(`LEVEL : ${character.Level}`))),
+                           tr(td(textNode(`EP1 CHALLENGE : ${character.Ep1Progress}`))),
+                           tr(td(textNode(`EP2 CHALLENGE : ${character.Ep2Progress}`))));
 
-  let table = tagCreater("table", "class::data_body", "class::data_cursor");
-  let tbody = tagCreater("tbody");
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`SLOT : ${character.Slot}`))));
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`NAME : ${character.Name}`))));
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`GUILD CARD : ${character.GuildCardNumber}`))));
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`CLASS : ${character.Class}`))));
-  let sectionid_image = tagCreater("img", "class::sectionid_image");
-  sectionid_image.src = `./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`;
-  tbody.appendChild(trCreater(tdCreater("class::sectionid", tagCreater("div", "class::sectionid_text", textNodeCreater("SECTION ID : ")), sectionid_image, tagCreater("div", "class::sectionid_text", textNodeCreater(character.SectionID)))));
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`LEVEL : ${character.Level}`))));
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`EP1 CHALLENGE : ${character.Ep1Progress}`))));
-  tbody.appendChild(trCreater(tdCreater(textNodeCreater(`EP2 CHALLENGE : ${character.Ep2Progress}`))));
-  table.appendChild(tbody);
-  div.appendChild(table);
-
-  let footer = tagCreater("div", "class::data_footer");
-  div.appendChild(footer);
-  id.appendChild(div);
+  id.appendChild(data_window_creater(tbody, "CHARACTER"));
 
   displayInventory(character.Inventory[this.lang], "INVENTORY");
   displayInventory(character.Bank[this.lang], "BANK");
@@ -95,79 +61,50 @@ function displayInventory(inventory, title, mode)
 {
   let id = document.getElementById("data");
 
-  let div = tagCreater("div", "class::data_window", "id::data_window");
-  let banner = tagCreater("div", "class::data_banner");
 
-  let data_title = tagCreater("div", "class::data_title");
-  let data_title_left = tagCreater("div", "class::data_title_left");
-  let data_title_body = tagCreater("h2", "class::data_title_body");
-  data_title_body.appendChild(document.createTextNode(title));
-  let data_title_right = tagCreater("div", "class::data_title_right");
-  data_title = appendChilds(data_title, data_title_left, data_title_body, data_title_right);
-  banner.appendChild(data_title);
+  let tbody = tag("tbody");
 
-  let number = tagCreater("div", "class::data_number");
-  let number_left = tagCreater("div", "class::data_number_left");
-  let number_body = tagCreater("div", "class::data_number_body");
-  number_body.appendChild(document.createTextNode(`${inventory.length}`));
-  let number_right = tagCreater("div", "class::data_number_right");
-  number = appendChilds(number, number_left, number_body, number_right);
-  banner.appendChild(number);
-  let header = tagCreater("div", "class::data_header");
-  div = appendChilds(div, banner, header);
-
-  let table = tagCreater("table", "class::data_body", "class::data_cursor");
-  let tbody = tagCreater("tbody");
-
-  if (inventory.length == 0)
-  {
-    // イベントリがからの場合、NO ITEMと表示
-    tbody.appendChild(trCreater(tdCreater(textNodeCreater("NO ITEM"))));
-  }
+  // イベントリがからの場合、NO ITEMと表示
+  if (inventory.length == 0) tbody.appendChild(tr(td(textNode("NO ITEM"))));
 
   if (inventory.length >= 0)
   {
     // インベントにアイテムがある場合
     for (let i in inventory)
     {
-      let tr = tagCreater("tr");
-      let td = tagCreater("td", "class::data_td_item");
-      //
+      let td;
       if (inventory[i][1]["type"] == "5")
       {
-        let color = tagCreater("div", "class::magcolor");
-        color.style = `background-color: ${inventory[i][1]["rgb"]};`;
-        td = appendChilds(td, document.createTextNode(inventory[i][1]["display_front"]),
-                          color, document.createTextNode(inventory[i][1]["display_end"]));
+        // マグの時
+        td = tag("td", "class::data_td_item", textNode(inventory[i][1]["display_front"]),
+                                              tag("div", "class::magcolor", `style::background-color: ${inventory[i][1]["rgb"]};}`),
+                                              textNode(inventory[i][1]["display_end"]));
       } else {
-        let text = document.createTextNode(inventory[i][1]["display"]);
-        td.appendChild(text);
+        //　マグ以外
+        td = tag("td", "class::data_td_item", textNode(inventory[i][1]["display"]));
       }
-      tr.appendChild(td);
+
+      let tr = tag("tr", td);
 
       // スロット列作成
       if (mode == "allItems")
       {
-        let slotTd = tagCreater("td", "class::data_td_slot", document.createTextNode(`Slot: ${inventory[i][2]}`));
-        tr.appendChild(slotTd);
+        let slot = tag("td", "class::data_td_slot", textNode(`Slot: ${inventory[i][2]}`));
+        tr.appendChild(slot);
       }
       tbody.appendChild(tr);
     }
   }
 
-  table.appendChild(tbody);
-  div.appendChild(table);
-  let footer = tagCreater("div", "class::data_footer");
-  div.appendChild(footer);
-  id.appendChild(div);
+  id.appendChild(data_window_creater(tbody, title));
   setCursorAudio();
 }
 
 function displayPager()
 {
-  let characters = this.characters;
-  let shareBanks = this.shareBanks;
-  let allItems = this.allItems;
+  const characters = this.characters;
+  const shareBanks = this.shareBanks;
+  const allItems = this.allItems;
 
   let id = document.getElementById("pager");
   id.innerHTML = '';
@@ -177,7 +114,7 @@ function displayPager()
   {
     for( let i in characters)
     {
-      let button = tagCreater("button", `id::pagecharacter${i}`, "class::page", `name::${i}`, `onclick::clickPage("character", name)`, `innerText::${characters[i].Slot}:${characters[i].Name}`);
+      let button = tag("button", `id::pagecharacter${i}`, "class::page", `name::${i}`, `onclick::clickPage("character", name)`, `innerText::${characters[i].Slot}:${characters[i].Name}`);
       id.appendChild(button);
     }
   }
@@ -187,7 +124,7 @@ function displayPager()
   {
     for( let i in shareBanks)
     {
-      let button = tagCreater("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, "innerText::ShareBank");
+      let button = tag("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, "innerText::ShareBank");
       id.appendChild(button);
     }
   }
@@ -195,7 +132,7 @@ function displayPager()
   // 全アイテムのページを表示する
   if (Object.keys(allItems).length !== 0)
   {
-    let button = tagCreater("button", `id::pageallItemsdefault`, "class::page", `name::default`, `onclick::clickPage("allItems", name)`, "innerText::AllItems");
+    let button = tag("button", `id::pageallItemsdefault`, "class::page", `name::default`, `onclick::clickPage("allItems", name)`, "innerText::AllItems");
     id.appendChild(button);
   }
 }
@@ -205,69 +142,68 @@ function displayNotification()
   console.log("====== notification ======");
   console.log(notification());
 
-  let notifications = notification();
+  const notifications = notification();
   let div = document.getElementById("notification");
-  let table = tagCreater("table");
-  let tbody = tagCreater("tbody");
+  let tbody = tag("tbody");
   for ( const notification of notifications )
   {
-    let tr = document.createElement("tr");
-    let date = tdCreater(textNodeCreater(notification["date"]));
-    let status = tdCreater(`class::${notification["status"]}`);
     let text = document.createElement("td");
     for (const line of notification["text"])
     {
       if (line.match(/linker/))
       {
-        let linker = line.split("||");
-        let a = tagCreater("a", `href::${linker[2]}`, `target::_blank`, textNodeCreater(linker[1]));
-        text.appendChild(a);
+        const linker = line.split("||");
+        text.appendChild(tag("a", `href::${linker[2]}`, `target::_blank`, textNode(linker[1])));
       } else {
-        let p = document.createElement("p");
-        if (notification["status"] === "resolved")
-        {
-          let del = document.createElement("del");
-          del.textContent += line;
-          p.appendChild(del);
-        } else {
-          p.textContent += line;
-        }
+        let p = tag("p");
+        if (notification["status"] === "resolved") p.appendChild(tag("del", textNode(line)));
+        else p.textContent = line;
         text.appendChild(p);
       }
     }
-    tr.appendChild(date);
-    tr.appendChild(status);
-    tr.appendChild(text);
-    tbody.appendChild(tr);
+    tbody.appendChild(tag("tr", td(textNode(notification["date"])),
+                                td(`class::${notification["status"]}`),
+                                text));
   }
-  table.appendChild(tbody);
-  div.appendChild(table);
+  div.appendChild(tag("table", tbody));
 }
 
-function displayAfterEnterd()
+
+function data_title_creater(title)
 {
-    if (localStorage.getItem("fileData") === null) {
-      document.getElementById("afterEnterd").style.opacity = 0;
-      document.getElementById("afterEnterd").style.height = 0;
-    } else {
-      document.getElementById("afterEnterd").style.opacity = 1;
-      document.getElementById("afterEnterd").style.height = "auto";
-    }
+  return tag("div", "class::data_title",  tag("div", "class::data_title_left"),
+                                          tag("h2", "class::data_title_body", textNode(title)),
+                                          tag("div", "class::data_title_right"));
 }
 
-function tagCreater(tagName, args)
+function data_number_creater(number)
+{
+  return tag("div", "class::data_number", tag("div", "class::data_number_left"),
+                                          tag("div", "class::data_number_body", textNode(`${number}`)),
+                                          tag("div", "class::data_number_right"));
+}
+
+function data_window_creater(tbody, title, number)
+{
+  if (number === undefined)
+  return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title)),
+                                                             tag("div", "class::data_header"),
+                                                             tag("table", "class::data_body", "clas::data_cursor", tbody),
+                                                             tag("div", "class::data_footer"));
+  if (number !== null)
+  return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title), data_number_creater(number)),
+                                                             tag("div", "class::data_header"),
+                                                             tag("table", "class::data_body", "clas::data_cursor", tbody),
+                                                             tag("div", "class::data_footer"));
+}
+
+
+function tag(tagName, args)
 {
   let tag = document.createElement(tagName);
   for (let i = 1; i < arguments.length; i++)
   {
-    if (typeof arguments[i] === "string") {
-      const tmp = arguments[i].split("::");
-      if (tmp[0] === "class") tag.classList.add(tmp[1]);
-      else if (tmp[0] === "innerText") tag.innerText = tmp[1];
-      else tag.setAttribute(tmp[0], tmp[1]);
-    } else {
-      tag.appendChild(arguments[i]);
-    }
+    tag = createAttribute(tag, arguments[i]);
   }
   return tag;
 }
@@ -281,34 +217,62 @@ function appendChilds(tag, childs)
   return tag;
 }
 
-function textNodeCreater(text)
+function textNode(text)
 {
   return document.createTextNode(text);
 }
 
-function tdCreater(args)
+function div(args)
 {
-  let td = document.createElement("td");
-  for (const node of arguments)
+  let tag = document.createElement("table");
+  for (const attribute of arguments)
   {
-    if (typeof node === "string") {
-      const tmp = node.split("::");
-      if (tmp[0] === "class") td.classList.add(tmp[1]);
-      else if (tmp[0] === "innerText") td.innerText = tmp[1];
-      else td.setAttribute(tmp[0], tmp[1]);
-    } else {
-      td.appendChild(node);
-    }
+    tag = createAttribute(td, attribute);
   }
-  return td;
+  return tag;
 }
 
-function trCreater(td)
+function table(args)
 {
-  let tr = document.createElement("tr");
-  for (const td of arguments)
+  let tag = document.createElement("table");
+  for (const attribute of arguments)
   {
-    tr.appendChild(td);
+    tag = createAttribute(td, attribute);
   }
-  return tr;
+  return tag;
+}
+
+function tr(td)
+{
+  let tag = document.createElement("tr");
+  for (const attribute of arguments)
+  {
+    tag.appendChild(attribute);
+  }
+  return tag;
+}
+
+function td(args)
+{
+  let tag = document.createElement("td");
+  for (const attribute of arguments)
+  {
+    tag = createAttribute(tag, attribute);
+  }
+  return tag;
+}
+
+
+function createAttribute(tag, attribute)
+{
+  if (typeof attribute === "string") {
+    const tmp = attribute.split("::");
+    if (tmp[0] === "class") tag.classList.add(tmp[1]);
+    else if (tmp[0] === "innerText") tag.innerText = tmp[1];
+    else if (tmp[0] === "style") tag.style = tmp[1];
+    else tag.setAttribute(tmp[0], tmp[1]);
+  } else {
+    tag.appendChild(attribute);
+  }
+  return tag;
 }

@@ -206,12 +206,12 @@ h1
   opacity: 0.9;
 }
 
-.data .data_heading
+.data .data_title
 {
   margin-right: 2em;
 }
 
-.data .data_heading_body
+.data .data_title_body
 {
   margin: 0;
 }

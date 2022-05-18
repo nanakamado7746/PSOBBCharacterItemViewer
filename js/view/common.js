@@ -117,3 +117,15 @@ function sortInventory(inventory)
     return 0;
   });
 }
+
+
+function displayAfterEnterd()
+{
+    if (localStorage.getItem("fileData") === null) {
+      document.getElementById("afterEnterd").style.opacity = 0;
+      document.getElementById("afterEnterd").style.height = 0;
+    } else {
+      document.getElementById("afterEnterd").style.opacity = 1;
+      document.getElementById("afterEnterd").style.height = "auto";
+    }
+}

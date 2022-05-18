@@ -35,7 +35,7 @@ a:hover
 {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
-  background-image: url("../resources/images/background/title2_upper.png");
+  background-image: url("../resources/images/background/title/title2_upper.png");
   background-size: 1020px 100%;
   background-repeat: no-repeat;
   height: 145px;
@@ -62,7 +62,7 @@ h1
 .settings
 {
   display: flex;
-  background-image: url("../resources/images/background/title2_under.png");
+  background-image: url("../resources/images/background/title/title2_under.png");
   background-size: 1020px 100%;
   background-repeat: no-repeat;
   font-size: 80%;
@@ -110,7 +110,7 @@ h1
 
 .notification_left
 {
-  background-image: url("../resources/images/background/hukidashi_left_pink.png");
+  background-image: url("../resources/images/background/hukidashi/hukidashi_left_pink.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width: 53px;
@@ -118,14 +118,14 @@ h1
 
 .notification_body
 {
-  background-image: url("../resources/images/background/hukidashi_body_pink.png");
+  background-image: url("../resources/images/background/hukidashi/hukidashi_body_pink.png");
   background-size: contain;
   background-repeat: repeat-x;
 }
 
 .notification_right
 {
-  background-image: url("../resources/images/background/hukidashi_right_pink.png");
+  background-image: url("../resources/images/background/hukidashi/hukidashi_right_pink.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width: 58.5px;
@@ -144,7 +144,7 @@ h1
 
 .notification .info
 {
-  background-image: url("../resources/images/icon/info_black.png");
+  background-image: url("../resources/images/icon/notification/info_black.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -154,7 +154,7 @@ h1
 
 .notification .caution
 {
-  background-image: url("../resources/images/icon/caution_black.png");
+  background-image: url("../resources/images/icon/notification/caution_black.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -164,7 +164,7 @@ h1
 
 .notification .resolved
 {
-  background-image: url("../resources/images/icon/resolved_black.png");
+  background-image: url("../resources/images/icon/notification/resolved_black.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -200,7 +200,7 @@ h1
 
 .input_bg_left
 {
-  background-image: url("../resources/images/background/hukidashi_left_green.png");
+  background-image: url("../resources/images/background/hukidashi/hukidashi_left_green.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width: 50px;
@@ -208,14 +208,14 @@ h1
 
 .input_bg_body
 {
-  background-image: url("../resources/images/background/hukidashi_body_green.png");
+  background-image: url("../resources/images/background/hukidashi/hukidashi_body_green.png");
   background-size: contain;
   background-repeat: repeat-x;
 }
 
 .input_bg_right
 {
-  background-image: url("../resources/images/background/hukidashi_right_green.png");
+  background-image: url("../resources/images/background/hukidashi/hukidashi_right_green.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width: 55px;
@@ -330,7 +330,7 @@ h1
 
 .reset
 {
-  background-image:url('../resources/images/icon/batsu.png');
+  background-image:url('../resources/images/icon/button/batsu.png');
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -382,7 +382,7 @@ h1
   color: #000000;
   font-size: 150%;
   text-align: center;
-  background-image: url("../resources/images/background/banner.png");
+  background-image: url("../resources/images/background/data/banner.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -398,7 +398,7 @@ h1
 .data .data_title_left
 {
   width: 30px;
-  background-image: url("../resources/images/background/heading_left.png");
+  background-image: url("../resources/images/background/data/data_title_left.png");
   background-size: contain;
   background-repeat: no-repeat;
   display: table-cell;
@@ -409,7 +409,7 @@ h1
 .data .data_title_right
 {
   width: 30px;
-  background-image: url("../resources/images/background/heading_right.png");
+  background-image: url("../resources/images/background/data/data_title_right.png");
   background-size: contain;
   background-repeat: no-repeat;
   display: table-cell;
@@ -421,7 +421,7 @@ h1
 {
   padding: 0;
   width: 250px;
-  background-image: url("../resources/images/background/heading_body.png");
+  background-image: url("../resources/images/background/data/data_title_body.png");
   background-size: contain;
   background-repeat: repeat;
   display: table-cell;
@@ -440,7 +440,7 @@ h1
 .data .data_number_left
 {
   width: 30px;
-  background-image: url("../resources/images/background/number_left.png");
+  background-image: url("../resources/images/background/data/number_left.png");
   background-size: contain;
   background-repeat: no-repeat;
   display: table-cell;
@@ -451,7 +451,7 @@ h1
 .data .data_number_right
 {
   width: 30px;
-  background-image: url("../resources/images/background/number_right.png");
+  background-image: url("../resources/images/background/data/number_right.png");
   background-size: contain;
   background-repeat: no-repeat;
   display: table-cell;
@@ -462,7 +462,7 @@ h1
 .data .data_number_body
 {
   width: 100px;
-  background-image: url("../resources/images/background/number_body.png");
+  background-image: url("../resources/images/background/data/number_body.png");
   background-size: contain;
   background-repeat: repeat;
   font-size: 120%;
@@ -506,7 +506,7 @@ h1
 
 
 .data tr:hover {
-  background-image: url("../resources/images/background/cursor.png");
+  background-image: url("../resources/images/background/data/cursor.png");
   background-size: 97% 100%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -516,7 +516,7 @@ h1
 {
   height: 27px;
   width: 100%;
-  background-image: url("../resources/images/background/data_header.png");
+  background-image: url("../resources/images/background/data/data_header.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -524,7 +524,7 @@ h1
 
 .data_body
 {
-  background-image: url("../resources/images/background/data_body.png");
+  background-image: url("../resources/images/background/data/data_body.png");
   background-size: 100%;
 }
 
@@ -532,7 +532,7 @@ h1
 {
   height: 25px;
   width: 100%;
-  background-image: url("../resources/images/background/data_footer.png");
+  background-image: url("../resources/images/background/data/data_footer.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }

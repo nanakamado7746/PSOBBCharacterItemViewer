@@ -21,7 +21,6 @@ function displayItemCodes()
   }
 
   id.appendChild(data_window_creater(tbody, "ITEM CODES"));
-  setCursorAudio();
 }
 
 function displayCharacter(character)

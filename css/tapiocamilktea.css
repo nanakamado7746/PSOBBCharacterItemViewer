@@ -29,7 +29,7 @@ a:hover
 .header
 {
   font-family: 'Orbitron', sans-serif;
-  background-image: url("../resources/images/background/title.png");
+  background-image: url("../resources/images/background/title/title.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-color: #111111;
@@ -158,7 +158,7 @@ h1
 
 .reset
 {
-  background-image:url('../resources/images/icon/batsu.png');
+  background-image:url('../resources/images/icon/button/batsu.png');
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
@@ -199,7 +199,7 @@ h1
   color: #ffffff;
   background-color: #555555;
   border-color: : #afeeee;
-  background-image: url("../resources/images/icon/redbox_white.png");
+  background-image: url("../resources/images/icon/data/redbox_white.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0%;
@@ -256,7 +256,7 @@ h2
 
 .notification .info
 {
-  background-image: url("../resources/images/icon/info.png");
+  background-image: url("../resources/images/icon/notification/info.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -264,7 +264,7 @@ h2
 
 .notification .caution
 {
-  background-image: url("../resources/images/icon/caution.png");
+  background-image: url("../resources/images/icon/notification/caution.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -272,7 +272,7 @@ h2
 
 .notification .resolved
 {
-  background-image: url("../resources/images/icon/resolved.png");
+  background-image: url("../resources/images/icon/notification/resolved.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

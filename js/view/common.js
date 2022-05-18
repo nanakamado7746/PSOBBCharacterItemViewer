@@ -10,8 +10,8 @@ function setVolume(value)
 {
   console.log("change volume to:" + value);
   let img = document.getElementById("volume_img");
-  (value > 0) ? img.setAttribute('src', "./resources/images/icon/volume_on.png")
-              : img.setAttribute('src', "./resources/images/icon/volume_off.png");
+  (value > 0) ? img.setAttribute('src', "./resources/images/icon/volume/volume_on.png")
+              : img.setAttribute('src', "./resources/images/icon/volume/volume_off.png");
 
   this.cursor_audios.map(item => item.volume = value);
   this.open_audios.map(item => item.volume = value);

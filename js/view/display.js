@@ -1,26 +1,3 @@
-function displayData()
-{
-  const characters = this.characters;
-  const shareBanks = this.shareBanks;
-
-  // 詳細表示
-  if (characters.length !== 0)
-  {
-    // 現在ページの情報を保存
-    displayCharacter(characters[0]);
-    this.currentData["page"] = "character";
-    this.currentData["searching"] = ["character", 0, this.characters[0]];
-    pushedPageColoer(`pagecharacter${0}`);
-  } else if (shareBanks.length !== 0)
-  {
-    // 現在ページの情報を保存
-    displayShareBank(shareBanks[0]);
-    this.currentData["page"] = "shareBank";
-    this.currentData["searching"] = ["shareBank", 0, this.shareBanks[0]];
-    pushedPageColoer(`pageshareBank${0}`);
-  }
-}
-
 function displayItemCodes()
 {
   let itemCodes;

@@ -43,11 +43,9 @@ function initializeDisplay()
   {
     if (localStorage.getItem("fileData"))
     {
-      let fileData = JSON.parse(localStorage.getItem("fileData"));
-      decoder(fileData);
+      const fileData = JSON.parse(localStorage.getItem("fileData"));
+      decodeAndDisplay(fileData);
     }
-    displayPager();
-    displayData();
   }
   catch (e)
   {

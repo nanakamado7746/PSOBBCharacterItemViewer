@@ -27,14 +27,8 @@ async function clickInput(event)
 
     localStorage.setItem("fileData", JSON.stringify(fileData));
 
-    // ファイル入力をきっかけにDOM表示
-    displayAfterEnterd();
     // デコード
-    decoder(fileData);
-    // ページャーを表示
-    displayPager();
-    // 詳細表示
-    displayData();
+    decodeAndDisplay(fileData);
 
   } catch(e) {
     //例外エラーが起きた時に実行する処理
@@ -48,6 +42,32 @@ async function clickInput(event)
     }
   } finally {
   }
+}
+
+function decodeAndDisplay(fileData)
+{
+  decoder(fileData);
+  displayPager();
+
+  // 詳細表示
+  if (characters.length !== 0)
+  {
+    // キャラクターデータがある場合、優先して表示
+    displayCharacter(characters[0]);
+    this.currentData["page"] = "character";
+    this.currentData["searching"] = ["character", 0, this.characters[0]];
+    pushedPageColoer(`pagecharacter${0}`);
+  } else if (shareBanks.length !== 0)
+  {
+    // キャラクターデータがない場合は共有倉庫を表示
+    displayShareBank(shareBanks[0]);
+    this.currentData["page"] = "shareBank";
+    this.currentData["searching"] = ["shareBank", 0, this.shareBanks[0]];
+    pushedPageColoer(`pageshareBank${0}`);
+  }
+
+  // ファイル入力をきっかけにDOM表示
+  displayAfterEnterd();
 }
 
 function decoder(fileData)

@@ -13,13 +13,13 @@ function displayItemCodes()
 
   let div = tagCreater("div", "class::data_window", "id::data_window");
   let banner = tagCreater("div", "class::data_banner");
-  let heading = tagCreater("div", "class::data_heading");
-  let heading_left = tagCreater("div", "class::data_heading_left");
-  let h2 = tagCreater("h2", "class::data_heading_body");
-  h2.appendChild(document.createTextNode("ITEM CODES"));
+  let data_title = tagCreater("div", "class::data_title");
+  let data_title_left = tagCreater("div", "class::data_title_left");
+  let data_title_body = tagCreater("h2", "class::data_title_body");
+  data_title_body.appendChild(document.createTextNode("ITEM CODES"));
   let heading_right = tagCreater("div", "class::data_heading_right");
-  heading = appendChilds(heading, heading_left, h2, heading_right);
-  banner.appendChild(heading);
+  data_title = appendChilds(data_title, data_title_left, data_title_body, heading_right);
+  banner.appendChild(data_title);
   let header = tagCreater("div", "class::data_header");
   div = appendChilds(div, banner, header);
 
@@ -51,14 +51,14 @@ function displayCharacter(character)
 
   let div = tagCreater("div", "class::data_window", "id::data_window");
   let banner = tagCreater("div", "class::data_banner");
-  let heading = tagCreater("div", "class::data_heading");
-  let heading_left = tagCreater("div", "class::data_heading_left");
-  let h2 = tagCreater("h2", "class::data_heading_body");
-  h2.appendChild(document.createTextNode("CHARACTER"));
-  let heading_right = tagCreater("div", "class::data_heading_right");
+  let data_title = tagCreater("div", "class::data_title");
+  let data_title_left = tagCreater("div", "class::data_title_left");
+  let data_title_body = tagCreater("h2", "class::data_title_body");
+  data_title_body.appendChild(document.createTextNode("CHARACTER"));
+  let data_title_right = tagCreater("div", "class::data_title_right");
   let header = tagCreater("div", "class::data_header");
-  heading = appendChilds(heading, heading_left, h2, heading_right);
-  banner.appendChild(heading);
+  data_title = appendChilds(data_title, data_title_left, data_title_body, data_title_right);
+  banner.appendChild(data_title);
   div = appendChilds(div, banner, header);
 
   let table = tagCreater("table", "class::data_body", "class::data_cursor");
@@ -98,13 +98,13 @@ function displayInventory(inventory, title, mode)
   let div = tagCreater("div", "class::data_window", "id::data_window");
   let banner = tagCreater("div", "class::data_banner");
 
-  let heading = tagCreater("div", "class::data_heading");
-  let heading_left = tagCreater("div", "class::data_heading_left");
-  let h2 = tagCreater("h2", "class::data_heading_body");
-  h2.appendChild(document.createTextNode(title));
-  let heading_right = tagCreater("div", "class::data_heading_right");
-  heading = appendChilds(heading, heading_left, h2, heading_right);
-  banner.appendChild(heading);
+  let data_title = tagCreater("div", "class::data_title");
+  let data_title_left = tagCreater("div", "class::data_title_left");
+  let data_title_body = tagCreater("h2", "class::data_title_body");
+  data_title_body.appendChild(document.createTextNode(title));
+  let data_title_right = tagCreater("div", "class::data_title_right");
+  data_title = appendChilds(data_title, data_title_left, data_title_body, data_title_right);
+  banner.appendChild(data_title);
 
   let number = tagCreater("div", "class::data_number");
   let number_left = tagCreater("div", "class::data_number_left");

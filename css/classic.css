@@ -387,7 +387,7 @@ h1
   background-repeat: no-repeat;
 }
 
-.data .data_heading
+.data .data_title
 {
   display: flex;
   padding: 0em 0em 0em 0em;
@@ -395,7 +395,7 @@ h1
   display: table;
 }
 
-.data .data_heading_left
+.data .data_title_left
 {
   width: 30px;
   background-image: url("../resources/images/background/heading_left.png");
@@ -406,7 +406,7 @@ h1
   background-position: right;
 }
 
-.data .data_heading_right
+.data .data_title_right
 {
   width: 30px;
   background-image: url("../resources/images/background/heading_right.png");
@@ -417,7 +417,7 @@ h1
   background-position: left;
 }
 
-.data .data_heading_body
+.data .data_title_body
 {
   padding: 0;
   width: 250px;

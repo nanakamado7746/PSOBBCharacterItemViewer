@@ -14,7 +14,7 @@ class Config {
   static BarrierRange = [ 0x010200, 0x0102A5 ];
   static UnitRange = [ 0x010300, 0x010364 ];
   static MagRange = [ 0x020000, 0x025200 ];
-  static ToolRange = [ 0x030000, 0x030102 ];
+  static ToolRange = [ 0x030000, 0x030900 ];
   static MesetaRange = [ 0x040000, 0x040000 ];
   static DiskRange = [ 0x050000, 0x05121D ];
   static EphineaRange = [ 0x031005, 0x031810 ];

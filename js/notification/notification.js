@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 May 19",
+      "status": "info",
+      "text": [
+        "Some items were changed from Other type to Tool type.",
+        "一部のアイテムをOther typeからTool typeに変更しました。"
+      ]
+    },
+    {
       "date": "2022 May 18",
       "status": "info",
       "text": [

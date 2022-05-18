@@ -148,6 +148,8 @@ h1
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  height: 3px;
+  width: 3px;
 }
 
 .notification .caution
@@ -156,6 +158,8 @@ h1
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  height: 3px;
+  width: 3px;
 }
 
 .notification .resolved
@@ -164,6 +168,8 @@ h1
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  height: 3px;
+  width: 3px;
 }
 
 .notification td

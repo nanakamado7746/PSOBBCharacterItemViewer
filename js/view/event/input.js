@@ -110,18 +110,8 @@ function decoder(fileData)
   }
 
   // ソート
-  allItems["EN"] = allItems["EN"].sort(function(a, b) {
-    if (a[1]["type"] == "10" & b[1]["type"] == "10") return Number(b[0]) - Number(a[0]);
-    if ( b > a) return -1;
-    if ( a > b) return 1;
-    return 0;
-  });
-  allItems["JA"] = allItems["JA"].sort(function(a, b) {
-    if (a[1]["type"] == "10" & b[1]["type"] == "10") return Number(b[0]) - Number(a[0]);
-    if ( b > a) return -1;
-    if ( a > b) return 1;
-    return 0;
-  });
+  allItems["EN"] = sortInventory(allItems["EN"]);
+  allItems["JA"] = sortInventory(allItems["JA"]);
 
   // 言語変更時に取り出すためのインデックスを付与
   allItems["EN"].forEach(function(value, i){
@@ -136,7 +126,6 @@ function decoder(fileData)
   // グローバル変数とローカルストレージにセット
   setCharacterData(characters, shareBanks, allItems);
 }
-
 
 function setCharacterData(characters, shareBanks, allItems)
 {

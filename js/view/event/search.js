@@ -187,13 +187,13 @@ function query(data, lang)
   console.log("==== search results ====");
   console.log(result);
 
-  this.searchResults = result;
+  this.searchResults = sortInventory(result);
 
   // 現在ページの情報を保存
   this.currentData["page"] = "searchResults";
   this.currentData["searchResults"] = this.searchResults;
 
-  return result;
+  return this.searchResults;
 }
 
 function hasSearchItem()

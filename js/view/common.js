@@ -99,3 +99,21 @@ function pushedPageColoer(id)
     ? document.getElementById(id).style.backgroundColor = "#fb7c03"
     : document.getElementById(id).style.backgroundColor = "#D2B48C";
 }
+
+function sortInventory(inventory)
+{
+  return inventory.sort(function(a, b) {
+    // メセタ同志はスロットの昇順。ShareBankは最後尾
+    if (a[1]["type"] == "10" & b[1]["type"] == "10" & b[2] === "Share Bank") return -1;
+    if (a[1]["type"] == "10" & b[1]["type"] == "10") return b[2] > a[2];
+    if (a[1]["type"] == "10" & b[1]["type"] == "10") return a[2] > b[2];
+    // アイテムコード昇順
+    if ( b[0] > a[0]) return -1;
+    if ( a[0] > b[0]) return 1;
+    // アイテムコードが同じ場合はスロットの昇順。ShareBankは最後尾
+    if ( a[0] === b[0] & b[2] === "Share Bank") return -1;
+    if ( a[0] === b[0] & b[2] > a[2]) return -1;
+    if ( a[0] === b[0] & a[2] > b[2]) return 1;
+    return 0;
+  });
+}

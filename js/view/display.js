@@ -15,8 +15,8 @@ function displayItemCodes()
   {
     for (let key in itemCodes)
     {
-      tbody.appendChild(tr(td(textNode("0x" + Number(key).toString(16).padStart(6, 0).toUpperCase())),
-                            td(textNode(itemCodes[key]))));
+      tbody = appendChilds(tbody, tr(td(textNode("0x" + Number(key).toString(16).padStart(6, 0).toUpperCase())),
+                                     td(textNode(itemCodes[key]))));
     }
   }
 
@@ -30,9 +30,8 @@ function displayCharacter(character)
   id.innerHTML = '';
 
   // sectionIDのイメージタグ
-  let sectionid_image = tag("img", "class::sectionid_image");
-      sectionid_image.src = `./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`;
-  let tbody = tag("tbody", tr(td(textNode(`SLOT : ${character.Slot}`))),
+  const sectionid_image = tag("img", "class::sectionid_image", `src::./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`);
+  const tbody = tag("tbody", tr(td(textNode(`SLOT : ${character.Slot}`))),
                            tr(td(textNode(`NAME : ${character.Name}`))),
                            tr(td(textNode(`GUILD CARD : ${character.GuildCardNumber}`))),
                            tr(td(textNode(`CLASS : ${character.Class}`))),
@@ -72,16 +71,16 @@ function displayInventory(inventory, title, mode)
     // インベントにアイテムがある場合
     for (let i in inventory)
     {
-      let td;
+      let td = tag("td", "class::data_td_item");
       if (inventory[i][1]["type"] == "5")
       {
         // マグの時
-        td = tag("td", "class::data_td_item", textNode(inventory[i][1]["display_front"]),
-                                              tag("div", "class::magcolor", `style::background-color: ${inventory[i][1]["rgb"]};}`),
-                                              textNode(inventory[i][1]["display_end"]));
+        td = appendChilds(td, textNode(inventory[i][1]["display_front"]),
+                              tag("div", "class::magcolor", `style::background-color: ${inventory[i][1]["rgb"]};}`),
+                              textNode(inventory[i][1]["display_end"]));
       } else {
         //　マグ以外
-        td = tag("td", "class::data_td_item", textNode(inventory[i][1]["display"]));
+        td = appendChilds(td, textNode(inventory[i][1]["display"]));
       }
 
       let tr = tag("tr", td);
@@ -270,6 +269,7 @@ function createAttribute(tag, attribute)
     if (tmp[0] === "class") tag.classList.add(tmp[1]);
     else if (tmp[0] === "innerText") tag.innerText = tmp[1];
     else if (tmp[0] === "style") tag.style = tmp[1];
+    else if (tmp[0] === "src") tag.src = tmp[1];
     else tag.setAttribute(tmp[0], tmp[1]);
   } else {
     tag.appendChild(attribute);

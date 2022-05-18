@@ -8,13 +8,10 @@ function removeCharacterData()
 
 function setVolume(value)
 {
-
   console.log("change volume to:" + value);
-
   let img = document.getElementById("volume_img");
-  (value > 0)
-    ? img.setAttribute('src', "./resources/images/icon/volume_on.png")
-    : img.setAttribute('src', "./resources/images/icon/volume_off.png");
+  (value > 0) ? img.setAttribute('src', "./resources/images/icon/volume_on.png")
+              : img.setAttribute('src', "./resources/images/icon/volume_off.png");
 
   this.cursor_audios.map(item => item.volume = value);
   this.open_audios.map(item => item.volume = value);
@@ -29,9 +26,7 @@ function setCursorAudio()
   for (const el of els)
   {
     el.onmouseover = function() {
-      if (document.getElementById("volume_range").value > 0) {
-        playAudioCursor();
-      }
+      if (document.getElementById("volume_range").value > 0) playAudioCursor();
     }
   }
 }
@@ -52,9 +47,8 @@ function playAudio(audios)
 
 function refreshVolume()
 {
-  (isClassicTheme())
-   ? setVolume(document.getElementById("volume_range").value)
-   : setVolume(0);
+  (isClassicTheme()) ? setVolume(document.getElementById("volume_range").value)
+                     : setVolume(0);
 }
 
 function playAudioOpen()
@@ -95,9 +89,8 @@ function resetSearchItems()
 
 function pushedPageColoer(id)
 {
-  isClassicTheme()
-    ? document.getElementById(id).style.backgroundColor = "#fb7c03"
-    : document.getElementById(id).style.backgroundColor = "#D2B48C";
+  isClassicTheme() ? document.getElementById(id).style.backgroundColor = "#fb7c03"
+                   : document.getElementById(id).style.backgroundColor = "#D2B48C";
 }
 
 function sortInventory(inventory)

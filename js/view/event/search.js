@@ -81,6 +81,15 @@ function query(data, lang)
 
   // typeの選択状態を表す
   let typeSelected = false;
+
+  // レア武器、コモン武器の両方が検索されている場合、先に抽出する。
+  let isSearchedBothWeapon = false;
+  if (types[0].checked & types[1].checked)
+  {
+    isSearchedBothWeapon = true;
+    searchResults = searchResults.concat(data[lang].filter(function(x) { return (x[1].type == 1); }));
+  }
+
   for (const type of types)
   {
     if (type.checked)
@@ -89,9 +98,11 @@ function query(data, lang)
       typeSelected = true;
       searchResults = searchResults.concat(data[lang].filter(function(x)
         {
-            if (type.value.split(":")[0] == 1 & type.value.split(":")[1] == "rare") return (x[1].type == 1 & x[1].rare === true);
-            if (type.value.split(":")[0] == 1 & type.value.split(":")[1] == "common") return (x[1].type == 1 & x[1].rare === false);
-            return (x[1].type == type.value);
+          // すでに武器が抽出されている場合は武器の抽出をスキップする
+          if (!isSearchedBothWeapon & type.value.split(":")[1] == "rare") return (x[1].type == 1 & x[1].rare === true);
+          if (!isSearchedBothWeapon & type.value.split(":")[1] == "common") return (x[1].type == 1 & x[1].rare === false);
+          // 武器以外
+          return (x[1].type == type.value);
         }
       ));
     }
@@ -153,8 +164,6 @@ function query(data, lang)
 
   console.log("==== search results ====");
   console.log(searchResults);
-
-  searchResults = sortInventory(searchResults);
 
   // 現在ページの情報を保存
   this.currentData["page"] = "searchResults";

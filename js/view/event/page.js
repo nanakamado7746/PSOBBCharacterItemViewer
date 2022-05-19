@@ -1,5 +1,3 @@
-
-
 function clickPage(catecory, index)
 {
 

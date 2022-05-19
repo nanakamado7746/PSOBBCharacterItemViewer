@@ -36,10 +36,9 @@ function displayCharacter(character)
                              tr(td(textNode(`NAME : ${character.Name}`))),
                              tr(td(textNode(`GUILD CARD : ${character.GuildCardNumber}`))),
                              tr(td(textNode(`CLASS : ${character.Class}`))),
-                             tr(td("class::sectionid", tag("div", "class::sectionid_text",
-                                                       textNode("SECTION ID : ")), sectionid_image,
-                                                       tag("div", "class::sectionid_text",
-                                                       textNode(character.SectionID)))),
+                             tr(td("class::sectionid", tag("div", "class::sectionid_text", textNode("SECTION ID : ")),
+                                                       sectionid_image,
+                                                       tag("div", "class::sectionid_text", textNode(character.SectionID)))),
                              tr(td(textNode(`LEVEL : ${character.Level}`))),
                              tr(td(textNode(`EP1 CHALLENGE : ${character.Ep1Progress}`))),
                              tr(td(textNode(`EP2 CHALLENGE : ${character.Ep2Progress}`))));
@@ -165,7 +164,6 @@ function displayNotification()
   div.appendChild(tag("table", tbody));
 }
 
-
 function data_title_creater(title)
 {
   return tag("div", "class::data_title",  tag("div", "class::data_title_left"),
@@ -193,7 +191,6 @@ function data_window_creater(tbody, title, number)
                                                                tag("table", "class::data_body", "class::data_cursor", tbody),
                                                                tag("div", "class::data_footer"));
 }
-
 
 function tag(tagName, args)
 {

@@ -1,7 +1,6 @@
-
 function clickSearch(call)
 {
-  hasSearchItem()
+  (hasSearchItem())
     ? search()
     : resetPage();
   playAudio(this.open_audios);
@@ -23,7 +22,6 @@ function keyUpSearch()
   }, false);
 }
 
-
 function search()
 {
   const beforeScrollPosition = window.scrollY;
@@ -43,7 +41,6 @@ function search()
   displayInventory(query(data, lang), "SEARCH RESULTS", "allItems")
   scroll(beforeScrollPosition, beforeStickyPosition);
 }
-
 
 function query(data, lang)
 {
@@ -157,11 +154,11 @@ function query(data, lang)
   console.log("==== search results ====");
   console.log(searchResults);
 
-  this.searchResults = sortInventory(searchResults);
+  searchResults = sortInventory(searchResults);
 
   // 現在ページの情報を保存
   this.currentData["page"] = "searchResults";
-  this.currentData["searchResults"] = this.searchResults;
+  this.currentData["searchResults"] = searchResults;
 
   return searchResults;
 }

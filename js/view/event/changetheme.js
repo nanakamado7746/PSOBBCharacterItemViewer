@@ -1,4 +1,3 @@
-
 function clickChangeTheme(value)
 {
   document.getElementById("stylesheet").href = `./css/${value}.css`;

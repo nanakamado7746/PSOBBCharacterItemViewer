@@ -61,7 +61,6 @@ function displayInventory(inventory, title, mode)
 {
   let id = document.getElementById("data");
 
-
   let tbody = tag("tbody");
 
   // イベントリがからの場合、NO ITEMと表示
@@ -184,15 +183,15 @@ function data_number_creater(number)
 function data_window_creater(tbody, title, number)
 {
   if (number === undefined)
-  return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title)),
-                                                             tag("div", "class::data_header"),
-                                                             tag("table", "class::data_body", "class::data_cursor", tbody),
-                                                             tag("div", "class::data_footer"));
+    return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title)),
+                                                               tag("div", "class::data_header"),
+                                                               tag("table", "class::data_body", "class::data_cursor", tbody),
+                                                               tag("div", "class::data_footer"));
   if (number !== null)
-  return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title), data_number_creater(number)),
-                                                             tag("div", "class::data_header"),
-                                                             tag("table", "class::data_body", "class::data_cursor", tbody),
-                                                             tag("div", "class::data_footer"));
+    return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title), data_number_creater(number)),
+                                                               tag("div", "class::data_header"),
+                                                               tag("table", "class::data_body", "class::data_cursor", tbody),
+                                                               tag("div", "class::data_footer"));
 }
 
 

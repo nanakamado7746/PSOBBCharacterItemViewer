@@ -14,7 +14,7 @@ async function clickInput(event)
 
       fileReader.readAsArrayBuffer(file);
       await new Promise(resolve => fileReader.onload = () => resolve());
-      let binary = new Uint8Array(fileReader.result);
+      const binary = new Uint8Array(fileReader.result);
 
       fileData.push({
         "filename": file.name,
@@ -114,12 +114,13 @@ function decoder(fileData)
   allItems["JA"] = sortInventory(allItems["JA"]);
 
   // 言語変更時に取り出すためのインデックスを付与
-  allItems["EN"].forEach(function(value, i){
-    value.push(i);
-  })
-  allItems["JA"].forEach(function(value, i){
-    value.push(i);
-  })
+  for (const [i, item] of allItems["EN"].entries()) {
+    item.push(i);
+  }
+  for (const [i, item] of allItems["JA"].entries())
+  {
+    item.push(i);
+  }
 
   // グローバル変数初期化
   removeCharacterData();

@@ -48,7 +48,7 @@ initializeVolume();
 initializeLang();
 initializeTheme();
 displayNotification();
-initializeDisplay();
+initializeFileData();
 // DOM取得後の初期表示
 window.addEventListener('load', function(){
   refreshVolume();

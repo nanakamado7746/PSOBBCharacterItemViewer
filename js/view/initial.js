@@ -36,9 +36,8 @@ function initializeLang()
 }
 
 // ローカルストレージが存在していた場合、画面に表示する
-function initializeDisplay()
+function initializeFileData()
 {
-
   try
   {
     if (localStorage.getItem("fileData"))

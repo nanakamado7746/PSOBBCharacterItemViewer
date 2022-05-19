@@ -20,16 +20,16 @@ function clickChangeLang(lang)
     if (this.currentData["page"] === "searchResults")
     {
       let tmp = [];
-      // 検索結果のアイテムに付与されているインデックス番号と同じアイテムを切り替え言語の全アイテムから取り出す。
+      // 言語変更後の全アイテムから、現在検索されているアイテムを取り出す
       for (const i of this.currentData["searchResults"])
       {
         for (const j of this.allItems[lang])
         {
+          // 全てのアイテムに付与されている固有のインデックス番号を比較して同じなら取り出す
           if (i[3] === j[3]) tmp.push(j);
         }
       }
       // 現在ページの情報を保存
-      this.searchResults = tmp;
       this.currentData["page"] = "searchResults";
       this.currentData["searchResults"] = tmp;
       displayInventory(tmp, "SEARCH RESULTS", "allItems");

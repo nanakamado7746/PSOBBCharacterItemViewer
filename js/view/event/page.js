@@ -5,45 +5,33 @@ function clickPage(catecory, index)
 
   const beforeScrollPosition = window.scrollY;
   const beforeStickyPosition = document.getElementById('sticky').getBoundingClientRect().top;
-  for (const page of document.getElementsByClassName("page")) page.style.backgroundColor = "";
-
+  for (const pageButton of document.getElementsByClassName("page"))
+  {
+    pageButton.style.backgroundColor = "";
+  }
   pushedPageColoer(`page${catecory}${index}`);
 
   let id = document.getElementById("data");
+  id.innerHTML = '';
 
   switch (catecory) {
     case "character":
       this.currentData["page"] = "character";
       this.currentData["searching"] = ["character", index, this.characters[index]];
-      if (hasSearchItem())
-      {
-        search();
-        break;
-      }
-      id.innerHTML = '';
+      if (hasSearchItem()) { search(); break; }
       displayCharacter(this.characters[index]);
       break;
     case "shareBank":
       this.currentData["page"] = "shareBank";
       this.currentData["searching"] = ["shareBank", index, this.shareBanks[index]];
-      if (hasSearchItem())
-      {
-        search();
-        break;
-      }
-      id.innerHTML = '';
+      if (hasSearchItem()) { search(); break; }
       displayInventory(this.shareBanks[index].ShareBank[this.lang], "SHARE BANK");
       break;
     case "allItems":
       // 現在ページの情報を保存
       this.currentData["page"] = "allItems";
       this.currentData["searching"] = ["allItems", index, this.allItems];
-      if (hasSearchItem())
-      {
-        search();
-        break;
-      }
-      id.innerHTML = '';
+      if (hasSearchItem()) { search(); break; }
       displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
       break;
     default:

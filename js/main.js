@@ -4,7 +4,6 @@ var lang = "EN";
 var characters = [];
 var shareBanks = [];
 var allItems = [];
-var searchResults = [];
 var currentData = {};
 
 var cursor_audios = [

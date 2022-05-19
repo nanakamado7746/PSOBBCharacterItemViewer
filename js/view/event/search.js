@@ -46,8 +46,6 @@ function search()
 
 function query(data, lang)
 {
-
-
   let word = document.getElementsByName("word")[0].value;
   let element = document.getElementsByName("element")[0].value;
   let hit = document.getElementsByName("hit")[0].value;
@@ -64,83 +62,58 @@ function query(data, lang)
   // リストがない場合は終了
   if (data.length === 0) return;
 
-  // 検索結果初期値。検索欄未入力で全アイテムを表示する
-  let result = [];
-
   // 検索ワードの全角を半角に変換
   // 検索ワードのひらがなをかたかなに変換
   // 検索ワードを大文字化、トリム
-  word = word
-    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-    })
-    .replace(/[ぁ-ん]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) + 0x60);
-    })
-    .toUpperCase().trim();
-
-  element = element
-    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-    })
-    .replace(/[ぁ-ん]/g, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) + 0x60);
-    })
-    .toUpperCase().trim();
+  word = word.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) - 0xFEE0); })
+             .replace(/[ぁ-ん]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) + 0x60); })
+             .toUpperCase().trim();
+  element = element.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) - 0xFEE0); })
+                   .replace(/[ぁ-ん]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) + 0x60); })
+                   .toUpperCase().trim();
 
   // 検索Hit値の全角を半角に変換
-  hit = hit.replace(/[０-９]/g, function(s) {
-    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-  });
+  hit = hit.replace(/[０-９]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) - 0xFEE0); });
 
   console.log("search word converted:" + word);
   console.log("search hit converted:" + hit);
 
+  // 検索結果初期値。検索欄未入力で全アイテムを表示する
+  let searchResults = [];
+
   // typeの選択状態を表す
   let typeSelected = false;
-  for (const value of types)
+  for (const type of types)
   {
-    if (value.checked)
+    if (type.checked)
     {
       // typeが選択されていると、選択状態をtrueにする
       typeSelected = true;
-      result = result.concat(data[lang].filter(function(x)
+      searchResults = searchResults.concat(data[lang].filter(function(x)
         {
-            if (value.value.split(":")[0] == 1 & value.value.split(":")[1] == "rare") {
-              return (x[1].type == 1 & x[1].rare === true);
-            }
-            if (value.value.split(":")[0] == 1 & value.value.split(":")[1] == "common") {
-              return (x[1].type == 1 & x[1].rare === false);
-            }
-
-            return (x[1].type == value.value);
+            if (type.value.split(":")[0] == 1 & type.value.split(":")[1] == "rare") return (x[1].type == 1 & x[1].rare === true);
+            if (type.value.split(":")[0] == 1 & type.value.split(":")[1] == "common") return (x[1].type == 1 & x[1].rare === false);
+            return (x[1].type == type.value);
         }
       ));
     }
   }
 
   // typesがすべてfalse（未選択）だった場合、すべてのアイテムを対象にする。
-  if (!typeSelected) result = data[lang];
+  if (!typeSelected) searchResults = data[lang];
 
   // 名前が指定された場合
   if (word !== "")
   {
-    result = result.filter(function(x)
+    searchResults = searchResults.filter(function(x)
       {
-
         // 検索対象の全角を半角に変換
         // 検索対象のひらがなをかたかなに変換
         // 検索対象を大文字化、トリム
-        let target = x[1].name
-          .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-          })
-          .replace(/[ぁ-ん]/g, function(s) {
-          return String.fromCharCode(s.charCodeAt(0) + 0x60);
-          })
-          .toUpperCase();
-
-        return target.match(word);
+        const item = x[1].name.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);})
+                              .replace(/[ぁ-ん]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) + 0x60); })
+                              .toUpperCase();
+        return item.match(word);
       }
     );
   }
@@ -148,18 +121,14 @@ function query(data, lang)
   // エレメントが指定された場合
   if (element !== "")
   {
-    result = result.filter(function(x)
+    searchResults = searchResults.filter(function(x)
       {
-        if (x[1].type === 1 | x[1].type === 8)
+        if (x[1].type === Config.ItemType.WEAPON | x[1].type === Config.ItemType.SRANK_WEAPON)
         {
           // 武器かS武器の場合、検索対象のエレメント名をカタカナ、大文字へ変換
-          target = x[1].element
-            .replace(/[ぁ-ん]/g, function(s) {
-              return String.fromCharCode(s.charCodeAt(0) + 0x60);
-            })
-            .toUpperCase();
-
-          return target.match(element);
+          const item = x[1].element.replace(/[ぁ-ん]/g, function(s) { return String.fromCharCode(s.charCodeAt(0) + 0x60); })
+                                   .toUpperCase();
+          return item.match(element);
         }
       }
     );
@@ -167,7 +136,7 @@ function query(data, lang)
 
   if (unTekked)
   {
-    result = result.filter(function(x)
+    searchResults = searchResults.filter(function(x)
       {
         if (x[1].type === 1) return x[1].tekked === false;
       }
@@ -177,7 +146,7 @@ function query(data, lang)
   // HIT値
   if (hit !== "" & !isNaN(hit))
   {
-    result = result.filter(function(x)
+    searchResults = searchResults.filter(function(x)
       {
         if (x[1].type === 1) return x[1].attribute["hit"] >= hit;
       }
@@ -185,15 +154,15 @@ function query(data, lang)
   }
 
   console.log("==== search results ====");
-  console.log(result);
+  console.log(searchResults);
 
-  this.searchResults = sortInventory(result);
+  this.searchResults = sortInventory(searchResults);
 
   // 現在ページの情報を保存
   this.currentData["page"] = "searchResults";
   this.currentData["searchResults"] = this.searchResults;
 
-  return this.searchResults;
+  return searchResults;
 }
 
 function hasSearchItem()
@@ -205,8 +174,8 @@ function hasSearchItem()
   }
 
   return ( !(typesChecked === false
-      & document.getElementsByName("word")[0].value === ""
-      & document.getElementsByName("element")[0].value === ""
-      & document.getElementsByName("hit")[0].value === ""
-      & document.getElementsByName("unTekked")[0].checked === false))
+             & document.getElementsByName("word")[0].value === ""
+             & document.getElementsByName("element")[0].value === ""
+             & document.getElementsByName("hit")[0].value === ""
+             & document.getElementsByName("unTekked")[0].checked === false));
 }

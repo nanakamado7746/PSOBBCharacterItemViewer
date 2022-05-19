@@ -1,8 +1,9 @@
 function displayItemCodes()
 {
   let itemCodes;
-  (this.lang === "JA") ? itemCodes = ItemCodes_JA()
-                       : itemCodes = ItemCodes();
+  (this.lang === "JA")
+    ? itemCodes = ItemCodes_JA()
+    : itemCodes = ItemCodes();
 
   console.log(itemCodes);
 
@@ -32,16 +33,16 @@ function displayCharacter(character)
   // sectionIDのイメージタグ
   const sectionid_image = tag("img", "class::sectionid_image", `src::./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`);
   const tbody = tag("tbody", tr(td(textNode(`SLOT : ${character.Slot}`))),
-                           tr(td(textNode(`NAME : ${character.Name}`))),
-                           tr(td(textNode(`GUILD CARD : ${character.GuildCardNumber}`))),
-                           tr(td(textNode(`CLASS : ${character.Class}`))),
-                           tr(td("class::sectionid", tag("div", "class::sectionid_text",
-                                                     textNode("SECTION ID : ")), sectionid_image,
-                                                     tag("div", "class::sectionid_text",
-                                                     textNode(character.SectionID)))),
-                           tr(td(textNode(`LEVEL : ${character.Level}`))),
-                           tr(td(textNode(`EP1 CHALLENGE : ${character.Ep1Progress}`))),
-                           tr(td(textNode(`EP2 CHALLENGE : ${character.Ep2Progress}`))));
+                             tr(td(textNode(`NAME : ${character.Name}`))),
+                             tr(td(textNode(`GUILD CARD : ${character.GuildCardNumber}`))),
+                             tr(td(textNode(`CLASS : ${character.Class}`))),
+                             tr(td("class::sectionid", tag("div", "class::sectionid_text",
+                                                       textNode("SECTION ID : ")), sectionid_image,
+                                                       tag("div", "class::sectionid_text",
+                                                       textNode(character.SectionID)))),
+                             tr(td(textNode(`LEVEL : ${character.Level}`))),
+                             tr(td(textNode(`EP1 CHALLENGE : ${character.Ep1Progress}`))),
+                             tr(td(textNode(`EP2 CHALLENGE : ${character.Ep2Progress}`))));
 
   id.appendChild(data_window_creater(tbody, "CHARACTER"));
 
@@ -72,14 +73,12 @@ function displayInventory(inventory, title, mode)
     for (let i in inventory)
     {
       let td = tag("td", "class::data_td_item");
-      if (inventory[i][1]["type"] == "5")
+      if (inventory[i][1]["type"] == Config.ItemType.MAG)
       {
-        // マグの時
         td = appendChilds(td, textNode(inventory[i][1]["display_front"]),
                               tag("div", "class::magcolor", `style::background-color: ${inventory[i][1]["rgb"]};}`),
                               textNode(inventory[i][1]["display_end"]));
       } else {
-        //　マグ以外
         td = appendChilds(td, textNode(inventory[i][1]["display"]));
       }
 

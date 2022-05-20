@@ -63,8 +63,13 @@ class Item {
   }
   isCommonWeapon(itemCode)
   {
+    return (Config.WeaponRange[0] <= itemCode && itemCode <= Config.WeaponRange[1]);
+  }
+  isCommonWeapon(itemCode)
+  {
     // コモン武器が含まれている最小アイテムコード以下、かつコモン武器のグレード数以下であること
-    return (itemCode <= Config.CommonWeaponContainsCode && (itemCode & 0x0000FF) <= Config.CommonWeaponsMaxCode);
+    return (Config.CommonWeponsCodes.indexOf(itemCode) > -1);
+    // return (itemCode <= Config.CommonWeaponContainsCode && (itemCode & 0x0000FF) <= Config.CommonWeaponsMaxCode);
   }
   isFrame(itemCode)
   {

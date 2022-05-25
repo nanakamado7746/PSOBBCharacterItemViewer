@@ -24,7 +24,6 @@ function clickDownload()
 
   const compressed = zip.compress();
   const blob = new Blob([compressed], { 'type': 'application/zip' });
-
   const link = document.createElement('a');
   link.setAttribute('download', "psobb_character_data.zip");
   link.setAttribute('href', window.webkitURL.createObjectURL(blob));
@@ -33,7 +32,7 @@ function clickDownload()
 
 function createCharacterDataFile(zip, character, path)
 {
-    let character_data = [
+    const character_data = [
       "SLOT : " + character.Slot,
       "NAME : " + character.Name,
       "GUILD CARD : " + character.GuildCardNumber,

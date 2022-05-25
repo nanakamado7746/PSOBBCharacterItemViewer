@@ -180,16 +180,14 @@ function data_number_creater(number)
 
 function data_window_creater(tbody, title, number)
 {
-  if (number === undefined)
-    return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title)),
-                                                               tag("div", "class::data_header"),
-                                                               tag("table", "class::data_body", "class::data_cursor", tbody),
-                                                               tag("div", "class::data_footer"));
-  if (number !== null)
-    return tag("div", "class::data_window", "id::data_window", tag("div", "class::data_banner", data_title_creater(title), data_number_creater(number)),
-                                                               tag("div", "class::data_header"),
-                                                               tag("table", "class::data_body", "class::data_cursor", tbody),
-                                                               tag("div", "class::data_footer"));
+  //数値がある場合、数値を表示ブロックを作成
+  const data_title_wrap = (number !== undefined) ? tag("div", "class::data_title_wrap", data_title_creater(title), data_number_creater(number))
+                                                 : tag("div", "class::data_title_wrap", data_title_creater(title));
+
+  return tag("div", "class::data_window", "id::data_window", data_title_wrap,
+                                                             tag("div", "class::data_header"),
+                                                             tag("table", "class::data_body", "class::data_cursor", tbody),
+                                                             tag("div", "class::data_footer"));
 }
 
 function tag(tagName, args)
@@ -221,7 +219,7 @@ function div(args)
   let tag = document.createElement("table");
   for (const attribute of arguments)
   {
-    tag = createAttribute(td, attribute);
+    tag = createAttribute(tag, attribute);
   }
   return tag;
 }
@@ -231,7 +229,7 @@ function table(args)
   let tag = document.createElement("table");
   for (const attribute of arguments)
   {
-    tag = createAttribute(td, attribute);
+    tag = createAttribute(tag, attribute);
   }
   return tag;
 }
@@ -255,7 +253,6 @@ function td(args)
   }
   return tag;
 }
-
 
 function createAttribute(tag, attribute)
 {

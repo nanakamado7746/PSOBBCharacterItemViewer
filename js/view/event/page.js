@@ -35,6 +35,7 @@ function clickPage(catecory, index)
     default:
   }
 
+  console.log("==== current page ====");
   console.log(this.currentData);
 
   scroll(beforeScrollPosition, beforeStickyPosition);
@@ -52,7 +53,9 @@ function resetPage()
   let id = document.getElementById("data");
   id.innerHTML = '';
 
+  console.log("==== current page ====");
   console.log(this.currentData);
+
   if ( this.currentData["searching"][0] === "character") {
     this.currentData["page"] = "character";
     displayCharacter(this.currentData["searching"][2]);
@@ -73,13 +76,11 @@ function scroll(beforeScrollPosition, beforeStickyPosition)
 {
   if (document.getElementById('sticky').getBoundingClientRect().top > 0 | beforeStickyPosition > 0)
   {
-    console.log("scroll current position");
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     scrollTo(0, beforeScrollPosition);
   }
   else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
   {
-    console.log("scroll sticky position");
     scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }

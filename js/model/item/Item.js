@@ -118,8 +118,9 @@ class Item {
     if (!tekkedMode & isCommon) tekkedText = "???? ";
 
     return {
-      type: 1,
       name: name,
+      type: 1,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       element: element,
       grinder: grinder,
       attribute: {
@@ -145,8 +146,9 @@ class Item {
     const avoidMaxAddition = this.getAddition(name, Config.FrameAdditions, Config.AdditionType.AVOID);
 
     return {
-      type: 2,
       name: name,
+      type: 2,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       slot: slot,
       status: {
         def: def,
@@ -156,7 +158,7 @@ class Item {
         def: defMaxAddition,
         avoid: avoidMaxAddition,
       },
-      display: `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}] [${slot}S]`
+      display: `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}] [${slot}S]`,
     }
   }
 
@@ -169,8 +171,9 @@ class Item {
     const avoidMaxAddition = this.getAddition(name, Config.BarrierAdditions, Config.AdditionType.AVOID);
 
     return {
-      type: 3,
       name: name,
+      type: 3,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       addition: {
         def: def,
         avoid: avoid,
@@ -179,7 +182,7 @@ class Item {
         def: defMaxAddition,
         avoid: avoidMaxAddition,
       },
-      display: `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}]`
+      display: `${name} [${def}/${defMaxAddition}|${avoid}/${avoidMaxAddition}]`,
     }
   }
 
@@ -187,9 +190,10 @@ class Item {
   {
     const name = this.getItemName(itemCode);
     return {
-      type: 4,
       name: name,
-      display: name
+      type: 4,
+      display: name,
+      itemdata: CommonUtil.binaryArrayToHex(itemData)
     }
   }
 
@@ -205,11 +209,12 @@ class Item {
     const dex = (itemData[9] << 8 | itemData[8]) / 100;
     const mind = (itemData[11] << 8 | itemData[10]) / 100;
     // pbsの要素は0=center, 1=right、2=left
-    const pbs = this.getPbs(this.binaryArrayToHex([itemData[3], itemData[18]]));
+    const pbs = this.getPbs(CommonUtil.binaryArrayToHex([itemData[3], itemData[18]]));
 
     return {
+      name: `${name} LV${level} [${color[1]}]`,
       type: 5,
-      name: `${name} LV${level} [${color}]`,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       level: level,
       sync: sync,
       iq: iq,
@@ -228,7 +233,7 @@ class Item {
       ],
       display: `${name} LV${level} [${color[1]}] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`,
       display_front: `${name} LV${level} [${color[1]}`,
-      display_end: `] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`
+      display_end: `] [${def}/${pow}/${dex}/${mind}] [${pbs[2]}|${pbs[0]}|${pbs[1]}]`,
     }
   }
 
@@ -238,10 +243,11 @@ class Item {
     const name = Config.DiskNameCodes[itemData[4]];
     const level = itemData[2] + 1;
     return {
-      type: 6,
       name: `${name} LV${level} ${Config.DiskNameLanguage}`,
+      type: 6,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       level: level,
-      display: `${name} LV${level} ${Config.DiskNameLanguage}`
+      display: `${name} LV${level} ${Config.DiskNameLanguage}`,
     }
   }
 
@@ -254,11 +260,12 @@ class Item {
     const element = this.getSrankElement(itemData);
 
     return {
-      type: 8,
       name: name,
+      type: 8,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       grinder: grinder,
       element: element,
-      display: `${name} ${this.grinderLabel(grinder)} [${element}]`
+      display: `${name} ${this.grinderLabel(grinder)} [${element}]`,
     }
   }
 
@@ -273,10 +280,11 @@ class Item {
       : number = itemData[20];
 
     return {
-      type: 7,
       name: name,
+      type: 7,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       number: number,
-      display: `${name}${this.numberLabel(number)}`
+      display: `${name}${this.numberLabel(number)}`,
     }
   }
 
@@ -290,10 +298,11 @@ class Item {
       // 倉庫の場合
       : number = itemData[20];
     return {
-      type: 9,
       name: name,
+      type: 9,
+      itemdata: CommonUtil.binaryArrayToHex(itemData),
       number: number,
-      display: `${name}${this.numberLabel(number)}`
+      display: `${name}${this.numberLabel(number)}`,
     }
   }
 
@@ -427,7 +436,7 @@ class Item {
     // １文字ずつアルファベットに変換
     // 1 -> A, 26 -> Zのようになる。 0はSkip
     let customname = "";
-    for (let value of temp) {
+    for (const value of temp) {
       if (value !== 0) customname += String.fromCharCode(value + 64);
     };
 
@@ -435,7 +444,6 @@ class Item {
     console.log(customname);
 
     return customname;
-
   }
 
   threeLetters(array)
@@ -450,23 +458,5 @@ class Item {
       second,
       third
     ];
-  }
-
-  binaryArrayToInt(arr){
-    let int;
-    for (let el of arr)
-    {
-      int = int << 8 | el;
-    }
-    return int;
-  }
-
-  binaryArrayToHex(arr){
-    let str = '';
-    for(let el of arr)
-    {
-        str += el.toString('16').padStart(2, '0')
-    }
-    return str.toUpperCase();
   }
 }

@@ -30,7 +30,7 @@ class Character extends Abstract {
       // キャラクターの名前をセット
       this.setName(characterData);
       // キャラクターの種族をセット
-      this.setGuildCardNumber(characterData.slice(888,896));
+      this.setGuildCardNumber(characterData);
       // キャラクターの種族をセット
       this.setClass(characterData);
       // キャラクターのセクションIDをセット
@@ -76,17 +76,22 @@ class Character extends Abstract {
       if (array[i] + array[i + 1] === 0) break;
       name += String.fromCharCode((array[i + 1] << 8) | array[i]);
     }
+
+    console.log(`name: ${CommonUtil.binaryArrayToHex(array)}`);
     console.log(`name: ${name}`);
     this.Name = name;
   }
 
   setGuildCardNumber(characterData)
   {
+    const array = characterData.slice(888,896);
     let guildCardNumber = "";
-    for (let value of characterData)
+    for (const value of array)
     {
       guildCardNumber += value & 0x0F;
     }
+
+    console.log(`guildCardNumber: ${CommonUtil.binaryArrayToHex(array)}`);
     console.log(`guildCardNumber: ${guildCardNumber}`);
     this.GuildCardNumber = guildCardNumber;
   }
@@ -117,8 +122,7 @@ class Character extends Abstract {
 
   setEp1Progress(characterData, index, number)
   {
-    console.log("challenge progress: ep1")
-    const count = this.clearCount(characterData, index, number);
+    const count = this.progressCount(characterData, index, number);
     (count === 0)
       ? this.Ep1Progress = "No Progress"
       : this.Ep1Progress = `Stage ${count} Cleared! | ${Config.Titles[count]}`;
@@ -126,14 +130,13 @@ class Character extends Abstract {
 
   setEp2Progress(characterData, index, number)
   {
-    console.log("challenge progress: ep2")
-    const count = this.clearCount(characterData, index, number);
+    const count = this.progressCount(characterData, index, number);
     (count === 0)
       ? this.Ep2Progress = "No Progress"
       : this.Ep2Progress = `Stage ${count} Cleared!`;
   }
 
-  clearCount(characterData, index, max)
+  progressCount(characterData, index, max)
   {
     let count = 0;
     for (let i = 0; i < max; i++)
@@ -141,7 +144,7 @@ class Character extends Abstract {
       // 4バイトの合計が０の場合は終了（そのステージのクリア実績なし）
       if (characterData.slice(index, index + 4).join('') == 0) break;
       count += 1;
-      index = index + 4;
+      index += 4;
     }
     return count;
   }

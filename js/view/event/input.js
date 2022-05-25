@@ -162,9 +162,7 @@ function sortInputFiles(files)
     if (a.name.match(/\s\d+/) != null) a = parseInt(a.name.match(/[0-9]+(?=\.)/));
     if (b.name.match(/\s\d+/) != null) b = parseInt(b.name.match(/[0-9]+(?=\.)/));
 
-    if ( a > b ) return 1;
-    else if ( a < b ) return -1;
-    else return 0;
+    return a - b;
   });
   return sorted;
 }

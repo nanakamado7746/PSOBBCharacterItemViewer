@@ -27,8 +27,8 @@ class Abstract {
         console.log(itemData);
 
         // アイテムコード取得
-        const itemCode = this.binaryArrayToInt(itemData.slice(0, 3));
-        const itemCodeHex = this.binaryArrayToHex(itemData.slice(0, 3));
+        const itemCode = CommonUtil.binaryArrayToInt(itemData.slice(0, 3));
+        const itemCodeHex = CommonUtil.binaryArrayToHex(itemData.slice(0, 3));
         console.log("item code:" + itemCodeHex);
 
         const item = new Item(itemData, itemCode, lang).Item;
@@ -63,26 +63,6 @@ class Abstract {
 
   isBlank(itemData)
   {
-    return (itemData.slice(0, 20).join('') == 0 || this.binaryArrayToHex(itemData) == "000000000000000000000000FFFFFFFF0000000000000000");
+    return (itemData.slice(0, 20).join('') == 0 || CommonUtil.binaryArrayToHex(itemData) == "000000000000000000000000FFFFFFFF0000000000000000");
   }
-
-  binaryArrayToInt(arr){
-    let int;
-    for (const el of arr)
-    {
-      int = int << 8 | el;
-    }
-    return int;
-  }
-
-  binaryArrayToHex(arr){
-
-    let str = '';
-    for(const el of arr)
-    {
-        str += el.toString('16').padStart(2, '0')
-    }
-    return str.toUpperCase();
-  }
-
 }

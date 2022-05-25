@@ -189,7 +189,7 @@ h1
 
 .data{}
 
-.data .data_banner
+.data .data_title_wrap
 {
   height: auto;
   display: flex;

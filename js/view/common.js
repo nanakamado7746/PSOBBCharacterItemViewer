@@ -5,7 +5,6 @@ function removeCharacterData()
   this.allItems = [];
 }
 
-
 function setVolume(value)
 {
   console.log("change volume to:" + value);
@@ -19,7 +18,6 @@ function setVolume(value)
   this.enter_audios.map(item => item.volume = value);
   this.cancel_audios.map(item => item.volume = value);
 }
-
 
 function setCursorAudio()
 {
@@ -113,7 +111,6 @@ function sortInventory(inventory)
     return 0;
   });
 }
-
 
 function displayAfterEnterd()
 {

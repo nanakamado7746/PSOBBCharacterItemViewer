@@ -367,7 +367,7 @@ h1
   width: 1000px;
 }
 
-.data .data_banner
+.data .data_title_wrap
 {
   display: flex;
   margin: 1em 0 -1.3em 0em;

@@ -282,14 +282,22 @@ h1
   margin-top: 0.5em;
 }
 
-.type
+.types
 {
   display: flex;
+  align-items: center;
+  margin-bottom: 0.1em;
+}
+
+.type
+{
+  margin-left: 0.5em;
 }
 
 .wordsearch
 {
   display: flex;
+  align-items: center;
 }
 
 .wordsearch .sep

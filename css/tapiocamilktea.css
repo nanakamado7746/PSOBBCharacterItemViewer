@@ -111,14 +111,22 @@ h1
   font-size: 80%;
 }
 
-.type
+.types
 {
   display: flex;
+  align-items: center;
+  margin-bottom: 0.1em;
+}
+
+.type
+{
+  margin-left: 0.5em;
 }
 
 .wordsearch
 {
   display: flex;
+  align-items: center;
 }
 
 .wordsearch .sep
@@ -158,10 +166,10 @@ h1
 .reset
 {
   background-image:url('../resources/images/icon/button/batsu.png');
-  background-size: 50%;
+  background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 20px;
+  width: 30px;
   height: 20px;
   border-radius: 10px;
 }

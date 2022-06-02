@@ -91,7 +91,7 @@ function pushedPageColoer(id)
 {
   isClassicTheme()
     ? document.getElementById(id).style.backgroundColor = "#fb7c03"
-    : document.getElementById(id).style.backgroundColor = "#D2B48C";
+    : document.getElementById(id).style.backgroundColor = "#D3C7B8";
 }
 
 function sortInventory(inventory)

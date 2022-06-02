@@ -6,10 +6,10 @@ body
 {
   margin: 0em;
   background-color: #faebd7;
-  background-image: url("../resources/images/background/racast.png");
-  background-size: 700px;
+  background-image: url("../resources/images/background/rune_gray.png");
+  background-size: 200px;
   background-repeat: no-repeat;
-  background-position: right 0 bottom -300px;
+  background-position: right 5% bottom 5%;
   background-attachment: fixed;
 }
 
@@ -51,7 +51,6 @@ h1
 .subTitle
 {
   font-size: 80%;
-  padding: 0em 0 0 0.5em;
 }
 
 .volume

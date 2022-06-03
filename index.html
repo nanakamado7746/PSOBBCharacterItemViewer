@@ -8,10 +8,7 @@
   <link rel="shortcut icon" href="./resources/images/favicon/redria.ico">
   <link rel="icon" type="image/x-icon" href="./resources/images/favicon/redria.ico">
   <style>
-      /* @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap'); */
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
-      /* @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
       @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
   </style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,8 +33,8 @@
       <input type="range" id="volume_range" name="volume_range" min="0" max="0.6" step="0.3" value="0" onClick=clicVolumeSlider(value)>
     </div>
     <div class="theme">
-      <input type="radio" name="themes" value="classic" checked onClick=clickChangeTheme(value)>Classic-theme
-      <input type="radio" name="themes" value="tapiocamilktea" onClick=clickChangeTheme(value)>Tapioca milktea-theme
+      <label class="theme_label"><input type="radio" id="themelabel1" name="themes" value="classic" checked onClick=clickChangeTheme(value)>Classic-theme</label>
+      <label class="theme_label"><input type="radio" id="themelabel2" name="themes" value="tapiocamilktea" onClick=clickChangeTheme(value)>Tapioca milktea-theme</label>
     </div>
   </div>
 
@@ -75,31 +72,31 @@
         <div class="data_body sticky_indent">
           <div class="lang" id="radio">
             <button type="button" id="itemcodeb" class="itemcodeb" onClick=clickDisplayItemCodes(event)>ITEM CODES</button>
-            <input type="radio" name="lang" value="EN" checked onClick=clickChangeLang(value)>English
-            <input type="radio" name="lang" value="JA" onClick=clickChangeLang(value) >日本語
+            <label class="lang_label label_hover"><input type="radio" name="lang" value="EN" checked onClick=clickChangeLang(value)>English</label>
+            <label class="lang_label label_hover"><input type="radio" name="lang" value="JA" onClick=clickChangeLang(value)>日本語</label>
           </div>
           <div id="afterEnterd" >
             <div class="pager", id="pager"></div>
             <div class="search" id="search">
               <div class="types">
-                  <button type="button" class="reset" id="reset" onClick=clickReset(event)></button>
-                  <input type="checkbox" class="type" name="types" value="1:rare" onClick=clickSearch(event)>Rare Weapons
-                  <input type="checkbox" class="type" name="types" value="1:common" onClick=clickSearch(event)>Common Weapons
-                  <input type="checkbox" class="type" name="types" value="2" onClick=clickSearch(event)>Frames
-                  <input type="checkbox" class="type" name="types" value="3" onClick=clickSearch(event)>Barriers
-                  <input type="checkbox" class="type" name="types" value="4" onClick=clickSearch(event)>Units
-                  <input type="checkbox" class="type" name="types" value="5" onClick=clickSearch(event)>Mags
-                  <input type="checkbox" class="type" name="types" value="6" onClick=clickSearch(event)>Disks
-                  <input type="checkbox" class="type" name="types" value="7" onClick=clickSearch(event)>Tools
-                  <input type="checkbox" class="type" name="types" value="8" onClick=clickSearch(event)>S-Ranks
-                  <input type="checkbox" class="type" name="types" value="9" onClick=clickSearch(event)>Other
-                  <input type="checkbox" class="type" name="types" value="10" onClick=clickSearch(event)>Meseta
+                <button type="button" class="reset" id="reset" onClick=clickReset(event)></button>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:rare" onClick=clickSearch(event)>Rare Weapon</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:common" onClick=clickSearch(event)>Common Weapon</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="2" onClick=clickSearch(event)>Frame</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="3" onClick=clickSearch(event)>Barrier</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="4" onClick=clickSearch(event)>Unit</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="5" onClick=clickSearch(event)>Mag</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="6" onClick=clickSearch(event)>Disk</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="7" onClick=clickSearch(event)>Tool</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="8" onClick=clickSearch(event)>S-Rank</label>
+                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="9" onClick=clickSearch(event)>Other</label>
+                <label class="type_label label_hover"><input type="checkbox" cilass="type" name="type" value="10" onClick=clickSearch(event)>Meseta</label>
               </div>
               <div id="wordsearch" class="wordsearch">
                 <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
                 <div class="sep"><input type="text" class="element" name="element" placeholder="special attack (element)"></div>
                 <div class="sep"><input type="text" class="att" name="hit" placeholder="HIT value"></div>
-                <div class="sep"><input type="checkbox" class="openbtn" name="unTekked" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div>
+                <label class="label_hover"><div class="sep"><input type="checkbox" class="unTekked" name="unTekked" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div></label>
               </div>
               <button id="download" class="download" onClick='clickDownload()'>Getting as Text File</button>
             </div>

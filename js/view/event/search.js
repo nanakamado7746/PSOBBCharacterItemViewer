@@ -47,7 +47,7 @@ function query(data)
   let element = document.getElementsByName("element")[0].value;
   let hit = document.getElementsByName("hit")[0].value;
   let unTekked = document.getElementsByName("unTekked")[0].checked;
-  let types = document.getElementsByName("types");
+  let types = document.getElementsByName("type");
 
   console.log("==== search all items ====");
   console.log(data);
@@ -103,7 +103,7 @@ function query(data)
 function hasSearchItem()
 {
   let typesChecked = false;
-  for (const type of document.getElementsByName("types"))
+  for (const type of document.getElementsByName("type"))
   {
     if (type.checked) typesChecked = true;
   }

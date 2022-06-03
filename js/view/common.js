@@ -76,7 +76,7 @@ function isClassicTheme()
 
 function resetSearchItems()
 {
-  for (const type of document.getElementsByName("types"))
+  for (const type of document.getElementsByName("type"))
   {
     type.checked = false;
   }
@@ -89,9 +89,14 @@ function resetSearchItems()
 
 function pushedPageColoer(id)
 {
-  isClassicTheme()
-    ? document.getElementById(id).style.backgroundColor = "#fb7c03"
-    : document.getElementById(id).style.backgroundColor = "#D3C7B8";
+  if (isClassicTheme())
+  {
+    document.getElementById(id).style.backgroundColor = "#fb7c03";
+    document.getElementById(id).style.color = "#FFFFFF";
+  } else {
+    document.getElementById(id).style.backgroundColor = "#555555";
+    document.getElementById(id).style.color = "#FFFFFF";
+  }
 }
 
 function sortInventory(inventory)

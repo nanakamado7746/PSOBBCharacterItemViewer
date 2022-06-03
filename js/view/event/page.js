@@ -6,6 +6,7 @@ function clickPage(catecory, index)
   for (const pageButton of document.getElementsByClassName("page"))
   {
     pageButton.style.backgroundColor = "";
+    pageButton.style.color = "#000000";
   }
   pushedPageColoer(`page${catecory}${index}`);
 

@@ -26,6 +26,11 @@ a:hover
   font-weight: bold;
 }
 
+label, input[type='checkbox'], input[type='radio'], input[type='file'], button
+{
+  cursor: pointer;
+}
+
 .header
 {
   font-family: 'Orbitron', sans-serif;
@@ -92,6 +97,8 @@ h1
 .lang
 {
   font-size: 80%;
+  display: flex;
+  align-items: center;
 }
 
 .sticky
@@ -111,16 +118,22 @@ h1
   font-size: 80%;
 }
 
+.reset
+{
+  background-image:url('../resources/images/icon/button/batsu.png');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 20px;
+  border-radius: 10px;
+}
+
 .types
 {
   display: flex;
   align-items: center;
   margin-bottom: 0.1em;
-}
-
-.type
-{
-  margin-left: 0.5em;
 }
 
 .wordsearch
@@ -161,17 +174,6 @@ h1
 .unTekked
 {
   vertical-align: middle;
-}
-
-.reset
-{
-  background-image:url('../resources/images/icon/button/batsu.png');
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 30px;
-  height: 20px;
-  border-radius: 10px;
 }
 
 .download
@@ -304,10 +306,12 @@ h2
 {
   display: flex;
 }
+
 .sectionid_text
 {
   display: inline-block;
 }
+
 .sectionid_image
 {
   width: 0;

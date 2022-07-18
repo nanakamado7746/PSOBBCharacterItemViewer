@@ -61,11 +61,6 @@ class Character extends Abstract {
       this.setMeseta(characterData.slice(1795,1799), this.Bank, `${slot} Bank`, "JA");
   }
 
-  setSlot(slot)
-  {
-    this.Slot = slot;
-  }
-
   setName(characterData)
   {
     const array = characterData.slice(968,988);

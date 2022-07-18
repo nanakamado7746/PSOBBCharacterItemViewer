@@ -9,7 +9,7 @@ async function clickInput(event)
     for (const file of files)
     {
       //　キャラクターデータファイルだけ取り込み
-      if (file.name.match(/psobank|psochar/) == null) continue;
+      if (file.name.match(/psobank|psoclassicbank|psochar/) == null) continue;
 
       fileReader.readAsArrayBuffer(file);
       await new Promise(resolve => fileReader.onload = () => resolve());
@@ -49,14 +49,15 @@ function decodeAndDisplay(fileData)
   displayPager();
 
   // 詳細表示
-  if (characters.length !== 0)
+  if (this.characters.length !== 0)
   {
     // キャラクターデータがある場合、優先して表示
     displayCharacter(characters[0]);
     this.currentData["page"] = "character";
     this.currentData["searching"] = ["character", 0, this.characters[0]];
     pushedPageColoer(`pagecharacter${0}`);
-  } else if (shareBanks.length !== 0)
+  }
+  else if (this.shareBanks.length !== 0)
   {
     // キャラクターデータがない場合は共有倉庫を表示
     displayShareBank(shareBanks[0]);
@@ -91,6 +92,16 @@ function decoder(fileData)
       shareBanks.push(shareBank);
       allItems["EN"] = allItems["EN"].concat(shareBank.ShareBank["EN"]);
       allItems["JA"] = allItems["JA"].concat(shareBank.ShareBank["JA"]);
+      continue;
+    }
+
+    // 共有倉庫ファイルをデコード
+    if (fileData[i]["filename"].match(/psoclassicbank/) !== null)
+    {
+      let classicBank = new ShareBank(binary, "Classic Bank");
+      shareBanks.push(classicBank);
+      allItems["EN"] = allItems["EN"].concat(classicBank.ShareBank["EN"]);
+      allItems["JA"] = allItems["JA"].concat(classicBank.ShareBank["JA"]);
       continue;
     }
 

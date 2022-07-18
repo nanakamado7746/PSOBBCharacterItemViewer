@@ -1,11 +1,15 @@
 class ShareBank extends Abstract {
 
+  // スロット番号
+  Slot;
   // 共有倉庫品
   ShareBank = {};
 
   constructor(characterData, slot)
   {
     super(characterData, slot);
+    // キャラクターのスロット番号をセット
+    this.setSlot(slot);
     this.setInventory(characterData.slice(8, 4808), this.ShareBank, 24, slot, "EN");
     this.setInventory(characterData.slice(8, 4808), this.ShareBank, 24, slot, "JA");
     // キャラクターの所持メセタをインベントリに追加

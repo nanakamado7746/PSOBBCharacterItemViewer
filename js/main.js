@@ -3,6 +3,7 @@ var lang = "EN";
 // デコード済みデータ
 var characters = [];
 var shareBanks = [];
+var classicBanks = [];
 var allItems = [];
 var currentData = {};
 

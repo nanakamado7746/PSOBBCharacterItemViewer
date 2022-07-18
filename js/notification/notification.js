@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 July 18",
+      "status": "info",
+      "text": [
+        "The Classic mode share bank can now be browsed.",
+        "クラシックモードの共有倉庫が閲覧できるようになりました。"
+      ]
+    },
+    {
       "date": "2022 May 19",
       "status": "info",
       "text": [

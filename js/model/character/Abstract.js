@@ -44,6 +44,11 @@ class Abstract {
       inventory[lang] = array;
   }
 
+  setSlot(slot)
+  {
+    this.Slot = slot;
+  }
+
   setMeseta(mesetaData, inventory, slot, lang)
   {
     const name = (lang === "EN") ? "MESETA" : "メセタ";

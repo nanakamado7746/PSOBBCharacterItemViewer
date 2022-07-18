@@ -120,7 +120,7 @@ function displayPager()
   {
     for( let i in shareBanks)
     {
-      let button = tag("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, "innerText::ShareBank");
+      let button = tag("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[i].Slot}`);
       id.appendChild(button);
     }
   }

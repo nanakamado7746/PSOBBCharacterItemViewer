@@ -39,7 +39,6 @@ function playAudio(audios)
     {
       if (audio.ended) audio.currentTime = 0;
       if (audio.currentTime !== 0) continue;
-      audio.currentTime = 0;
       audio.play();
       break;
     }

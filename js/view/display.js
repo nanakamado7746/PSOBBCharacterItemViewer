@@ -116,34 +116,27 @@ function displayPager()
     }
   }
 
-  // クラシック共有倉庫のページボタンを作成
-  if (shareBanks.length !== 0 && shareBanks[Config.Mode.CLASSIC].length !== 0 )
+  // 共有倉庫のページを表示する
+  if (Object.keys(shareBanks).length !== 0)
   {
-      let button = tag("button", `id::pageshareBank${Config.Mode.CLASSIC}`, "class::page", `name::${Config.Mode.CLASSIC}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[Config.Mode.CLASSIC].Slot}`);
+    for( let i in shareBanks)
+    {
+      let button = tag("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[i].Slot}`);
       id.appendChild(button);
+    }
   }
 
-  // クラシック全アイテムのページボタンを作成
-  if (allItems.length !== 0 && allItems[Config.Mode.CLASSIC].lengt !== 0 )
+  // 全アイテムのページを表示する
+  if (Object.keys(allItems).length !== 0)
   {
-      let button = tag("button", `id::pageallItems${Config.Mode.CLASSIC}`, "class::page", `name::${Config.Mode.CLASSIC}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[Config.Mode.CLASSIC].Slot}`);
+    for( let i in allItems)
+    {
+      let button = tag("button", `id::pageallItems${i}`, "class::page", `name::${i}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[i].Slot}`);
       id.appendChild(button);
-  }
-
-  // 共有倉庫のページボタンを作成
-  if (shareBanks.length !== 0 && shareBanks[Config.Mode.NORMAL].length !== 0 )
-  {
-      let button = tag("button", `id::pageshareBank${Config.Mode.NORMAL}`, "class::page", `name::${Config.Mode.NORMAL}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[Config.Mode.NORMAL].Slot}`);
-      id.appendChild(button);
-  }
-
-  // 全アイテムのページボタンを作成
-  if (allItems.length !== 0 && allItems[Config.Mode.CLASSIC].lengt !== 0 )
-  {
-      let button = tag("button", `id::pageallItems${Config.Mode.NORMAL}`, "class::page", `name::${Config.Mode.NORMAL}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[Config.Mode.NORMAL].Slot}`);
-      id.appendChild(button);
+    }
   }
 }
+
 
 function displayNotification()
 {

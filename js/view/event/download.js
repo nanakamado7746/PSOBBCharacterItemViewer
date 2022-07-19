@@ -9,6 +9,7 @@ function clickDownload()
   {
     zip = createCharacterDataFile(zip, character, `psobb_character_data/alldata`);
   }
+
   // ShareBankデータファイル作成
   if (this.shareBanks !== null & this.shareBanks.length !== 0)
   {
@@ -16,8 +17,11 @@ function clickDownload()
       zip = createShareBanksDataFile(zip, shareBank, `psobb_character_data/alldata`);
     }
   }
+
   // AllItemsデータファイル作成
-  zip = createAllItemsDataFile(zip, this.allItems, `psobb_character_data/alldata`);
+  for (const allItems of this.allItems) {
+    zip = createAllItemsDataFile(zip, allItems, `psobb_character_data/alldata`);
+  }
 
   // 現在ページのデータファイルを作成
   if (this.currentData !== undefined) {
@@ -65,20 +69,20 @@ function createCharacterDataFile(zip, character, path)
 function createShareBanksDataFile(zip, shareBank, path)
 {
   // スロット名を小文字にしてスペースを削除
-  return createDataFile(zip, shareBank.ShareBank[this.lang], `${path}/${shareBank.Slot}.txt`);
+  return createDataFile(zip, shareBank.Bank[this.lang], `${path}/${shareBank.Slot}.txt`);
 }
 
 function createAllItemsDataFile(zip, allItems, path)
 {
-  zip = createDataFile(zip, allItems[this.lang], `${path}/AllItems_no_slot.txt`);
-  zip = createDataFileWithSlot(zip, allItems[this.lang], `${path}/AllItems.txt`)
+  zip = createDataFile(zip, allItems.Inventory[this.lang], `${path}/${allItems.Slot}_no_slot.txt`);
+  zip = createDataFileWithSlot(zip, allItems.Inventory[this.lang], `${path}/${allItems.Slot}.txt`)
   return zip;
 }
 
 function createSearchResultsDataFile(zip, searchResults, path)
 {
-  zip = createDataFile(zip, searchResults, `${path}/Search Results_no_slot.txt`);
-  zip = createDataFileWithSlot(zip, searchResults, `${path}/Search Results.txt`)
+  zip = createDataFile(zip, searchResults, `${path}/SearchResults_no_slot.txt`);
+  zip = createDataFileWithSlot(zip, searchResults, `${path}/SearchResults.txt`)
   return zip;
 }
 

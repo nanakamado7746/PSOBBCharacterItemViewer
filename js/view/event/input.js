@@ -76,10 +76,26 @@ function decoder(fileData)
 
   let characters = [];
   let shareBanks = [];
-  let allItems = {
-      "JA" : [],
-      "EN" : []
-    };
+  // allItemsのオブジェクト作成
+  let allItems = [
+      {
+        Slot : "AllItems",
+        Mode : Config.Mode.NORMAL,
+        Inventory : {
+          "JA" : [],
+          "EN" : []
+        }
+      },
+      {
+        Slot : "Classic AllItems",
+        Mode : Config.Mode.CLASSIC,
+        Inventory : {
+          "JA" : [],
+          "EN" : []
+        }
+      },
+    ];
+
 
   for (let i in fileData)
   {
@@ -88,57 +104,61 @@ function decoder(fileData)
     // 共有倉庫ファイルをデコード
     if (fileData[i]["filename"].match(/psobank/) !== null)
     {
-      let shareBank = new ShareBank(binary, "Share Bank");
+      const shareBank = new ShareBank(binary, Config.Mode.NORMAL);
       shareBanks.push(shareBank);
-      allItems["EN"] = allItems["EN"].concat(shareBank.ShareBank["EN"]);
-      allItems["JA"] = allItems["JA"].concat(shareBank.ShareBank["JA"]);
+      allItems[shareBank.Mode].Inventory["EN"] = allItems[shareBank.Mode].Inventory["EN"].concat(shareBank.Bank["EN"]);
+      allItems[shareBank.Mode].Inventory["JA"] = allItems[shareBank.Mode].Inventory["JA"].concat(shareBank.Bank["JA"]);
       continue;
     }
 
     // 共有倉庫ファイルをデコード
     if (fileData[i]["filename"].match(/psoclassicbank/) !== null)
     {
-      let classicBank = new ShareBank(binary, "Classic Bank");
+      const classicBank = new ShareBank(binary, Config.Mode.CLASSIC);
       shareBanks.push(classicBank);
-      allItems["EN"] = allItems["EN"].concat(classicBank.ShareBank["EN"]);
-      allItems["JA"] = allItems["JA"].concat(classicBank.ShareBank["JA"]);
+      allItems[classicBank.Mode].Inventory["EN"] = allItems[classicBank.Mode].Inventory["EN"].concat(classicBank.Bank["EN"]);
+      allItems[classicBank.Mode].Inventory["JA"] = allItems[classicBank.Mode].Inventory["JA"].concat(classicBank.Bank["JA"]);
       continue;
     }
 
     //　キャラクターファイルをデコード
     if (fileData[i]["filename"].match(/psochar/) !== null)
     {
-      let slot = fileData[i]["filename"].match(/[0-9]+(?=\.)/);
-      let character = new Character(binary, Number(slot) + 1);
+      const slot = fileData[i]["filename"].match(/[0-9]+(?=\.)/);
+      const character = new Character(binary, Number(slot) + 1);
       characters.push(character);
 
-      allItems["EN"] = allItems["EN"].concat(character.Inventory["EN"]);
-      allItems["EN"] = allItems["EN"].concat(character.Bank["EN"]);
-      allItems["JA"] = allItems["JA"].concat(character.Inventory["JA"]);
-      allItems["JA"] = allItems["JA"].concat(character.Bank["JA"]);
+      allItems[character.Mode].Inventory["EN"] = allItems[character.Mode].Inventory["EN"].concat(character.Inventory["EN"]);
+      allItems[character.Mode].Inventory["EN"] = allItems[character.Mode].Inventory["EN"].concat(character.Bank["EN"]);
+      allItems[character.Mode].Inventory["JA"] = allItems[character.Mode].Inventory["JA"].concat(character.Inventory["JA"]);
+      allItems[character.Mode].Inventory["JA"] = allItems[character.Mode].Inventory["JA"].concat(character.Bank["JA"]);
     }
   }
 
   // ソート
-  allItems["EN"] = sortInventory(allItems["EN"]);
-  allItems["JA"] = sortInventory(allItems["JA"]);
-
-  // 言語変更時に取り出すためのインデックスを付与
-  for (const [i, item] of allItems["EN"].entries()) {
-    item.push(i);
-  }
-  for (const [i, item] of allItems["JA"].entries())
+  for (const i in allItems)
   {
-    item.push(i);
+    allItems[i].Inventory["EN"] = sortInventory(allItems[i].Inventory["EN"]);
+    allItems[i].Inventory["JA"] = sortInventory(allItems[i].Inventory["JA"]);
+
+    // 言語変更時に検索中のアイテムを取り出すためのインデックスを付与
+    for (const [j, item] of allItems[i].Inventory["EN"].entries())
+    {
+      item.push(j);
+    }
+    for (const [j, item] of allItems[i].Inventory["JA"].entries())
+    {
+      item.push(j);
+    }
   }
 
   // グローバル変数初期化
-  removeCharacterData();
-  // グローバル変数とローカルストレージにセット
-  setCharacterData(characters, shareBanks, allItems);
+  removeGlobalVariable();
+  // グローバル変数にデータをセット
+  setGlobalVariable(characters, shareBanks, allItems);
 }
 
-function setCharacterData(characters, shareBanks, allItems)
+function setGlobalVariable(characters, shareBanks, allItems)
 {
   if (characters.length !== 0)
   {
@@ -160,6 +180,29 @@ function setCharacterData(characters, shareBanks, allItems)
     console.log("===== allItems =====");
     console.log(allItems);
   }
+
+  setModeData("characters", characters);
+  setModeData("shareBanks", shareBanks);
+  setModeData("allItems", allItems);
+  console.log("===== normal data =====");
+  console.log(this.normals);
+  console.log("===== classics data =====");
+  console.log(this.classics);
+}
+
+function setModeData(type, models)
+{
+  let normals = [];
+  let classics = [];
+  for (const model of models)
+  {
+    (model.Mode == Config.Mode.NORMAL)
+      ? normals.push(model)
+      : classics.push(model)
+  }
+
+  this.normals[type] = [normals];
+  this.classics[type] = [classics];
 }
 
 // FileListをファイル名の照準にする

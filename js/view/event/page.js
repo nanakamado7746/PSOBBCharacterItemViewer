@@ -24,14 +24,14 @@ function clickPage(catecory, index)
       this.currentData["page"] = "shareBank";
       this.currentData["searching"] = ["shareBank", index, this.shareBanks[index]];
       if (hasSearchItem()) { search(); break; }
-      displayInventory(this.shareBanks[index].ShareBank[this.lang], "SHARE BANK");
+      displayInventory(this.shareBanks[index].Bank[this.lang], "SHARE BANK");
       break;
     case "allItems":
       // 現在ページの情報を保存
       this.currentData["page"] = "allItems";
-      this.currentData["searching"] = ["allItems", index, this.allItems];
+      this.currentData["searching"] = ["allItems", index, this.allItems[index]];
       if (hasSearchItem()) { search(); break; }
-      displayInventory(this.allItems[this.lang], "ALL ITEMS", "allItems");
+      displayInventory(this.allItems[index].Inventory[this.lang], "ALL ITEMS", "allItems");
       break;
     default:
   }

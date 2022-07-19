@@ -33,6 +33,7 @@ function displayCharacter(character)
   // sectionIDのイメージタグ
   const sectionid_image = tag("img", "class::sectionid_image", `src::./resources/images/icon/sectionid/${character.SectionID.toLowerCase()}.png`);
   const tbody = tag("tbody", tr(td(textNode(`SLOT : ${character.Slot}`))),
+                             tr(td(textNode(`MODE : ${Config.ModeName[character.Mode]}`))),
                              tr(td(textNode(`NAME : ${character.Name}`))),
                              tr(td(textNode(`GUILD CARD : ${character.GuildCardNumber}`))),
                              tr(td(textNode(`CLASS : ${character.Class}`))),
@@ -53,7 +54,7 @@ function displayShareBank(shareBank, title)
 {
   let id = document.getElementById("data");
   id.innerHTML = '';
-  displayInventory(shareBank.ShareBank[this.lang], "SHARE BANK")
+  displayInventory(shareBank.Bank[this.lang], "SHARE BANK")
 }
 
 function displayInventory(inventory, title, mode)
@@ -105,31 +106,42 @@ function displayPager()
   let id = document.getElementById("pager");
   id.innerHTML = '';
 
-  // キャラクターのページを表示する
-  if (Object.keys(characters).length !== 0)
+  // キャラクターのページボタンを作成
+  if (characters.length !== 0)
   {
-    for( let i in characters)
+    for (const i in characters)
     {
       let button = tag("button", `id::pagecharacter${i}`, "class::page", `name::${i}`, `onclick::clickPage("character", name)`, `innerText::${characters[i].Slot}:${characters[i].Name}`);
       id.appendChild(button);
     }
   }
 
-  // 共有倉庫のページを表示する
-  if (Object.keys(shareBanks).length !== 0)
+  // クラシック共有倉庫のページボタンを作成
+  if (shareBanks.length !== 0 && shareBanks[Config.Mode.CLASSIC].length !== 0 )
   {
-    for( let i in shareBanks)
-    {
-      let button = tag("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[i].Slot}`);
+      let button = tag("button", `id::pageshareBank${Config.Mode.CLASSIC}`, "class::page", `name::${Config.Mode.CLASSIC}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[Config.Mode.CLASSIC].Slot}`);
       id.appendChild(button);
-    }
   }
 
-  // 全アイテムのページを表示する
-  if (Object.keys(allItems).length !== 0)
+  // クラシック全アイテムのページボタンを作成
+  if (allItems.length !== 0 && allItems[Config.Mode.CLASSIC].lengt !== 0 )
   {
-    let button = tag("button", `id::pageallItemsdefault`, "class::page", `name::default`, `onclick::clickPage("allItems", name)`, "innerText::AllItems");
-    id.appendChild(button);
+      let button = tag("button", `id::pageallItems${Config.Mode.CLASSIC}`, "class::page", `name::${Config.Mode.CLASSIC}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[Config.Mode.CLASSIC].Slot}`);
+      id.appendChild(button);
+  }
+
+  // 共有倉庫のページボタンを作成
+  if (shareBanks.length !== 0 && shareBanks[Config.Mode.NORMAL].length !== 0 )
+  {
+      let button = tag("button", `id::pageshareBank${Config.Mode.NORMAL}`, "class::page", `name::${Config.Mode.NORMAL}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[Config.Mode.NORMAL].Slot}`);
+      id.appendChild(button);
+  }
+
+  // 全アイテムのページボタンを作成
+  if (allItems.length !== 0 && allItems[Config.Mode.CLASSIC].lengt !== 0 )
+  {
+      let button = tag("button", `id::pageallItems${Config.Mode.NORMAL}`, "class::page", `name::${Config.Mode.NORMAL}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[Config.Mode.NORMAL].Slot}`);
+      id.appendChild(button);
   }
 }
 

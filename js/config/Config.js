@@ -54,6 +54,16 @@ class Config {
     0x0B : "RAmarl",
   };
 
+  static Mode = {
+    NORMAL : 0,
+    CLASSIC : 1
+  };
+
+  static ModeName = {
+    0 : "NORMAL",
+    1 : "CLASSIC"
+  };
+
   static Titles = {
     1 : "Ra-GOU",
     2 : "Gi-GOU",

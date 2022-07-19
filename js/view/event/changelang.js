@@ -12,18 +12,18 @@ function clickChangeLang(lang)
   {
     let id = document.getElementById("data");
     id.innerHTML = '';
-
     if (this.currentData["page"] === "itemcode") displayItemCodes();
     if (this.currentData["page"] === "character") displayCharacter(this.currentData["searching"][2]);
     if (this.currentData["page"] === "shareBank") displayShareBank(this.currentData["searching"][2]);
-    if (this.currentData["page"] === "allItems") displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
+    if (this.currentData["page"] === "allItems") displayInventory(this.currentData["searching"][2].Inventory[this.lang], "ALL ITEMS", "allItems");
     if (this.currentData["page"] === "searchResults")
     {
       let tmp = [];
       // 言語変更後の全アイテムから、現在検索されているアイテムを取り出す
       for (const i of this.currentData["searchResults"])
       {
-        for (const j of this.allItems[lang])
+        // 検索中データのモードの全アイテムからイテレーターを抽出
+        for (const j of this.allItems[this.currentData["searching"][2].Mode].Inventory[lang])
         {
           // 全てのアイテムに付与されている固有のインデックス番号を比較して同じなら取り出す
           if (i[3] === j[3]) tmp.push(j);

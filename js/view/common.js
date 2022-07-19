@@ -1,8 +1,10 @@
-function removeCharacterData()
+function removeGlobalVariable()
 {
   this.characters = [];
   this.shareBanks = [];
   this.allItems = [];
+  this.normals = {};
+  this.classics = {};
 }
 
 function setVolume(value)

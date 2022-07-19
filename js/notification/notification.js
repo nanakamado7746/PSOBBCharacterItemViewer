@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2022 July 19",
+      "status": "info",
+      "text": [
+        "Classic mode is now supported.",
+        "クラシックモードに対応しました。"
+      ]
+    },
+    {
       "date": "2022 July 18",
       "status": "info",
       "text": [

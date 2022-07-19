@@ -3,9 +3,10 @@ var lang = "EN";
 // デコード済みデータ
 var characters = [];
 var shareBanks = [];
-var classicBanks = [];
 var allItems = [];
 var currentData = {};
+var normals = {}; // 未使用
+var classics = {}; //　未使用
 
 var cursor_audios = [
   new Audio("./resources/sounds/se/cursor.wav"),

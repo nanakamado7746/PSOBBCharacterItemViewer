@@ -52,7 +52,7 @@ function initializeFileData()
     console.log(e);
     document.getElementById("data").innerHTML = '';
     document.getElementById("pager").innerHTML = '';
-    removeCharacterData();
+    removeGlobalVariable();
     localStorage.removeItem("fileData");
   }
 }

@@ -33,8 +33,8 @@ function search()
     data["EN"] = this.currentData["searching"][2].Inventory["EN"].concat(this.currentData["searching"][2].Bank["EN"]);
     data["JA"] = this.currentData["searching"][2].Inventory["JA"].concat(this.currentData["searching"][2].Bank["JA"]);
   }
-  if (this.currentData["searching"][0] === "shareBank") data = this.currentData["searching"][2].ShareBank;
-  if (this.currentData["searching"][0] === "allItems") data = this.currentData["searching"][2];
+  if (this.currentData["searching"][0] === "shareBank") data = this.currentData["searching"][2].Bank;
+  if (this.currentData["searching"][0] === "allItems") data = this.currentData["searching"][2].Inventory;
   if (data.length === 0) return;
 
   displayInventory(query(data[this.lang]), "SEARCH RESULTS", "allItems")

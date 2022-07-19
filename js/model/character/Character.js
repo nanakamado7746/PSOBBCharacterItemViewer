@@ -2,6 +2,8 @@ class Character extends Abstract {
 
   // キャラクターのスロット番号
   Slot;
+  // キャラクターのモード
+  Mode;
   // キャラクターの名前
   Name;
   // キャラクターのギルドカード番号
@@ -27,6 +29,8 @@ class Character extends Abstract {
       super(characterData, slot);
       // キャラクターのスロット番号をセット
       this.setSlot(slot);
+      // キャラクターのモードをセット
+      this.setMode(characterData);
       // キャラクターの名前をセット
       this.setName(characterData);
       // キャラクターの種族をセット
@@ -59,6 +63,13 @@ class Character extends Abstract {
       this.setMeseta(characterData.slice(884,887), this.Inventory, slot, "JA");
       // キャラクターの倉庫メセタを倉庫に追加
       this.setMeseta(characterData.slice(1795,1799), this.Bank, `${slot} Bank`, "JA");
+  }
+
+  setMode(characterData)
+  {
+    (characterData[7] == 0x40)
+      ? this.Mode = Config.Mode.CLASSIC
+      : this.Mode = Config.Mode.NORMAL;
   }
 
   setName(characterData)

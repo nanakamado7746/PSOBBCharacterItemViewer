@@ -57,7 +57,7 @@ class Abstract {
       type: 10,
       name: name,
       value: meseta,
-      display: `${meseta} ${name} `,
+      display: `${meseta} ${name}`,
     };
     inventory[lang].push([
       "09" + meseta.toString().padStart(7, '0'), // prefixをつけてメセタをアイテムコードの最大値にする。

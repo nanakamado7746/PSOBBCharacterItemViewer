@@ -63,6 +63,8 @@ function displayInventory(inventory, title, mode)
 
   let tbody = tag("tbody");
 
+  console.log(inventory);
+
   // イベントリがからの場合、NO ITEMと表示
   if (inventory.length == 0) tbody.appendChild(tr(td(textNode("NO ITEM"))));
 
@@ -116,27 +118,39 @@ function displayPager()
     }
   }
 
-  // 共有倉庫のページを表示する
-  if (Object.keys(shareBanks).length !== 0)
+  // クラシック共有倉庫のページボタンを作成
+  if (shareBanks[Config.Mode.CLASSIC] !== undefined && shareBanks[Config.Mode.CLASSIC].length !== 0 )
   {
-    for( let i in shareBanks)
-    {
-      let button = tag("button", `id::pageshareBank${i}`, "class::page", `name::${i}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[i].Slot}`);
+      let button = tag("button", `id::pageshareBank${Config.Mode.CLASSIC}`, "class::page", `name::${Config.Mode.CLASSIC}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[Config.Mode.CLASSIC].Slot}`);
       id.appendChild(button);
-    }
   }
 
-  // 全アイテムのページを表示する
-  if (Object.keys(allItems).length !== 0)
+  // クラシック全アイテムのページボタンを作成
+  if (allItems[Config.Mode.CLASSIC] !== undefined && allItems[Config.Mode.CLASSIC].length !== 0 )
   {
-    for( let i in allItems)
-    {
-      let button = tag("button", `id::pageallItems${i}`, "class::page", `name::${i}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[i].Slot}`);
+      let button = tag("button", `id::pageallItems${Config.Mode.CLASSIC}`, "class::page", `name::${Config.Mode.CLASSIC}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[Config.Mode.CLASSIC].Slot}`);
       id.appendChild(button);
-    }
+  }
+
+  // 共有倉庫のページボタンを作成
+  if (shareBanks[Config.Mode.NORMAL] !== undefined && shareBanks[Config.Mode.NORMAL].length !== 0 )
+  {
+      let button = tag("button", `id::pageshareBank${Config.Mode.NORMAL}`, "class::page", `name::${Config.Mode.NORMAL}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[Config.Mode.NORMAL].Slot}`);
+      id.appendChild(button);
+  }
+
+  // 全アイテムのページボタンを作成
+  if (allItems[Config.Mode.NORMAL] !== undefined && allItems[Config.Mode.NORMAL].length !== 0 )
+  {
+      let button = tag("button", `id::pageallItems${Config.Mode.NORMAL}`, "class::page", `name::${Config.Mode.NORMAL}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[Config.Mode.NORMAL].Slot}`);
+      id.appendChild(button);
   }
 }
 
+function createPageButton()
+{
+  
+}
 
 function displayNotification()
 {

@@ -67,7 +67,7 @@ function resetPage()
   }
   if ( this.currentData["searching"][0] === "allItems") {
     this.currentData["page"] = "allItems";
-    displayInventory(this.currentData["searching"][2][this.lang], "ALL ITEMS", "allItems");
+    displayInventory(this.currentData["searching"][2].Inventory[this.lang], "ALL ITEMS", "allItems");
   }
 
   scroll(beforeScrollPosition, beforeStickyPosition);

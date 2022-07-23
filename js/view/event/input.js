@@ -128,10 +128,10 @@ function decoder(fileData)
       const character = new Character(binary, Number(slot) + 1);
       characters.push(character);
 
-      allItems[character.Mode].Inventory["EN"] = allItems[character.Mode].Inventory["EN"].concat(character.Inventory["EN"]);
-      allItems[character.Mode].Inventory["EN"] = allItems[character.Mode].Inventory["EN"].concat(character.Bank["EN"]);
-      allItems[character.Mode].Inventory["JA"] = allItems[character.Mode].Inventory["JA"].concat(character.Inventory["JA"]);
-      allItems[character.Mode].Inventory["JA"] = allItems[character.Mode].Inventory["JA"].concat(character.Bank["JA"]);
+      allItems[character.Mode].Inventory["EN"] = allItems[character.Mode].Inventory["EN"].concat(character.Inventory["EN"])
+                                                                                         .concat(character.Bank["EN"]);
+      allItems[character.Mode].Inventory["JA"] = allItems[character.Mode].Inventory["JA"].concat(character.Inventory["JA"])
+                                                                                         .concat(character.Bank["JA"]);
     }
   }
 

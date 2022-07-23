@@ -63,8 +63,6 @@ function displayInventory(inventory, title, mode)
 
   let tbody = tag("tbody");
 
-  console.log(inventory);
-
   // イベントリがからの場合、NO ITEMと表示
   if (inventory.length == 0) tbody.appendChild(tr(td(textNode("NO ITEM"))));
 
@@ -149,7 +147,7 @@ function displayPager()
 
 function createPageButton()
 {
-  
+
 }
 
 function displayNotification()

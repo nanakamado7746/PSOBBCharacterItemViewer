@@ -210,7 +210,7 @@ function sortInputFiles(files)
 {
   let sorted = [].slice.call(files).sort(function(a, b) {
     // psobankは最後尾
-    if (a.name.match(/psobank/)) return -1;
+    if (a.name.match(/bank/)) return -1;
 
     // ファイル名のスロット番号を切り取って数値に変換する
     if (a.name.match(/\s\d+/) != null) a = parseInt(a.name.match(/[0-9]+(?=\.)/));

@@ -36,7 +36,7 @@ class CommonUtil {
     return charCodes.toUpperCase();
   }
 
-  static nunberToHex(value)
+  static intToHex(value)
   {
     return `0x${value.toString(16).toUpperCase().padStart(6, '0')}`;
   }

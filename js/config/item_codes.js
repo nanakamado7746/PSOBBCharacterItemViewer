@@ -795,7 +795,7 @@ function ItemCodes() {
     0x00E401 :  "TypeHA/ROD",
     0x00E500 :  "TypeDS/D.SABER",
     0x00E501 :  "TypeDS/ROD",
-    0x00E502 :  "TypeDS",
+    0x00E502 :  "TypeDS/WAND",
     0x00E600 :  "TypeCL/CLAW",
     0x00E700 :  "TypeSS/SW",
     0x00E800 :  "TypeGU/HAND",

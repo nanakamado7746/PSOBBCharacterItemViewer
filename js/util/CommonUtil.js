@@ -15,14 +15,14 @@ class CommonUtil {
   static binaryArrayToHex(arr)
   {
     let str = '';
-    for(const el of arr)
+    for (const el of arr)
     {
       str += el.toString('16').padStart(2, '0')
     }
     return str.toUpperCase();
   }
 
-  static StringTocharCodes(str)
+  static StringToCharCodes(str)
   {
     let charCodes = "";
     for (let i = 0; i < str.length; i++)

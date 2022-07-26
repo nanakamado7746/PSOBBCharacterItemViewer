@@ -36,7 +36,7 @@ class Item {
       case (Config.ItemType.OTHER):
         return this.other(itemCode, itemData);
       default:
-        return `unknown. (${itemCode}). There's a possibility that New Ephinea Item`;
+        return `unknown. (${CommonUtil.nunberToHex(itemCode)}). There's a possibility that New Ephinea Item`;
     }
   }
 
@@ -55,7 +55,7 @@ class Item {
 
   isSRankWeapon(itemCode)
   {
-    return (Config.SRankWeaponRange[0] <= itemCode >> 8 && itemCode >> 8 <= Config.SRankWeaponRange[1]);
+    return (Config.SRankWeaponCodes.hasOwnProperty(itemCode & 0xFFF0))
   }
   isWeapon(itemCode)
   {
@@ -308,13 +308,11 @@ class Item {
 
   getItemName(itemCode)
   {
-
     if (itemCode in Config.ItemCodes)
     {
-
       return Config.ItemCodes[itemCode];
     }
-    return `undefined. (${itemCode})`;
+    return `undefined. (${CommonUtil.nunberToHex(itemCode)})`;
   }
 
   getElement(itemData)

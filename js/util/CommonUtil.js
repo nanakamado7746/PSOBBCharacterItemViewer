@@ -35,4 +35,9 @@ class CommonUtil {
     console.log(charCodes);
     return charCodes.toUpperCase();
   }
+
+  static nunberToHex(value)
+  {
+    return `0x${value.toString(16).toUpperCase().padStart(6, '0')}`;
+  }
 }

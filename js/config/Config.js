@@ -18,7 +18,6 @@ class Config {
   static MesetaRange = [ 0x040000, 0x040000 ];
   static DiskRange = [ 0x050000, 0x05121D ];
   static EphineaRange = [ 0x031005, 0x031810 ];
-  static SRankWeaponRange = [ 0x0070, 0x0088 ];
   static DiskCode = 0x0302;
 
   static ItemType = {

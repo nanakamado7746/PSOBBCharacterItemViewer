@@ -36,7 +36,7 @@ class Item {
       case (Config.ItemType.OTHER):
         return this.other(itemCode, itemData);
       default:
-        return `unknown. (${CommonUtil.nunberToHex(itemCode)}). There's a possibility that New Ephinea Item`;
+        return `unknown. (${CommonUtil.intToHex(itemCode)}). There's a possibility that New Ephinea Item`;
     }
   }
 
@@ -310,7 +310,7 @@ class Item {
     {
       return Config.ItemCodes[itemCode];
     }
-    return `undefined. (${CommonUtil.nunberToHex(itemCode)})`;
+    return `undefined. (${CommonUtil.intToHex(itemCode)})`;
   }
 
   getElement(itemData)

@@ -68,6 +68,7 @@ class Abstract {
 
   isBlank(itemData)
   {
-    return (itemData.slice(0, 20).join('') == 0 || CommonUtil.binaryArrayToHex(itemData) == "000000000000000000000000FFFFFFFF0000000000000000");
+    return (itemData.slice(0, 20).join('') == 0 || CommonUtil.binaryArrayToHex(itemData) == "000000000000000000000000FFFFFFFF0000000000000000"
+                                                || CommonUtil.binaryArrayToHex(itemData).includes("00FF00000000000000000000FFFFFFFF"));
   }
 }

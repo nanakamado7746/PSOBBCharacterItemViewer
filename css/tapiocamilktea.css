@@ -121,13 +121,25 @@ h1
 
 .reset
 {
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 70px;
+  height: 25px;
+  border-radius: 20px;
+  margin-right: 0.5em;
+}
+
+.delete
+{
   background-image:url('../resources/images/icon/button/batsu.png');
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 30px;
+  width: 20px;
   height: 20px;
   border-radius: 10px;
+  margin-right: 0.1em;
 }
 
 .types
@@ -152,18 +164,23 @@ h1
 {
   resize: none;
   width: 250px;
+  height: 15px;
 }
 
-.element
+.elements
 {
   resize: none;
-  width: 150px;
+  width: 130px;
+  height: 21px;
+  color: #AAAAAA;
 }
 
-.att
+.hit
 {
   resize: none;
-  width: 60px;
+  width: 80px;
+  height: 21px;
+  color: #AAAAAA;
 }
 
 ::placeholder {

@@ -79,7 +79,6 @@
             <div class="pager", id="pager"></div>
             <div class="search" id="search">
               <div class="types">
-                <button type="button" class="reset" id="reset" onClick=clickReset(event)></button>
                 <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:rare" onClick=clickSearch(event)>Rare Weapon</label>
                 <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:common" onClick=clickSearch(event)>Common Weapon</label>
                 <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="2" onClick=clickSearch(event)>Frame</label>
@@ -93,15 +92,19 @@
                 <label class="type_label label_hover"><input type="checkbox" cilass="type" name="type" value="10" onClick=clickSearch(event)>Meseta</label>
               </div>
               <div id="wordsearch" class="wordsearch">
-                <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
+                <button type="button" class="delete" onClick="clickDelete('word', 'input')"></button>
+                <div class="sep"><input type="text" id="word" class="word" name="word" placeholder="Input item name"></div>
+                <button type="button" class="delete" onClick="clickDelete('elements', 'select')"></button>
                 <div class="sep">
                   <select id="elements" class="elements"></select>
                 </div>
+                <button type="button" class="delete" onClick="clickDelete('hit', 'select')"></button>
                 <div class="sep">
                   <select id="hit" class="hit"></select>
                 </div>
                 <label class="label_hover"><div class="sep"><input type="checkbox" class="unTekked" name="unTekked" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div></label>
               </div>
+              <button type="button" class="reset" id="reset" onClick=clickReset(event)>RESET</button>
               <button id="download" class="download" onClick='clickDownload()'>Getting as Text File</button>
             </div>
           </div>

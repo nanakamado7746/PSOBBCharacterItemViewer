@@ -289,9 +289,9 @@ function createAttribute(tag, attribute)
   return tag;
 }
 
-function changeSelectedColor(dom)
+function changeSelectedColor(id)
 {
-  (dom.selectedIndex == 0)
-    ? document.getElementById(dom.id).style.color = "#AAAAAA"
-    : document.getElementById(dom.id).style.color = "#000000";
+  (document.getElementById(id).selectedIndex == 0)
+    ? document.getElementById(id).style.color = "#AAAAAA"
+    : document.getElementById(id).style.color = "#000000";
 }

@@ -13,6 +13,23 @@ function clickReset()
   playAudio(this.open_audios);
 }
 
+function clickDelete(id, tagName)
+{
+  if (!hasSearchItem()) return;
+  switch (tagName)
+  {
+    case "input":
+      document.getElementById(id).value = "";
+      break;
+    case "select":
+      document.getElementById(id).selectedIndex = 0;
+      changeSelectedColor(id);
+      break;
+    default:
+  }
+  search();
+}
+
 function keyUpSearch()
 {
   document.getElementById("wordsearch").addEventListener("keyup",function(){
@@ -20,12 +37,12 @@ function keyUpSearch()
   }, false);
 
   document.getElementById("elements").addEventListener('change', (event) => {
-    changeSelectedColor(document.getElementById("elements"));
+    changeSelectedColor("elements");
     search();
   });
 
   document.getElementById("hit").addEventListener('change', (event) => {
-    changeSelectedColor(document.getElementById("hit"));
+    changeSelectedColor("hit");
     search();
   });
 }

@@ -94,8 +94,12 @@
               </div>
               <div id="wordsearch" class="wordsearch">
                 <div class="sep"><input type="text" class="word" name="word" placeholder="Input item name"></div>
-                <div class="sep"><input type="text" class="element" name="element" placeholder="special attack (element)"></div>
-                <div class="sep"><input type="text" class="att" name="hit" placeholder="HIT value"></div>
+                <div class="sep">
+                  <select id="elements" class="elements"></select>
+                </div>
+                <div class="sep">
+                  <select id="hit" class="hit"></select>
+                </div>
                 <label class="label_hover"><div class="sep"><input type="checkbox" class="unTekked" name="unTekked" onClick=clickSearch(event)>only unTekked(未鑑定のみ)</div></label>
               </div>
               <button id="download" class="download" onClick='clickDownload()'>Getting as Text File</button>

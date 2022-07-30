@@ -16,9 +16,18 @@ function clickReset()
 function keyUpSearch()
 {
   document.getElementById("wordsearch").addEventListener("keyup",function(){
-    console.log(localStorage.getItem("lang"));
     search();
   }, false);
+
+  document.getElementById("elements").addEventListener('change', (event) => {
+    changeSelectedColor(document.getElementById("elements"));
+    search();
+  });
+
+  document.getElementById("hit").addEventListener('change', (event) => {
+    changeSelectedColor(document.getElementById("hit"));
+    search();
+  });
 }
 
 function search()
@@ -44,8 +53,8 @@ function search()
 function query(data)
 {
   let word = document.getElementsByName("word")[0].value;
-  let element = document.getElementsByName("element")[0].value;
-  let hit = document.getElementsByName("hit")[0].value;
+  let element = document.getElementById("elements").value;
+  let hit = document.getElementById("hit").value;
   let unTekked = document.getElementsByName("unTekked")[0].checked;
   let types = document.getElementsByName("type");
 
@@ -57,7 +66,7 @@ function query(data)
   console.log("search unTekked:" + unTekked);
 
   // リストがない場合は終了
-  if (data.length === 0) return;
+  if (data.length === 0) return data;
 
   // 検索ワードを変換する
   word = convertSearchWord(word);
@@ -99,22 +108,6 @@ function query(data)
   this.currentData["searchResults"] = searchResults;
   return searchResults;
 }
-
-function hasSearchItem()
-{
-  let typesChecked = false;
-  for (const type of document.getElementsByName("type"))
-  {
-    if (type.checked) typesChecked = true;
-  }
-
-  return ( !(typesChecked === false
-             & document.getElementsByName("word")[0].value === ""
-             & document.getElementsByName("element")[0].value === ""
-             & document.getElementsByName("hit")[0].value === ""
-             & document.getElementsByName("unTekked")[0].checked === false));
-}
-
 function queryRareAndCommonWeapon(searchResults, data)
 {
   return searchResults.concat(data.filter(function(x) { return (x[1].type == 1); }));

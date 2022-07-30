@@ -141,6 +141,55 @@ function SrankElementCodes() {
   }
 }
 
+function ElementsList() {
+  return [
+    "Draw",
+    "Drain",
+    "Fill",
+    "Gush",
+    "Heart",
+    "Mind",
+    "Soul",
+    "Geist",
+    "Master's",
+    "Lord's",
+    "King's",
+    "Charge",
+    "Spirit",
+    "Berserk",
+    "Ice",
+    "Frost",
+    "Freeze",
+    "Blizzard",
+    "Bind",
+    "Hold",
+    "Seize",
+    "Arrest",
+    "Heat",
+    "Fire",
+    "Flame",
+    "Burning",
+    "Shock",
+    "Thunder",
+    "Storm",
+    "Tempest",
+    "Dim",
+    "Shadow",
+    "Dark",
+    "Hell",
+    "Panic",
+    "Riot",
+    "Havoc",
+    "Chaos",
+    "Devil's",
+    "Demon's",
+    "Jellen",
+    "Zalure",
+    "HP Regeneration",
+    "TP Regeneration",
+  ]
+}
+
 function FrameAdditions() {
   return {
     "Frame":                          [ 2,2 ],

@@ -63,6 +63,8 @@ function displayInventory(inventory, title, mode)
 
   let tbody = tag("tbody");
 
+  console.log(inventory);
+
   // イベントリがからの場合、NO ITEMと表示
   if (inventory.length == 0) tbody.appendChild(tr(td(textNode("NO ITEM"))));
 
@@ -279,9 +281,17 @@ function createAttribute(tag, attribute)
     else if (tmp[0] === "innerText") tag.innerText = tmp[1];
     else if (tmp[0] === "style") tag.style = tmp[1];
     else if (tmp[0] === "src") tag.src = tmp[1];
+    else if (tmp[0] === "value") tag.value = tmp[1];
     else tag.setAttribute(tmp[0], tmp[1]);
   } else {
     tag.appendChild(attribute);
   }
   return tag;
+}
+
+function changeSelectedColor(dom)
+{
+  (dom.selectedIndex == 0)
+    ? document.getElementById(dom.id).style.color = "#AAAAAA"
+    : document.getElementById(dom.id).style.color = "#000000";
 }

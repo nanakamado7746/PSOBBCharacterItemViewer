@@ -55,4 +55,6 @@ window.addEventListener('load', function(){
   refreshVolume();
   displayAfterEnterd();
   keyUpSearch();
+  intializeElementsList();
+  intializeHitList();
 }, false);

@@ -56,3 +56,34 @@ function initializeFileData()
     localStorage.removeItem("fileData");
   }
 }
+
+function intializeElementsList(index)
+{
+  let list;
+  (this.lang == "EN")
+    ? list = ElementsList()
+    : list = ElementsList_JA();
+
+  let select = document.getElementById("elements");
+  select.innerHTML = "";
+  select.appendChild(tag("option", `value::${""}`, textNode("Special attack")));
+
+  for (const value of list)
+  {
+    const option = tag("option", `value::${value}`, textNode(value));
+    select.appendChild(option);
+  }
+
+  select.selectedIndex = index;
+}
+
+function intializeHitList(index)
+{
+  let select = document.getElementById("hit");
+  select.appendChild(tag("option", `value::${""}`, textNode("Hit value")));
+  for (let i = 0; i <= 100; i += 5)
+  {
+    const option = tag("option", `value::${i}`, textNode(i));
+    select.appendChild(option);
+  }
+}

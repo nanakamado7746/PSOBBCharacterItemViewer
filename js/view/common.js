@@ -75,6 +75,22 @@ function isClassicTheme()
   return localStorage.getItem("theme") === "classic";
 }
 
+function hasSearchItem()
+{
+  let typesChecked = false;
+  for (const type of document.getElementsByName("type"))
+  {
+    if (type.checked) typesChecked = true;
+  }
+
+  return ( !(typesChecked === false
+             & document.getElementsByName("word")[0].value === ""
+             & document.getElementById("elements").value === ""
+             & document.getElementById("hit").value === ""
+             & document.getElementsByName("unTekked")[0].checked === false));
+}
+
+
 function resetSearchItems()
 {
   for (const type of document.getElementsByName("type"))
@@ -83,9 +99,12 @@ function resetSearchItems()
   }
 
   document.getElementsByName("word")[0].value = "";
-  document.getElementsByName("element")[0].value = "";
-  document.getElementsByName("hit")[0].value = "";
+  document.getElementById("elements").selectedIndex = 0;
+  document.getElementById("hit").selectedIndex = 0;
   document.getElementsByName("unTekked")[0].checked = false;
+
+  changeSelectedColor(document.getElementById("elements"));
+  changeSelectedColor(document.getElementById("hit"));
 }
 
 function pushedPageColoer(id)

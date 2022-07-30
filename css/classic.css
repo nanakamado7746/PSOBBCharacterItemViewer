@@ -343,18 +343,23 @@ h1
 {
   resize: none;
   width: 250px;
+  height: 15px;
 }
 
-.element
+.elements
 {
   resize: none;
-  width: 150px;
+  width: 130px;
+  height: 21px;
+  color: #AAAAAA;
 }
 
-.att
+.hit
 {
   resize: none;
-  width: 60px;
+  width: 80px;
+  height: 21px;
+  color: #AAAAAA;
 }
 
 ::placeholder {

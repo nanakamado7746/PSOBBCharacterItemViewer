@@ -103,8 +103,6 @@ function resetSearchItems()
   document.getElementById("hit").selectedIndex = 0;
   document.getElementsByName("unTekked")[0].checked = false;
 
-  changeSelectedColor("elements");
-  changeSelectedColor("hit");
 }
 
 function pushedPageColoer(id)

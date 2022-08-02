@@ -364,7 +364,6 @@ h1
   resize: none;
   width: 130px;
   height: 21px;
-  color: #AAAAAA;
 }
 
 .hit
@@ -372,7 +371,6 @@ h1
   resize: none;
   width: 80px;
   height: 21px;
-  color: #AAAAAA;
 }
 
 ::placeholder {

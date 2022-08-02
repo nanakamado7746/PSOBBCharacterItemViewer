@@ -65,25 +65,26 @@ function intializeElementsList(index)
     : list = ElementsList_JA();
 
   let select = document.getElementById("elements");
-  select.innerHTML = "";
-  select.appendChild(tag("option", `value::${""}`, textNode("Special attack")));
+  select.appendChild(tag("option", `class::elements_option_top`, `value::${""}`, textNode("Special attack")));
 
   for (const value of list)
   {
-    const option = tag("option", `value::${value}`, textNode(value));
+    const option = tag("option", `class::elements_option_under`, `value::${value}`, textNode(value));
     select.appendChild(option);
   }
 
   select.selectedIndex = index;
+  changeSelectedColor("elements");
 }
 
 function intializeHitList(index)
 {
   let select = document.getElementById("hit");
-  select.appendChild(tag("option", `value::${""}`, textNode("Hit value")));
+  select.appendChild(tag("option", `class::hit_option_top`, `value::${""}`, textNode("Hit value")));
   for (let i = 0; i <= 100; i += 5)
   {
-    const option = tag("option", `value::${i}`, textNode(i));
+    const option = tag("option", `class::hit_option_under`, `value::${i}`, textNode(i));
     select.appendChild(option);
   }
+  changeSelectedColor("hit");
 }

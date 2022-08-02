@@ -278,6 +278,7 @@ function createAttribute(tag, attribute)
   if (typeof attribute === "string") {
     const tmp = attribute.split("::");
     if (tmp[0] === "class") tag.classList.add(tmp[1]);
+    else if (tmp[0] === "id") tag.setAttribute("id", tmp[1]);
     else if (tmp[0] === "innerText") tag.innerText = tmp[1];
     else if (tmp[0] === "style") tag.style = tmp[1];
     else if (tmp[0] === "src") tag.src = tmp[1];
@@ -291,7 +292,20 @@ function createAttribute(tag, attribute)
 
 function changeSelectedColor(id)
 {
-  (document.getElementById(id).selectedIndex == 0)
-    ? document.getElementById(id).style.color = "#AAAAAA"
-    : document.getElementById(id).style.color = "#000000";
+  if (document.getElementById(id).selectedIndex == 0)
+  {
+     document.getElementById(id).style.color = "#AAAAAA";
+     for (const option of document.getElementsByClassName(`${id}_option_under`))
+     {
+       option.style.color = "#000000";
+     }
+  }
+  else
+  {
+    document.getElementById(id).style.color = "#000000";
+    for (const option of document.getElementsByClassName(`${id}_option_top`))
+    {
+      option.style.color = "#AAAAAA";
+    }
+  }
 }

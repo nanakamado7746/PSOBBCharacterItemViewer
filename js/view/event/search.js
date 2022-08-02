@@ -15,7 +15,6 @@ function clickReset()
 
 function clickDelete(id, tagName)
 {
-  if (!hasSearchItem()) return;
   switch (tagName)
   {
     case "input":
@@ -27,7 +26,9 @@ function clickDelete(id, tagName)
       break;
     default:
   }
-  search();
+
+  (hasSearchItem()) ? search()
+                    : resetPage();
 }
 
 function keyUpSearch()

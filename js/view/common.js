@@ -100,7 +100,9 @@ function resetSearchItems()
 
   document.getElementsByName("word")[0].value = "";
   document.getElementById("elements").selectedIndex = 0;
+  changeSelectedColor("elements");
   document.getElementById("hit").selectedIndex = 0;
+  changeSelectedColor("hit");
   document.getElementsByName("unTekked")[0].checked = false;
 
 }

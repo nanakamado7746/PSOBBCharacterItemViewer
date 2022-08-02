@@ -65,6 +65,8 @@ function intializeElementsList(index)
     : list = ElementsList_JA();
 
   let select = document.getElementById("elements");
+  select.innerHTML = "";
+
   select.appendChild(tag("option", `class::elements_option_top`, `value::${""}`, textNode("Special attack")));
 
   for (const value of list)

@@ -14,10 +14,10 @@ function clickChangeLang(lang)
   {
     let id = document.getElementById("data");
     id.innerHTML = '';
-    if (this.currentData["page"] === "itemcode") displayItemCodes();
-    if (this.currentData["page"] === "character") displayCharacter(this.currentData["searching"][2]);
-    if (this.currentData["page"] === "shareBank") displayShareBank(this.currentData["searching"][2]);
-    if (this.currentData["page"] === "allItems") displayInventory(this.currentData["searching"][2].Inventory[this.lang], "ALL ITEMS", "allItems");
+    if (this.currentData["page"] === "itemcode") view(displayItemCodes());
+    if (this.currentData["page"] === "character") view(displayCharacter(this.currentData["searching"][2]));
+    if (this.currentData["page"] === "shareBank") view(displayShareBank(this.currentData["searching"][2]));
+    if (this.currentData["page"] === "allItems") view(displayInventory(this.currentData["searching"][2].Inventory[this.lang], "ALL ITEMS", "allItems"));
     if (this.currentData["page"] === "searchResults")
     {
       let tmp = [];
@@ -34,9 +34,7 @@ function clickChangeLang(lang)
       // 現在ページの情報を保存
       this.currentData["page"] = "searchResults";
       this.currentData["searchResults"] = tmp;
-      displayInventory(tmp, "SEARCH RESULTS", "allItems");
+      view(displayInventory(tmp, "SEARCH RESULTS", "allItems"));
     }
   }
-
-  playAudio(this.open_audios);
 }

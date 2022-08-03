@@ -309,3 +309,8 @@ function changeSelectedColor(id)
     }
   }
 }
+
+function view()
+{
+  playAudio(this.open_audios);
+}

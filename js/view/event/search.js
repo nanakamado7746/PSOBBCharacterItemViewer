@@ -2,15 +2,15 @@ function clickSearch(call)
 {
   (hasSearchItem()) ? search()
                     : resetPage();
-  playAudio(this.open_audios);
 }
 
 function clickReset()
 {
-  if (!hasSearchItem()) return;
-  resetSearchItems();
-  resetPage();
-  playAudio(this.open_audios);
+  if (!hasSearchItem())
+  {
+    resetSearchItems();
+    resetPage();
+  }
 }
 
 function clickDelete(id, tagName)
@@ -35,7 +35,7 @@ function keyUpSearch()
 {
   document.getElementById("wordsearch").addEventListener("keyup",function(){
     search();
-  }, false);
+  });
 
   document.getElementById("elements").addEventListener('change', (event) => {
     changeSelectedColor("elements");
@@ -64,7 +64,7 @@ function search()
   if (this.currentData["searching"][0] === "allItems") data = this.currentData["searching"][2].Inventory;
   if (data.length === 0) return;
 
-  displayInventory(query(data[this.lang]), "SEARCH RESULTS", "allItems")
+  view(displayInventory(query(data[this.lang]), "SEARCH RESULTS", "allItems"));
   scroll(beforeScrollPosition, beforeStickyPosition);
 }
 

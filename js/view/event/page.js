@@ -18,20 +18,20 @@ function clickPage(catecory, index)
       this.currentData["page"] = "character";
       this.currentData["searching"] = ["character", index, this.characters[index]];
       if (hasSearchItem()) { search(); break; }
-      displayCharacter(this.characters[index]);
+      view(displayCharacter(this.characters[index]));
       break;
     case "shareBank":
       this.currentData["page"] = "shareBank";
       this.currentData["searching"] = ["shareBank", index, this.shareBanks[index]];
       if (hasSearchItem()) { search(); break; }
-      displayInventory(this.shareBanks[index].Bank[this.lang], "SHARE BANK");
+      view(displayInventory(this.shareBanks[index].Bank[this.lang], "SHARE BANK"));
       break;
     case "allItems":
       // 現在ページの情報を保存
       this.currentData["page"] = "allItems";
       this.currentData["searching"] = ["allItems", index, this.allItems[index]];
       if (hasSearchItem()) { search(); break; }
-      displayInventory(this.allItems[index].Inventory[this.lang], "ALL ITEMS", "allItems");
+      view(displayInventory(this.allItems[index].Inventory[this.lang], "ALL ITEMS", "allItems"));
       break;
     default:
   }
@@ -40,7 +40,6 @@ function clickPage(catecory, index)
   console.log(this.currentData);
 
   scroll(beforeScrollPosition, beforeStickyPosition);
-  playAudio(this.open_audios);
   setCursorAudio();
 }
 
@@ -59,15 +58,15 @@ function resetPage()
 
   if ( this.currentData["searching"][0] === "character") {
     this.currentData["page"] = "character";
-    displayCharacter(this.currentData["searching"][2]);
+    view(displayCharacter(this.currentData["searching"][2]));
   }
   if ( this.currentData["searching"][0] === "shareBank") {
     this.currentData["page"] = "shareBank";
-    displayShareBank(this.currentData["searching"][2]);
+    view(displayShareBank(this.currentData["searching"][2]));
   }
   if ( this.currentData["searching"][0] === "allItems") {
     this.currentData["page"] = "allItems";
-    displayInventory(this.currentData["searching"][2].Inventory[this.lang], "ALL ITEMS", "allItems");
+    view(displayInventory(this.currentData["searching"][2].Inventory[this.lang], "ALL ITEMS", "allItems"));
   }
 
   scroll(beforeScrollPosition, beforeStickyPosition);

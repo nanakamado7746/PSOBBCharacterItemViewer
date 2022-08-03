@@ -6,11 +6,8 @@ function clickSearch(call)
 
 function clickReset()
 {
-  if (!hasSearchItem())
-  {
-    resetSearchItems();
-    resetPage();
-  }
+  resetSearchItems();
+  resetPage();
 }
 
 function clickDelete(id, tagName)

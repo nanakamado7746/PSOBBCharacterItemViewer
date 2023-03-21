@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2023 March 21",
+      "status": "info",
+      "text": [
+        "The latest Ephinea original item is now supported.",
+        "最新のEphineaオリジナルアイテムに対応しました。"
+      ]
+    },
+    {
       "date": "2022 July 19",
       "status": "info",
       "text": [

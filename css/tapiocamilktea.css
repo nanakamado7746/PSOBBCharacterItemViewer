@@ -134,14 +134,23 @@ h1
 
 .delete
 {
-  background-image:url('../resources/images/icon/button/batsu.png');
-  background-size: 40%;
+  position: absolute;
+  left: 0;
+  background-image:url('../resources/images/icon/button/902_x_f.png');
+  background-size: 80%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
+  background-color: transparent;
+  border: 0px;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.1em;
+  margin-left: 0.1em;
   margin-right: 0.1em;
+}
+
+.delete-span {
+  padding-left: 20px;
 }
 
 .types
@@ -160,26 +169,27 @@ h1
 .wordsearch .sep
 {
   margin-right: 0.5em;
+  position: relative;
 }
 
 .word
 {
   resize: none;
-  width: 250px;
+  width: 270px;
   height: 15px;
 }
 
 .elements
 {
   resize: none;
-  width: 130px;
+  width: 150px;
   height: 21px;
 }
 
 .hit
 {
   resize: none;
-  width: 80px;
+  width: 100px;
   height: 21px;
 }
 
@@ -225,7 +235,7 @@ h1
   padding: 0em 0 0em 3em;
   color: #ffffff;
   background-color: #555555;
-  border-color: : #afeeee;
+  border-color: #afeeee;
   background-image: url("../resources/images/icon/data/redbox_white.png");
   background-size: contain;
   background-repeat: no-repeat;

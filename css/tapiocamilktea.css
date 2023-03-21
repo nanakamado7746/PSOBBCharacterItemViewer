@@ -81,14 +81,27 @@ h1
   margin-right: 2em;
 }
 
+
 .input
 {
-  font-size: 80%;
-  margin-top: 2em;
-
+  margin-top: 1em;
 }
 
-.desc{}
+.input_text_wrap
+{
+  display: flex;
+}
+
+.input_text_wrap .input_text_btn
+{
+  padding-top: 2em;
+}
+
+.desc
+{
+  padding: 0.5em 0em 0.5em 0em;
+  font-size: 80%;
+}
 
 .itemcodeb
 {

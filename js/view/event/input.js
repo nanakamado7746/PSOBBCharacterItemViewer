@@ -48,23 +48,10 @@ function decodeAndDisplay(fileData)
   decoder(fileData);
   displayPager();
 
-  // 詳細表示
-  if (this.characters.length !== 0)
-  {
-    // キャラクターデータがある場合、優先して表示
-    displayCharacter(characters[0]);
-    this.currentData["page"] = "character";
-    this.currentData["searching"] = ["character", 0, this.characters[0]];
-    pushedPageColoer(`pagecharacter${0}`);
-  }
-  else if (this.shareBanks.length !== 0)
-  {
-    // キャラクターデータがない場合は共有倉庫を表示
-    displayShareBank(shareBanks[0]);
-    this.currentData["page"] = "shareBank";
-    this.currentData["searching"] = ["shareBank", 0, this.shareBanks[0]];
-    pushedPageColoer(`pageshareBank${0}`);
-  }
+  displayInventory(this.allItems[0].Inventory[this.lang], "ALL ITEMS", "allItems");
+  this.currentData["page"] = "allItems";
+  this.currentData["searching"] = ["allItems", 0, this.allItems[0]];
+  pushedPageColoer(`pageallItems${0}`);
 
   // ファイル入力をきっかけにDOM表示
   displayAfterEnterd();
@@ -87,7 +74,7 @@ function decoder(fileData)
         }
       },
       {
-        Slot : "Classic AllItems",
+        Slot : "AllItems:Classic",
         Mode : Config.Mode.CLASSIC,
         Inventory : {
           "JA" : [],

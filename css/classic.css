@@ -53,8 +53,10 @@ label, input[type='checkbox'], input[type='radio'], input[type='file'], button
 
 .title
 {
-  padding: 5.3em 0 0 13em;
+  padding: 4.3em 0 0 11em;
   color: #FFFFFF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 120%;
 }
 
 h1

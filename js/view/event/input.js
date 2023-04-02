@@ -48,6 +48,9 @@ function decodeAndDisplay(fileData)
   decoder(fileData);
   displayPager();
 
+  let id = document.getElementById("data");
+  id.innerHTML = '';
+
   displayInventory(this.allItems[0].Inventory[this.lang], "ALL ITEMS", "allItems");
   this.currentData["page"] = "allItems";
   this.currentData["searching"] = ["allItems", 0, this.allItems[0]];
@@ -92,7 +95,7 @@ function decoder(fileData)
     if (fileData[i]["filename"].match(/psobank/) !== null)
     {
       const shareBank = new ShareBank(binary, Config.Mode.NORMAL);
-      shareBanks.push(shareBank);
+      shareBanks[0] = shareBank;
       allItems[shareBank.Mode].Inventory["EN"] = allItems[shareBank.Mode].Inventory["EN"].concat(shareBank.Bank["EN"]);
       allItems[shareBank.Mode].Inventory["JA"] = allItems[shareBank.Mode].Inventory["JA"].concat(shareBank.Bank["JA"]);
       continue;
@@ -102,7 +105,7 @@ function decoder(fileData)
     if (fileData[i]["filename"].match(/psoclassicbank/) !== null)
     {
       const classicBank = new ShareBank(binary, Config.Mode.CLASSIC);
-      shareBanks.push(classicBank);
+      shareBanks[1] = classicBank;
       allItems[classicBank.Mode].Inventory["EN"] = allItems[classicBank.Mode].Inventory["EN"].concat(classicBank.Bank["EN"]);
       allItems[classicBank.Mode].Inventory["JA"] = allItems[classicBank.Mode].Inventory["JA"].concat(classicBank.Bank["JA"]);
       continue;
@@ -152,6 +155,7 @@ function setGlobalVariable(characters, shareBanks, allItems)
     this.characters = characters;
     console.log("===== characters =====");
     console.log(characters);
+    setModeData("characters", characters);
   }
 
   if (shareBanks.length !== 0)
@@ -159,6 +163,7 @@ function setGlobalVariable(characters, shareBanks, allItems)
     this.shareBanks = shareBanks;
     console.log("===== shareBanks =====");
     console.log(shareBanks);
+    setModeData("shareBanks", shareBanks);
   }
 
   if (allItems.length !== 0)
@@ -166,11 +171,9 @@ function setGlobalVariable(characters, shareBanks, allItems)
     this.allItems = allItems;
     console.log("===== allItems =====");
     console.log(allItems);
+    setModeData("allItems", allItems);
   }
 
-  setModeData("characters", characters);
-  setModeData("shareBanks", shareBanks);
-  setModeData("allItems", allItems);
   console.log("===== normal data =====");
   console.log(this.normals);
   console.log("===== classics data =====");
@@ -183,7 +186,7 @@ function setModeData(type, models)
   let classics = [];
   for (const model of models)
   {
-    (model.Mode == Config.Mode.NORMAL)
+    (model !== undefined && model.Mode == Config.Mode.NORMAL)
       ? normals.push(model)
       : classics.push(model)
   }

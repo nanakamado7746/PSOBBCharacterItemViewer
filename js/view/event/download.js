@@ -76,15 +76,15 @@ function createShareBanksDataFile(zip, shareBank, path)
 
 function createAllItemsDataFile(zip, allItems, path)
 {
-  zip = createDataFile(zip, allItems.Inventory[this.lang], `${path}/${allItems.Slot}_no_slot.txt`);
-  zip = createDataFileWithSlot(zip, allItems.Inventory[this.lang], `${path}/${allItems.Slot}.txt`)
+  zip = createDataFile(zip, allItems.Inventory[this.lang], `${path}/${allItems.Slot}.txt`);
+  zip = createDataFileWithSlot(zip, allItems.Inventory[this.lang], `${path}/${allItems.Slot}_with_slot.txt`)
   return zip;
 }
 
 function createSearchResultsDataFile(zip, searchResults, path)
 {
-  zip = createDataFile(zip, searchResults, `${path}/SearchResults_no_slot.txt`);
-  zip = createDataFileWithSlot(zip, searchResults, `${path}/SearchResults.txt`)
+  zip = createDataFile(zip, searchResults, `${path}/SearchResults.txt`);
+  zip = createDataFileWithSlot(zip, searchResults, `${path}/SearchResults_with_slot.txt`)
   return zip;
 }
 

@@ -9,6 +9,14 @@ function notification()
       ]
     },
     {
+      "date": "2023 April 4",
+      "status": "caution",
+      "text": [
+        "Use 7zip or WinRAR to extract the download file (psobb_character_data). Other software may not extract the file properly.",
+        "ダウンロードファイル（psobb_character_data）の展開には、7zipやWinRARを使用してください。その他のソフトウェアでは正常に展開できないことがあります。"
+      ]
+    },
+    {
       "date": "2023 March 21",
       "status": "info",
       "text": [

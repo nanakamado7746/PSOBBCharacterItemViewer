@@ -11,11 +11,13 @@ function clickDownload()
   }
 
   // ShareBankデータファイル作成
-  if (this.shareBanks !== null & this.shareBanks.length !== 0)
-  {
-    for (const shareBank of this.shareBanks) {
-      zip = createShareBanksDataFile(zip, shareBank, `psobb_character_data/alldata`);
-    }
+  if (this.shareBanks[Config.Mode.NORMAL] !== undefined && this.shareBanks[Config.Mode.NORMAL].Bank.length !== 0) {
+    zip = createShareBanksDataFile(zip, this.shareBanks[Config.Mode.NORMAL], `psobb_character_data/alldata`);
+  }
+
+  // クラシックShareBankデータファイル作成
+  if (this.shareBanks[Config.Mode.CLASSIC] !== undefined && this.shareBanks[Config.Mode.CLASSIC].Bank.length !== 0) {
+    zip = createShareBanksDataFile(zip, this.shareBanks[Config.Mode.CLASSIC], `psobb_character_data/alldata`);
   }
 
   // AllItemsデータファイル作成
@@ -89,7 +91,8 @@ function createSearchResultsDataFile(zip, searchResults, path)
 function createDataFile(zip, data, path)
 {
   if (data !== undefined & data !== 0) {
-    let buffer  = data.map(item => item[1]["display"]).join("\r\n");
+    let buffer = data.map(item => item[1]["display"]).join("\r\n");
+
     zip.addFile(new TextEncoder().encode(buffer), {
       filename: new TextEncoder().encode(path)
     });
@@ -99,14 +102,14 @@ function createDataFile(zip, data, path)
 
 function createDataFileWithSlot(zip, data, path)
 {
-  let tmp = [];
+  let buffer = [];
   for (const item of data)
   {
-    tmp.push(`${item[1]["display"]}, Slot: ${item[2]}`);
+    buffer.push(`${item[1]["display"]}, Slot: ${item[2]}`);
   }
 
   if (data !== undefined & data !== 0) {
-    zip.addFile(new TextEncoder().encode(tmp.join("\r\n")), {
+    zip.addFile(new TextEncoder().encode(buffer.join("\r\n")), {
       filename: new TextEncoder().encode(path)
     });
   }

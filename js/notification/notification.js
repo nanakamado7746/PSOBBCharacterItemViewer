@@ -12,8 +12,8 @@ function notification()
       "date": "2023 April 4",
       "status": "caution",
       "text": [
-        "If an error occurs in extract of the psobb_character_data.zip, change the extract software.",
-        "psobb_character_data.zipの展開でエラーが発生した場合は、展開ソフトを変更してください。"
+        "If an error occurs in extract of the psobb_character_data.zip, change the extract software. WINRAR and 7zip etc.",
+        "psobb_character_data.zipの展開でエラーが発生した場合は、展開ソフトを変更してください。WINRAR、7zipなど。"
       ]
     },
     {

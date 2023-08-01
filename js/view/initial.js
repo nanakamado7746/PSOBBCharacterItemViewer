@@ -20,7 +20,6 @@ function initializeTheme()
 
 }
 
-
 function initializeLang()
 {
   if (localStorage.getItem("lang"))

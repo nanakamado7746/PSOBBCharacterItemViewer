@@ -51,10 +51,15 @@ function decodeAndDisplay(fileData)
   let id = document.getElementById("data");
   id.innerHTML = '';
 
-  displayInventory(this.allItems[0].Inventory[this.lang], "ALL ITEMS", "allItems");
-  this.currentData["page"] = "allItems";
-  this.currentData["searching"] = ["allItems", 0, this.allItems[0]];
-  pushedPageColoer(`pageallItems${0}`);
+  // displayInventory(this.allItems[0].Inventory[this.lang], "ALL ITEMS", "allItems");
+  // this.currentData["page"] = "allItems";
+  // this.currentData["searching"] = ["allItems", 0, this.allItems[0]];
+  // pushedPageColoer(`pageallItems${0}`);
+
+  displayCharacter(this.characters[0]);
+  this.currentData["page"] = "character";
+  this.currentData["searching"] = ["character", 0, this.characters[0]];
+  pushedPageColoer(`pagecharacter${0}`);
 
   // ファイル入力をきっかけにDOM表示
   displayAfterEnterd();

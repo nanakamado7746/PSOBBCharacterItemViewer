@@ -113,20 +113,6 @@ function displayPager()
 
 function createPageButton(dataBlock, mode = 0)
 {
-  // 全アイテムのページボタンを作成
-  if (allItems[mode] !== undefined && allItems[mode].length !== 0 )
-  {
-      let button = tag("button", `id::pageallItems${mode}`, "class::page", `name::${mode}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[mode].Slot}`);
-      dataBlock.appendChild(button);
-  }
-
-  // 共有倉庫のページボタンを作成
-  if (shareBanks[mode] !== undefined && shareBanks[mode].length !== 0 )
-  {
-      let button = tag("button", `id::pageshareBank${mode}`, "class::page", `name::${mode}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[mode].Slot}`);
-      dataBlock.appendChild(button);
-  }
-
   // キャラクターのページボタンを作成
   if (characters.length !== 0)
   {
@@ -139,6 +125,21 @@ function createPageButton(dataBlock, mode = 0)
       }
     }
   }
+
+  // 共有倉庫のページボタンを作成
+  if (shareBanks[mode] !== undefined && shareBanks[mode].length !== 0 )
+  {
+      let button = tag("button", `id::pageshareBank${mode}`, "class::page", `name::${mode}`, `onclick::clickPage("shareBank", name)`, `innerText::${shareBanks[mode].Slot}`);
+      dataBlock.appendChild(button);
+  }
+
+  // 全アイテムのページボタンを作成
+  if (allItems[mode] !== undefined && allItems[mode].length !== 0 )
+  {
+      let button = tag("button", `id::pageallItems${mode}`, "class::page", `name::${mode}`, `onclick::clickPage("allItems", name)`, `innerText::${allItems[mode].Slot}`);
+      dataBlock.appendChild(button);
+  }
+
 }
 
 function displayNotification()

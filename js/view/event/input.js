@@ -48,18 +48,27 @@ function decodeAndDisplay(fileData)
   decoder(fileData);
   displayPager();
 
-  let id = document.getElementById("data");
-  id.innerHTML = '';
-
-  // displayInventory(this.allItems[0].Inventory[this.lang], "ALL ITEMS", "allItems");
-  // this.currentData["page"] = "allItems";
-  // this.currentData["searching"] = ["allItems", 0, this.allItems[0]];
-  // pushedPageColoer(`pageallItems${0}`);
-
-  displayCharacter(this.characters[0]);
-  this.currentData["page"] = "character";
-  this.currentData["searching"] = ["character", 0, this.characters[0]];
-  pushedPageColoer(`pagecharacter${0}`);
+  // 詳細表示
+  if (this.characters.length !== 0) {
+    // キャラクターデータがある場合、優先して表示
+    displayCharacter(characters[0]);
+    this.currentData["page"] = "character";
+    this.currentData["searching"] = ["character", 0, this.characters[0]];
+    pushedPageColoer(`pagecharacter${0}`);
+  } else if (this.shareBanks.length !== 0) {
+    if (this.shareBanks[1] !== undefined) {
+      shareBank = this.shareBanks[1];
+      index = 1;
+    } else {
+      shareBank = this.shareBanks[0];
+      index = 0;
+    }
+    // キャラクターデータがない場合は共有倉庫を表示
+    displayShareBank(shareBank);
+    this.currentData["page"] = "shareBank";
+    this.currentData["searching"] = ["shareBank", 0, shareBank];
+    pushedPageColoer(`pageshareBank${index}`);
+  }
 
   // ファイル入力をきっかけにDOM表示
   displayAfterEnterd();

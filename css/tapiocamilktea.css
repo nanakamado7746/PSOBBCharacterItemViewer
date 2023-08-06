@@ -95,7 +95,7 @@ h1
 
 .input_text_wrap .input_text_btn
 {
-  padding-top: 2em;
+  margin-top: 1.25em;
 }
 
 .desc
@@ -112,7 +112,6 @@ h1
 
 .lang
 {
-  font-size: 80%;
   display: flex;
   align-items: center;
 }
@@ -126,12 +125,12 @@ h1
   background-color: #faebd7;
   padding: 1em 0em 1em 0em;
   width: auto;
+  font-size: 80%;
 }
 
 .search
 {
   margin-top: 0.5em;
-  font-size: 80%;
 }
 
 .reset
@@ -218,7 +217,7 @@ h1
   vertical-align: middle;
 }
 
-.download
+.text-download
 {
   margin-top: 0.5em;
   height: 30px;

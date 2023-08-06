@@ -396,7 +396,7 @@ h1
 {
 }
 
-.download
+.text-download
 {
   margin-top: 0.5em;
   height: 30px;
@@ -411,7 +411,6 @@ h1
 
 .page
 {
-
   height: 25px;
   margin: 0 auto;
   display: table-cell;

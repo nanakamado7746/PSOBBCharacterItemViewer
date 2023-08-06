@@ -28,7 +28,7 @@ class ShareBank extends Abstract {
   {
     (slot == Config.Mode.NORMAL)
       ? this.Slot = "ShareBank"
-      : this.Slot = "ShareBank:Classic"
+      : this.Slot = "ShareBank(Classic)"
   }
 
   setMode(slot)

@@ -91,7 +91,7 @@ function decoder(fileData)
         }
       },
       {
-        Slot : "AllItems:Classic",
+        Slot : "AllItems(Classic)",
         Mode : Config.Mode.CLASSIC,
         Inventory : {
           "JA" : [],

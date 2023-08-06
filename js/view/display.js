@@ -101,14 +101,17 @@ function displayInventory(inventory, title, mode)
 
 function displayPager()
 {
-  let id = document.getElementById("pager");
-  id.innerHTML = '';
+  let pager = document.getElementById("pager");
+  pager.innerHTML = '';
 
-  createPageButton(id, Config.Mode.NORMAL)
+  let normal = pager.appendChild(createAttribute(tag("div"), "class::normal"));
+  normal.appendChild(textNode("NORMAL: "));
+  createPageButton(normal, Config.Mode.NORMAL)
 
-  id.appendChild(document.createElement("br"));
+  let classic = pager.appendChild(createAttribute(tag("div"), "class::classic"));
+  classic.appendChild(textNode("CLASSIC: "));
 
-  createPageButton(id, Config.Mode.CLASSIC)
+  createPageButton(classic, Config.Mode.CLASSIC)
 }
 
 function createPageButton(dataBlock, mode = 0)

@@ -137,6 +137,7 @@ h1
   background-image: url("../resources/images/background/hukidashi/hukidashi_body_pink.png");
   background-size: contain;
   background-repeat: repeat-x;
+  height: 86px;
 }
 
 .notification_right

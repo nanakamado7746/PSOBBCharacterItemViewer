@@ -268,7 +268,7 @@ function FrameAdditions() {
     "CURSED CLOAK":                   [ 8,8 ],
     "SELECT CLOAK":                   [ 8,8 ],
     "SPIRIT CUIRASS":                 [ 7,5 ],
-    "REVIVAL CURIASS":                [ 5,10 ],
+    "REVIVAL CUIRASS":                [ 5,10 ],
     "ALLIANCE UNIFORM":               [ 12,0 ],
     "OFFICER UNIFORM":                [ 14,0 ],
     "COMMANDER UNIFORM":              [ 16,0 ],
@@ -2165,5 +2165,12 @@ function ItemCodes() {
     0x03180E: "Kalki Kit",
     0x03180F: "Vritra Kit",
     0x031810: "Heart of YN-0117",
+    0x030E49: "Chartreuse Paint",
+    0x030E4A: "Cyan Paint",
+    0x030E4B: "Onyx Paint",
+    0x030E4C: "Orange Paint",
+    0x030E4D: "Rose Paint",
+    0x030E4E: "Ultramarine Paint",
+    0x030E4F: "Violet Paint",
   }
 }

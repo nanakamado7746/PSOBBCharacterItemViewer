@@ -85,7 +85,7 @@ h1
 
 .input
 {
-  margin-top: 1em;
+  margin-top: 0em;
 }
 
 .input_text_wrap
@@ -100,7 +100,6 @@ h1
 
 .desc
 {
-  padding: 0.5em 0em 0.5em 0em;
   font-size: 80%;
 }
 
@@ -123,9 +122,8 @@ h1
   top: 0em; /*ここで止める位置を調整する*/
   z-index: 1;
   background-color: #faebd7;
-  padding: 1em 0em 1em 0em;
+  padding: 1.5em 0em 1em 0em;
   width: auto;
-  font-size: 80%;
 }
 
 .search
@@ -238,6 +236,11 @@ h1
 }
 
 .data{}
+
+.data_window {
+  margin: 1em 0em 0em 0em;
+  font-size: 90%;
+}
 
 .data .data_title_wrap
 {

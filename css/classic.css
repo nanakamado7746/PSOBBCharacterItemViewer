@@ -204,7 +204,7 @@ h1
 
 .input
 {
-  margin-top: 1em;
+  margin-top: 0em;
 }
 
 .input_bg_wrap
@@ -240,7 +240,7 @@ h1
 
 .input_text_wrap
 {
-  padding-top: 1em;
+  padding-top: 1.2em;
   display: flex;
 }
 
@@ -251,7 +251,6 @@ h1
 
 .desc
 {
-  padding: 0.5em 0em 0.5em 0em;
   font-size: 80%;
 }
 
@@ -276,9 +275,8 @@ h1
   position: sticky;
   top: 0em; /*ここで止める位置を調整する*/
   z-index: 100;
-  padding: 1em 0em 0em 0em;
+  padding: 1.5em 0em 0em 0em;
   width: auto;
-  font-size: 90%;
 }
 
 .sticky_indent
@@ -423,6 +421,8 @@ h1
 
 .data_window {
   width: 1000px;
+  margin: 0.5em 0em 0em 0em;
+  font-size: 90%;
 }
 
 .data .data_title_wrap

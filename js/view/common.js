@@ -146,4 +146,8 @@ function displayAfterEnterd()
     document.getElementById("afterEnterd").style.opacity = 1;
     document.getElementById("afterEnterd").style.height = "auto";
   }
+
+  const beforeScrollPosition = window.scrollY;
+  const beforeStickyPosition = document.getElementById('sticky').getBoundingClientRect().top;
+  scroll(beforeScrollPosition, beforeStickyPosition);
 }

@@ -9,7 +9,7 @@ function notification()
       ]
     },
     {
-      "date": "2023 April 4",
+      "date": "2023 Apr 4",
       "status": "caution",
       "text": [
         "If an error occurs in extract of the psobb_character_data.zip, change the extract software. WINRAR and 7zip etc.",
@@ -17,7 +17,7 @@ function notification()
       ]
     },
     {
-      "date": "2023 December 3",
+      "date": "2023 Dec 3",
       "status": "info",
       "text": [
         "The latest Ephinea original item is now supported.",
@@ -25,7 +25,7 @@ function notification()
       ]
     },
     {
-      "date": "2023 March 21",
+      "date": "2023 Mar 21",
       "status": "info",
       "text": [
         "The latest Ephinea original item is now supported.",
@@ -33,7 +33,7 @@ function notification()
       ]
     },
     {
-      "date": "2022 July 19",
+      "date": "2022 Jul 19",
       "status": "info",
       "text": [
         "Classic mode is now supported.",
@@ -41,7 +41,7 @@ function notification()
       ]
     },
     {
-      "date": "2022 July 18",
+      "date": "2022 Jul 18",
       "status": "info",
       "text": [
         "The Classic mode share bank can now be browsed.",

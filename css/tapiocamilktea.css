@@ -126,6 +126,11 @@ h1
   width: auto;
 }
 
+.search_form
+{
+  font-size: 90%;
+}
+
 .search
 {
   margin-top: 0.5em;
@@ -239,7 +244,6 @@ h1
 
 .data_window {
   margin: 1em 0em 0em 0em;
-  font-size: 90%;
 }
 
 .data .data_title_wrap

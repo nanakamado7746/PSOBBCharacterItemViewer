@@ -76,72 +76,74 @@
         <!-- <div class="input_bg_under"></div> -->
       </div>
 
-      <div class="data_window">
-        <div class="data_header"></div>
-        <div class="data_body sticky_indent">
-          <div class="lang" id="radio">
-            <label class="lang_label label_hover"><input type="radio" name="lang" value="EN" checked
-                onClick=clickChangeLang(value)>English</label>
-            <label class="lang_label label_hover"><input type="radio" name="lang" value="JA"
-                onClick=clickChangeLang(value)>日本語</label>
-            <button type="button" id="itemcodeb" class="itemcodeb" onClick=clickDisplayItemCodes(event)>ITEM
-              CODES</button>
-          </div>
-          <div id="afterEnterd">
-            <div class="pager" , id="pager"></div>
-            <div class="search" id="search">
-              <div class="types">
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:rare"
-                    onClick=clickSearch(event)>Rare Weapon</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:common"
-                    onClick=clickSearch(event)>Common Weapon</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="2"
-                    onClick=clickSearch(event)>Frame</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="3"
-                    onClick=clickSearch(event)>Barrier</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="4"
-                    onClick=clickSearch(event)>Unit</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="5"
-                    onClick=clickSearch(event)>Mag</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="6"
-                    onClick=clickSearch(event)>Disk</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="7"
-                    onClick=clickSearch(event)>Tool</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="8"
-                    onClick=clickSearch(event)>S-Rank</label>
-                <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="9"
-                    onClick=clickSearch(event)>Other</label>
-                <label class="type_label label_hover"><input type="checkbox" cilass="type" name="type" value="10"
-                    onClick=clickSearch(event)>Meseta</label>
-              </div>
-              <div id="wordsearch" class="wordsearch">
-                <div class="sep">
-                  <input type="text" id="word" class="word delete-span" name="word" placeholder="Input item name">
-                  <button type="button" class="delete" onClick="clickDelete('word', 'input')"></button>
+      <div class="search_form">
+        <div class="data_window">
+          <div class="data_header"></div>
+          <div class="data_body sticky_indent">
+            <div class="lang" id="radio">
+              <label class="lang_label label_hover"><input type="radio" name="lang" value="EN" checked
+                  onClick=clickChangeLang(value)>English</label>
+              <label class="lang_label label_hover"><input type="radio" name="lang" value="JA"
+                  onClick=clickChangeLang(value)>日本語</label>
+              <button type="button" id="itemcodeb" class="itemcodeb" onClick=clickDisplayItemCodes(event)>ITEM
+                CODES</button>
+            </div>
+            <div id="afterEnterd">
+              <div class="pager" , id="pager"></div>
+              <div class="search" id="search">
+                <div class="types">
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:rare"
+                      onClick=clickSearch(event)>Rare Weapon</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="1:common"
+                      onClick=clickSearch(event)>Common Weapon</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="2"
+                      onClick=clickSearch(event)>Frame</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="3"
+                      onClick=clickSearch(event)>Barrier</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="4"
+                      onClick=clickSearch(event)>Unit</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="5"
+                      onClick=clickSearch(event)>Mag</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="6"
+                      onClick=clickSearch(event)>Disk</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="7"
+                      onClick=clickSearch(event)>Tool</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="8"
+                      onClick=clickSearch(event)>S-Rank</label>
+                  <label class="type_label label_hover"><input type="checkbox" class="type" name="type" value="9"
+                      onClick=clickSearch(event)>Other</label>
+                  <label class="type_label label_hover"><input type="checkbox" cilass="type" name="type" value="10"
+                      onClick=clickSearch(event)>Meseta</label>
                 </div>
-                <div class="sep">
-                  <select id="elements" class="elements delete-span"></select>
-                  <button type="button" class="delete" onClick="clickDelete('elements', 'select')"></button>
-                </div>
-                <div class="sep">
-                  <select id="hit" class="hit delete-span"></select>
-                  <button type="button" class="delete" onClick="clickDelete('hit', 'select')"></button>
-                </div>
-                <label class="label_hover">
+                <div id="wordsearch" class="wordsearch">
                   <div class="sep">
-                    <input type="checkbox" class="unTekked" name="unTekked" onClick=clickSearch(event)>
-                    only unTekked(未鑑定のみ)
+                    <input type="text" id="word" class="word delete-span" name="word" placeholder="Input item name">
+                    <button type="button" class="delete" onClick="clickDelete('word', 'input')"></button>
                   </div>
-                </label>
-              </div>
-              <button type="button" class="reset" id="reset" onClick=clickReset(event)>RESET</button>
-              <div>
-                <button id="text-download" class="text-download" onClick='clickDownload()'>Getting as Text File</button>
+                  <div class="sep">
+                    <select id="elements" class="elements delete-span"></select>
+                    <button type="button" class="delete" onClick="clickDelete('elements', 'select')"></button>
+                  </div>
+                  <div class="sep">
+                    <select id="hit" class="hit delete-span"></select>
+                    <button type="button" class="delete" onClick="clickDelete('hit', 'select')"></button>
+                  </div>
+                  <label class="label_hover">
+                    <div class="sep">
+                      <input type="checkbox" class="unTekked" name="unTekked" onClick=clickSearch(event)>
+                      only unTekked(未鑑定のみ)
+                    </div>
+                  </label>
+                </div>
+                <button type="button" class="reset" id="reset" onClick=clickReset(event)>RESET</button>
+                <div>
+                  <button id="text-download" class="text-download" onClick='clickDownload()'>Getting as Text File</button>
+                </div>
               </div>
             </div>
           </div>
+          <div class="data_footer"></div>
         </div>
-        <div class="data_footer"></div>
       </div>
     </div>
     <div class="data" , id="data"></div>

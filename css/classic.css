@@ -284,13 +284,17 @@ h1
   padding: 0 2em 0 2em;
 }
 
+.search_form
+{
+  font-size: 90%;
+}
+
 .lang
 {
   /* font-size: 100%; */
   display: flex;
   align-items: center;
 }
-
 
 .lang_label
 {
@@ -422,7 +426,6 @@ h1
 .data_window {
   width: 1000px;
   margin: 0.5em 0em 0em 0em;
-  font-size: 90%;
 }
 
 .data .data_title_wrap

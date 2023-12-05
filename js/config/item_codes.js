@@ -423,6 +423,10 @@ function DiskNameLanguage() {
   return "Disk";
 }
 
+// pb data pattern
+// 02000018,00000000,00000000,78C80300
+//       --                       --
+// 1803 is farlla,pilla,none
 function PBs() {
   return {
     "0000": ["","",""],
@@ -432,30 +436,42 @@ function PBs() {
     "1003": ["Farlla","Golla",""],
     "5007": ["Farlla","Golla","Pilla"],
     "D007": ["Farlla","Golla","Mylla & Youlla"],
+    "1007": ["Farlla","Golla","Estlla"],
     "1803": ["Farlla","Pilla",""],
     "5807": ["Farlla","Pilla","Golla"],
     "D807": ["Farlla","Pilla","Mylla & Youlla"],
+    "1807": ["Farlla","Pilla","Estlla"],
     "2803": ["Farlla","Mylla & Youlla",""],
     "6807": ["Farlla","Mylla & Youlla","Golla"],
     "A807": ["Farlla","Mylla & Youlla", "Pilla" ],
+    "2807": ["Farlla","Mylla & Youlla","Estlla"],
     "1103": ["Estlla","Golla",""],
     "5107": ["Estlla","Golla","Pilla"],
     "D107": ["Estlla","Golla","Mylla & Youlla"],
+    "1107": ["Estlla","Golla","Farlla"],
     "1903": ["Estlla","Pilla",""],
     "5907": ["Estlla","Pilla","Golla"],
     "D907": ["Estlla","Pilla","Mylla & Youlla"],
+    "1907": ["Estlla","Pilla","Farlla"],
     "2903": ["Estlla","Mylla & Youlla",""],
     "6907": ["Estlla","Mylla & Youlla","Golla"],
     "A907": ["Estlla","Mylla & Youlla","Pilla"],
+    "2907": ["Estlla","Mylla & Youlla","Farlla"],
     "1403": ["Leilla","Golla",""],
     "9407": ["Leilla","Golla","Pilla"],
     "D407": ["Leilla","Golla","Mylla & Youlla"],
+    "1407": ["Leilla","Golla","Farlla"],
+    "5407": ["Leilla","Golla","Estlla"],
     "1C03": ["Leilla","Pilla",""],
     "9C07": ["Leilla","Pilla","Golla"],
     "DC07": ["Leilla","Pilla","Mylla & Youlla"],
+    "1C07": ["Leilla","Pilla","Farlla"],
+    "5C07": ["Leilla","Pilla","Estlla"],
     "2C03": ["Leilla","Mylla & Youlla",""],
     "AC07": ["Leilla","Mylla & Youlla","Golla"],
     "EC07": ["Leilla","Mylla & Youlla","Pilla"],
+    "2C07": ["Leilla","Mylla & Youlla","Golla"],
+    "6C07": ["Leilla","Mylla & Youlla","Pilla"],
   }
 }
 

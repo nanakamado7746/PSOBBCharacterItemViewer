@@ -120,7 +120,7 @@ h1
 .notification_wrap
 {
   display: flex;
-  height: 100px;
+  height: 125px;
   width: 1100px;
 }
 
@@ -129,7 +129,7 @@ h1
   background-image: url("../resources/images/background/hukidashi/hukidashi_left_pink.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 53px;
+  width: 68.5px;
 }
 
 .notification_body
@@ -137,7 +137,7 @@ h1
   background-image: url("../resources/images/background/hukidashi/hukidashi_body_pink.png");
   background-size: contain;
   background-repeat: repeat-x;
-  height: 86px;
+  height: 110.5px;
 }
 
 .notification_right
@@ -145,7 +145,7 @@ h1
   background-image: url("../resources/images/background/hukidashi/hukidashi_right_pink.png");
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 58.5px;
+  width: 75.5px;
 }
 
 .notification
@@ -240,12 +240,13 @@ h1
 
 .input_text_wrap
 {
+  padding-top: 1em;
   display: flex;
 }
 
 .input_text_wrap .input_text_btn
 {
-  padding-top: 2em;
+  padding-top: 1.2em;
 }
 
 .desc

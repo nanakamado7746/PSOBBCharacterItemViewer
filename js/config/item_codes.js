@@ -279,7 +279,7 @@ function FrameAdditions() {
     "LIEUTENANT MANTLE":              [ 21,18 ],
     "UNION FIELD":                    [ 0,0 ],
     "SAMURAI ARMOR":                  [ 0,0 ],
-    "STEALTH SUIT":                   [ 0,25 ]
+    "STEALTH SUIT":                   [ 0,25 ],
   }
 }
 
@@ -391,7 +391,29 @@ function BarrierAdditions() {
     "UNKNOWN_B":                          [ 0,0 ],
     "GENPEI":                             [ 0,0 ],
     "Anti-Light Ring":                    [ 0,0 ],
-    "Anti-Dark Ring":                     [ 0,0 ]
+    "Anti-Dark Ring":                     [ 0,0 ],
+    "RED RING* - Angel Plating":          [ 85,25 ],
+		"RED RING* - Black Paint":            [ 85,25 ],
+		"RED RING* - Blue Paint":             [ 85,25 ],
+		"RED RING* - Bunny Plating":          [ 85,25 ],
+		"RED RING* - Cat Plating":            [ 85,25 ],
+		"RED RING* - Chartreuse Paint":       [ 85,25 ],
+		"RED RING* - Cyan Paint":             [ 85,25 ],
+		"RED RING* - Deep Plating":           [ 85,25 ],
+		"RED RING* - Delsaber Plating":       [ 85,25 ],
+		"RED RING* - Epsilon Plating":        [ 85,25 ],
+		"RED RING* - Green Paint":            [ 85,25 ],
+		"RED RING* - Heart Plating":          [ 85,25 ],
+		"RED RING* - Honeycomb Plating":      [ 85,25 ],
+		"RED RING* - Onyx Paint":             [ 85,25 ],
+		"RED RING* - Orange Paint":           [ 85,25 ],
+		"RED RING* - Purple Paint":           [ 85,25 ],
+		"RED RING* - Rose Paint":             [ 85,25 ],
+		"RED RING* - Standstill Plating":     [ 85,25 ],
+		"RED RING* - Ultramarine Paint":      [ 85,25 ],
+		"RED RING* - Violet Paint":           [ 85,25 ],
+		"RED RING* - White Paint":            [ 85,25 ],
+		"RED RING* - Yellow Paint":           [ 85,25 ],
   }
 }
 

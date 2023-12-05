@@ -11,7 +11,7 @@ class Config {
   static MagColorCodes;
   static WeaponRange = [ 0x000000, 0x00ED00 ];
   static FrameRange = [ 0x010100, 0x010158 ];
-  static BarrierRange = [ 0x010200, 0x0102A5 ];
+  static BarrierRange = [ 0x010200, 0x0102B4 ];
   static UnitRange = [ 0x010300, 0x010364 ];
   static MagRange = [ 0x020000, 0x025200 ];
   static ToolRange = [ 0x030000, 0x030900 ];

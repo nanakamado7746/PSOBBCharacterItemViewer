@@ -279,19 +279,18 @@ h1
   width: auto;
 }
 
-.sticky_indent
-{
-  padding: 0 2em 0 2em;
-}
-
 .search_form
 {
   font-size: 90%;
 }
 
+.sticky_indent
+{
+  padding: 0 2em 0 2em;
+}
+
 .lang
 {
-  /* font-size: 100%; */
   display: flex;
   align-items: center;
 }

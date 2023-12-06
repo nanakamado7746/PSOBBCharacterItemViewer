@@ -76,12 +76,12 @@ function scroll(beforeScrollPosition, beforeStickyPosition)
 {
   if (document.getElementById('sticky').getBoundingClientRect().top > 0 | beforeStickyPosition > 0)
   {
-    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, document.getElementById('sticky').getBoundingClientRect().top);
     scrollTo(0, beforeScrollPosition);
   }
   else if (document.getElementById('sticky').getBoundingClientRect().top === 0)
   {
-    scrollTo(0, document.getElementById('data_window').getBoundingClientRect().top);
+    scrollTo(0, document.getElementById('sticky').getBoundingClientRect().top);
     document.getElementById('sticky').scrollIntoView();
   }
 }

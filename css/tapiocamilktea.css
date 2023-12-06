@@ -113,6 +113,7 @@ h1
 {
   display: flex;
   align-items: center;
+  margin-left: -0.3em;
 }
 
 .sticky
@@ -129,6 +130,7 @@ h1
 .search_form
 {
   font-size: 90%;
+  margin-left: 0.5em;
 }
 
 .search
@@ -173,6 +175,7 @@ h1
 {
   display: flex;
   align-items: center;
+  margin-left: -0.2em;
   margin-bottom: 0.1em;
 }
 
